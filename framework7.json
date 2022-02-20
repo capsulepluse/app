@@ -1,0 +1,32 @@
+{
+  "cwd": "D:\\www\\capsul\\app_v4",
+  "type": [
+    "web",
+    "pwa",
+    "cordova"
+  ],
+  "name": "Capsuleplus",
+  "pkg": "com.capsuleplus.app",
+  "framework": "core",
+  "template": "single-view",
+  "bundler": false,
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "android"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen"
+    ]
+  },
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false
+}

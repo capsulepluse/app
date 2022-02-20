@@ -1,0 +1,657 @@
+<div class="page page-stats" data-name="stats">
+    <div class="navbar ">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner">
+            <div class="left  no-margin-right">
+                <a href="#" class="link icon-only panel-open " data-panel="left">
+                    <i class="icon f7-icons size-22">bars</i>
+                </a>
+            </div>
+            <div class="title text-align-center">
+                <div class="logo-small">
+                    <img src="img/logo.png" alt="" class="img" />
+                    <!-- <h6>GO<br /><small>MobileUX</small></h6> -->
+                </div>
+            </div>
+            <div class="right text-align-center">
+                <a href="/profile/" class="link ">
+                    <i class="icon f7-icons size-22">person_circle</i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- main page content -->
+    <div class="page-content has-footer">
+        <!-- search -->
+        <!-- <div class="block">
+            <div class="row margin-bottom">
+                <div class="col align-self-center">
+                    <h5 class="no-margin-bottom">This Month</h5>
+                    <input type="text" id="daterange" class="d-none calendar-daterange" value="7/16/2021 - 7/23/2021">
+                </div>
+                <div class="col-auto">
+                    <button class="button button-fill button-large padding elevation-3 daterange-btn">
+                        <i class="icons f7-icons size-22">calendar</i>
+                    </button>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Chart area -->
+        <!-- <div class="block">
+            <div class="row">
+                <div class="col-100">
+                    <div class="card elevation-2 margin-bottom">
+                        <div class="card-content card-content-padding">
+                            <canvas id="areachart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+            <!-- offerslides -->
+            <div class="block">
+                <div class="swiper-container offerslides margin-bottom-half " style="height: 110px;"  data-loop="true">
+                  <!-- Additional required wrapper -->
+                  <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                      <div class="card elevation-2 card-theme">
+                        <div class="card-content card-content-padding ">
+                          <div class="row">
+                            <div class="col-50">
+                              <img src="img/Banner.png" alt="" class="mw-100" />
+                            </div>
+                            <div class="col text-align-left align-self-center no-padding-left">
+                              <h6 class="fw-normal no-margin-bottom">Season Discount</h6>
+                              <h2>50% OFF</h2>
+                              <p>Use Code<br /><strong>"SEASON01"</strong></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="swiper-slide">
+                      <div class="card elevation-2 card-theme">
+                        <div class="card-content card-content-padding ">
+                          <div class="row">
+                            <div class="col-50">
+                              <img src="img/Banner3.png" alt="" class="mw-100" />
+                            </div>
+                            <div class="col text-align-left align-self-center no-padding-left">
+                              <h6 class="fw-normal no-margin-bottom">Special Discount</h6>
+                              <h2>65% OFF</h2>
+                              <p>Use Code<br /><strong>"NEW004"</strong></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="swiper-slide">
+                      <div class="card elevation-2 card-theme">
+                        <div class="card-content card-content-padding ">
+                          <div class="row">
+                            <div class="col-50">
+                              <img src="img/Banner2.png" alt="" class="mw-100" />
+                            </div>
+                            <div class="col text-align-left align-self-center no-padding-left">
+                              <h6 class="fw-normal no-margin-bottom">Protein Discount</h6>
+                              <h2>20% OFF</h2>
+                              <p>Use Code<br /><strong>"REAL20BK"</strong></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-pagination pagination-offerslides"></div>
+                </div>
+              </div>
+
+             
+
+
+        <!-- order button  -->
+        <div class="block">
+            <div class="row">
+                <div class="col">
+                    <div class="card elevation-2 product margin-bottom">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-50 rounded bg-color-red text-color-white">
+                                        <i class="icon f7-icons">cart_badge_plus</i>
+                                    </div>
+                                </div>
+                                <div class="col no-padding-left align-self-center">
+                                    <span class="text-color-theme no-margin-bottom">Medicine</span>
+                                    <!-- <p class=" ">$ 521</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card elevation-2 product margin-bottom">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-50 rounded bg-color-green text-color-white">
+                                        <i class="icon f7-icons">eyedropper_halffull</i>
+                                    </div>
+                                </div>
+                                <div class="col no-padding-left align-self-center">
+                                    <span class="text-color-theme no-margin-bottom">Lab Test</span>
+                                    <!-- <p class=" ">$ 62</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+         <!-- Upload Prescription button -->
+         <div class="block">
+            <div class="row">
+              <div class="col-100">
+                <div class="card margin-bottom">
+                  <div class="card-content card-content-padding">
+                    <!-- <h5>Install PWA</h5> -->
+                    <div class="row">
+                      <!-- <div class="col-65">
+                        <p>Click "Install" to install PWA app and experience as indepedent app.</p>
+                      </div> -->
+                      <div class="col-100">
+                        <button class="button button-gradient  color-theme" id="upload_prescription">Upload Prescription</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+              <!-- Quick List -->
+              <div class="block">
+                <div class="row">
+                    <div class="col-100 ">
+                        <div class="card elevation-2 margin-bottom">
+                            <div class="mediaList customeList list">
+                                <ul>
+                                   <li class="">
+                                      <a class="item-link" href="#">
+                                         <div class="item-content">
+                                            <div class="item-media"><img slot="media" src="img/homepage/capsules.png" width="44"></div>
+                                            <div class="item-inner">
+                                               <div class="item-title">
+                                                  Order Medicine
+                                                  <div class="item-footer">Genuine Medicie Min 18% Discount, Free Delivery at your door step</div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </a>
+                                   </li>
+                                   <li class="">
+                                      <a class="item-link" href="#">
+                                         <div class="item-content">
+                                            <div class="item-media"><img slot="media" src="img/homepage/medical-record.png" width="44"></div>
+                                            <div class="item-inner">
+                                               <div class="item-title">
+                                                  Order By Prescription
+                                                  <div class="item-footer">Submit your prescription and get Medition at home.</div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </a>
+                                   </li>
+                                   <li class="">
+                                      <a class="item-link" href="#">
+                                         <div class="item-content">
+                                            <div class="item-media"><img slot="media" src="img/homepage/pills.png" width="44"></div>
+                                            <div class="item-inner">
+                                               <div class="item-title">
+                                                  Reorder Medicine
+                                                  <div class="item-footer">Genuine Medicine. Maximum Discount.</div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </a>
+                                   </li>
+                                   <li class="">
+                                      <a class="item-link" href="#">
+                                         <div class="item-content">
+                                            <div class="item-media"><img slot="media" src="img/homepage/microscope.png" width="44"></div>
+                                            <div class="item-inner">
+                                               <div class="item-title">
+                                                  Book Lab Test 
+                                                  <div class="item-footer">Genuine Medicine. Maximum Discount. Low price</div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </a>
+                                   </li>
+                                </ul>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <!-- Category List -->
+        <div class="block">
+            <div class="row margin-bottom-half">
+              <div class="col">
+                <h5 class="no-margin-bottom">Shop By Category</h5>
+              </div>
+              <div class="col-auto">
+                <a href="" class="link text-color-theme">View All <i class="icons f7-icons">chevron_right</i></a>
+              </div>
+            </div>
+          </div>   
+
+
+          
+
+
+        <!-- category blocks -->
+        <div class="block">
+            <div class="row">
+
+                <div class="col-33">
+                    <div class="card elevation-2 margin-bottom bg-green-light">
+                        <div class="card-content card-content-padding ">
+
+                            <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
+                                <img src="img/homepage/microscope.png" alt="">
+                            </figure>
+                            <h6 class="text-muted text-align-center small padding-top-half ">Hours</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-33">
+                    <div class="card elevation-2 margin-bottom bg-blue-light">
+                        <div class="card-content card-content-padding ">
+
+                            <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
+                                <img src="img/homepage/microscope.png" alt="">
+                            </figure>
+                            <h6 class="text-muted text-align-center small padding-top-half ">Hours</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-33">
+                    <div class="card elevation-2 margin-bottom bg-blue-light">
+                        <div class="card-content card-content-padding ">
+
+                            <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
+                                <img src="img/homepage/microscope.png" alt="">
+                            </figure>
+                            <h6 class="text-muted text-align-center small padding-top-half ">Hours</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-33">
+                    <div class="card elevation-2 margin-bottom bg-blue-light">
+                        <div class="card-content card-content-padding ">
+
+                            <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
+                                <img src="img/homepage/microscope.png" alt="">
+                            </figure>
+                            <h6 class="text-muted text-align-center small padding-top-half ">Hours</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-33">
+                    <div class="card elevation-2 margin-bottom bg-blue-light">
+                        <div class="card-content card-content-padding ">
+
+                            <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
+                                <img src="img/homepage/microscope.png" alt="">
+                            </figure>
+                            <h6 class="text-muted text-align-center small padding-top-half ">Hours</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-33">
+                    <div class="card elevation-2 margin-bottom bg-blue-light">
+                        <div class="card-content card-content-padding ">
+
+                            <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
+                                <img src="img/homepage/microscope.png" alt="">
+                            </figure>
+                            <h6 class="text-muted text-align-center small padding-top-half ">Hours</h6>
+                        </div>
+                    </div>
+                </div>
+              
+                
+
+
+<!-- 
+                <div class="col-50 medium-25 large-25">
+                    <div class="card elevation-2 margin-bottom bg-yellow-light">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-40 bg-color-yellow text-color-white rounded-circle">
+                                        <i class="icon f7-icons size-20">speedometer</i>
+                                    </div>
+                                </div>
+                                <div class="col no-padding">
+                                    <h6 class="no-margin-bottom">+365</h6>
+                                    <p class="text-muted small">Processing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-50 medium-25 large-25">
+                    <div class="card elevation-2 margin-bottom bg-green-light">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-40 bg-color-green text-color-white rounded-circle">
+                                        <i class="icon f7-icons size-20">folder</i>
+                                    </div>
+                                </div>
+                                <div class="col no-padding">
+                                    <h6 class="no-margin-bottom">+658</h6>
+                                    <p class="text-muted small">Pojects</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-50 medium-25 large-25">
+                    <div class="card elevation-2 margin-bottom bg-red-light">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-40 bg-color-red text-color-white rounded-circle">
+                                        <i class="icon f7-icons size-20">chart_bar</i>
+                                    </div>
+                                </div>
+                                <div class="col no-padding">
+                                    <h6 class="no-margin-bottom">+248</h6>
+                                    <p class="text-muted small">Complete</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+            </div>
+        </div>
+
+         <!-- Near by Lab -->
+         <div class="block">
+            <div class="row margin-bottom-half">
+              <div class="col">
+                <h5 class="no-margin-bottom">Near by Lab</h5>
+              </div>
+            </div>
+          </div>
+          <!-- shop slides -->
+          <div class="block">
+            <div class="row">
+              <div class="col-100 no-padding">
+                <div class="swiper-container shopslides margin-bottom">
+                  <!-- Additional required wrapper -->
+                  <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                      <div class="card elevation-2 ">
+                        <div class="card-content card-content-padding">
+                          <div class="row">
+                            <div class="col-auto">
+                              <figure class="text-align-center no-margin-bottom avatar avatar-60 page-bg rounded">
+                                <i class="icons f7-icons text-color-theme">building_2_fill</i>
+                              </figure>
+                            </div>
+                            <div class="col no-padding-left">
+                              <a href="#" class="text-normal text-color-theme">
+                                <h6 class="">Atlanicaa Food <i
+                                    class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></h6>
+                              </a>
+                              <p class="">B-49, Feirra Street</p>
+                              <p class="small display-block">
+                                <span class="text-opac">10:00am - 11:00pm</span>
+                                <span class="float-right"><span class="text-opac">2.5km</span> <i
+                                    class="icons f7-icons">placemark</i></span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <div class="row">
+                            <div class="col-auto">
+                              <figure class="text-align-center no-margin-bottom avatar avatar-60 page-bg rounded">
+                                <i class="icons f7-icons text-color-theme">building_2_fill</i>
+                              </figure>
+                            </div>
+                            <div class="col no-padding-left">
+                              <a href="#" class="text-normal text-color-theme">
+                                <h6 class="">Milbar Food <i
+                                    class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></h6>
+                              </a>
+                              <p class="">A-39, Axaar Street</p>
+                              <p class="small display-block">
+                                <span class="text-opac">10:00am - 11:00pm</span>
+                                <span class="float-right"><span class="text-opac">2.5km</span> <i
+                                    class="icons f7-icons">placemark</i></span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <div class="row">
+                            <div class="col-auto">
+                              <figure class="text-align-center no-margin-bottom avatar avatar-60 page-bg rounded">
+                                <i class="icons f7-icons text-color-theme">building_2_fill</i>
+                              </figure>
+                            </div>
+                            <div class="col no-padding-left">
+                              <a href="#" class="text-normal text-color-theme">
+                                <h6 class="">Amazon Fresh<i
+                                    class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></h6>
+                              </a>
+                              <p class="">C-49, Lothal at</p>
+                              <p class="small display-block">
+                                <span class="text-opac">10:00am - 11:00pm</span>
+                                <span class="float-right"><span class="text-opac">2.5km</span> <i
+                                    class="icons f7-icons">placemark</i></span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        <!--News and announcements -->
+        <!-- <div class="block">
+            <div class="row margin-bottom-half">
+                <div class="col">
+                    <h5 class="no-margin-bottom">Research says</h5>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="row margin-bottom-half">
+                <div class="col-100 medium-50 large-33">
+                    <div class="card elevation-2 margin-bottom-half">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-100">
+                                    <figure class="text-align-center margin-bottom-half coverimg page-bg rounded h-150">
+                                        <img src="img/news1.jpg" alt="" />
+                                    </figure>
+                                </div>
+                                <div class="col">
+                                    <p class="small display-block">
+                                        <span class="text-opac">Trend setter</span>
+                                        <span class="float-end"><span class="text-opac">26 July 2021</span> <i class="bi bi-clock"></i></span>
+                                    </p>
+                                    <a href="#" class="text-normal text-color-theme display-block margin-bottom-half">
+                                        <h6>Best UI UX design with your loving frameworks</h6>
+                                    </a>
+                                    <div class=" ">
+                                        <figure class="text-align-center no-margin-bottom avatar avatar-20 coverimg rounded margin-right-half">
+                                            <img src="img/user2.jpg" alt="" />
+                                        </figure>
+                                        Archana Singh
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-100 medium-50 large-33">
+                    <div class="card elevation-2 margin-bottom-half">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-100">
+                                    <figure class="text-align-center margin-bottom-half coverimg page-bg rounded h-150">
+                                        <img src="img/news2.jpg" alt="" />
+                                    </figure>
+                                </div>
+                                <div class="col">
+                                    <p class="small display-block">
+                                        <span class="text-opac">ReadOut</span>
+                                        <span class="float-end"><span class="text-opac">26 July 2021</span> <i class="bi bi-clock"></i></span>
+                                    </p>
+                                    <a href="#" class="text-normal text-color-theme display-block margin-bottom-half">
+                                        <h6>Make a distance from bad design & accept the change</h6>
+                                    </a>
+                                    <div class=" ">
+                                        <figure class="text-align-center no-margin-bottom avatar avatar-20 coverimg rounded rounded margin-right-half">
+                                            <img src="img/user1.jpg" alt="" />
+                                        </figure>
+                                        John Doe
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-100 medium-50 large-33">
+                    <div class="card elevation-2 margin-bottom-half">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-100">
+                                    <figure class="text-align-center margin-bottom-half coverimg page-bg rounded h-150">
+                                        <img src="img/news3.jpg" alt="" />
+                                    </figure>
+                                </div>
+                                <div class="col">
+                                    <p class="small display-block">
+                                        <span class="text-opac">FoodTechy</span>
+                                        <span class="float-end"><span class="text-opac">26 July 2021</span> <i class="bi bi-clock"></i></span>
+                                    </p>
+                                    <a href="#" class="text-normal text-color-theme display-block margin-bottom-half">
+                                        <h6>Never regret of buying and trying new things</h6>
+                                    </a>
+                                    <div class=" ">
+                                        <figure class="text-align-center no-margin-bottom avatar avatar-20 coverimg rounded margin-right-half">
+                                            <img src="img/user3.jpg" alt="" />
+                                        </figure>
+                                        Laxmisho Johnson
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+
+
+    </div>
+
+    <!-- footer static -->
+    <footer class="footer">
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="/home/">
+                        <span>
+                            <i class="icon f7-icons">house</i>
+                            <span class="nav-text">Home</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="active" href="/stats/">
+                        <span>
+                            <i class="icon f7-icons">chart_bar</i>
+                            <span class="nav-text">Stats</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="center-item">
+                    <a href="/cart/">
+                        <span>
+                            <i class="icon f7-icons">cart</i>
+                            <span class="nav-text">card-content</span>
+                            <span class="countercart">3</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/style/">
+                        <span>
+                            <i class="icon f7-icons">circle_grid_hex</i>
+                            <span class="nav-text">Style</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/settings/">
+                        <span>
+                            <i class="icon f7-icons">gear</i>
+                            <span class="nav-text">Settings</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
