@@ -13,6 +13,9 @@ var app = new Framework7({
   store: store,
   // routes.js,
   routes: routes,
+  // remoteUrl: "https://jcabs.dev/jcabsadmin/api/",
+  // remoteUrl:"https://localhost/jcabs/jcabsadmin/api/",
+  remoteUrl: "http://127.0.0.1:8000/api/",
   popup: {
     closeOnEscape: true,
   },
