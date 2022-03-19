@@ -352,7 +352,6 @@ body {
 	flex-shrink: 0;
 	max-width: 100%
 }
-
 .row .col {
 	width: 100% !important;
 	flex: 1 0 0%;
