@@ -2116,7 +2116,9 @@ input.calendar-daterange {
 
 .categoriesswiper .swiper-wrapper .swiper-slide .categoryname {
 	font-size: 12px;
-	line-height: 30px
+	line-height: 12px;
+	padding-top: 5px;
+	
 }
 
 .offerslides,
@@ -2460,4 +2462,7 @@ input.calendar-daterange {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.product figure img{
+	height: 120px;
 }
