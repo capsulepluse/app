@@ -2452,3 +2452,12 @@ input.calendar-daterange {
 	font-size: 10px;
 	font-weight: 400
 }
+
+.title-footer-twoline{
+	min-height: 55px;
+	position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
