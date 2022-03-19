@@ -49,10 +49,16 @@ var routes = [
     componentUrl: './pages/style.html',
   },
 
-  // style
+  // profile
   {
     path: '/profile/',
     url: './pages/profile.html',
+  },
+
+  // edit profile
+  {
+    path: '/editprofile/',
+    url: './pages/editprofile.html',
   },
 
   // shop home
