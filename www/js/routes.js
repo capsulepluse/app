@@ -59,12 +59,7 @@ var routes = [
   {
     path: '/editprofile/',
     url: './pages/editprofile.html',
-  },
-
-  // shop home
-  {
-    path: '/shophome/',
-    componentUrl: './pages/shophome.html',
+    path: '/editprofile/',
   },
 
   // product
@@ -72,6 +67,17 @@ var routes = [
     path: '/product/',
     url: './pages/product.html',
   },
+
+
+    // Index page
+    {
+      path: '/productlist/',
+      componentUrl: './pages/product_list.html',
+      name: 'product_list',
+      routes: [
+  
+      ]
+    },
 
   // cart
   {
