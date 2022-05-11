@@ -1,4 +1,5 @@
-<div class="page page-" data-name="">
+<template>
+<div class="page page-cart-address" data-name="cart-address">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -63,37 +64,62 @@
 
         <div class="block">
             <div class="row">
-                <div class="col-100 medium-50 large-33 mx-auto">
-                    <div class="card elevation-2 product margin-bottom">
+               
+                
+                <div class="col-100 medium-50">
+                    <div class="card elevation-2 product margin-bottom-half">
                         <div class="card-header">
-                            <div class="row">
-                                <div class="col align-self-center">
-                                    <h5 class="no-margin-bottom">Capsulepluse<br>
-                                        <span class="text-opac small">Primary</span>
-                                    </h5>
-                                </div>
-                                <div class="col-auto align-self-center no-padding">
-                                    <a href="/addresses/" class="button button-link text-color-theme"><i class="icons f7-icons">pencil_outline</i></a>
-                                </div>
-                                <div class="col-auto align-self-center">
-                                    <a href="/addaddress/" class="button button-link text-color-theme"><i class="icons f7-icons">plus</i></a>
-                                </div>
-                            </div>
+                           <!-- for default address  -->
+                            
+                                <div class="row">
+                                    <div class="col-auto align-self-center md">
+                                        <!-- <label class="item-radio item-radio-icon-start item-content">
+                                            <input type="radio" name="defaultAddress" value="${item.id}" checked />
+                                            <i class="icon icon-radio"></i>
+                                        </label>   -->
+
+                                    </div>
+                                    <div class="col align-self-center no-padding-left">
+                                        <h5 class="no-margin-bottom">${item.type}<br/>
+                                            <span class="text-opac small">Primary Address</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-auto align-self-center">
+                                        <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i class="icons f7-icons">square_pencil</i></a>
+                                        <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
+                                    </div>
+                                </div> 
+                            
+
+                           
+
                         </div>
                         <div class="card-content card-content-padding">
-                            <img src="img/map.png" alt="" class="mw-100 margin-bottom-half">
+                            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
+                                class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
+                            </iframe> -->
                             <div class="row">
                                 <div class="col">
-                                    B 32, maker street 4, Beside Train Tower, Algobbaalsa,<br>California- 25468 (US)
+                                    <div class="addressHeader">
+                                        ${item.name} ( ${item.mobile} )
+                                    </div>
+                                    <div>
+                                        ${item.address}, ${item.landmark}, ${item.pin}
+                                    </div>
+                                   
                                 </div>
-                                <div class="col-auto text-align-right">
-                                    <i class="icons f7-icons text-color-theme">arrow_up_right_circle</i><br>
-                                    <small class="text-opac">2.5km <i class="icons f7-icons">placemark</i></small>
+                                <div class="col-auto align-self-center">
+                                    <a  href="#"><i class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+
                 </div>
+
+
+
             </div>
         </div>
 
@@ -108,14 +134,14 @@
                 <div class="col">
                     <p>Shipping Cost</p>
                 </div>
-                <div class="col-auto">$ 10.00</div>
+                <div class="col-auto">₹ ${shippingCost}</div>
             </div>
 
             <div class="row margin-bottom-half">
                 <div class="col">
                     <p>Subtotal</p>
                 </div>
-                <div class="col-auto">$ 32.00</div>
+                <div class="col-auto">₹ ${subtotal}</div>
             </div>
 
             <div class="row font-weight-bold margin-bottom">
@@ -125,7 +151,7 @@
                 <div class="col">
                     <p>Total</p>
                 </div>
-                <div class="col-auto">$ 42.00</div>
+                <div class="col-auto">₹ ${total}</div>
             </div>
         </div>
 
@@ -190,3 +216,66 @@
     </footer>
 
 </div>
+</template>
+<script>
+    export default (props, { $f7, $theme, $on, $update, $ }) => {
+      var app = $f7;
+      let cartList = [] ;
+      let item = {
+        "address": "",
+        "id":"",
+        "landmark": "",
+        "mobile": "",
+        "name": "",
+        "pin": "",
+        "type": ""
+      };  
+        let totalQuantity =  0;
+        let total = 0;
+        let subtotal = 0;
+        // let cartCount = app.params.cartCount();
+        let cartCount = 0;
+        let shippingCost = 0;
+        const pageId = app.params.uuid();
+      
+        let removeCurrentProduct = (pid)=>{
+            $f7.preloader.show();
+             //=======remove cart items from server =======
+            app.params.callToServer( "remove-cart", {'pid':pid} ,
+            function success(Responce){
+                $f7.preloader.hide();
+                updateCurrentCart(Responce);
+                // categoryName = Responce.data.category;
+            });
+        }
+
+        const updateCurrentCart = (Responce)=>{
+                cartList = Responce.cartContent ;
+                totalQuantity = Responce.totalQuantity;
+                total = Responce.total;
+                subtotal = Responce.subtotal;
+                cartCount = Responce.cartCount;
+                shippingCost =  Responce.shippingCost;
+                $update();
+        }
+
+        $on('pageBeforeIn', () => {
+            $f7.preloader.show();
+            app.params.callToServer( "cart-address",'',success);
+            function success(ResponceData){
+                $f7.preloader.hide();
+
+                updateCurrentCart(ResponceData.data.cartDetails);
+                item = ResponceData.data.defaultAddress[0];
+                $update();
+            }
+
+
+
+
+
+        });
+  
+      return $render;
+    }
+  </script>

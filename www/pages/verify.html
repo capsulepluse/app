@@ -15,26 +15,30 @@
           <div class="col-85 medium-50 large-40 text-align-center mx-auto align-self-center">
             <h2 class="text-center">OTP Verification</h2>
             <p class="margin-bottom">Verify OTP sent to your provided phone number</p>
+            <form id="verifyForm">
+              <input type="hidden" name="mobile" value="${mobile}" />
 
-            <div class="card card-light elevation-2 margin-bottom">
-              <div class="card-content card-content-padding">
-                <div class="list form-list no-margin margin-bottom-half">
-                  <ul>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-floating-label">OPT</div>
-                        <div class="item-input-wrap">
-                          <input type="password" name="OTP" value="" />
-                          <span class="input-clear-button"></span>
+              <div class="card card-light elevation-2 margin-bottom">
+                <div class="card-content card-content-padding">
+                  <div class="list form-list no-margin margin-bottom-half">
+                    <ul>
+                      <li class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-floating-label">OTP</div>
+                          <div class="item-input-wrap">
+                            <input type="password" name="otp" value="" required validate />
+                            <span class="input-clear-button"></span>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <button  target="_self" class="button button-fill button-large color-green elevation-3">
+                    Confirm</button>
                 </div>
-                <a href="/thankyou/" target="_self" class="button button-fill button-large color-green elevation-3">
-                  Confirm</a>
               </div>
-            </div>
+          </form>
+
           </div>
           <div class="col-100 text-align-center margin-bottom-half margin-top-auto">
             <span class="progressstimer">
@@ -42,10 +46,142 @@
               <span class="timer" id="timer">03:15</span>
             </span>
             <br />
-            <button class="button text-color-white" disabled>Resend OTP</button>
+            <button id="resendBtn" @click="${resendClick}" class="button text-color-white" disabled>Resend OTP</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+  export default function (props, {$f7, $on, $update, $}) {
+  var app = $f7;
+  let mobile = props.mobile;  
+
+  $on('pageInit', () => {
+    resendTimmer();
+  });
+
+
+
+
+    $(document).on('submit', '#verifyForm', function (e) {
+        e.preventDefault();
+
+        let formData =  app.form.convertToData('#verifyForm');
+        console.log(formData);
+      //===================
+        let url =app.params.remoteUrl + "verify-OTP";
+         
+         console.log(url);
+         $f7.preloader.show();
+         app.request.postJSON(url, formData, 
+             function(res,status){ 
+               console.log(res.data) ;
+                 $f7.preloader.hide();
+                 if(res.data.mobile_verified){//=========== Mobile verified =======
+
+                  //=== update login data 
+                      app.params.loginSuccess(res.data);
+                      app.views.main.router.navigate('/thankyou/', {
+                        ignoreCache: true,
+                        reloadCurrent: true,
+                    });
+                   app.views.main.router.clearPreviousHistory();
+                  }else{//============= send for OTP number =====
+                      app.views.main.router.navigate('/verify/'+res.data.mobile);
+                  }
+         }, function(err, status){
+                  // console.log(err.response);
+                 $f7.preloader.hide();
+                let msg = JSON.parse(err.response).message.otp;
+
+
+
+                 console.log(msg);
+                //  console.log(JSON.parse(err.response).message);
+
+
+                // var myObj = JSON.parse(err.response).message;
+                //   Object.keys(myObj).forEach(key => {
+                //   var reForm = $("#registrationForm");
+                //   app.params.markInputAsError(reForm,key,myObj[key][0]);
+
+                // });
+
+                 // let validationError = JSON.stringify(JSON.parse(err.response).message.message);
+                 // console.log(validationError);
+                 let toastBottom = app.toast.create({
+                 text: "The otp must not be greater than 6 characters. ",
+                 closeTimeout: 2000,
+                 });
+                 toastBottom.open();
+         });
+       //===================
+       
+    });
+
+   //=========== resend and call timmer ====     
+  
+    const resendTimmer = () =>{
+      document.getElementById('timer').innerHTML = '00' + ':' + '30';
+      startTimer();
+
+      function startTimer() {
+        var presentTime = document.getElementById('timer').innerHTML;
+        var timeArray = presentTime.split(/[:]+/);
+        var m = timeArray[0];
+        var s = checkSecond((timeArray[1] - 1));
+        if (s == 59) { m = m - 1 }
+        
+        if (m < 0) {
+          $('#resendBtn').prop('disabled', false);
+          return
+        }
+
+        document.getElementById('timer').innerHTML = m + ":" + s;
+        setTimeout(startTimer, 1000);
+      }
+
+      function checkSecond(sec) {
+        if (sec < 10 && sec >= 0) { sec = "0" + sec }; // add zero in front of numbers < 10
+        if (sec < 0) { sec = "59" };
+        return sec;
+      }
+    }
+
+    const resendClick = ()=>{
+
+      var userDetails = '{"mobile": '+mobile+'}';
+      //===================
+      let url = app.params.remoteUrl + "resend-OTP";
+      console.log(url);
+      $f7.preloader.show();
+      app.request.postJSON(url, userDetails, 
+             function(res,status){ 
+               console.log(res.data) ;
+                 $f7.preloader.hide();
+                 let toastBottom = app.toast.create({
+                 text: "The otp has been sent !! ",
+                 closeTimeout: 2000,
+                 });
+                 toastBottom.open();
+                 resendTimmer();
+         }, function(err, status){
+                 $f7.preloader.hide();  
+
+                 let toastBottom = app.toast.create({
+                 text: "Opps !! Try after some time",
+                 closeTimeout: 2000,
+                 });
+                 toastBottom.open();
+                 
+         });
+       //===================
+
+    }
+
+
+  return $render;
+  };
+</script>

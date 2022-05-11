@@ -17,97 +17,97 @@
 
             <div class="card card-light elevation-2 margin-bottom">
               <div class="card-content card-content-padding">
+                <form id="registrationForm">
+                    <div class="list form-list no-margin margin-bottom-half">
+                      <ul>
+                        <li class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Name</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="name" value="" required validate />
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <!-- <div class="list form-list  no-margin margin-bottom-half">
+                      <ul>
+                        <li class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Country</div>
+                            <div class="item-input-wrap">
+                              <select>
+                                <option>United Stats</option>
+                                <option>United Kingdom</option>
+                                <option>Australia</option>
+                                <option>India</option>
+                              </select>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div> -->
 
-                <div class="list form-list no-margin margin-bottom-half">
-                  <ul>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-floating-label">Name</div>
-                        <div class="item-input-wrap">
-                          <input type="text" name="username" value="Capsulepluse" />
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                
-                <!-- <div class="list form-list  no-margin margin-bottom-half">
-                  <ul>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-floating-label">Country</div>
-                        <div class="item-input-wrap">
-                          <select>
-                            <option>United Stats</option>
-                            <option>United Kingdom</option>
-                            <option>Australia</option>
-                            <option>India</option>
-                          </select>
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div> -->
+                    <div class="list form-list no-margin margin-bottom-half">
+                      <ul>
+                        <li class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Mobile</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="mobile" value="" maxlength="10" minlength="10" required validate pattern="[0-9]*" data-error-message="Please enter valid mobile !!" />
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
 
-                <div class="list form-list no-margin margin-bottom-half">
-                  <ul>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-floating-label">Mobile</div>
-                        <div class="item-input-wrap">
-                          <input type="text" name="mobile" value="" />
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                    <div class="list form-list no-margin margin-bottom-half">
+                      <ul>
+                        <li class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Email </div>
+                            <div class="item-input-wrap">
+                              <input type="email" name="email" validate value="" />
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
 
-                <div class="list form-list no-margin margin-bottom-half">
-                  <ul>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-floating-label">Email </div>
-                        <div class="item-input-wrap">
-                          <input type="text" name="email" value="" />
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                    <div class="list form-list no-margin margin-bottom-half">
+                      <ul>
+                        <li class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Password</div>
+                            <div class="item-input-wrap">
+                              <input type="password" name="password" value="" required validate />
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="list form-list no-margin margin-bottom-half">
+                      <ul>
+                        <li class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Confirm Password</div>
+                            <div class="item-input-wrap">
+                              <input type="password" name="confirm_password" value="" required validate />
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
 
-                <div class="list form-list no-margin margin-bottom-half">
-                  <ul>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-floating-label">Password</div>
-                        <div class="item-input-wrap">
-                          <input type="password" name="Password" value="" />
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="list form-list no-margin margin-bottom-half">
-                  <ul>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-floating-label">Confirm Password</div>
-                        <div class="item-input-wrap">
-                          <input type="password" name="Password" value="" />
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                <a href="/verify/" target="_self" class="button button-fill button-large color-green elevation-3">
-                  Register now</a>
+                    <button  class="button button-fill button-large color-green elevation-3"> Register now</button>
+                </form>
               </div>
             </div>
 
@@ -124,3 +124,69 @@
     </div>
   </div>
 </template>
+<script>
+  export default function (props, {$f7, $on, $update, $}) {
+  var app = $f7;
+  var mobile = '';
+
+
+    $(document).on('submit', '#registrationForm', function (e) {
+        e.preventDefault();
+
+        let formData =  app.form.convertToData('#registrationForm');
+        console.log(formData);
+      //===================
+        let url =app.params.remoteUrl + "register";
+         
+         console.log(url);
+         $f7.preloader.show();
+         app.request.postJSON(url, formData, 
+             function(res,status){ 
+               console.log(res.data) ;
+                 $f7.preloader.hide();
+                 if(res.data.mobile_verified){//=========== Mobile verified =======
+                 
+                  //=== update login data 
+                      app.params.loginSuccess(res.data);
+                      app.views.main.router.navigate('/home/', {
+                        ignoreCache: true,
+                        reloadCurrent: true,
+                      });
+                   app.views.main.router.clearPreviousHistory();
+                  }else{//============= send for OTP number =====
+                      let mobile = res.data.mobile;
+                      app.views.main.router.navigate('/verify/'+mobile);
+                  }
+
+                 // successCallBack(res);
+         }, function(err, status){
+                  console.log(err.response);
+                 $f7.preloader.hide();
+                //  console.log("error");
+                //  console.log(JSON.parse(err.response).message);
+
+
+                var myObj = JSON.parse(err.response).message;
+                Object.keys(myObj).forEach(key => {
+                  let reForm = $("#registrationForm");
+                  app.params.markInputAsError(reForm,key,myObj[key][0]);
+
+                });
+
+                 // let validationError = JSON.stringify(JSON.parse(err.response).message.message);
+                 // console.log(validationError);
+                 let toastBottom = app.toast.create({
+                    text: "Required filed is missing !! Please retry !! ",
+                    closeTimeout: 2000,
+                 });
+                 toastBottom.open();
+         });
+       //===================
+        console.log("submit click");
+    });
+
+    
+
+  return $render;
+  };
+</script>

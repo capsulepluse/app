@@ -26,7 +26,7 @@
                       <div class="item-inner">
                         <div class="item-title item-floating-label">Mobile</div>
                         <div class="item-input-wrap">
-                          <input type="text" maxlength="10" minlength="10"  name="mobile" required validate pattern="[0-9]*"  />
+                          <input type="text" maxlength="10" minlength="10"  name="mobile" required validate pattern="[0-9]*" value="" data-error-message="Please enter valid mobile !!" />
                           <span class="input-clear-button"></span>
                         </div>
                       </div>
@@ -40,7 +40,7 @@
                       <div class="item-inner">
                         <div class="item-title item-floating-label">Password</div>
                         <div class="item-input-wrap">
-                          <input type="password" name="Password" data-error-message="Please enter valid password !!" value=""   />
+                          <input type="password" name="password" data-error-message="Please enter valid password !!" required validate value=""   />
                           <span class="input-clear-button"></span>
                         </div>
                       </div>
@@ -51,8 +51,8 @@
 
                 <a href="/forgotpassword/" class="link text-color-white margin-bottom-half">Forgot your password?</a>
 
-                <a href="/home/" target="_self" class="button button-fill button-large color-green elevation-3">
-                  Sign in now</a>
+                <button class="button button-fill button-large color-green elevation-3">
+                  Sign in now</button>
               </div>
             </div>
             </form>
@@ -83,6 +83,61 @@
     var app = $f7;
     var mobile = '';
 
+  
+      $(document).on('submit', '#loginForm', function (e) {
+          e.preventDefault();
+
+          let formData =  app.form.convertToData('#loginForm');
+          console.log(formData);
+        //===================
+          let url =app.params.remoteUrl + "login";
+           
+           console.log(url);
+           $f7.preloader.show();
+           app.request.postJSON(url, formData, 
+               function(res,status){ 
+                 console.log(res) ;
+                   $f7.preloader.hide();
+                    
+                   if(res.data.mobile_verified){//=========== Mobile verified =======
+
+                    //=== update login data 
+                        app.params.loginSuccess(res.data);
+                        app.views.main.router.navigate('/home/', {
+                          ignoreCache: true,
+                          reloadCurrent: true,
+                      });
+                     app.views.main.router.clearPreviousHistory();
+                    }else{//============= send for OTP number =====
+
+                        app.views.main.router.navigate('/verify/'+res.data.mobile);
+                    }
+                   
+
+
+                  //  app.params.successRegistLog(res.data);
+                  
+
+                   // successCallBack(res);
+           }, function(err, status){
+                    console.log(err);
+                   $f7.preloader.hide();
+                   console.log("error");
+                   // console.log(JSON.parse(err.response));
+                   // let validationError = JSON.stringify(JSON.parse(err.response).message.message);
+                   // console.log(validationError);
+                   let toastBottom = app.toast.create({
+                   text: "Required filed is missing !! Please retry !! ",
+                   closeTimeout: 2000,
+                   });
+                   toastBottom.open();
+           });
+         //===================
+
+
+
+          console.log("submit click");
+      });
 
     return $render;
     };

@@ -1,5 +1,5 @@
 <template>
-<div class="page page-addaddress" id="${pageId}"  data-name="addaddress">
+<div class="page page-editaddress" id="${pageId}"  data-name="editaddress">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -9,7 +9,7 @@
                 </a>
             </div>
             <div class="title ">
-                Add Address
+                Edit Address
             </div>
             <div class="right">
                 <a href="/profile/" class="link ">
@@ -22,10 +22,13 @@
 
     <!-- main page content -->
     <div class="page-content">
-        <form id="addaddressForm">
+        <form id="editaddressForm">
+
+            <input type="hidden" name="id" value="${addressDetails.id}" validate required />
+
             <!-- add address fields -->
             <div class="block margin-bottom-half">
-
+               
                 <div class="list form-list margin-bottom-half">
                     <ul>
                         <li class="item-content item-input">
@@ -33,7 +36,7 @@
                                 <!-- "item-floating-label" class on item title -->
                                 <div class="item-title item-floating-label">Your Name</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="name" value="${name}" validate required />
+                                    <input type="text" name="name" value="${addressDetails.name}" validate required />
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -47,7 +50,7 @@
                                 <!-- "item-floating-label" class on item title -->
                                 <div class="item-title item-floating-label">Address </div>
                                 <div class="item-input-wrap">
-                                    <textarea type="text" name="address" required validate > </textarea>
+                                    <textarea type="text" name="address" required validate >${addressDetails.address} </textarea>
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -63,7 +66,7 @@
                                 <!-- "item-floating-label" class on item title -->
                                 <div class="item-title item-floating-label">Landmark</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="landmark" value="" />
+                                    <input type="text" name="landmark" value="${addressDetails.landmark}" />
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -78,7 +81,7 @@
                                 <!-- "item-floating-label" class on item title -->
                                 <div class="item-title item-floating-label">Pin Code</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="pin" value="" required validate/>
+                                    <input type="text" name="pin" value="${addressDetails.pin}" required validate/>
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -93,7 +96,7 @@
                                 <!-- "item-floating-label" class on item title -->
                                 <div class="item-title item-floating-label">Mobile</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="mobile" value="${mobile}" required validate/>
+                                    <input type="text" name="mobile" value="${addressDetails.mobile}" required validate/>
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -108,7 +111,7 @@
                                 <!-- "item-floating-label" class on item title -->
                                 <div class="item-title item-floating-label">Address Type</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="type" value="" placeholder=" Home / Office" />
+                                    <input type="text" name="type" value="${addressDetails.type}" placeholder=" Home / Office" />
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -120,7 +123,7 @@
             <div class="block">
                 <div class="row margin-bottom">
                     <div class="col-100 medium-50 large-33 margin-h-auto">
-                        <input type="submit"  class="button button-fill button-large button-raised">Save</input>
+                        <input type="submit"  class="button button-fill button-large button-raised" value="Update" />
                     </div>
                 </div>
             </div>
@@ -133,19 +136,29 @@
     export default (props, { $f7, $theme, $on, $update, $ }) => {
       var app = $f7;
       let addressList = [] ;
-      
-      let name = localStorage.getItem("name");
-      let mobile =localStorage.getItem("mobile");
-       
+
+        console.log(props);
+      let  addressDetails = props.data;
+
+      /* let addressDetails = {
+        "address": " ",
+        "id":" " ,
+        "landmark":" ",
+        "mobile": " ",
+        "name": " ",
+        "pin": " ",
+        "type": " "
+      } -*/
+     
         const pageId = app.params.uuid();
       
-        $(document).on('submit', '#addaddressForm', function (e) {
+        $(document).on('submit', '#editaddressForm', function (e) {
             e.preventDefault();
     
-            let formData =  app.form.convertToData('#addaddressForm');
+            let formData =  app.form.convertToData('#editaddressForm');
             $f7.preloader.show();
           
-            let url =  app.params.remoteUrl + 'add-address';
+            let url =  app.params.remoteUrl + 'update-address';
             app.params.authHeader();
             app.request.postJSON(url, formData, 
                 function(res,status){  
@@ -169,7 +182,7 @@
     
 
         $on('pageInit', () => {
-            
+           
         });
   
       return $render;

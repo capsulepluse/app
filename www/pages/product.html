@@ -1,4 +1,5 @@
-<div class="page page-product" data-name="product">
+<template>
+<div class="page page-product" id="pageId_${pageId}" data-name="product">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -10,9 +11,9 @@
             <div class="title">
                 <h5 class="no-margin-bottom">Product</h5>
             </div>
-            <div class="right">
-                <a href="/profile/" class="link">
-                    <i class="icon f7-icons size-22">person_circle</i>
+            <div class="right text-align-center">
+                <a href="/notificationlist/" class="link">
+                    <i class="icon f7-icons size-22">bell_fill</i>
                 </a>
             </div>
         </div>
@@ -33,63 +34,67 @@
                                     type="button">
                                     <i class="icons f7-icons">arrowshape_turn_up_right</i>
                                 </button>
-                                <button
+                                <!-- <button
                                     class="button button-fill avatar avatar-30 no-padding rounded-circle color-pink">
                                     <i class="icons f7-icons">heart</i>
-                                </button>
+                                </button> -->
                             </div>
                             <div class="swiper-container imageswiper">
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
                                     <!-- Slides -->
                                     <div class="swiper-slide text-align-center no-margin-bottom">
+                                        <img src="img/apple.png" alt="" class="h-190 margin-bottom-half" />
+                                    </div>
+                                    <!-- <div class="swiper-slide text-align-center no-margin-bottom">
                                         <img src="img/apple.png" alt="" class="h-190 margin-bottom-half">
                                     </div>
                                     <div class="swiper-slide text-align-center no-margin-bottom">
                                         <img src="img/apple.png" alt="" class="h-190 margin-bottom-half">
-                                    </div>
-                                    <div class="swiper-slide text-align-center no-margin-bottom">
-                                        <img src="img/apple.png" alt="" class="h-190 margin-bottom-half">
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="swiper-pagination imageswiper-pagination "></div>
+                                <!-- <div class="swiper-pagination imageswiper-pagination "></div> -->
                             </div>
                         </div>
                     </div>
-                    <p class="margin-bottom-half">
+                    <!-- <p class="margin-bottom-half">
                         <span class="text-opac">Fresh</span>
                         <span class="float-right"><span class="text-opac">5.0 (1445 Reviews)</span> <i
                                 class="bi bi-star-fill text-warning"></i></span>
-                    </p>
-                    <h4 class="text-color-theme margin-bottom-half">Red Apple</h4>
+                    </p> -->
+                    
+                    <h4 class="text-color-theme margin-bottom-half">${productDetails.name}</h4>
                     <div class="row margin-bottom">
                         <div class="col">
-                            <h5 class="no-margin-bottom">$12.00 <s class="text-opac font-weight-light">$20.00</s></h5>
-                            <p class="text-opac">per 1 kg</p>
+                            <h5 class="no-margin-bottom"> ₹ ${productDetails.discount} <s class="text-opac font-weight-light">₹ ${productDetails.MRP}</s></h5>
+                            <!-- <p class="text-opac">per 1 kg</p> -->
                         </div>
                         <div class="col-auto align-self-center">
                             <!-- button counter increamenter-->
                             <div class="counter-number">
-                                <button class="btn avatar avatar-30 no-padding rounded-circle">
+                                <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease">
                                     <i class="icons f7-icons">minus</i>
                                 </button>
-                                <span>2</span>
-                                <button class="btn avatar avatar-30 no-padding rounded-circle">
+                                <span class="counter-value">1</span>
+                                <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase">
                                     <i class="icons f7-icons">plus</i>
                                 </button>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
 
         <!-- delivery time -->
-        <div class="block">
+        <!-- <div class="block">
             <div class="row">
                 <div class="col-100">
                     <div class="card card-light shadow-sm margin-bottom">
                         <div class="card-content card-content-padding">
+
                             <div class="row">
                                 <div class="col-auto">
                                     <figure class="text-align-center no-margin-bottom avatar avatar-50 page-bg rounded">
@@ -105,75 +110,78 @@
                                     <p><span class="text-opac">Delivery on:</span> <strong>7 Dec 2021</strong></p>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- description -->
-        <div class="block">
-            <div class="row margin-bottom-half">
-                <div class="col">
-                    <h5 class="no-margin-bottom">Product details</h5>
-                </div>
-            </div>
-        </div>
-        <div class="block">
-            <div class="row margin-bottom">
-                <div class="col-100">
-                    <p class="text-opac">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-                        sollicitudin dignissim nisi, eget malesuada ligula ultricies sit amet. Suspendisse
-                        efficitur ex eu est placerat mattis.</p>
-                    <p class="text-opac">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-                        sollicitudin dignissim nisi, eget malesuada ligula ultricies sit amet. Suspendisse
-                        efficitur ex eu est placerat mattis.</p>
-                </div>
-            </div>
-        </div>
+       
+       
 
-        <!-- description of vitamins -->
+        <!-- description of product -->
         <div class="block">
             <div class="row margin-bottom">
                 <div class="col-100">
                     <div class="card shadow-sm margin-bottom">
                         <div class="card-header">
-                            <div class="row">
-                                <div class="col-33">
-                                    <div id="progressCircle4"
-                                        class="small-circle display-inline-block margin-right-half"></div>
-                                    <div class="display-inline-block">
-                                        <p class="lh-16"><small class="text-opac">Carbs</small><br />75g</p>
-                                    </div>
-                                </div>
-                                <div class="col-33">
-                                    <div id="progressCircle5"
-                                        class="small-circle display-inline-block margin-right-half"></div>
-                                    <div class="display-inline-block">
-                                        <p class="lh-16"><small class="text-opac">Fat</small><br />45g</p>
-                                    </div>
-                                </div>
-                                <div class="col-33">
-                                    <div id="progressCircle6"
-                                        class="small-circle display-inline-block margin-right-half"></div>
-                                    <div class="display-inline-block">
-                                        <p class="lh-16"><small class="text-opac">Protein</small><br />105g</p>
-                                    </div>
-                                </div>
-                            </div>
+                            Product details
                         </div>
-                        <div class="card-content card-content-padding text-align-center">
-                            <p class="text-opac">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-                                sollicitudin dignissim nisi, eget malesuada ligula ultricies sit amet. Suspendisse
-                                efficitur ex eu est placerat mattis.</p>
+                        <div class="card-content card-content-padding text-align-center_">
+                            <p class="text-opac">
+                                ${productDetails.details}
+                            </p>
+                               
                         </div>
                     </div>
-                    <p class="text-opac small">** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-                        sollicitudin dignissim nisi, eget malesuada ligula ultricies sit amet. Suspendisse
-                        efficitur ex eu est placerat mattis.</p>
+                    <p class="text-opac small">** if the seal of the product is broken it will ne non-returnable.</p>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+</template>
+<script>
+    export default (props, { $f7, $theme, $on, $update, $ }) => {
+      var app = $f7;
+      let product = props.product;  
+      let productDetails = {
+        MRP: "",
+        category_id: "",
+       
+        details: "",
+        discount: "",
+        id: "",
+        img: "",
+        name: "",
+          } ;
+      const pageId = app.params.uuid();
+      
+      $(document).on('click','#pageId_'+pageId+' .add-to-card-button', function(e){
+        console.log(productDetails);
+          productDetails = $(this).dataset(); 
+          console.log(productDetails);
+          $update();
+          app.popup.open('.addproduct');
+      })  
+      
+      $on('pageInit', () => {
+          
+          $f7.preloader.show();
+  
+          app.params.callToServer( "product-details",'{"product":"'+ product +'"}',success);
+          function success(Responce){
+                $f7.preloader.hide();
+                productDetails = Responce.data.productDetails ;
+                $update();
+            }
+     
+          });
+  
+  
+      return $render;
+    }
+  </script>
+

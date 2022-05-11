@@ -16,6 +16,11 @@ var routes = [
     path: '/',
     componentUrl: './pages/splash.html',
     name: 'splash',
+    on: {
+      pageAfterIn(e, page) {
+       // app.views.main.router.clearPreviousHistory();
+      },
+  },
   },
 
   
@@ -23,17 +28,43 @@ var routes = [
   {
     path: '/home/',
     componentUrl: './pages/home.html',
+    // componentUrl: './pages/stats.html',
     name: 'home',
-    routes: [
-
-    ]
+    pageAfterIn(e, page) {
+     // app.views.main.router.clearPreviousHistory();
+    },
   },
 
    // stats
   {
     path: '/stats/',
-    url: './pages/stats.html',
-    name: 'stats'
+    // url: './pages/stats.html',
+    componentUrl: './pages/stats.html',
+    name: 'stats',
+    pageAfterIn(e, page) {
+      //app.views.main.router.clearPreviousHistory();
+    },
+  },
+
+  //  // stats
+  // {
+  //   path: '/stats/',
+  //   url: './pages/stats.html',
+  //   name: 'stats'
+  // },
+
+  // verify
+  {
+    path: '/verify/:mobile',
+    componentUrl: './pages/verify.html',
+    name: 'verify'
+  },
+
+  {
+    path: '/categoryList/',
+    // url: './pages/stats.html',
+    componentUrl: './pages/category_list.html',
+    name: 'category-list'
   },
 
   // pinned
@@ -59,54 +90,146 @@ var routes = [
   {
     path: '/editprofile/',
     url: './pages/editprofile.html',
-    path: '/editprofile/',
   },
+  
 
   // product
-  {
-    path: '/product/',
-    url: './pages/product.html',
-  },
+    {
+      path: '/product/:product/',
+      componentUrl: './pages/product.html',
+    },
 
 
     // Index page
     {
-      path: '/productlist/',
+      path: '/productlist/:type/:value/',
       componentUrl: './pages/product_list.html',
       name: 'product_list',
-      routes: [
-  
-      ]
     },
 
   // cart
   {
     path: '/cart/',
-    url: './pages/cart.html',
+    // componentUrl: './pages/cart.html',
+    name: 'cart',
+    componentUrl: './pages/cart.html',
+    pageAfterIn(e, page) {
+      app.views.main.router.clearPreviousHistory();
+    },
+    // async: function ( {resolve, router}) {
+
+    //               let cart =   JSON.parse(localStorage.getItem("cart"));
+                  
+    //               if (cart == null || cart == '') {
+    //                     resolve(
+    //                         {
+    //                           componentUrl: './pages/cart.html',
+    //                         },
+    //                         {
+    //                             props: {
+    //                                 data: []
+    //                             }
+    //                         }
+    //                         )
+                      
+    //               } else {
+                     
+    //                           resolve(
+    //                                   {
+    //                                     componentUrl: './pages/cart.html',
+    //                                   },
+    //                                   {
+    //                                       props: {
+    //                                           data: cart
+    //                                       }
+    //                                   }
+    //                           )
+    //                   }
+
+    // }
   },
 
   // address
   {
     path: '/address/',
-    url: './pages/address.html',
+    componentUrl: './pages/address.html',
   },
 
   // addresses
   {
     path: '/addresses/',
-    url: './pages/addresses.html',
+    componentUrl: './pages/addresses.html',
   },
 
   // add addresses
   {
     path: '/addaddress/',
-    url: './pages/addaddress.html',
+    componentUrl: './pages/addaddress.html',
   },
+
+  // edit addresses
+  // {
+  //   path: '/editaddress/:id/',
+  //   componentUrl: './pages/editaddress.html',
+  // },
+
+  {
+    path: '/editaddress/:id/',
+    async: function ( {router, to, resolve}) {
+        // App instance
+        var app = router.app;
+        // Show Preloader
+        app.preloader.show();
+        // bed ID from request
+        var ID = to.params.id;
+
+        app.params.callToServer( "edit-address",'{"id":"'+ID+'"}',
+            function (Response){
+                app.preloader.hide();
+                // address = Response.data[0];
+
+                resolve(
+                  {
+                    componentUrl: './pages/editaddress.html',
+                  },
+                  {
+                      props: {
+                          data: Response.data[0]
+                      }
+                  }
+                 );
+
+                 
+            });
+
+
+        // var url = app.params.data.remoteUrl + 'bedDetails/' + bedID + '/';
+        // console.log(url);
+        // app.request.json(url, function (data) {
+        //     console.log(data);
+        //     app.preloader.hide();
+
+        //     if (data.status) {
+        //         resolve(
+        //                 {
+        //                   componentUrl: './pages/editaddress.html',
+        //                 },
+        //                 {
+        //                     props: {
+        //                         data: data.data
+        //                     }
+        //                 }
+        //         );
+        //     }
+
+        // });
+    },
+},
 
   // Payment
   {
     path: '/payment/',
-    url: './pages/payment.html',
+    componentUrl: './pages/payment.html',
   },
   
 
@@ -119,7 +242,7 @@ var routes = [
   // my orders
   {
     path: '/myorders/',
-    url: './pages/myorders.html',
+    componentUrl: './pages/myorders.html',
   },
 
   // invoice
@@ -130,7 +253,7 @@ var routes = [
 
   // track order
   {
-    path: '/trackorder/',
+    path: '/trackorder/:orderId/',
     url: './pages/trackorder.html',
   },
 
@@ -225,11 +348,7 @@ var routes = [
     componentUrl: './pages/resetpassword.html',
   },
   
-  // verify
-  {
-    path: '/verify/',
-    componentUrl: './pages/verify.html',
-  },
+  
     
   // Thank you
   {

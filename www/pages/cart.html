@@ -1,4 +1,5 @@
-<div class="page page-" data-name="">
+<template>
+<div class="page page-cart" id="pageId_${pageId}" data-name="cart">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -53,7 +54,7 @@
         <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
-                    <h5 class="no-margin-bottom">3 products in cart</h5>
+                    <h5 class="no-margin-bottom">${cartCount} products in cart</h5>
                 </div>
                 <div class="col-auto pe-0 align-self-center">
                     <a href="/home/" class="link text-color-theme">Shop more <i class="icons f7-icons">chevron_right</i></a>
@@ -177,102 +178,224 @@
             </div>
         </div> -->
 
-        <div class="block">
+        ${cartCount > 0 && $h`
+ 
+        <!-- step 1 items modify -->
+        <div class="block cartItemBlock">
             <div class="row margin-bottom-half">
-                <div class="col-100 medium-50 large-33">
-                    <div class="card elevation-2 product margin-bottom-half">
-                        <div class="card-content card-content-padding">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <figure class="text-center avatar-70 avatar">
-                                        <img src="img/Protinex-Original.png" alt="">
-                                    </figure>
-                                </div>
-                                <div class="col no-padding-left align-self-center">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-color-theme margin-bottom-half">Protinex-Original-Powder</h6>
-                                            <p class="no-margin-bottom">
-                                                <small class="text-opac">500 gm/Unit</small>
-                                            </p>
-                                        </div>
-                                        <div class="col-auto">
-                                            <p class="no-margin-bottom">
-                                                <small class="text-opac" style="text-decoration: line-through;">₹ 600.00</small><br/>
-                                                 ₹ 500.00
-                                            </p>
+
+                ${cartList.map((item) => $h`
+
+                    <div class="col-100 medium-50 large-33">
+                        <div class="card elevation-2 product margin-bottom-half">
+                            <div class="card-content card-content-padding">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <figure class="text-center avatar-70 avatar">
+                                            <img src="${item.image}" alt="" />
+                                        </figure>
+                                    </div>
+                                    <div class="col no-padding-left align-self-center">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6 class="text-color-theme margin-bottom-half">${item.name}</h6>
+                                                <p class="no-margin-bottom">
+                                                    <small class="text-opac">Quantity : ${item.quantity}</small>
+                                                </p>
+                                            </div>
+                                            <div class="col-auto text-align-right">
+                                                <div class="col-auto " @click="${()=>removeCurrentProduct(item.pid)}">
+                                                    <div class="btn btn-link text-color-theme">
+                                                        <i class="icons f7-icons">trash</i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto ">
+                                                    <p class="no-margin-bottom">
+                                                        <small class="text-opac" style="text-decoration: line-through;">₹ ${item.mrp}</small>
+                                                        <br/>
+                                                        ₹ ${item.price}
+                                                    </p>   
+                                                </div>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-100 medium-50 large-33">
-                    <div class="card elevation-2 product margin-bottom-half">
-                        <div class="card-content card-content-padding">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <figure class="text-center avatar-70 avatar">
-                                        <img src="img/Protinex-Original.png" alt="">
-                                    </figure>
-                                </div>
-                                <div class="col no-padding-left align-self-center">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-color-theme margin-bottom-half">Protinex-Original-Powder</h6>
-                                            <p class="no-margin-bottom">
-                                                <small class="text-opac">500 gm/Unit</small>
-                                            </p>
-                                        </div>
-                                        <div class="col-auto">
-                                            <p class="no-margin-bottom">
-                                                <small class="text-opac" style="text-decoration: line-through;">₹ 400.00</small><br/>
-                                                 ₹ 350.00
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-100 medium-50 large-33">
-                    <div class="card elevation-2 product margin-bottom-half">
-                        <div class="card-content card-content-padding">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <figure class="text-center avatar-70 avatar">
-                                        <img src="img/Protinex-Original.png" alt="">
-                                    </figure>
-                                </div>
-                                <div class="col no-padding-left align-self-center">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="text-color-theme margin-bottom-half">Protinex-Original-Powder</h6>
-                                            <p class="no-margin-bottom">
-                                                <small class="text-opac">500 gm/Unit</small>
-                                            </p>
-                                        </div>
-                                        <div class="col-auto">
-                                            <p class="no-margin-bottom">
-                                                <small class="text-opac" style="text-decoration: line-through;">₹ 800.00</small><br/>
-                                                 ₹ 500.00
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+                `)}
                
             </div>
         </div>
+
+        <!-- step 2 shiping address set -->
+        <!-- <div class="block shiping_addredd">
+            <div class="block">
+                <div class="row margin-bottom-half">
+                    <div class="col align-self-center">
+                        <h5 class="no-margin-bottom">Delivery location</h5>
+                    </div>
+                    <div class="col-auto pe-0 align-self-center">
+                        <a href="/addresses/" class="link text-color-theme">Change <i class="icons f7-icons">chevron_right</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="row">
+                    <div class="col-100 medium-50 large-33 mx-auto">
+                        <div class="card elevation-2 product margin-bottom">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col align-self-center">
+                                        <h5 class="no-margin-bottom">Capsulepluse<br>
+                                            <span class="text-opac small">Primary</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-auto align-self-center no-padding">
+                                        <a href="/addresses/" class="button button-link text-color-theme"><i class="icons f7-icons">pencil_outline</i></a>
+                                    </div>
+                                    <div class="col-auto align-self-center">
+                                        <a href="/addaddress/" class="button button-link text-color-theme"><i class="icons f7-icons">plus</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content card-content-padding">
+                                <img src="img/map.png" alt="" class="mw-100 margin-bottom-half">
+                                <div class="row">
+                                    <div class="col">
+                                        B 32, maker street 4, Beside Train Tower, Algobbaalsa,<br>California- 25468 (US)
+                                    </div>
+                                    <div class="col-auto text-align-right">
+                                        <i class="icons f7-icons text-color-theme">arrow_up_right_circle</i><br>
+                                        <small class="text-opac">2.5km <i class="icons f7-icons">placemark</i></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+
+
+        <!-- step 3 payment      -->
+        
+         <!-- <div class="block">
+            <div class="row margin-bottom-half">
+                <div class="col align-self-center">
+                    <h5 class="no-margin-bottom">Coupon Code</h5>
+                </div>
+                <div class="col-auto pe-0 align-self-center">
+                    <a href="/home/" class="link text-color-theme">Offers <i class="icons f7-icons">chevron_right</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="row margin-bottom-half">
+                <div class="col">
+                    <div class="list form-list no-margin">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label">Coupon Code</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="couponcode" value="FREEDEL100" />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-green margin-bottom " role="alert">
+                <div class="row">
+                    <div class="col-auto align-self-center">
+                        <i class="icon f7-icons text-color-green size-32">checkmark_alt_circle</i>
+                    </div>
+                    <div class="col no-padding-left">
+                        <h6 class="text-color-green margin-bottom-half">Congratulations!</h6>
+                        <p class="text-opac small">You have successfully applied "FREEDEL100" free delivery
+                            coupon and updated price total amount as per below</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+       
+        <!-- <div class="block">
+            <div class="row margin-bottom-half">
+                <div class="col align-self-center">
+                    <h5 class="no-margin-bottom">Payment Modes</h5>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div class="block">
+            <div class="row margin-bottom">
+                <div class="col-100 medium-50 large-33">
+                    <a href="#" class="card elevation-2 display-block margin-bottom-half product text-normal">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <figure class="text-center no-margin-bottom avatar avatar-40 page-bg rounded p-1">
+                                        <img src="img/maestro.png" alt="">
+                                    </figure>
+                                </div>
+                                <div class="col align-self-center">
+                                    <p>Maestro card<br><small class="text-opac">**** **** **** 5689</small></p>
+                                </div>
+                                <div class="col-auto align-self-center">
+                                    <i class="icons f7-icons text-color-theme">chevron_right</i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-100 medium-50 large-33">
+                    <a href="#" class="card elevation-2 display-block margin-bottom-half product text-normal">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <figure class="text-center no-margin-bottom avatar avatar-40 page-bg rounded p-1">
+                                        <img src="img/visa.png" alt="">
+                                    </figure>
+                                </div>
+                                <div class="col align-self-center">
+                                    <p>Maestro card<br><small class="text-opac">Add your card</small></p>
+                                </div>
+                                <div class="col-auto align-self-center">
+                                    <i class="icons f7-icons text-color-theme">chevron_right</i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-100 medium-50 large-33">
+                    <a href="#" class="card elevation-2 display-block margin-bottom-half product text-normal">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <figure class="text-center no-margin-bottom avatar avatar-40 page-bg rounded p-1">
+                                        <img src="img/americanexp.png" alt="">
+                                    </figure>
+                                </div>
+                                <div class="col align-self-center">
+                                    <p>Maestro card<br><small class="text-opac">Apply for card</small></p>
+                                </div>
+                                <div class="col-auto align-self-center">
+                                    <i class="icons f7-icons text-color-theme">chevron_right</i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+
 
 
 
@@ -287,14 +410,14 @@
                 <div class="col">
                     <p>Shipping Cost</p>
                 </div>
-                <div class="col-auto">$ 10.00</div>
+                <div class="col-auto">₹ ${shippingCost}</div>
             </div>
 
             <div class="row margin-bottom-half">
                 <div class="col">
                     <p>Subtotal</p>
                 </div>
-                <div class="col-auto">$ 32.00</div>
+                <div class="col-auto">₹ ${subtotal}</div>
             </div>
 
             <div class="row font-weight-bold margin-bottom">
@@ -304,7 +427,7 @@
                 <div class="col">
                     <p>Total</p>
                 </div>
-                <div class="col-auto">$ 42.00</div>
+                <div class="col-auto">₹ ${total}</div>
             </div>
         </div>
 
@@ -316,6 +439,8 @@
                 </div>
             </div>
         </div>
+
+        `}
 
     </div>
 
@@ -344,7 +469,7 @@
                         <span>
                             <i class="icon f7-icons">cart</i>
                             <span class="nav-text">card-content</span>
-                            <span class="countercart">3</span>
+                            <span class="countercart">${app.params.totalCartItems()}</span>
                         </span>
                     </a>
                 </li>
@@ -369,3 +494,57 @@
     </footer>
 
 </div>
+</template>
+
+<script>
+    export default (props, { $f7, $theme, $on, $update, $ }) => {
+      var app = $f7;
+      let cartList = [] ;
+
+        let totalQuantity =  0;
+        let total = 0;
+        let subtotal = 0;
+        // let cartCount = app.params.cartCount();
+        let cartCount = 0;
+        let shippingCost = 0;
+        const pageId = app.params.uuid();
+      
+        let removeCurrentProduct = (pid)=>{
+            $f7.preloader.show();
+             //=======remove cart items from server =======
+            app.params.callToServer( "remove-cart", {'pid':pid} ,
+            function success(Responce){
+                $f7.preloader.hide();
+                updateCurrentCart(Responce);
+                // categoryName = Responce.data.category;
+            });
+        }
+
+        const updateCurrentCart = (Responce)=>{
+                cartList = Responce.data.cartContent ;
+                totalQuantity = Responce.data.totalQuantity;
+                total = Responce.data.total;
+                subtotal = Responce.data.subtotal;
+                cartCount = Responce.data.cartCount;
+                shippingCost =  Responce.data.shippingCost;
+                $update();
+        }
+
+        $on('pageInit', () => {
+            $f7.preloader.show();
+            app.params.callToServer( "cart",'',success);
+            function success(Responce){
+                $f7.preloader.hide();
+                updateCurrentCart(Responce);
+                
+            }
+
+
+
+
+
+        });
+  
+      return $render;
+    }
+  </script>

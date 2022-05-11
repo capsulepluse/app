@@ -1,11 +1,11 @@
 <template>
-  <div class="page page-home" data-name="product_list">
+  <div class="page page-product_list" id="pageId_${pageId}" data-name="product_list">
     <div class="navbar ">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="left  no-margin-right">
-          <a href="#" class="link icon-only panel-open " data-panel="left">
-            <i class="icon f7-icons size-22">bars</i>
+          <a href="#" class="link icon-only back">
+              <i class="icon f7-icons size-22">arrow_left</i>
           </a>
         </div>
         <div class="title text-align-center">
@@ -169,41 +169,49 @@
         <div class="block">
           <div class="row margin-bottom-half">
             <div class="col">
-              <h5 class="no-margin-bottom">Popular</h5>
+              <h5 class="no-margin-bottom">${categoryName}</h5>
             </div>
-            <div class="col-auto">
+            <!-- <div class="col-auto">
               <a href="" class="link text-color-theme">View All <i class="icons f7-icons">chevron_right</i></a>
-            </div>
+            </div> -->
           </div>
         </div>
 
         <div class="block">
           <div class="row">
+
+            ${product.map((item) => $h`
+
             <div class="col-50 medium-33 large-25">
               <div class="card elevation-2 product margin-bottom">
                 <div class="card-content card-content-padding">
                   <figure class="text-align-center">
-                    <img src="img/Dettol-Antiseptic.png" alt="" />
+                    <img src="${item.img}" alt="" />
                   </figure>
                   <!-- <p class="">
                     <small class="text-opac">Fresh</small>
                     <small class="float-right"><span class="text-opac">4.5</span> <i
                         class="icons f7-icons text-color-yellow">star</i></small>
                   </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Dettiol Antiseptic</h6>
+                  <a href="/product/${item.id}/" class="text-normal margin-bottom-half display-block">
+                    <h6 class="text-color-theme">${item.name}</h6>
                   </a>
                   <div class="row">
                     <div class="col">
                       <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                        ₹ 12.00
+                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ ${item.MRP}</small><br/>
+                        ₹ ${item.discount}
                         </p>
                     </div>
                     <div class="col-auto no-padding-left">
                       <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
+                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient  add-to-card-button"
+                        data-pid="${item.id}"
+                        data-mrp="${item.MRP}"
+                        data-price="${item.discount}"
+                        data-name="${item.name}"
+                        data-image="${item.img}"
+                        >
                         <i class="icons f7-icons">plus</i>
                       </button>
                     </div>
@@ -211,913 +219,8 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Savlon-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Zincovit Tablet is an advanced combination of Multivitamin, Multimineral with Grape Seed Extract.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Savlon Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Germinol Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Germinol</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/N95.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Osteocync is an advance combination of Undenatured Collagen Type II, L-Citrulline, Astaxanthin, Magnesium, L-Glutamine and Vitamin E tablet. 
-                                                Osteocync aids the repair process in an osteoarthritic joint by strengthening the osteochondral connect. It improves overall bone health & quality of life of an individual.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Mask</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Dettol-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Dettiol Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                        ₹ 12.00
-                        </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Savlon-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Zincovit Tablet is an advanced combination of Multivitamin, Multimineral with Grape Seed Extract.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Savlon Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Germinol Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Germinol</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/N95.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Osteocync is an advance combination of Undenatured Collagen Type II, L-Citrulline, Astaxanthin, Magnesium, L-Glutamine and Vitamin E tablet. 
-                                                Osteocync aids the repair process in an osteoarthritic joint by strengthening the osteochondral connect. It improves overall bone health & quality of life of an individual.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Mask</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Dettol-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Dettiol Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                        ₹ 12.00
-                        </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Savlon-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Zincovit Tablet is an advanced combination of Multivitamin, Multimineral with Grape Seed Extract.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Savlon Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Germinol Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Germinol</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/N95.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Osteocync is an advance combination of Undenatured Collagen Type II, L-Citrulline, Astaxanthin, Magnesium, L-Glutamine and Vitamin E tablet. 
-                                                Osteocync aids the repair process in an osteoarthritic joint by strengthening the osteochondral connect. It improves overall bone health & quality of life of an individual.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Mask</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Dettol-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Dettiol Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                        ₹ 12.00
-                        </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Savlon-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Zincovit Tablet is an advanced combination of Multivitamin, Multimineral with Grape Seed Extract.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Savlon Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Germinol Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Germinol</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/N95.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Osteocync is an advance combination of Undenatured Collagen Type II, L-Citrulline, Astaxanthin, Magnesium, L-Glutamine and Vitamin E tablet. 
-                                                Osteocync aids the repair process in an osteoarthritic joint by strengthening the osteochondral connect. It improves overall bone health & quality of life of an individual.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Mask</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Dettol-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Dettiol Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                        ₹ 12.00
-                        </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Savlon-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Zincovit Tablet is an advanced combination of Multivitamin, Multimineral with Grape Seed Extract.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Savlon Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Germinol Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Germinol</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/N95.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Osteocync is an advance combination of Undenatured Collagen Type II, L-Citrulline, Astaxanthin, Magnesium, L-Glutamine and Vitamin E tablet. 
-                                                Osteocync aids the repair process in an osteoarthritic joint by strengthening the osteochondral connect. It improves overall bone health & quality of life of an individual.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Mask</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Dettol-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Dettiol Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                        ₹ 12.00
-                        </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Savlon-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Zincovit Tablet is an advanced combination of Multivitamin, Multimineral with Grape Seed Extract.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Savlon Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Germinol Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Germinol</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/N95.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Osteocync is an advance combination of Undenatured Collagen Type II, L-Citrulline, Astaxanthin, Magnesium, L-Glutamine and Vitamin E tablet. 
-                                                Osteocync aids the repair process in an osteoarthritic joint by strengthening the osteochondral connect. It improves overall bone health & quality of life of an individual.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Mask</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Dettol-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Dettiol Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                        ₹ 12.00
-                        </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Savlon-Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Zincovit Tablet is an advanced combination of Multivitamin, Multimineral with Grape Seed Extract.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Savlon Antiseptic</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/Germinol Antiseptic.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Germinol</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-50 medium-33 large-25">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="img/N95.png" alt="" />
-                  </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Osteocync is an advance combination of Undenatured Collagen Type II, L-Citrulline, Astaxanthin, Magnesium, L-Glutamine and Vitamin E tablet. 
-                                                Osteocync aids the repair process in an osteoarthritic joint by strengthening the osteochondral connect. It improves overall bone health & quality of life of an individual.</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  <a href="/product/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">Mask</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
-                         </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient popup-open"
-                        data-popup=".addproduct">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
+           
+            `)}
 
           </div>
         </div>
@@ -1144,7 +247,7 @@
               <div class="page-content">
                 <div class="block margin-bottom">
                   <figure class="text-center padding">
-                    <img src="img/Protinex-Original.png" alt="" class="mw-100" />
+                    <img src="${productDetails.image}" alt="" class="mw-100" />
                   </figure>
                 </div>
                 <div class="block margin-bottom">
@@ -1154,30 +257,34 @@
                         class="bi bi-star-fill text-warning"></i></small>
                   </p> -->
                   <a href="product.html" class="text-normal display-block margin-bottom-half">
-                    <h6 class="text-color-theme">Protinex-Tasty-Chocolate-Powder</h6>
+                    <h6 class="text-color-theme">${productDetails.name}</h6>
                   </a>
                   <div class="row">
                     <div class="col">
                       <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ 20.00</small><br/>
-                         ₹ 12.00
+                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ ${productDetails.mrp}</small><br/>
+                         ₹ ${productDetails.price}
                          </p>
                     </div>
                     <div class="col-auto">
                       <!-- Stepper element -->
                       <div class="stepper">
-                        <div class="stepper-button-minus"></div>
+                        <div class="stepper-button-minus counter-decrease"></div>
                         <!-- Stepper value element -->
-                        <div class="stepper-value">10</div>
-                        <div class="stepper-button-plus"></div>
+                        <div class="stepper-value counter-value">1</div>
+                        <div class="stepper-button-plus counter-increase"></div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="block">
-                  <button type="button"
-                    class="button button-large button-fill color-green elevation-3 popup-close">Add to Cart<i
-                      class="icons f7-icons">arrow_right</i></button>
+                  <button @click="${app.params.addToCartCurrentProduct}"
+                    type="button"
+                    class="button button-large button-fill color-green elevation-3 adding-cart"
+                    data-pid="${productDetails.pid}"
+                    >Add to Cart
+                    <i class="icons f7-icons">arrow_right</i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1244,192 +351,111 @@
   </div>
 </template>
 <script>
-  export default (props, { $f7, $theme, $on }) => {
-    let toastBottom;
-    let toastTop;
-    let toastCenter;
-    let toastIcon;
-    let toastLargeMessage;
-    let toastWithButton;
-    let toastWithCustomButton;
-    let toastWithCallback;
+  export default (props, { $f7, $theme, $on, $update, $ }) => {
+    var app = $f7;
+    let product = [];
+    let categoryName = "";
+    let type = props.type;  
+    let value = props.value; 
+    let productDetails = {
+          price: "",
+          image: "",
+          mrp: "",
+          name: "",
+          pid: ""
+        } ;
+    const pageId = app.params.uuid();
+    // let cartCount = app.params.cartCount();
+    //  console.log('countdata',cartCount);
 
-    const showToastBottom = () => {
-      // Create toast
-      if (!toastBottom) {
-        toastBottom = $f7.toast.create({
-          text: 'Product has been added',
-          closeTimeout: 2000,
-        });
-      }
-      // Open it
-      toastBottom.open();
-    }
-    const showToastTop = () => {
-      // Create toast
-      if (!toastTop) {
-        toastTop = $f7.toast.create({
-          text: 'Product has been added',
-          position: 'top',
-          closeTimeout: 2000,
-        });
-      }
-      // Open it
-      toastTop.open();
-    }
-    const showToastCenter = () => {
-      // Create toast
-      if (!toastCenter) {
-        toastCenter = $f7.toast.create({
-          text: 'Product has been added',
-          position: 'center',
-          closeTimeout: 2000,
-        });
-      }
-      // Open it
-      toastCenter.open();
-    }
-    const showToastIcon = () => {
-      // Create toast
-      if (!toastIcon) {
-        toastIcon = $f7.toast.create({
-          icon: $theme.ios || $theme.aurora ? '<i class="f7-icons">cart</i>' : '<i class="material-icons">cart</i>',
-          text: 'Product has been added',
-          position: 'center',
-          closeTimeout: 2000,
-        });
-      }
-      // Open it
-      toastIcon.open();
-    }
-    const showToastLargeMessage = () => {
-      // Create toast
-      if (!toastLargeMessage) {
-        toastLargeMessage = $f7.toast.create({
-          text: 'This toast contains a lot of text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, quae, ab. Delectus amet optio facere autem sapiente quisquam beatae culpa dolore.',
-          closeTimeout: 2000,
-        });
-      }
-      // Open it
-      toastLargeMessage.open();
-    }
-    const showToastWithButton = () => {
-      // Create toast
-      if (!toastWithButton) {
-        toastWithButton = $f7.toast.create({
-          text: 'Toast with additional close button',
-          closeButton: true,
-        });
-      }
-      // Open it
-      toastWithButton.open();
-    }
-    const showToastWithCustomButton = () => {
-      // Create toast
-      if (!toastWithCustomButton) {
-        toastWithCustomButton = $f7.toast.create({
-          text: 'Custom close button',
-          closeButton: true,
-          closeButtonText: 'Close Me',
-          closeButtonColor: 'red',
-        });
-      }
-      // Open it
-      toastWithCustomButton.open();
-    }
-    const showToastWithCallback = () => {
-      // Create toast
-      if (!toastWithCallback) {
-        toastWithCallback = $f7.toast.create({
-          text: 'Callback on close',
-          closeButton: true,
-          on: {
-            close: function () {
-              $f7.dialog.alert('Toast closed');
-            },
+    // const openProductPopup = (e)=>{
+    //   // console.log(e);
+    //   // var $ = this.$;
+       
+    //   // productDetails = $(this).attr('data-pid');
+    //   productDetails = e.target.dataset();
+    //   console.log("product details",productDetails);
+
+    // }
+    
+    $(document).on('click','#pageId_'+pageId+' .add-to-card-button', function(e){
+      console.log(productDetails);
+        productDetails = $(this).dataset(); 
+        //console.log(productDetails);
+        app.params.setActiveProduct(productDetails);
+        $update();
+        app.popup.open('.addproduct');
+    })  
+
+    $(document).on('click','.adding-cart_', function(e){
+        //console.log('adding clicked');
+        //let pid = $(this).data('pid'); 
+        let countValue = parseInt ($(this).parent().parent().find(".counter-value").text());
+        
+        var currentProduct = {
+          price: productDetails.discount,
+          image: productDetails.imageurl,
+          mrp: productDetails.mrp,
+          name: productDetails.name,
+          pid: productDetails.pid,
+          quantity:countValue
+        }
+
+       // console.log(currentProduct);
+
+        //======= cart value from server =======
+        const addingCartOnLive = app.params.callToServer( "add-cart", currentProduct ,
+        function success(Responce){
+              $f7.preloader.hide();
+              cartCount = Responce.data.cartCount ;
+              localStorage.setItem("cartCount", cartCount);
+              // categoryName = Responce.data.category;
+              $update();
+          });
+        //========
+      //====== get card value from store ===
+      // JSON.parse(localStorage.getItem('myItem'))
+
+    //  let cart =  JSON.parse(localStorage.getItem("cart"));
+    //  console.log("cart strored",cart);
+      
+    //   if(cart == null){
+    //    let cartList = [currentProduct];
+    //      //====== adding cart store ============
+    //     localStorage.setItem("cart",JSON.stringify(cartList));
+    //   }else{ //====== add new item on cart ========
+    //     cart.push(currentProduct);
+    //      //====== update cart store ============
+    //      localStorage.setItem("cart",JSON.stringify(cart));
+    //   }
+     
+
+
+        // console.log(JSON.parse(localStorage.getItem("cart")));
+        // console.log(localStorage.getItem("cart"));
+        // $update();
+        app.popup.close('.addproduct');
+    }) 
+
+    
+    
+    $on('pageInit', () => {
+        
+        $f7.preloader.show();
+
+        app.params.callToServer( "product-list",'{"type":"'+ type+'","value":'+value+'}',success);
+        function success(Responce){
+              $f7.preloader.hide();
+              product = Responce.data.product ;
+              categoryName = Responce.data.category;
+              $update();
           }
+   
         });
-      }
-      // Open it
-      toastWithCallback.open();
-    }
-
-    $on('pageBeforeOut', () => {
-      $f7.toast.close();
-    })
 
     $on('pageBeforeRemove', () => {
-      // Destroy toasts when page removed
-      if (toastBottom) toastBottom.destroy();
-      if (toastTop) toastTop.destroy();
-      if (toastCenter) toastCenter.destroy();
-      if (toastIcon) toastIcon.destroy();
-      if (toastLargeMessage) toastLargeMessage.destroy();
-      if (toastWithButton) toastWithButton.destroy();
-      if (toastWithCustomButton) toastWithCustomButton.destroy();
-      if (toastWithCallback) toastWithCallback.destroy();
-    })
-
-
-    $on('pageInit', () => {
-      // Create full-layout notification
-      var notificationFull = $f7.notification.create({
-        icon: '<i class="icon f7-icons">cart</i>',
-        title: 'Product Added',
-        titleRightText: 'now',
-        subtitle: 'Thank you for purchase',
-        text: 'This is a simple notification message',
-        closeTimeout: 2000,
-      });
-
-      // Create notification with close button
-      var notificationWithButton = $f7.notification.create({
-        icon: '<i class="icon f7-icons">cart</i>',
-        title: 'Product Added to Cart',
-        subtitle: 'Thank you for purchase',
-        text: 'Click (x) button to close me',
-        closeButton: true,
-      });
-
-      // Create notification with click to close
-      var notificationClickToClose = $f7.notification.create({
-        icon: '<i class="icon f7-icons">cart</i>',
-        title: 'Product has been added',
-        titleRightText: 'now',
-        subtitle: 'Thank you for purchase',
-        text: 'Click me to close',
-        closeOnClick: true,
-      })
-
-      // With callback on close
-      var notificationCallbackOnClose = $f7.notification.create({
-        icon: '<i class="icon f7-icons">cart</i>',
-        title: 'Product just added',
-        titleRightText: 'now',
-        subtitle: 'Thank you for purchase',
-        text: 'Click me to close',
-        closeOnClick: true,
-        on: {
-          close: function () {
-            $f7.dialog.alert('Notification closed');
-          },
-        },
-      });
-
-      // Open Notifications
-      $('.open-full').on('click', function () {
-        notificationFull.open();
-      });
-      $('.open-with-button').on('click', function () {
-        notificationWithButton.open();
-      });
-      $('.open-click-to-close').on('click', function () {
-        notificationClickToClose.open();
-      });
-      $('.open-callback-on-close').on('click', function () {
-        notificationCallbackOnClose.open();
-      });
-    })
+     
+    })    
 
     return $render;
   }

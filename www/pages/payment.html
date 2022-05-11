@@ -1,4 +1,5 @@
-<div class="page page-" data-name="">
+<template>
+<div class="page page-payment" data-name="payment">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -9,8 +10,7 @@
             </div>
             <div class="title text-align-center">
                 <div class="logo-small">
-                    <img src="img/logo.png" alt="" class="img" />
-                    <!-- <h6>GO<br /><small>MobileUX</small></h6> -->
+                    <img src="img/logo.png" alt="" class="img" /> 
                 </div>
             </div>
             <div class="right text-align-center">
@@ -49,8 +49,8 @@
             </div>
         </div>
 
-        <!-- Apply coupon code-->
-        <div class="block">
+        <!-- Apply coupon code -->
+        <!-- <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
                     <h5 class="no-margin-bottom">Coupon Code</h5>
@@ -90,7 +90,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <!-- end of coupon code  -->
 
         <!-- payments -->
         <div class="block">
@@ -107,51 +108,15 @@
                     <a href="#" class="card elevation-2 display-block margin-bottom-half product text-normal">
                         <div class="card-content card-content-padding">
                             <div class="row">
-                                <div class="col-auto">
-                                    <figure class="text-center no-margin-bottom avatar avatar-40 page-bg rounded p-1">
-                                        <img src="img/maestro.png" alt="">
-                                    </figure>
+                                <div class="col-auto ">
+                                    <label class="item-radio item-radio-icon-start item-content">
+                                        <input type="radio" name="defaultAddress" value="" checked />
+                                        <i class="icon icon-radio"></i>
+                                    </label> 
                                 </div>
                                 <div class="col align-self-center">
-                                    <p>Maestro card<br><small class="text-opac">**** **** **** 5689</small></p>
-                                </div>
-                                <div class="col-auto align-self-center">
-                                    <i class="icons f7-icons text-color-theme">chevron_right</i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-100 medium-50 large-33">
-                    <a href="#" class="card elevation-2 display-block margin-bottom-half product text-normal">
-                        <div class="card-content card-content-padding">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <figure class="text-center no-margin-bottom avatar avatar-40 page-bg rounded p-1">
-                                        <img src="img/visa.png" alt="">
-                                    </figure>
-                                </div>
-                                <div class="col align-self-center">
-                                    <p>Maestro card<br><small class="text-opac">Add your card</small></p>
-                                </div>
-                                <div class="col-auto align-self-center">
-                                    <i class="icons f7-icons text-color-theme">chevron_right</i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-100 medium-50 large-33">
-                    <a href="#" class="card elevation-2 display-block margin-bottom-half product text-normal">
-                        <div class="card-content card-content-padding">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <figure class="text-center no-margin-bottom avatar avatar-40 page-bg rounded p-1">
-                                        <img src="img/americanexp.png" alt="">
-                                    </figure>
-                                </div>
-                                <div class="col align-self-center">
-                                    <p>Maestro card<br><small class="text-opac">Apply for card</small></p>
+                                    <!-- <p>Maestro card<br><small class="text-opac">**** **** **** 5689</small></p> -->
+                                    <p>Cash on delivery</p>
                                 </div>
                                 <div class="col-auto align-self-center">
                                     <i class="icons f7-icons text-color-theme">chevron_right</i>
@@ -161,7 +126,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> 
 
         <!-- pricing -->
         <div class="block">
@@ -174,14 +139,14 @@
                 <div class="col">
                     <p>Shipping Cost</p>
                 </div>
-                <div class="col-auto">$ 10.00</div>
+                <div class="col-auto">₹ ${shippingCost}</div>
             </div>
 
             <div class="row margin-bottom-half">
                 <div class="col">
                     <p>Subtotal</p>
                 </div>
-                <div class="col-auto">$ 32.00</div>
+                <div class="col-auto">₹ ${subtotal}</div>
             </div>
 
             <div class="row font-weight-bold margin-bottom">
@@ -191,7 +156,7 @@
                 <div class="col">
                     <p>Total</p>
                 </div>
-                <div class="col-auto">$ 42.00</div>
+                <div class="col-auto">₹ ${total}</div>
             </div>
         </div>
 
@@ -199,7 +164,7 @@
         <div class="block">
             <div class="row margin-bottom">
                 <div class="col align-self-center">
-                        <a href="/thankyouorder/" class="button button-large button-fill elevation-3 color-green">Next</a>
+                        <button @click="${finalCheckout}" href="/thankyouorder/" class="button button-large button-fill elevation-3 color-green">Checkout</button>
                 </div>
             </div>
         </div>
@@ -256,3 +221,67 @@
     </footer>
 
 </div>
+</template>
+<script>
+    export default (props, { $f7, $theme, $on, $update, $ }) => {
+      var app = $f7;
+      let cartList = [] ;
+      let item = {
+        "address": "",
+        "id":"",
+        "landmark": "",
+        "mobile": "",
+        "name": "",
+        "pin": "",
+        "type": ""
+      };  
+        let totalQuantity =  0;
+        let total = 0;
+        let subtotal = 0;
+        // let cartCount = app.params.cartCount();
+        let cartCount = 0;
+        let shippingCost = 0;
+        const pageId = app.params.uuid();
+
+        const finalCheckout = ()=>{
+            $f7.preloader.show();
+            app.params.callToServer( "final-checkout",'', success);
+            function success(ResponceData){
+                $f7.preloader.hide();
+              //  updateCurrentCart();
+                //item = ResponceData.data.defaultAddress[0]; 
+               // $update();
+                app.views.main.router.navigate('/thankyouorder/', {
+                    ignoreCache: true,
+                    reloadCurrent: true,
+                });
+                app.views.main.router.clearPreviousHistory();
+            }
+        }
+       
+
+        const updateCurrentCart = (Responce)=>{
+                cartList = Responce.cartContent ;
+                totalQuantity = Responce.totalQuantity;
+                total = Responce.total;
+                subtotal = Responce.subtotal;
+                cartCount = Responce.cartCount;
+                shippingCost =  Responce.shippingCost;
+                $update();
+        }
+
+        $on('pageInit', () => {
+            $f7.preloader.show();
+            app.params.callToServer( "cart-payment",'', success);
+            function success(ResponceData){
+                $f7.preloader.hide();
+                updateCurrentCart(ResponceData.data.cartDetails);
+                //item = ResponceData.data.defaultAddress[0];
+                $update();
+            }
+
+        });
+  
+      return $render;
+    }
+  </script>

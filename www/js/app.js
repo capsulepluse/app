@@ -6,16 +6,137 @@ var theme = 'ios';
 
 // Init App
 var app = new Framework7({
-  id: 'io.framework7.testapp',
+  id: 'io.framework7.capsulepluse',
   el: '#app',
   theme,
+  cache: false,
   // store.js,
   store: store,
   // routes.js,
   routes: routes,
-  // remoteUrl: "https://jcabs.dev/jcabsadmin/api/",
-  // remoteUrl:"https://localhost/jcabs/jcabsadmin/api/",
-  remoteUrl: "http://127.0.0.1:8000/api/",
+  // remoteUrl: "https://capsul.test/api/",
+  remoteUrl: "http://192.168.113.237/capsul/admin_working/public/api/",
+   //=== global ajax call for authentication ===
+  cartCount: function(){
+    app.params.authHeader();
+    app.request.postJSON(app.params.remoteUrl +'cart-count') 
+    .then(function (response) {
+      console.log('countdata',response);
+      return response.data.cartCount;
+    });
+  },
+  callToServer:function(sUrl, postdata, successCallBack){
+    let url =  app.params.remoteUrl + sUrl;
+    let data = postdata;
+                  console.log("url", url);
+    app.params.authHeader();
+    if(data == ""){
+      app.request.json(url, data, 
+        function(res,status){  
+                console.log("Response : ", res);
+            if(status){
+              successCallBack(res);
+            }
+            
+    }, function(err, status){
+      app.preloader.hide();
+            console.log("error",err.response);
+            console.log(status);
+
+            switch(status) {
+              case 500:
+                    app.params.showToastBottom("Not able to connect with server, Contact with support!!");
+                break;
+              case 401:
+                app.params.logOut();
+                break;
+              default:
+                app.params.showToastBottom("Request fail !! Please try after some time!!");
+            }
+    });
+    }else{
+      app.request.postJSON(url, data, 
+        function(res,status){  
+                console.log("Response : ", res);
+            if(status){
+              successCallBack(res);
+            }
+            
+    }, function(err, status){
+      app.preloader.hide();
+            console.log("error",err.response);
+            console.log(status);
+
+            switch(status) {
+              case 500:
+                    app.params.showToastBottom("Not able to connect with server, Contact with support!!");
+                break;
+              case 401:
+                app.params.logOut();
+                break;
+              default:
+                app.params.showToastBottom("Request fail !! Please try after some time!!");
+            }
+    });
+    }
+   
+
+
+  }, 
+  authHeader: function(){
+  Framework7.request.setup({
+      // beforeSend: function (xhr) {
+      //     // xhr.setRequestHeader ('Authorization', 'Token '+ app.methods.localstoreout('token').access);
+      //     xhr.setRequestHeader ('Authorization', 'Token ');
+      // }
+      headers: {
+        // 'Authorization', 'Token '+ app.methods.localstoreout('token').access
+        'Authorization':'Bearer '+localStorage.getItem("token"),
+        'Accept': 'application/json'
+      }
+    });
+  },
+  uuid: function () {
+    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+  },
+  loginSuccess:function(data){
+    localStorage.setItem("token",data.token);
+    localStorage.setItem("mobile", data.mobile);
+    localStorage.setItem("name", data.name);
+    app.params.userName = data.name;
+    localStorage.setItem("is_login", 1);
+  },
+  logOut: function () {
+    //============= remove from local storage =========
+    localStorage.setItem("token", "");
+    localStorage.setItem("mobile", "");
+    localStorage.setItem("name", "");
+    localStorage.setItem("is_login", "");
+    app.views.main.router.navigate('/login/', {
+        ignoreCache: true,
+        reloadCurrent: true,
+    });
+    app.views.main.router.clearPreviousHistory();
+    let toastBottom = app.toast.create({
+      text: "You’ve been Logged out!",
+      closeTimeout: 2000,
+    });
+    toastBottom.open();
+  },
+  markInputAsError:function (componentEl, inputName, message) {
+    var self = this;
+    var el = componentEl.find('input[name="'+inputName+'"]');
+    el.addClass('input-invalid');
+    el.parent().parent().parent().addClass('item-input-with-error-message item-input-invalid');
+    if (!el.next('.item-input-error-message').length) {
+        self.$('<div class="item-input-error-message">'+message+'</div>').insertAfter(el);
+    } else {
+        el.next('.item-input-error-message').html(message);
+    }
+  },
   popup: {
     closeOnEscape: true,
   },
@@ -31,6 +152,67 @@ var app = new Framework7({
   vi: {
     placementId: 'pltd4o7ibb9rc653x14',
   },
+  //============== shoping ================
+  totalCartItems:function(){
+    let cart =  JSON.parse(localStorage.getItem("cart"));
+    let total ;
+    if (cart == null || cart == ''){
+      total = 0;
+    }else{
+      total = cart.length;
+    }
+    return total ;
+  },
+  currentProductDetails : {
+    price: "",
+    image: "",
+    mrp: 0,
+    name: "",
+    pid: "",
+    quantity:0
+  } ,
+  //======== add active product =======
+  setActiveProduct:function(productDetails){
+    let currentProduct = {
+      price: productDetails.price,
+      image: productDetails.image,
+      mrp: productDetails.mrp,
+      name: productDetails.name,
+      pid: productDetails.pid,
+      quantity:1
+    }
+    app.params.currentProductDetails = currentProduct ;
+  },
+  getActiveProduct:function(){
+      return app.params.currentProductDetails ;
+  },
+  //======== add to cart active product ======
+  addToCartCurrentProduct:function(){
+    let currentProduct =  app.params.getActiveProduct();
+    app.preloader.show();
+    app.params.callToServer( "add-cart", currentProduct ,
+    function success(Responce){
+          app.preloader.hide();
+          let cartCount = Responce.data.cartCount ;
+          localStorage.setItem("cartCount", cartCount);
+          // categoryName = Responce.data.category;
+          //$update();
+          app.popup.close('.addproduct');
+      });
+    
+  },
+  showToastBottom: (msg = "") => {
+        // Create toast
+        let toastBottom = app.toast.create({
+            text: msg,
+            closeTimeout: 2000,
+        });
+
+        toastBottom.open();
+    },
+
+
+
 });
 
 
@@ -52,7 +234,14 @@ $(document).on('page:init', function (e) {
 
 $(document).on('page:init', '.page[data-name="splash"]', function (e) {
   setTimeout(function () {
-    app.views.main.router.navigate('/landing/');
+      //============ user login or not ==========
+      var is_login = localStorage.getItem("is_login");
+      if (is_login == null || is_login == '') {
+        localStorage.setItem("is_login", "");
+        app.views.main.router.navigate('/landing/');
+      }else{
+        app.views.main.router.navigate('/home/');
+      }
   }, 3000);
 })
 $(document).on('page:init', '.page[data-name="thankyouorder"]', function (e) {
@@ -69,8 +258,10 @@ $(document).on('page:init', '.page[data-name="landing"]', function (e) {
     }
   });
 });
-$(document).on('page:init', '.page[data-name="verify"]', function (e) {
-  document.getElementById('timer').innerHTML = '03' + ':' + '00';
+$(document).on('page:init', '.page[data-name="verify_"]', function (e) {
+
+
+  document.getElementById('timer').innerHTML = '00' + ':' + '30';
   startTimer();
 
   function startTimer() {
@@ -80,6 +271,7 @@ $(document).on('page:init', '.page[data-name="verify"]', function (e) {
     var s = checkSecond((timeArray[1] - 1));
     if (s == 59) { m = m - 1 }
     if (m < 0) {
+      
       return
     }
 
@@ -94,8 +286,11 @@ $(document).on('page:init', '.page[data-name="verify"]', function (e) {
     return sec;
   }
 
-});
 
+
+
+
+});
 
 
 /* pwa app install */
@@ -199,7 +394,7 @@ $(document).on('page:init', '.page[data-name="home"]', function (e) {
 
 })
 
-$(document).on('page:init', '.page[data-name="stats"]', function (e) {
+$(document).on('page:init', '.page[data-name="stats_"]', function (e) {
 
   var swiper2 = new Swiper(".offerslides", {
     slidesPerView: "1",
@@ -463,97 +658,29 @@ $(document).on('page:init', '.page[data-name="product"]', function (e) {
     spaceBetween: 26,
   });
 
-  /* Progress circle  */
-  var progressCircles4 = new ProgressBar.Circle(progressCircle4, {
-    color: '#52E5A5',
-    // This has to be the same size as the maximum width to
-    // prevent clipping
-    strokeWidth: 10,
-    trailWidth: 10,
-    easing: 'easeInOut',
-    trailColor: 'rgba(0, 0, 0, 0.08)',
-    duration: 1400,
-    text: {
-      autoStyleContainer: false
-    },
-    from: { color: '#52E5A5', width: 10 },
-    to: { color: '#52E5A5', width: 10 },
-    // Set default step function for all animate calls
-    step: function (state, circle) {
-      circle.path.setAttribute('stroke', state.color);
-      circle.path.setAttribute('stroke-width', state.width);
-
-      var value = Math.round(circle.value() * 100);
-      if (value === 0) {
-        circle.setText('');
-      } else {
-        circle.setText(value);
-      }
-
-    }
-  });
-  progressCircles4.text.style.fontSize = '12px';
-  progressCircles4.animate(0.65);  // Number from 0.0 to 1.0
-
-  var progressCircles5 = new ProgressBar.Circle(progressCircle5, {
-    color: '#FFC400',
-    // This has to be the same size as the maximum width to
-    // prevent clipping
-    strokeWidth: 10,
-    trailWidth: 10,
-    easing: 'easeInOut',
-    trailColor: 'rgba(0, 0, 0, 0.08)',
-    duration: 1400,
-    text: {
-      autoStyleContainer: false
-    },
-    from: { color: '#FFC400', width: 10 },
-    to: { color: '#FFC400', width: 10 },
-    // Set default step function for all animate calls
-    step: function (state, circle) {
-      circle.path.setAttribute('stroke', state.color);
-      circle.path.setAttribute('stroke-width', state.width);
-
-      var value = Math.round(circle.value() * 100);
-      if (value === 0) {
-        circle.setText('');
-      } else {
-        circle.setText(value);
-      }
-
-    }
-  });
-  progressCircles5.text.style.fontSize = '12px';
-  progressCircles5.animate(0.60);  // Number from 0.0 to 1.0
-
-  var progressCircles6 = new ProgressBar.Circle(progressCircle6, {
-    color: '#FF1C52',
-    // This has to be the same size as the maximum width to
-    // prevent clipping
-    strokeWidth: 10,
-    trailWidth: 10,
-    easing: 'easeInOut',
-    trailColor: 'rgba(0, 0, 0, 0.08)',
-    duration: 1400,
-    text: {
-      autoStyleContainer: false
-    },
-    from: { color: '#FF1C52', width: 10 },
-    to: { color: '#FF1C52', width: 10 },
-    // Set default step function for all animate calls
-    step: function (state, circle) {
-      circle.path.setAttribute('stroke', state.color);
-      circle.path.setAttribute('stroke-width', state.width);
-
-      var value = Math.round(circle.value() * 100);
-      if (value === 0) {
-        circle.setText('');
-      } else {
-        circle.setText(value);
-      }
-
-    }
-  });
-  progressCircles6.text.style.fontSize = '12px';
-  progressCircles6.animate(0.85);  // Number from 0.0 to 1.0
 })
+//=========== logout function ==========
+$(document).on('click','.logout', function(e){
+  app.params.logOut();
+ console.log(app);
+})
+
+$(document).on('click', '.counter-increase',function(e){
+  var countValue =parseInt ($(this).parent().find(".counter-value").text());
+  countValue = countValue + 1 ; 
+  $(this).parent().find(".counter-value").text(countValue);
+  app.params.currentProductDetails.quantity = countValue ; 
+  console.log(countValue);
+});
+
+$(document).on('click', '.counter-decrease',function(e){
+  var countValue = parseInt ($(this).parent().find(".counter-value").text());
+  
+  if (countValue > 0){
+    countValue = countValue -1 ; 
+  }
+  $(this).parent().find(".counter-value").text(countValue);
+  app.params.currentProductDetails.quantity = countValue ; 
+  console.log(countValue);
+
+});
