@@ -15,7 +15,7 @@ var app = new Framework7({
   // routes.js,
   routes: routes,
   // remoteUrl: "https://capsul.test/api/",
-  remoteUrl: "http://192.168.113.237/capsul/admin_working/public/api/",
+  remoteUrl: "https://192.168.113.237/capsul/admin_working/public/api/",
    //=== global ajax call for authentication ===
   cartCount: function(){
     app.params.authHeader();
