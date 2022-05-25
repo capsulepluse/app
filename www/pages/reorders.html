@@ -1,0 +1,133 @@
+<template>
+<div class="page page-reorders" data-name="reorders">
+    <div class="navbar ">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner">
+            <div class="left  no-margin-right">
+                <a href="#" class="link icon-only back">
+                    <i class="icon f7-icons size-22">arrow_left</i>
+                </a>
+            </div>
+            <div class="title">
+                <h5 class="no-margin-bottom">Re-Orders</h5>
+            </div>
+            <div class="right text-align-center">
+                <a href="/notificationlist/" class="link">
+                    <i class="icon f7-icons size-22">bell_fill</i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- main page content -->
+    <div class="page-content">
+
+        <!-- cart items -->
+        <!-- <div class="block">
+            <div class="row margin-bottom-half">
+                <div class="col align-self-center">
+                    <h5 class="no-margin-bottom"> Ordered items</h5>
+                </div>
+                <div class="col-auto align-self-center">
+                    <a href="/faqs/" class="link text-color-theme">Help <i class="icons f7-icons">chevron_right</i></a>
+                </div>
+            </div>
+        </div> -->
+        <div class="block">
+            <div class="row margin-bottom-half">
+
+                ${orderList.map((item) => $h`
+
+                    <div class="col-100 medium-50 large-33">
+                        <div class="card elevation-2 product margin-bottom-half">
+                            <div class="card-content card-content-padding">
+                                <div class="row">
+                                    <!-- <div class="col-auto">
+                                        <figure class="text-center avatar-70 avatar">
+                                            <img src="img/product1.png" alt=""/>
+                                        </figure>
+                                    </div> -->
+                                    <div class="col-auto align-self-center">
+                                        <i class="icon f7-icons">cart_badge_plus</i>
+                                    </div>
+                                    <div class="col no-padding-left align-self-center">
+                                        <p class="no-margin-bottom">
+                                            <small class="text-opac">${item.type}</small>
+                                        </p>
+                                        <h6 class="text-color-theme margin-bottom-half">Order ID : ${item.invoice}</h6>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-primary">Ordered on :  ${item.created_at}</p>
+                                            </div>
+                                            <div class="col-auto">
+                                                <a  @click="${()=>reOrdering(item.id)}"  class="link text-color-theme no-padding">Re-order <i
+                                                        class="icons f7-icons">chevron_right</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                `)}
+
+                
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+    export default (props, { $f7, $theme, $on, $update, $ }) => {
+      var app = $f7;
+      let orderList = [] ;
+
+        const pageId = app.params.uuid();
+      
+        const updatePrimaryAddress = () =>{
+         /**
+            $f7.preloader.show();
+            let checkedId = $("#pageId_"+pageId+" input[name='defaultAddress']:checked").val();
+            app.params.callToServer( "change-default-address",'{"id":"'+ checkedId+'"}',success);
+            function success(Response){
+              $f7.preloader.hide();
+             app.params.showToastBottom(Response.message); 
+             addressList = Response.data; 
+             $update(); 
+          }  
+          */
+        }
+
+      
+        const reOrdering = (orderID) =>{
+
+            $f7.preloader.show();
+            app.params.callToServer( "re-order",'{"order":"'+ orderID+'"}', success);
+            function success(Response){
+              $f7.preloader.hide();
+              app.params.showToastBottom(Response.message); 
+              orderList = Response.data;
+              $update(); 
+          }  
+
+        }
+
+        $on('pageBeforeIn', () => {
+            $f7.preloader.show();
+            app.params.callToServer( "my-order",'',success);
+            function success(Response){
+                $f7.preloader.hide();
+                orderList = Response.data;
+                $update();  
+            }
+        });
+  
+      return $render;
+    }
+</script>

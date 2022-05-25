@@ -18,12 +18,14 @@ var routes = [
     name: 'splash',
     on: {
       pageAfterIn(e, page) {
-       // app.views.main.router.clearPreviousHistory();
+        // app.views.main.router.clearPreviousHistory();
+        // app.statusbar.setBackgroundColor('#f4fbf7');
+        //  app.statusbar.setTextColor('black');
       },
-  },
+    },
   },
 
-  
+
   // Index page
   {
     path: '/home/',
@@ -31,11 +33,13 @@ var routes = [
     // componentUrl: './pages/stats.html',
     name: 'home',
     pageAfterIn(e, page) {
-     // app.views.main.router.clearPreviousHistory();
+      // app.views.main.router.clearPreviousHistory();
+      // app.statusbar.setBackgroundColor('#f4fbf7');
+      //   app.statusbar.setTextColor('black');
     },
   },
 
-   // stats
+  // stats
   {
     path: '/stats/',
     // url: './pages/stats.html',
@@ -52,6 +56,12 @@ var routes = [
   //   url: './pages/stats.html',
   //   name: 'stats'
   // },
+
+  {
+    path: '/orderbyprescription/',
+    componentUrl: './pages/orderbyprescription.html',
+    name: 'OrderByPrescription'
+  },
 
   // verify
   {
@@ -83,7 +93,7 @@ var routes = [
   // profile
   {
     path: '/profile/',
-    url: './pages/profile.html',
+    componentUrl: './pages/profile.html',
   },
 
   // edit profile
@@ -91,21 +101,21 @@ var routes = [
     path: '/editprofile/',
     url: './pages/editprofile.html',
   },
-  
+
 
   // product
-    {
-      path: '/product/:product/',
-      componentUrl: './pages/product.html',
-    },
+  {
+    path: '/product/:product/',
+    componentUrl: './pages/product.html',
+  },
 
 
-    // Index page
-    {
-      path: '/productlist/:type/:value/',
-      componentUrl: './pages/product_list.html',
-      name: 'product_list',
-    },
+  // Index page
+  {
+    path: '/productlist/:type/:value/',
+    componentUrl: './pages/product_list.html',
+    name: 'product_list',
+  },
 
   // cart
   {
@@ -119,7 +129,7 @@ var routes = [
     // async: function ( {resolve, router}) {
 
     //               let cart =   JSON.parse(localStorage.getItem("cart"));
-                  
+
     //               if (cart == null || cart == '') {
     //                     resolve(
     //                         {
@@ -131,9 +141,9 @@ var routes = [
     //                             }
     //                         }
     //                         )
-                      
+
     //               } else {
-                     
+
     //                           resolve(
     //                                   {
     //                                     componentUrl: './pages/cart.html',
@@ -152,7 +162,7 @@ var routes = [
   // address
   {
     path: '/address/',
-    componentUrl: './pages/address.html',
+    componentUrl: './pages/cart-address.html',
   },
 
   // addresses
@@ -175,63 +185,131 @@ var routes = [
 
   {
     path: '/editaddress/:id/',
-    async: function ( {router, to, resolve}) {
-        // App instance
-        var app = router.app;
-        // Show Preloader
-        app.preloader.show();
-        // bed ID from request
-        var ID = to.params.id;
+    async: function ({
+      router,
+      to,
+      resolve
+    }) {
+      // App instance
+      var app = router.app;
+      // Show Preloader
+      app.preloader.show();
+      // bed ID from request
+      var ID = to.params.id;
 
-        app.params.callToServer( "edit-address",'{"id":"'+ID+'"}',
-            function (Response){
-                app.preloader.hide();
-                // address = Response.data[0];
+      app.params.callToServer("edit-address", '{"id":"' + ID + '"}',
+        function (Response) {
+          app.preloader.hide();
+          // address = Response.data[0];
 
-                resolve(
-                  {
-                    componentUrl: './pages/editaddress.html',
-                  },
-                  {
-                      props: {
-                          data: Response.data[0]
-                      }
-                  }
-                 );
-
-                 
-            });
+          resolve({
+            componentUrl: './pages/editaddress.html',
+          }, {
+            props: {
+              data: Response.data[0]
+            }
+          });
 
 
-        // var url = app.params.data.remoteUrl + 'bedDetails/' + bedID + '/';
-        // console.log(url);
-        // app.request.json(url, function (data) {
-        //     console.log(data);
-        //     app.preloader.hide();
+        });
 
-        //     if (data.status) {
-        //         resolve(
-        //                 {
-        //                   componentUrl: './pages/editaddress.html',
-        //                 },
-        //                 {
-        //                     props: {
-        //                         data: data.data
-        //                     }
-        //                 }
-        //         );
-        //     }
 
-        // });
+      // var url = app.params.data.remoteUrl + 'bedDetails/' + bedID + '/';
+      // console.log(url);
+      // app.request.json(url, function (data) {
+      //     console.log(data);
+      //     app.preloader.hide();
+
+      //     if (data.status) {
+      //         resolve(
+      //                 {
+      //                   componentUrl: './pages/editaddress.html',
+      //                 },
+      //                 {
+      //                     props: {
+      //                         data: data.data
+      //                     }
+      //                 }
+      //         );
+      //     }
+
+      // });
     },
-},
+  },
+  //================ family member ==========
+  // family details 
+  {
+    path: '/family/',
+    componentUrl: './pages/family.html',
+  },
+
+  // add family
+  {
+    path: '/addfamily/',
+    componentUrl: './pages/addfamily.html',
+  },
+  //edit family 
+  {
+    path: '/editfamily/:id/',
+    async: function ({
+      router,
+      to,
+      resolve
+    }) {
+      // App instance
+      var app = router.app;
+      // Show Preloader
+      app.preloader.show();
+      // bed ID from request
+      var ID = to.params.id;
+
+      app.params.callToServer("edit-address", '{"id":"' + ID + '"}',
+        function (Response) {
+          app.preloader.hide();
+          // address = Response.data[0];
+
+          resolve({
+            componentUrl: './pages/editfamily.html',
+          }, {
+            props: {
+              data: Response.data[0]
+            }
+          });
+
+
+        });
+
+
+      // var url = app.params.data.remoteUrl + 'bedDetails/' + bedID + '/';
+      // console.log(url);
+      // app.request.json(url, function (data) {
+      //     console.log(data);
+      //     app.preloader.hide();
+
+      //     if (data.status) {
+      //         resolve(
+      //                 {
+      //                   componentUrl: './pages/editaddress.html',
+      //                 },
+      //                 {
+      //                     props: {
+      //                         data: data.data
+      //                     }
+      //                 }
+      //         );
+      //     }
+
+      // });
+    },
+  },
+
 
   // Payment
   {
     path: '/payment/',
     componentUrl: './pages/payment.html',
   },
-  
+
 
   // thankyou order
   {
@@ -243,6 +321,12 @@ var routes = [
   {
     path: '/myorders/',
     componentUrl: './pages/myorders.html',
+  },
+
+  // re orders
+  {
+    path: '/reorders/',
+    componentUrl: './pages/reorders.html',
   },
 
   // invoice
@@ -323,60 +407,60 @@ var routes = [
     path: '/landing/',
     componentUrl: './pages/landing.html',
   },
-  
+
   // login
   {
     path: '/login/',
     componentUrl: './pages/login.html',
   },
-  
+
   // register
   {
     path: '/register/',
     componentUrl: './pages/register.html',
   },
-  
+
   // forgot password
   {
     path: '/forgotpassword/',
     componentUrl: './pages/forgotpassword.html',
   },
-  
+
   // reset password
   {
     path: '/resetpassword/',
     componentUrl: './pages/resetpassword.html',
   },
-  
-  
-    
+
+
+
   // Thank you
   {
     path: '/thankyou/',
     componentUrl: './pages/thankyou.html',
   },
-    
+
   // FAQs
   {
     path: '/faqs/',
     url: './pages/faqs.html',
-  },  
-    
-    
+  },
+
+
   // Contact us
   {
     path: '/contactus/',
     url: './pages/contactus.html',
   },
-    
+
   // Terms and conditions
   {
     path: '/termsandconditions/',
     url: './pages/termsandconditions.html',
   },
-  
-  
-  
+
+
+
 
   {
     path: '/accordion/',
@@ -656,8 +740,7 @@ var routes = [
   {
     path: '/swiper/',
     url: './pages/f7components/swiper.html',
-    routes: [
-      {
+    routes: [{
         path: 'swiper-horizontal/',
         url: './pages/f7components/swiper-horizontal.html',
       },
@@ -761,8 +844,7 @@ var routes = [
   {
     path: '/tabs-routable/',
     url: './pages/f7components/tabs-routable.html',
-    tabs: [
-      {
+    tabs: [{
         path: '/',
         id: 'tab1',
         content: `
@@ -815,8 +897,7 @@ var routes = [
   {
     path: '/toolbar-tabbar/',
     componentUrl: './pages/f7components/toolbar-tabbar.html',
-    routes: [
-      {
+    routes: [{
         path: 'tabbar/',
         componentUrl: './pages/f7components/tabbar.html',
       },
@@ -890,12 +971,10 @@ var routes = [
     path: '/master-detail/',
     url: './pages/f7components/master-detail-master.html',
     master: true,
-    detailRoutes: [
-      {
-        path: '/master-detail/:id/',
-        componentUrl: './pages/f7components/master-detail-detail.html',
-      },
-    ],
+    detailRoutes: [{
+      path: '/master-detail/:id/',
+      componentUrl: './pages/f7components/master-detail-detail.html',
+    }, ],
   },
 
   // Default route (404 page). MUST BE THE LAST

@@ -1,120 +1,190 @@
-<div class="page page-profile" data-name="profile">
-    <div class="navbar ">
-        <div class="navbar-bg"></div>
-        <div class="navbar-inner">
-            <div class="left  no-margin-right">
-                <a href="#" class="link icon-only back">
-                    <i class="icon f7-icons size-22">arrow_left</i>
-                </a>
-            </div>
-            <div class="title">
-                <h5 class="no-margin-bottom">Profile</h5>
-            </div>
-            <div class="right">
-                <a href="/notificationlist/" class="link">
-                    <i class="icon f7-icons size-22">bell_fill</i>
-                </a>
+<template>
+    <div class="page page-profile" data-name="profile">
+        <div class="navbar ">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left  no-margin-right">
+                    <a href="#" class="link icon-only back">
+                        <i class="icon f7-icons size-22">arrow_left</i>
+                    </a>
+                </div>
+                <div class="title">
+                    <h5 class="no-margin-bottom">Profile</h5>
+                </div>
+                <div class="right">
+                    <a href="/notificationlist/" class="link">
+                        <i class="icon f7-icons size-22">bell_fill</i>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- main page content -->
-    <div class="page-content">
-
-        <!-- wallet info -->
-        <div class="block">
-            <div class="row">
-                <div class="col-100">
-                    <div class="card card-theme elevation-2 margin-bottom">
-                        <div class="card-content card-content-padding">
-                            <div class="card elevation-2 card-light margin-bottom-half">
-                                <div class="card-content card-content-padding">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <figure class="avatar avatar-80 rounded mx-auto">
-                                                <img src="img/user2.jpg" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col align-self-center">
-                                            <h5 class="no-margin-bottom">John Doe</h5>
-                                            <!-- <p class="text-opac">Kolkata, WB</p> -->
-                                            
-                                        </div>
-                                        <div class="col-auto align-self-center">
-                                            <a href="/editprofile/" class="btn btn-link text-color-white">
-                                                <i class="icons f7-icons">pencil_outline</i>
-                                            </a>
+        <!-- main page content -->
+        <div class="page-content">
+    
+            <!-- wallet info -->
+            <div class="block">
+                <div class="row">
+                    <div class="col-100">
+                        <div class="card card-theme elevation-2 margin-bottom">
+                            <div class="card-content card-content-padding">
+                                <div class="card elevation-2 card-light margin-bottom-half">
+                                    <div class="card-content card-content-padding">
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <i class="icon f7-icons size-60">person_crop_circle</i>
+                                                <!-- <figure class="avatar avatar-80 rounded mx-auto">
+                                                    <img src="img/user2.jpg" alt="" />
+                                                </figure> -->
+                                            </div>
+                                            <div class="col align-self-center">
+                                                <h3 class="no-margin-bottom">${profile.user}</h3>
+                                                <!-- <p class="text-opac">Kolkata, WB</p> -->
+                                                
+                                            </div>
+                                            <div class="col-auto align-self-center">
+                                                <!-- <a href="/editprofile/" class="btn btn-link text-color-white">
+                                                    <i class="icons f7-icons">pencil_outline</i>
+                                                </a> -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row margin-bottom-half">
-                                <div class="col-auto align-self-center">
-                                    <i class="icons f7-icons size-32">phone_down_circle</i>
+                                <div class="row margin-bottom-half margin-left">
+                                    <div class="col-auto align-self-center ">
+                                        <i class="icons f7-icons size-24 ">phone_down_circle</i>
+                                    </div>
+                                    <div class="col align-self-center no-padding-left">
+                                        <h4 class="no-margin-bottom">${profile.mobile} <small></small></h4>
+                                    </div>
+                                   
                                 </div>
-                                <div class="col align-self-center no-padding-left">
-                                    <h2 class="no-margin-bottom">8789644120 <small></small></h2>
-                                </div>
-                               
+                                
                             </div>
-                            
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            
         
     
-
-        <!-- address  -->
-        <div class="block">
-            <div class="row margin-bottom-half">
-                <div class="col">
-                    <h5 class="no-margin-bottom">Address</h5>
-                </div>
-            </div>
-        </div>
-        <div class="block">
-            <div class="row">
-                <div class="col-100">
-                    <div class="card card-light elevation-2 product margin-bottom">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col align-self-center">
-                                    <h5 class="no-margin-bottom">Default Address<br>
-                                        <!-- <span class="text-opac small">Primary</span> -->
-                                    </h5>
-                                </div>
-                                <div class="col-auto align-self-center">
-                                    <a href="/addresses/" class="btn btn-link text-color-theme">
-                                        <i class="icons f7-icons">pencil_outline</i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-content card-content-padding">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                                class="h-190 w-100 rounded margin-bottom-half" allowfullscreen=""
-                                loading="lazy">
-                            </iframe>
-
-                            <div class="row">
-                                <div class="col text-opac">
-                                    B 32, maker street 4, Beside Train Tower, Algobbaalsa,<br>California- 25468 (US)
-                                </div>
-                                <!-- <div class="col-auto text-align-right">
-                                    <i class="bi bi-arrow-up-right-circle text-color-theme"></i><br>
-                                    <small class="text-opac">2.5km <i class="bi bi-geo-alt"></i></small>
-                                </div> -->
-                            </div>
-                        </div>
+            <!-- address  -->
+            <div class="block">
+                <div class="row margin-bottom-half">
+                    <div class="col">
+                        <h5 class="no-margin-bottom">Address</h5>
                     </div>
                 </div>
             </div>
+
+            <div class="block">
+                <div class="row">
+
+
+                    
+                    <div class="col-100 medium-50">
+                        <div class="card elevation-2 product margin-bottom-half">
+                            <div class="card-header">
+                                <!-- for default address  -->
+                                
+                                <div class="row">
+                                    <!-- <div class="col-auto align-self-center md">
+                                        <label class="item-radio item-radio-icon-start item-content">
+                                            <input type="radio" name="defaultAddress" value="${item.id}" checked />
+                                            <i class="icon icon-radio"></i>
+                                        </label>
+
+                                    </div> -->
+                                    <div class="col align-self-center no-padding-left_">
+                                        <h5 class="no-margin-bottom">${item.type}<br />
+                                            <span class="text-opac small">Primary Address</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-auto align-self-center">
+                                        <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
+                                                class="icons f7-icons">square_pencil</i></a>
+                                        <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+                            <div class="card-content card-content-padding">
+                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
+                                        class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
+                                    </iframe> -->
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="addressHeader">
+                                            ${item.name} ( ${item.mobile} )
+                                        </div>
+                                        <div>
+                                            ${item.address}, ${item.landmark}, ${item.pin}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-auto align-self-center">
+                                        <a href="#"><i
+                                                class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+    
+    
         </div>
-
-
+    
+    
     </div>
+</template>
+<script>
+    export default (props, { $f7, $theme, $on, $update, $ }) => {
+        var app = $f7;
+        var profile = {};
+        var item = {};
+        const pageId = app.params.uuid();
+        
+    
+        $on('pageBeforeIn', () => {
+            /* $f7.preloader.show();
+            app.params.callToServer( "cart-address",'',success);
+            function success(ResponceData){
+                $f7.preloader.hide();
+
+                updateCurrentCart(ResponceData.data.cartDetails);
+                item = ResponceData.data.defaultAddress[0];
+                $update();
+            } */
+        });
+
+        $on('pageInit', () => {
+            $f7.preloader.show();
+            app.params.callToServer( "profile",'',success);
+            function success(ResponceData){
+                $f7.preloader.hide();
+                console.log(ResponceData);
+                item = ResponceData.data.address;
+                profile = ResponceData.data.profile;
+                $update();
+            }
+
+        })
 
 
-</div>
+
+
+  
+      return $render;
+    }
+  </script>

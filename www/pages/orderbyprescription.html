@@ -1,0 +1,580 @@
+<template>
+  <div class="page page-OrderByPrescription" id="pageId_${pageId}" data-name="OrderByPrescription">
+    <div class="navbar ">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left  no-margin-right">
+          <a href="#" class="link icon-only back">
+            <i class="icon f7-icons size-22">arrow_left</i>
+          </a>
+        </div>
+        <div class="title">
+          <h5 class="no-margin-bottom">Order by prescrtiption</h5>
+        </div>
+        <div class="right">
+          <a href="/notificationlist/" class="link">
+            <i class="icon f7-icons size-22">bell_fill</i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-content has-footer">
+      <!-- main page content -->
+      <div class="main-container container">
+        <form id="prescript-submit-form">
+          <!-- icons here -->
+          <div class="block">
+            <div class="row margin-bottom-half text-align-center">
+              <div class="col">
+                <i class="icon f7-icons size-50">camera</i>
+                <p>Camera</p>
+              </div>
+
+              <div class="col">
+                <i class="icon f7-icons size-50">arrow_down_to_line_alt</i>
+                <p>Saved</p>
+              </div>
+
+              <div class="col">
+                <i class="icon f7-icons size-50">photo_fill_on_rectangle_fill</i>
+                <p>gallery</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- toast messages -->
+          <div class="block">
+            <div class="row margin-bottom-half">
+              <div class="col">
+                <h5 class="no-margin-bottom">Helpful actions</h5>
+              </div>
+            </div>
+            <div class="row margin-bottom">
+              <div class="col">
+                <div class="card elevation-2">
+                  <div class="list ">
+                    <ul class="">
+
+                      <li class="item-content">
+                        <div class="item-inner item-cell ">
+                          <div class="row">
+                            <div class="col-auto"><i class="icon f7-icons">checkmark_alt_circle</i></div>
+                            <div class="col no-padding-left">Only upload .jpg/.jpeg/.png/.pdf files</div>
+                            <div class="col-auto align-self-center">
+                              <!-- <i class="icon f7-icons size-18 text-muted">chevron_right</i> -->
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="item-content">
+                        <div class="item-inner item-cell ">
+                          <div class="row">
+                            <div class="col-auto"><i class="icon f7-icons">checkmark_alt_circle</i></div>
+                            <div class="col no-padding-left">You can upload maxmimum 4 images</div>
+                            <div class="col-auto align-self-center">
+                              <!-- <i class="icon f7-icons size-18 text-muted">chevron_right</i> -->
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="item-content">
+                        <div class="item-inner item-cell ">
+                          <div class="row">
+                            <div class="col-auto"><i class="icon f7-icons">checkmark_alt_circle</i></div>
+                            <div class="col no-padding-left">You can upload maxmimum 1 pdf</div>
+                            <div class="col-auto align-self-center">
+                              <!-- <i class="icon f7-icons size-18 text-muted">chevron_right</i> -->
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="item-content">
+                        <div class="item-inner item-cell ">
+                          <div class="row">
+                            <div class="col-auto"><i class="icon f7-icons">checkmark_alt_circle</i></div>
+                            <div class="col no-padding-left">You can upload maxmimum file size 5 mb</div>
+                            <div class="col-auto align-self-center">
+                              <!-- <i class="icon f7-icons size-18 text-muted">chevron_right</i> -->
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="item-content">
+                        <div class="item-inner item-cell ">
+                          <div class="row">
+                            <div class="col-auto"><i class="icon f7-icons">checkmark_alt_circle</i></div>
+                            <div class="col no-padding-left">Image and pdf can't be upload simultaneously</div>
+                            <div class="col-auto align-self-center">
+                              <!-- <i class="icon f7-icons size-18 text-muted">chevron_right</i> -->
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content">
+                        <div class="item-inner item-cell ">
+                          <div class="row">
+                            <div class="col-auto">
+                              <i class="icon f7-icons">checkmark_alt_circle</i>
+                            </div>
+                            <div class="col no-padding-left">Prescription uploaded is subject to verification</div>
+                            <div class="col-auto align-self-center">
+                              <!-- <i class="icon f7-icons size-18 text-muted">chevron_right</i> -->
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- oreder note  -->
+          <div class="block ">
+            <div class="row margin-bottom-half">
+              <div class="col">
+                <h5 class="no-margin-bottom">Order Note</h5>
+              </div>
+            </div>
+            <div class="row margin-bottom-half">
+              <div class="col">
+
+                <div class="card elevation-2">
+                  <div class="list md ">
+                    <ul>
+                      <li>
+                        <label class="item-radio item-radio-icon-start item-content">
+                          <input type="radio" name="orderNote" value="all" checked />
+                          <i class="icon icon-radio text-color-theme"></i>
+                          <div class="item-inner">
+                            <div class="">All Medicines (in prescription)</div>
+                          </div>
+                        </label>
+                      </li>
+                      <li>
+                        <label class="item-radio item-radio-icon-start item-content">
+                          <input type="radio" name="orderNote" value="selected" />
+                          <i class="icon icon-radio text-color-theme"></i>
+                          <div class="item-inner">
+                            <div class="">Order by sequence of medicine (as they appear in prescription)
+                            </div>
+                          </div>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <input type="hidden" value="" id="selectedMedicineSerial" name="selectedMedicineSerial" />
+
+          </div>
+
+          <!-- categories -->
+          <div class="block" id="medicineSelectButton" style="display: none;">
+            <div class="row margin-bottom-half">
+              <div class="col">
+                <!-- <div class="block"> -->
+                <div class="swiper-container categoriesswiper ">
+                  <!-- Additional required wrapper -->
+                  <div class="swiper-wrapper ">
+                    <!-- Slides -->
+
+                    <div class="swiper-slide slider1">
+                      <div class="card elevation-2 ">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">1</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">2</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">3</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">4</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">5</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">6</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">7</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">8</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">9</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">10</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">11</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">12</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">13</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">14</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">15</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">16</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">17</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">18</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">19</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="card elevation-2">
+                        <div class="card-content card-content-padding">
+                          <p class="categoryname">20</p>
+                        </div>
+                      </div>
+                      <!-- <p class="categoryname">Baby Food</p> -->
+                    </div>
+
+
+
+
+
+
+                  </div>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- warning section--
+          <div class="block">
+          <div class="row margin-bottom-half">
+              <div class="col">
+                      <p class="row">
+                        <button class="col slider2 button-large button-raised"> warning</button>
+                      </p>
+              </div>
+          </div>
+          </div> -->
+
+          <!-- term acceptance  -->
+          <div class="block ">
+            <div class="row margin-bottom-half margin-top">
+              <div class="col">
+                <div class="card elevation-2 ">
+                  <div class="card-content card-content-padding">
+                    <p>
+                      <label class="checkbox margin-right-half">
+                        <input type="checkbox" name="termChecked" id="termCHeckId" value="termYes"  />
+                        <i class="icon-checkbox"></i>
+                      </label>
+                      ipsum dolor sits
+                      amet, consectetur adipisicing elit. Alias beatae illo nihil aut eius commodi sint eveniet aliquid
+                      eligendi ad delectus impedit tempore nemo!
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="block">
+            <div class="row margin-bottom">
+              <div class="col-100 medium-50 large-33 margin-h-auto">
+                <input type="submit" class="button button-fill button-large button-raised" name="Save" />
+              </div>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+      <!-- main page content ends -->
+
+    </div>
+
+    <!-- footer static -->
+    <footer class="footer">
+      <div class="container">
+        <ul>
+          <li>
+            <a class="active" href="/home/">
+              <span>
+                <i class="icon f7-icons">house</i>
+                <span class="nav-text">Home</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/stats/">
+              <span>
+                <i class="icon f7-icons">chart_bar</i>
+                <span class="nav-text">Stats</span>
+              </span>
+            </a>
+          </li>
+          <li class="center-item">
+            <a href="/cart/">
+              <span>
+                <i class="icon f7-icons">cart</i>
+                <span class="nav-text">card-content</span>
+                <span class="countercart">3</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/style/">
+              <span>
+                <i class="icon f7-icons">circle_grid_hex</i>
+                <span class="nav-text">Style</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/settings/">
+              <span>
+                <i class="icon f7-icons">gear</i>
+                <span class="nav-text">Settings</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+  </div>
+</template>
+<script>
+  export default (props, {
+    $f7,
+    $theme,
+    $on
+  }) => {
+
+    const pageId = app.params.uuid();
+    let numberList = [];
+
+ 
+
+    //calculate selected list
+    const calculateSelectedNumber = () => {
+      numberList = [];
+      $('#selectedMedicineSerial').val("")
+
+      let selectedButton = '#pageId_' + pageId + ' #medicineSelectButton  .selected-medicine-number';
+      $(selectedButton).each(function (e) {
+        let nbr = $(this).find('.categoryname').text();
+        numberList.push(nbr);
+      });
+
+      $('#selectedMedicineSerial').val(JSON.stringify(numberList))
+
+    }
+
+
+    // === display medicine selection button list ===
+    $(document).on('change', "#pageId_" + pageId + " input[name='orderNote']", function (e) {
+      let checkeedVal = $(this).val();
+      if(checkeedVal == 'selected'){
+          $('#medicineSelectButton').show();
+        }else{
+          $('#medicineSelectButton').hide();
+      }
+
+    });
+
+
+    //medicine selection 
+    $(document).on('click', '#pageId_' + pageId + ' #medicineSelectButton  .swiper-slide .card', function (e) {
+
+      if ($(this).hasClass('selected-medicine-number')) {
+        $(this).removeClass('selected-medicine-number');
+      } else { //seleceted 
+        $(this).addClass('selected-medicine-number');
+      }
+      //update selected button 
+      calculateSelectedNumber();
+
+    });
+
+    //submit final prescription form
+    $(document).on('submit', '#prescript-submit-form', function (e) {
+      e.preventDefault();
+
+      let formData =  app.form.convertToData('#prescript-submit-form');
+      let isChecked = e.target["termCHeckId"].checked;
+      if(isChecked){ // form is ready 
+        //TODO : need to add file upload functionality
+        console.log(formData);
+
+      }else{
+        let toastBottom = app.toast.create({
+          text: "Please checked the term before submit !!",
+          closeTimeout: 2000,
+        });
+        toastBottom.open();
+      }
+     
+      
+
+    });
+
+
+
+    $on('pageBeforeOut', () => {
+
+    })
+
+    $on('pageBeforeRemove', () => {
+      // Destroy toasts when page removed
+    })
+
+
+    $on('pageInit', () => {
+      /* carousel */
+      var swiper1 = new Swiper(".categoriesswiper", {
+        slidesPerView: "auto",
+        spaceBetween: 12,
+      });
+
+    })
+
+    return $render;
+  }
+</script>

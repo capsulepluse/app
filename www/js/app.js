@@ -14,96 +14,100 @@ var app = new Framework7({
   store: store,
   // routes.js,
   routes: routes,
-  // remoteUrl: "https://capsul.test/api/",
-  remoteUrl: "https://192.168.113.237/capsul/admin_working/public/api/",
-   //=== global ajax call for authentication ===
-  cartCount: function(){
+  remoteUrl: "https://capsul.test/api/",
+  // remoteUrl: "https://capsuleplus.in/api/",
+  // remoteUrl: "https://192.168.113.237/capsul/admin_working/public/api/",
+  //=== global ajax call for authentication ===
+  cartCount: function () {
     app.params.authHeader();
-    app.request.postJSON(app.params.remoteUrl +'cart-count') 
-    .then(function (response) {
-      console.log('countdata',response);
-      return response.data.cartCount;
-    });
+    app.request.postJSON(app.params.remoteUrl + 'cart-count')
+      .then(function (response) {
+        console.log('countdata', response);
+        return response.data.cartCount;
+      });
   },
-  callToServer:function(sUrl, postdata, successCallBack){
-    let url =  app.params.remoteUrl + sUrl;
+  callToServer: function (sUrl, postdata, successCallBack) {
+    let url = app.params.remoteUrl + sUrl;
     let data = postdata;
-                  console.log("url", url);
+    console.log("url", url);
     app.params.authHeader();
-    if(data == ""){
-      app.request.json(url, data, 
-        function(res,status){  
-                console.log("Response : ", res);
-            if(status){
-              successCallBack(res);
-            }
-            
-    }, function(err, status){
-      app.preloader.hide();
-            console.log("error",err.response);
-            console.log(status);
+    if (data == "") {
+      app.request.json(url, data,
+        function (res, status) {
+          console.log("Response : ", res);
+          if (status) {
+            successCallBack(res);
+          }
 
-            switch(status) {
-              case 500:
-                    app.params.showToastBottom("Not able to connect with server, Contact with support!!");
-                break;
-              case 401:
-                app.params.logOut();
-                break;
-              default:
-                app.params.showToastBottom("Request fail !! Please try after some time!!");
-            }
-    });
-    }else{
-      app.request.postJSON(url, data, 
-        function(res,status){  
-                console.log("Response : ", res);
-            if(status){
-              successCallBack(res);
-            }
-            
-    }, function(err, status){
-      app.preloader.hide();
-            console.log("error",err.response);
-            console.log(status);
+        },
+        function (err, status) {
+          app.preloader.hide();
+          console.log("error", err.response);
+          console.log(status);
 
-            switch(status) {
-              case 500:
-                    app.params.showToastBottom("Not able to connect with server, Contact with support!!");
-                break;
-              case 401:
-                app.params.logOut();
-                break;
-              default:
-                app.params.showToastBottom("Request fail !! Please try after some time!!");
-            }
-    });
+          switch (status) {
+            case 500:
+              app.params.showToastBottom("Not able to connect with server, Contact with support!!");
+              break;
+            case 401:
+              app.params.logOut();
+              break;
+            default:
+              app.params.showToastBottom("Request fail !! Please try after some time!!");
+          }
+        });
+    } else {
+      app.request.postJSON(url, data,
+        function (res, status) {
+          console.log("Response : ", res);
+          if (status) {
+            successCallBack(res);
+          }
+
+        },
+        function (err, status) {
+          app.preloader.hide();
+          console.log("error", err.response);
+          console.log(status);
+
+          switch (status) {
+            case 500:
+              app.params.showToastBottom("Not able to connect with server, Contact with support!!");
+              break;
+            case 401:
+              app.params.logOut();
+              break;
+            default:
+              app.params.showToastBottom("Request fail !! Please try after some time!!");
+          }
+        });
     }
-   
 
 
-  }, 
-  authHeader: function(){
-  Framework7.request.setup({
+
+  },
+  authHeader: function () {
+    Framework7.request.setup({
       // beforeSend: function (xhr) {
       //     // xhr.setRequestHeader ('Authorization', 'Token '+ app.methods.localstoreout('token').access);
       //     xhr.setRequestHeader ('Authorization', 'Token ');
       // }
       headers: {
         // 'Authorization', 'Token '+ app.methods.localstoreout('token').access
-        'Authorization':'Bearer '+localStorage.getItem("token"),
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
         'Accept': 'application/json'
       }
     });
   },
   uuid: function () {
     return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
+      var r = Math.random() * 16 | 0,
+        v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
     });
   },
-  loginSuccess:function(data){
-    localStorage.setItem("token",data.token);
+  loginSuccess: function (data) {
+    localStorage.setItem("token", data.token);
     localStorage.setItem("mobile", data.mobile);
     localStorage.setItem("name", data.name);
     app.params.userName = data.name;
@@ -116,8 +120,8 @@ var app = new Framework7({
     localStorage.setItem("name", "");
     localStorage.setItem("is_login", "");
     app.views.main.router.navigate('/login/', {
-        ignoreCache: true,
-        reloadCurrent: true,
+      ignoreCache: true,
+      reloadCurrent: true,
     });
     app.views.main.router.clearPreviousHistory();
     let toastBottom = app.toast.create({
@@ -126,15 +130,15 @@ var app = new Framework7({
     });
     toastBottom.open();
   },
-  markInputAsError:function (componentEl, inputName, message) {
+  markInputAsError: function (componentEl, inputName, message) {
     var self = this;
-    var el = componentEl.find('input[name="'+inputName+'"]');
+    var el = componentEl.find('input[name="' + inputName + '"]');
     el.addClass('input-invalid');
     el.parent().parent().parent().addClass('item-input-with-error-message item-input-invalid');
     if (!el.next('.item-input-error-message').length) {
-        self.$('<div class="item-input-error-message">'+message+'</div>').insertAfter(el);
+      self.$('<div class="item-input-error-message">' + message + '</div>').insertAfter(el);
     } else {
-        el.next('.item-input-error-message').html(message);
+      el.next('.item-input-error-message').html(message);
     }
   },
   popup: {
@@ -152,64 +156,79 @@ var app = new Framework7({
   vi: {
     placementId: 'pltd4o7ibb9rc653x14',
   },
+  statusbar: {
+    iosOverlaysWebView: true,
+  },
+  on: {
+    init: function () {
+        var f7 = this;
+        if (f7.device.cordova) {
+          app.statusbar.show();
+          app.statusbar.setTextColor("black");
+          app.statusbar.setBackgroundColor("#547845")
+            // Init cordova APIs (see cordova-app.js)
+            // cordovaApp.init(f7);
+        }
+    },
+},
   //============== shoping ================
-  totalCartItems:function(){
-    let cart =  JSON.parse(localStorage.getItem("cart"));
-    let total ;
-    if (cart == null || cart == ''){
+  totalCartItems: function () {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    let total;
+    if (cart == null || cart == '') {
       total = 0;
-    }else{
+    } else {
       total = cart.length;
     }
-    return total ;
+    return total;
   },
-  currentProductDetails : {
+  currentProductDetails: {
     price: "",
     image: "",
     mrp: 0,
     name: "",
     pid: "",
-    quantity:0
-  } ,
+    quantity: 0
+  },
   //======== add active product =======
-  setActiveProduct:function(productDetails){
+  setActiveProduct: function (productDetails) {
     let currentProduct = {
       price: productDetails.price,
       image: productDetails.image,
       mrp: productDetails.mrp,
       name: productDetails.name,
       pid: productDetails.pid,
-      quantity:1
+      quantity: 1
     }
-    app.params.currentProductDetails = currentProduct ;
+    app.params.currentProductDetails = currentProduct;
   },
-  getActiveProduct:function(){
-      return app.params.currentProductDetails ;
+  getActiveProduct: function () {
+    return app.params.currentProductDetails;
   },
   //======== add to cart active product ======
-  addToCartCurrentProduct:function(){
-    let currentProduct =  app.params.getActiveProduct();
+  addToCartCurrentProduct: function () {
+    let currentProduct = app.params.getActiveProduct();
     app.preloader.show();
-    app.params.callToServer( "add-cart", currentProduct ,
-    function success(Responce){
-          app.preloader.hide();
-          let cartCount = Responce.data.cartCount ;
-          localStorage.setItem("cartCount", cartCount);
-          // categoryName = Responce.data.category;
-          //$update();
-          app.popup.close('.addproduct');
+    app.params.callToServer("add-cart", currentProduct,
+      function success(Responce) {
+        app.preloader.hide();
+        let cartCount = Responce.data.cartCount;
+        localStorage.setItem("cartCount", cartCount);
+        // categoryName = Responce.data.category;
+        //$update();
+        app.popup.close('.addproduct');
       });
-    
+
   },
   showToastBottom: (msg = "") => {
-        // Create toast
-        let toastBottom = app.toast.create({
-            text: msg,
-            closeTimeout: 2000,
-        });
+    // Create toast
+    let toastBottom = app.toast.create({
+      text: msg,
+      closeTimeout: 2000,
+    });
 
-        toastBottom.open();
-    },
+    toastBottom.open();
+  },
 
 
 
@@ -234,14 +253,14 @@ $(document).on('page:init', function (e) {
 
 $(document).on('page:init', '.page[data-name="splash"]', function (e) {
   setTimeout(function () {
-      //============ user login or not ==========
-      var is_login = localStorage.getItem("is_login");
-      if (is_login == null || is_login == '') {
-        localStorage.setItem("is_login", "");
-        app.views.main.router.navigate('/landing/');
-      }else{
-        app.views.main.router.navigate('/home/');
-      }
+    //============ user login or not ==========
+    var is_login = localStorage.getItem("is_login");
+    if (is_login == null || is_login == '') {
+      localStorage.setItem("is_login", "");
+      app.views.main.router.navigate('/landing/');
+    } else {
+      app.views.main.router.navigate('/home/');
+    }
   }, 3000);
 })
 $(document).on('page:init', '.page[data-name="thankyouorder"]', function (e) {
@@ -269,9 +288,11 @@ $(document).on('page:init', '.page[data-name="verify_"]', function (e) {
     var timeArray = presentTime.split(/[:]+/);
     var m = timeArray[0];
     var s = checkSecond((timeArray[1] - 1));
-    if (s == 59) { m = m - 1 }
+    if (s == 59) {
+      m = m - 1
+    }
     if (m < 0) {
-      
+
       return
     }
 
@@ -281,8 +302,12 @@ $(document).on('page:init', '.page[data-name="verify_"]', function (e) {
   }
 
   function checkSecond(sec) {
-    if (sec < 10 && sec >= 0) { sec = "0" + sec }; // add zero in front of numbers < 10
-    if (sec < 0) { sec = "59" };
+    if (sec < 10 && sec >= 0) {
+      sec = "0" + sec
+    }; // add zero in front of numbers < 10
+    if (sec < 0) {
+      sec = "59"
+    };
     return sec;
   }
 
@@ -314,8 +339,7 @@ $(document).on('page:init', '.page[data-name="home"]', function (e) {
 
         if (choiceResult.outcome == 'dismissed') {
           console.log('User cancelled home screen install');
-        }
-        else {
+        } else {
           console.log('User added to home screen');
         }
         deferredPrompt = null;
@@ -324,72 +348,72 @@ $(document).on('page:init', '.page[data-name="home"]', function (e) {
   });
 
   /* filter sliders range picker for filter */
-  var html5Slider = document.getElementById('rangeslider');
-  noUiSlider.create(html5Slider, {
-    start: [100, 200],
-    connect: true,
-    range: {
-      'min': 0,
-      'max': 500
-    }
-  });
+  // var html5Slider = document.getElementById('rangeslider');
+  // noUiSlider.create(html5Slider, {
+  //   start: [100, 200],
+  //   connect: true,
+  //   range: {
+  //     'min': 0,
+  //     'max': 500
+  //   }
+  // });
 
-  var inputNumber = document.getElementById('input-number');
-  var select = document.getElementById('input-select');
+  // var inputNumber = document.getElementById('input-number');
+  // var select = document.getElementById('input-select');
 
-  html5Slider.noUiSlider.on('update', function (values, handle) {
-    var value = values[handle];
+  // html5Slider.noUiSlider.on('update', function (values, handle) {
+  //   var value = values[handle];
 
-    if (handle) {
-      inputNumber.value = value;
-    } else {
-      select.value = Math.round(value);
-    }
-  });
+  //   if (handle) {
+  //     inputNumber.value = value;
+  //   } else {
+  //     select.value = Math.round(value);
+  //   }
+  // });
 
-  select.addEventListener('change', function () {
-    html5Slider.noUiSlider.set([this.value, null]);
-  });
-  inputNumber.addEventListener('change', function () {
-    html5Slider.noUiSlider.set([null, this.value]);
-  });
+  // select.addEventListener('change', function () {
+  //   html5Slider.noUiSlider.set([this.value, null]);
+  // });
+  // inputNumber.addEventListener('change', function () {
+  //   html5Slider.noUiSlider.set([null, this.value]);
+  // });
 
   /* carousel */
-  var swiper1 = new Swiper(".categoriesswiper", {
-    slidesPerView: "auto",
-    spaceBetween: 12,
-  });
+  // var swiper1 = new Swiper(".categoriesswiper", {
+  //   slidesPerView: "auto",
+  //   spaceBetween: 12,
+  // });
 
-  var swiper2 = new Swiper(".offerslides", {
-    slidesPerView: "1",
-    spaceBetween: 10,
-    pagination: {
-      el: ".pagination-offerslides",
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 1,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-    },
-  });
+  // var swiper2 = new Swiper(".offerslides", {
+  //   slidesPerView: "1",
+  //   spaceBetween: 10,
+  //   pagination: {
+  //     el: ".pagination-offerslides",
+  //   },
+  //   breakpoints: {
+  //     640: {
+  //       slidesPerView: 1,
+  //     },
+  //     768: {
+  //       slidesPerView: 2,
+  //       spaceBetween: 20,
+  //     },
+  //     1024: {
+  //       slidesPerView: 3,
+  //       spaceBetween: 30,
+  //     },
+  //   },
+  // });
 
-  var swiper3 = new Swiper(".trendingslides", {
-    slidesPerView: "auto",
-    spaceBetween: 26,
-  });
+  // var swiper3 = new Swiper(".trendingslides", {
+  //   slidesPerView: "auto",
+  //   spaceBetween: 26,
+  // });
 
-  var swiper4 = new Swiper(".shopslides", {
-    slidesPerView: "auto",
-    spaceBetween: 0,
-  });
+  // var swiper4 = new Swiper(".shopslides", {
+  //   slidesPerView: "auto",
+  //   spaceBetween: 0,
+  // });
 
 
 })
@@ -660,27 +684,27 @@ $(document).on('page:init', '.page[data-name="product"]', function (e) {
 
 })
 //=========== logout function ==========
-$(document).on('click','.logout', function(e){
+$(document).on('click', '.logout', function (e) {
   app.params.logOut();
- console.log(app);
+  console.log(app);
 })
 
-$(document).on('click', '.counter-increase',function(e){
-  var countValue =parseInt ($(this).parent().find(".counter-value").text());
-  countValue = countValue + 1 ; 
+$(document).on('click', '.counter-increase', function (e) {
+  var countValue = parseInt($(this).parent().find(".counter-value").text());
+  countValue = countValue + 1;
   $(this).parent().find(".counter-value").text(countValue);
-  app.params.currentProductDetails.quantity = countValue ; 
+  app.params.currentProductDetails.quantity = countValue;
   console.log(countValue);
 });
 
-$(document).on('click', '.counter-decrease',function(e){
-  var countValue = parseInt ($(this).parent().find(".counter-value").text());
-  
-  if (countValue > 0){
-    countValue = countValue -1 ; 
+$(document).on('click', '.counter-decrease', function (e) {
+  var countValue = parseInt($(this).parent().find(".counter-value").text());
+
+  if (countValue > 0) {
+    countValue = countValue - 1;
   }
   $(this).parent().find(".counter-value").text(countValue);
-  app.params.currentProductDetails.quantity = countValue ; 
+  app.params.currentProductDetails.quantity = countValue;
   console.log(countValue);
 
 });

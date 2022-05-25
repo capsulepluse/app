@@ -708,9 +708,9 @@ code {
 }
 
 :root {
-  /*
+  
   --f7-radio-active-color: var(--f7-theme-color);
-  */
+ 
   --f7-radio-border-radius: 80%;
   --f7-radio-extra-margin: 0px;
 }
@@ -724,3 +724,39 @@ code {
   --f7-radio-border-width: 2px;
   --f7-radio-inactive-color: #6d6d6d;
 }
+
+#medicineSelectButton  .swiper-slide .card {
+  /* border-radius: 50px; */
+  /* background-color: #007aff; */
+  /* height: 25px;
+  width: 25px; */
+  /* background-color: #bbb; */
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#medicineSelectButton .swiper-wrapper .swiper-slide .categoryname {
+	font-size: 12px;
+	line-height: 2px;
+	/* padding-top: 5px; */
+	
+}
+#medicineSelectButton .swiper-wrapper .swiper-slide {
+  width: 30px;
+  padding: 0;
+  text-align: center;
+}
+
+#medicineSelectButton  .swiper-slide .selected-medicine-number{
+  background-color: var(--f7-theme-color)!important;
+  color: white!important;
+
+}
+
+
+
+
+
+
+
+

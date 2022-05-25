@@ -963,6 +963,10 @@ a.card-content {
 	font-size: 38px
 }
 
+.size-60 {
+	font-size: 60px
+}
+
 .panel-left {
 	--f7-theme-color-text-color: #ffffff;
 	border-radius: 0 10px 10px 0
@@ -2467,4 +2471,32 @@ input.calendar-daterange {
 }
 .product figure img{
 	height: 120px;
+}
+
+margin-bottom{
+	margin-bottom: 10px;
+}
+/* .slider2{
+	background: transparent;
+	border: transparent;
+	box-shadow: var(--f7-button-raised-box-shadow);
+	cursor: pointer; */
+	
+
+
+.footer-twoline{
+	min-height: 55px;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+	padding-left:5px;
+}
+
+.max-width{
+	max-width: 100px;
+}
+
+.max-h{
+	max-width: 164.11px;
 }
