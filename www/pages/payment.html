@@ -31,7 +31,7 @@
                 <div class="col-33">
                     <a href="/cart/" class="wizard-link filled">
                         <i class="icons f7-icons elevation-2">bag</i>
-                        <span class="wizard-text">Products</span>
+                        <span class="wizard-text">${type}</span>
                     </a>
                 </div>
                 <div class="col-33">
@@ -128,8 +128,8 @@
             </div>
         </div> 
 
-        <!-- pricing -->
-        <div class="block">
+         <!-- pricing -->
+         <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
                     <h5 class="no-margin-bottom">Pricing</h5>
@@ -137,9 +137,22 @@
             </div>
             <div class="row margin-bottom-half">
                 <div class="col">
+                    ${type == 'Lab test' && $h`
+                    <p>Sample Collection Charge</p>
+                    `}
+                    ${type != 'Lab test' && $h`
                     <p>Shipping Cost</p>
+                    `}
                 </div>
-                <div class="col-auto">₹ ${shippingCost}</div>
+                <div class="col-auto">
+                    ${shippingCost == 0 && $h`
+                        Free
+                    `}
+                    ${shippingCost > 0 && $h`
+                        ₹ ${shippingCost}
+                    `}    
+                   
+                </div>
             </div>
 
             <div class="row margin-bottom-half">
@@ -242,6 +255,7 @@
         let cartCount = 0;
         let shippingCost = 0;
         const pageId = app.params.uuid();
+        let type="Medicine";
 
         const finalCheckout = ()=>{
             $f7.preloader.show();
@@ -267,6 +281,7 @@
                 subtotal = Responce.subtotal;
                 cartCount = Responce.cartCount;
                 shippingCost =  Responce.shippingCost;
+                type = Responce.type;
                 $update();
         }
 

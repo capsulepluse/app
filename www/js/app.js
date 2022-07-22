@@ -188,7 +188,8 @@ var app = new Framework7({
     mrp: 0,
     name: "",
     pid: "",
-    quantity: 0
+    quantity: 0,
+    type:'product',
   },
   //======== add active product =======
   setActiveProduct: function (productDetails) {
@@ -198,7 +199,8 @@ var app = new Framework7({
       mrp: productDetails.mrp,
       name: productDetails.name,
       pid: productDetails.pid,
-      quantity: 1
+      quantity: 1,
+      type: productDetails.type,
     }
     app.params.currentProductDetails = currentProduct;
   },
@@ -237,6 +239,11 @@ var app = new Framework7({
 
 $(document).on('page:init', function (e) {
   // Do something here when page loaded and initialized for all pages
+
+  /* update user name and user pic */
+  $('#logedUserName').text(localStorage.getItem("name"));
+  $('#logeduserPin').text(localStorage.getItem("mobile"));
+  
 
   /* coverimg */
   $('.coverimg').each(function () {

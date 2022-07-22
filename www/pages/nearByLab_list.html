@@ -1,0 +1,144 @@
+<template>
+  <div class="page page-category-list" data-name="category-list">
+    <div class="navbar ">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        
+        <div class="left  no-margin-right">
+          <a href="#" class="link icon-only back">
+              <i class="icon f7-icons size-22">arrow_left</i>
+          </a>
+        </div>
+        <div class="title text-align-center">
+          <div class="logo-small">
+            <img src="img/logo.png" alt="" class="img" />
+            <!-- <h6>Capsule +<br /><small></small></h6> -->
+          </div>
+        </div>
+        <div class="right text-align-center">
+          <a href="/notificationlist/" class="link">
+              <i class="icon f7-icons size-22">bell_fill</i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+   
+
+    
+    <div class="page-content has-footer">
+      <!-- main page content -->
+      <div class="main-container container">
+
+        <!-- Products -->
+       
+        <div class="block">
+          <div class="row padding-right">
+            ${labs.map((item) => $h`
+
+              <div class="col-33 padding-left-half no-padding-right">
+                <a href="/productlist/labtest/${item.id}/">
+                  <div data-pcategory="${item.id}" class="card elevation-2 margin-bottom-half bg-green-light homeCategory">
+                      <div class="card-content card-content-padding_">
+
+                          <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
+                              <img src="${item.img}" alt="" />
+                          </figure>
+                          <h6 class="text-muted text-align-center small title-footer-twoline">${item.name}</h6>
+                      </div>
+                  </div>
+                  </a>
+              </div>
+
+              `)}
+              
+          
+          </div>
+        </div>
+
+      </div>
+      <!-- main page content ends -->
+
+    </div>
+
+    <!-- footer static -->
+    <footer class="footer">
+      <div class="container">
+        <ul>
+          <li>
+            <a class="active" href="/home/">
+              <span>
+                <i class="icon f7-icons">house</i>
+                <span class="nav-text">Home</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/stats/">
+              <span>
+                <i class="icon f7-icons">chart_bar</i>
+                <span class="nav-text">Stats</span>
+              </span>
+            </a>
+          </li>
+          <li class="center-item">
+            <a href="/cart/">
+              <span>
+                <i class="icon f7-icons">cart</i>
+                <span class="nav-text">card-content</span>
+                <span class="countercart">3</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/style/">
+              <span>
+                <i class="icon f7-icons">circle_grid_hex</i>
+                <span class="nav-text">Style</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/settings/">
+              <span>
+                <i class="icon f7-icons">gear</i>
+                <span class="nav-text">Settings</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+  </div>
+</template>
+<script>
+  export default (props, { $f7, $theme, $on, $update, $ }) => {
+    var app = $f7;
+    var mobile = '';
+    let labs = [];
+
+    $on('pageInit', () => {
+        
+        $f7.preloader.show();
+
+               app.params.callToServer( "lab-list","", success);
+
+                function success(Response){
+                    $f7.preloader.hide();
+                    
+                    labs = Response.data.labs ;
+                   
+                    $update();
+
+                }
+        });
+
+
+    return $render;
+  }
+</script>
+
+

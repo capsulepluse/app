@@ -22,41 +22,30 @@
 
     <!-- main page content -->
     <div class="page-content">
-        <form id="editaddressForm">
+       
 
-            <input type="hidden" name="id" value="${addressDetails.id}" validate required />
+        <form id="editFamilyForm">
+
+            <input type="hidden" name="id" value="${data.id}" validate required />
 
             <!-- add address fields -->
             <div class="block margin-bottom-half">
-               
+
                 <div class="list form-list margin-bottom-half">
                     <ul>
                         <li class="item-content item-input">
                             <div class="item-inner">
                                 <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Your Name</div>
+                                <div class="item-title item-floating-label"> Name</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="name" value="${addressDetails.name}" validate required />
+                                    <input type="text" name="name" value="${data.name}" validate required />
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Address </div>
-                                <div class="item-input-wrap">
-                                    <textarea type="text" name="address" required validate >${addressDetails.address} </textarea>
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                
 
 
                 <div class="list form-list margin-bottom-half">
@@ -64,9 +53,9 @@
                         <li class="item-content item-input">
                             <div class="item-inner">
                                 <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Landmark</div>
+                                <div class="item-title item-floating-label">Gender</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="landmark" value="${addressDetails.landmark}" />
+                                    <input type="text" name="gender" value="${data.gender}"  validate required />
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -79,9 +68,9 @@
                         <li class="item-content item-input">
                             <div class="item-inner">
                                 <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Pin Code</div>
+                                <div class="item-title item-floating-label">Age</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="pin" value="${addressDetails.pin}" required validate/>
+                                    <input type="text" name="age" value="${data.age}" required validate/>
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -94,9 +83,9 @@
                         <li class="item-content item-input">
                             <div class="item-inner">
                                 <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Mobile</div>
+                                <div class="item-title item-floating-label">Relation</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" name="mobile" value="${addressDetails.mobile}" required validate/>
+                                    <input type="text" name="relation" value="${data.relation}" required validate/>
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -104,26 +93,13 @@
                     </ul>
                 </div>
 
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Address Type</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="type" value="${addressDetails.type}" placeholder=" Home / Office" />
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                
 
             </div>
             <div class="block">
                 <div class="row margin-bottom">
                     <div class="col-100 medium-50 large-33 margin-h-auto">
-                        <input type="submit"  class="button button-fill button-large button-raised" value="Update" />
+                        <input type="submit"  class="button button-fill button-large button-raised" value="Save" />
                     </div>
                 </div>
             </div>
@@ -138,7 +114,7 @@
       let addressList = [] ;
 
         console.log(props);
-      let  addressDetails = props.data;
+      let  data = props.data;
 
       /* let addressDetails = {
         "address": " ",
@@ -152,13 +128,13 @@
      
         const pageId = app.params.uuid();
       
-        $(document).on('submit', '#editaddressForm', function (e) {
+        $(document).on('submit', '#editFamilyForm', function (e) {
             e.preventDefault();
     
-            let formData =  app.form.convertToData('#editaddressForm');
+            let formData =  app.form.convertToData('#editFamilyForm');
             $f7.preloader.show();
           
-            let url =  app.params.remoteUrl + 'update-address';
+            let url =  app.params.remoteUrl + 'update-family';
             app.params.authHeader();
             app.request.postJSON(url, formData, 
                 function(res,status){  

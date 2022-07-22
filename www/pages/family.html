@@ -60,77 +60,48 @@
                         </div>
                     </div> -->
 
-                    ${addressList.map((item) => $h`
+                    ${familyMemberList.map((item) => $h`
 
                     <div class="col-100 medium-50">
                         <div class="card elevation-2 product margin-bottom-half">
                             <div class="card-header">
                                 <!-- for default address  -->
-                                ${item.is_default == 1 && $h`
+                               
                                 <div class="row">
-                                    <div class="col-auto align-self-center md">
-                                        <label class="item-radio item-radio-icon-start item-content">
-                                            <input type="radio" name="defaultAddress" value="${item.id}" checked />
-                                            <i class="icon icon-radio"></i>
-                                        </label>
-
-                                    </div>
-                                    <div class="col align-self-center no-padding-left">
-                                        <h5 class="no-margin-bottom">${item.type}<br />
-                                            <span class="text-opac small">Primary Address</span>
-                                        </h5>
+                                   
+                                    <div class="col align-self-center padding-left">
+                                        <h5 class="no-margin-bottom">${item.name}<br /></h5>
                                     </div>
                                     <div class="col-auto align-self-center">
-                                        <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
+                                        <a href="/editfamily/${item.id}/" class="btn btn-link text-color-theme"><i
                                                 class="icons f7-icons">square_pencil</i></a>
-                                        <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
-                                    </div>
-                                </div>
-                                `}
-
-                                ${item.is_default == 0 && $h`
-                                <div class="row ">
-                                    <div class="col-auto align-self-center md">
-                                        <label class="item-radio item-radio-icon-start item-content">
-                                            <input type="radio" name="defaultAddress" value="${item.id}" />
-                                            <i class="icon icon-radio"></i>
-                                        </label>
-                                    </div>
-                                    <div class="col align-self-center no-padding-left">
-                                        <h5 class="no-margin-bottom">${item.type}<br />
-                                            <span class="text-opac small">Other Address</span>
-                                        </h5>
-                                    </div>
-                                    <div class="col-auto align-self-center">
-                                        <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
-                                                class="icons f7-icons">square_pencil</i></a>
-                                        <a @click="${()=>removeAddress(item.id)}" href="#"
+                                        <a @click="${()=>removeFamily(item.id)}" href="#"
                                             class="btn btn-link text-color-theme"><i
                                                 class="icons f7-icons">trash</i></a>
                                     </div>
                                 </div>
-                                `}
+                                
+
+
 
                             </div>
                             <div class="card-content card-content-padding">
-                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                                        class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
-                                    </iframe> -->
+
                                 <div class="row">
                                     <div class="col">
                                         <div class="addressHeader">
-                                            ${item.name} ( ${item.mobile} )
+                                            ${item.gender}, ${item.age} Years
                                         </div>
                                         <div>
-                                            ${item.address}, ${item.landmark}, ${item.pin}
+                                             ( ${item.relation} ) 
                                         </div>
-
                                     </div>
-                                    <div class="col-auto align-self-center">
+                                    <!-- <div class="col-auto align-self-center">
                                         <a href="#"><i
                                                 class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
+
                             </div>
                         </div>
 
@@ -151,7 +122,7 @@
             <div class="block">
                 <div class="row margin-bottom">
                     <div class="col-100 medium-50 large-33 margin-h-auto">
-                        <a href="/addaddress/" class="button button-fill button-large button-raised">Add New Address</a>
+                        <a href="/addfamily/" class="button button-fill button-large button-raised">Add Family Member</a>
                     </div>
                 </div>
             </div>
@@ -169,55 +140,19 @@
         $
     }) => {
         var app = $f7;
-        let addressList = [];
+        let familyMemberList = [];
 
         const pageId = app.params.uuid();
 
-        const updatePrimaryAddress = () => {
-            /**
-               $f7.preloader.show();
-               let checkedId = $("#pageId_"+pageId+" input[name='defaultAddress']:checked").val();
-               app.params.callToServer( "change-default-address",'{"id":"'+ checkedId+'"}',success);
-               function success(Response){
-                 $f7.preloader.hide();
-                app.params.showToastBottom(Response.message); 
-                addressList = Response.data; 
-                $update(); 
-             }  
-             */
-        }
-
-        //on change of default address 
-        $(document).on('change', "#pageId_" + pageId + " input[name='defaultAddress']", function (e) {
-
+        
+        const removeFamily = (addID) => {
             $f7.preloader.show();
-            // let checkedId = $("#pageId_"+pageId+" input[name='defaultAddress']:checked").val();
-            let checkedId = $(this).val();
-            app.params.callToServer("change-default-address", '{"id":"' + checkedId + '"}', success);
+            app.params.callToServer("remove-family", '{"id":"' + addID + '"}', success);
 
             function success(Response) {
                 $f7.preloader.hide();
                 app.params.showToastBottom(Response.message);
-                addressList = Response.data;
-                $update();
-          
-            }
-
-
-
-        })
-
-
-
-
-        const removeAddress = (addID) => {
-            $f7.preloader.show();
-            app.params.callToServer("remove-address", '{"id":"' + addID + '"}', success);
-
-            function success(Response) {
-                $f7.preloader.hide();
-                app.params.showToastBottom(Response.message);
-                addressList = Response.data;
+                familyMemberList = Response.data;
                 $update();
             }
 
@@ -225,11 +160,11 @@
 
         $on('pageBeforeIn', () => {
             $f7.preloader.show();
-            app.params.callToServer("address", '', success);
+            app.params.callToServer("family", '', success);
 
             function success(Response) {
                 $f7.preloader.hide();
-                addressList = Response.data;
+                familyMemberList = Response.data;
                 $update();
             }
         });

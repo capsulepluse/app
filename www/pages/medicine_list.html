@@ -147,7 +147,7 @@
                     <div class="item-inner">
                       <div class="item-title item-floating-label">Search</div>
                       <div class="item-input-wrap">
-                        <input type="text" name="search" />
+                        <input type="text" name="search" id="autocomplete-dropdown-typeahead_pickup" />
                         <span class="input-clear-button"></span>
                       </div>
                     </div>
@@ -366,8 +366,8 @@
     var app = $f7;
     let product = [];
     let categoryName = "";
-    let type = props.type;  
-    let value = props.value; 
+    let type = "";  
+    let value = ""; 
     let productDetails = {
           price: "",
           image: "",
@@ -377,6 +377,12 @@
           type:""
         } ;
     const pageId = app.params.uuid();
+
+    let autocompleteDropdownTypeahead;
+    let autocompleteDropdownAjaxTypeahead;
+
+    
+
     // let cartCount = app.params.cartCount();
     //  console.log('countdata',cartCount);
 
@@ -448,13 +454,13 @@
         // $update();
         app.popup.close('.addproduct');
     }) 
-
-    
+   
     
     $on('pageInit', () => {
         
-        $f7.preloader.show();
-
+       
+        /*
+         $f7.preloader.show();
         app.params.callToServer( "product-list",'{"type":"'+ type+'","value":'+value+'}',success);
         function success(Responce){
               $f7.preloader.hide();
@@ -462,7 +468,64 @@
               categoryName = Responce.data.category;
               $update();
           }
-   
+          */
+
+          // Dropdown with ajax data
+     autocompleteDropdownAjaxTypeahead = $f7.autocomplete.create({
+      inputEl: '#autocomplete-dropdown-typeahead_pickup',
+      openIn: 'dropdown',
+      preloader: true, //enable preloader
+      /* If we set valueProperty to "id" then input value on select will be set according to this property */
+      valueProperty: 'name', //object's "value" property name
+      textProperty: 'name', //object's "text" property name
+      limit: 20, //limit to 20 results
+      typeahead: false,
+      dropdownPlaceholderText: 'Try "Jhalda"',
+      source: function (query, render) {
+        var autocomplete = this;
+        var results = [];
+        if (query.length === 0) {
+          render(results);
+          return;
+        }
+        // Show Preloader
+        autocomplete.preloaderShow();
+        app.params.authHeader();
+        // Do Ajax request to Autocomplete data
+        $f7.request({
+          url: app.params.remoteUrl + "medicine-search",
+          method: 'GET',
+          dataType: 'json',
+          //send "query" to server. Useful in case you generate response dynamically
+          data: {
+            name: query,
+          },
+          success: function (returndata) {
+            if(returndata.success){
+              let data = returndata.data;
+               // Find matched items
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].name.toLowerCase().indexOf(query.toLowerCase()) === 0) results.push(data[i]);
+            }
+            // Hide Preoloader
+            autocomplete.preloaderHide();
+            // Render items by passing array with result items
+            //console.log(results);
+            render(results);
+            }
+           
+          }
+        });
+      }
+    });
+
+    
+
+
+
+
+
+
         });
 
     $on('pageBeforeRemove', () => {

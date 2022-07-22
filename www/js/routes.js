@@ -117,6 +117,11 @@ var routes = [
     name: 'product_list',
   },
 
+  {
+    path: '/medicinelist/',
+    componentUrl: './pages/medicine_list.html',
+    name: 'medicine_list',
+  },
   // cart
   {
     path: '/cart/',
@@ -263,7 +268,7 @@ var routes = [
       // bed ID from request
       var ID = to.params.id;
 
-      app.params.callToServer("edit-address", '{"id":"' + ID + '"}',
+      app.params.callToServer("edit-family", '{"id":"' + ID + '"}',
         function (Response) {
           app.preloader.hide();
           // address = Response.data[0];
@@ -303,7 +308,16 @@ var routes = [
     },
   },
 
+//========== lab =========
+{
+  path: '/nearByLabList/',
+  // url: './pages/stats.html',
+  componentUrl: './pages/nearByLab_list.html',
+  name: 'lab-list'
+},
 
+
+//======== end lab =======
   // Payment
   {
     path: '/payment/',
@@ -450,7 +464,7 @@ var routes = [
   // Contact us
   {
     path: '/contactus/',
-    url: './pages/contactus.html',
+    componentUrl: './pages/contactus.html',
   },
 
   // Terms and conditions

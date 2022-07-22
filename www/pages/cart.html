@@ -32,7 +32,7 @@
                 <div class="col-33">
                     <a href="/cart/" class="wizard-link active">
                         <i class="icons f7-icons elevation-2">bag</i>
-                        <span class="wizard-text">Products</span>
+                        <span class="wizard-text">${type}</span>
                     </a>
                 </div>
                 <div class="col-33">
@@ -54,7 +54,7 @@
         <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
-                    <h5 class="no-margin-bottom">${cartCount} products in cart</h5>
+                    <h5 class="no-margin-bottom">${cartCount} ${type} in cart</h5>
                 </div>
                 <div class="col-auto pe-0 align-self-center">
                     <a href="/home/" class="link text-color-theme">Shop more <i class="icons f7-icons">chevron_right</i></a>
@@ -408,9 +408,22 @@
             </div>
             <div class="row margin-bottom-half">
                 <div class="col">
+                    ${type == 'Lab test' && $h`
+                    <p>Sample Collection Charge</p>
+                    `}
+                    ${type != 'Lab test' && $h`
                     <p>Shipping Cost</p>
+                    `}
                 </div>
-                <div class="col-auto">₹ ${shippingCost}</div>
+                <div class="col-auto">
+                    ${shippingCost == 0 && $h`
+                        Free
+                    `}
+                    ${shippingCost > 0 && $h`
+                        ₹ ${shippingCost}
+                    `}    
+                   
+                </div>
             </div>
 
             <div class="row margin-bottom-half">
@@ -508,6 +521,7 @@
         let cartCount = 0;
         let shippingCost = 0;
         const pageId = app.params.uuid();
+        let type="Medicine";
       
         let removeCurrentProduct = (pid)=>{
             $f7.preloader.show();
@@ -527,6 +541,7 @@
                 subtotal = Responce.data.subtotal;
                 cartCount = Responce.data.cartCount;
                 shippingCost =  Responce.data.shippingCost;
+                type = Responce.data.type;
                 $update();
         }
 
@@ -538,9 +553,6 @@
                 updateCurrentCart(Responce);
                 
             }
-
-
-
 
 
         });
