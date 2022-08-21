@@ -171,7 +171,7 @@
           
           $f7.preloader.show();
   
-          app.params.callToServer( "product-details",'{"product":"'+ product +'"}',success);
+          app.params.callToServer( "product-details",'{"product":"'+ product +'","type":"category"}', success);
           function success(Responce){
                 $f7.preloader.hide();
                 productDetails = Responce.data.productDetails ;

@@ -117,10 +117,16 @@ var routes = [
     name: 'product_list',
   },
 
+   // Medicine
   {
     path: '/medicinelist/',
     componentUrl: './pages/medicine_list.html',
     name: 'medicine_list',
+  },
+  
+   {
+    path: '/medicine/:medicine/',
+    componentUrl: './pages/medicine.html',
   },
   // cart
   {

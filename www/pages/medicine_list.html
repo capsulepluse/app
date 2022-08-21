@@ -1,11 +1,11 @@
 <template>
-  <div class="page page-product_list" id="pageId_${pageId}" data-name="product_list">
+  <div class="page page-product_list" id="pageId_${pageId}" data-name="medicine_list">
     <div class="navbar ">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="left  no-margin-right">
           <a href="#" class="link icon-only back">
-              <i class="icon f7-icons size-22">arrow_left</i>
+            <i class="icon f7-icons size-22">arrow_left</i>
           </a>
         </div>
         <div class="title text-align-center">
@@ -16,7 +16,7 @@
         </div>
         <div class="right text-align-center">
           <a href="/notificationlist/" class="link">
-              <i class="icon f7-icons size-22">bell_fill</i>
+            <i class="icon f7-icons size-22">bell_fill</i>
           </a>
         </div>
       </div>
@@ -130,9 +130,9 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
 
-    
+
     <div class="page-content has-footer">
       <!-- main page content -->
       <div class="main-container container">
@@ -147,7 +147,7 @@
                     <div class="item-inner">
                       <div class="item-title item-floating-label">Search</div>
                       <div class="item-input-wrap">
-                        <input type="text" name="search" id="autocomplete-dropdown-typeahead_pickup" />
+                        <input type="text" name="search" class="search-input" />
                         <span class="input-clear-button"></span>
                       </div>
                     </div>
@@ -156,14 +156,14 @@
               </div>
             </div>
             <div class="col-auto">
-              <button class="button button-fill button-large padding elevation-3" >
+              <button class="button button-fill button-large padding elevation-3 searchbtn" >
                 <i class="icon f7-icons">search</i>
               </button>
             </div>
           </div>
         </div>
 
-       
+
 
         <!-- Products -->
         <div class="block">
@@ -188,42 +188,29 @@
                   <figure class="text-align-center">
                     <img src="${item.img}" alt="" />
                   </figure>
-                  <!-- <p class="">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small>
-                  </p> -->
-                  ${type == "category" && $h`
-                  <a href="/product/${item.id}/" class="text-normal margin-bottom-half display-block">
+                  
+
+                  <a href="/medicine/${item.id}/" class="text-normal margin-bottom-half display-block">
                     <h6 class="text-color-theme">${item.name}</h6>
                   </a>
-                    `}
-                 
-                    ${type == "labtest" && $h`
-                    <a class="text-normal margin-bottom-half display-block">
-                      <h6 class="text-color-theme">${item.name}</h6>
-                    </a>
-                      `}
-
+                  <p class="">
+                    <small class="text-opac">${item.manufacturer}</small>
+                    <!-- <small class="float-right"><span class="text-opac">4.5</span> <i
+                        class="icons f7-icons text-color-yellow">star</i></small> -->
+                  </p>
                   <div class="row">
                     <div class="col">
                       <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ ${item.MRP}</small><br/>
-                        ₹ ${item.discount}
-                        </p>
+                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
+                          ${item.MRP}</small><br />
+                        ₹ ${item.saleprice}
+                      </p>
                     </div>
                     <div class="col-auto no-padding-left">
                       <button
                         class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient  add-to-card-button"
-                        data-pid="${item.id}"
-                        data-mrp="${item.MRP}"
-                        data-price="${item.discount}"
-                        data-name="${item.name}"
-                        data-image="${item.img}"
-                        data-type="${type}"
-                        
-
-                        >
+                        data-pid="${item.id}" data-mrp="${item.MRP}" data-price="${item.saleprice}"
+                        data-name="${item.name}" data-image="${item.img}" data-type="${type}">
                         <i class="icons f7-icons">plus</i>
                       </button>
                     </div>
@@ -231,13 +218,14 @@
                 </div>
               </div>
             </div>
-           
+
             `)}
 
           </div>
         </div>
 
-      
+
+
         <!-- add product popup-->
         <div class="popup addproduct">
           <div class="view">
@@ -267,15 +255,16 @@
                     <small class="float-end"><span class="text-opac">4.5</span> <i
                         class="bi bi-star-fill text-warning"></i></small>
                   </p> -->
-                  <a href="product.html" class="text-normal display-block margin-bottom-half">
+                  <a href="#" class="text-normal display-block margin-bottom-half">
                     <h6 class="text-color-theme">${productDetails.name}</h6>
                   </a>
                   <div class="row">
                     <div class="col">
                       <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ ${productDetails.mrp}</small><br/>
-                         ₹ ${productDetails.price}
-                         </p>
+                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
+                          ${productDetails.mrp}</small><br />
+                        ₹ ${productDetails.price}
+                      </p>
                     </div>
                     <div class="col-auto">
                       <!-- Stepper element -->
@@ -289,11 +278,9 @@
                   </div>
                 </div>
                 <div class="block">
-                  <button @click="${app.params.addToCartCurrentProduct}"
-                    type="button"
+                  <button @click="${app.params.addToCartCurrentProduct}" type="button"
                     class="button button-large button-fill color-green elevation-3 adding-cart"
-                    data-pid="${productDetails.pid}"
-                    >Add to Cart
+                    data-pid="${productDetails.pid}">Add to Cart
                     <i class="icons f7-icons">arrow_right</i>
                   </button>
                 </div>
@@ -362,175 +349,106 @@
   </div>
 </template>
 <script>
-  export default (props, { $f7, $theme, $on, $update, $ }) => {
+  export default (props, {
+    $f7,
+    $theme,
+    $on,
+    $update,
+    $
+  }) => {
     var app = $f7;
     let product = [];
     let categoryName = "";
-    let type = "";  
-    let value = ""; 
+    let type = "medicine";
+    let value = "";
     let productDetails = {
-          price: "",
-          image: "",
-          mrp: "",
-          name: "",
-          pid: "",
-          type:""
-        } ;
+      price: "",
+      image: "",
+      mrp: "",
+      name: "",
+      pid: "",
+      type: ""
+    };
     const pageId = app.params.uuid();
 
-    let autocompleteDropdownTypeahead;
-    let autocompleteDropdownAjaxTypeahead;
+//    let autocompleteDropdownTypeahead;
+//    let autocompleteDropdownAjaxTypeahead;
 
-    
 
-    // let cartCount = app.params.cartCount();
-    //  console.log('countdata',cartCount);
 
-    // const openProductPopup = (e)=>{
-    //   // console.log(e);
-    //   // var $ = this.$;
-       
-    //   // productDetails = $(this).attr('data-pid');
-    //   productDetails = e.target.dataset();
-    //   console.log("product details",productDetails);
-
-    // }
-    
-    $(document).on('click','#pageId_'+pageId+' .add-to-card-button', function(e){
+    $(document).on('click', '#pageId_' + pageId + ' .add-to-card-button', function (e) {
       console.log(productDetails);
-        productDetails = $(this).dataset(); 
-        //console.log(productDetails);
-        app.params.setActiveProduct(productDetails);
-        $update();
-        app.popup.open('.addproduct');
-    })  
+      productDetails = $(this).dataset();
+      //console.log(productDetails);
+      app.params.setActiveProduct(productDetails);
+      $update();
+      app.popup.open('.addproduct');
+    })
 
-    $(document).on('click','.adding-cart_', function(e){
-        //console.log('adding clicked');
-        //let pid = $(this).data('pid'); 
-        let countValue = parseInt ($(this).parent().parent().find(".counter-value").text());
-        
-        var currentProduct = {
-          price: productDetails.discount,
-          image: productDetails.imageurl,
-          mrp: productDetails.mrp,
-          name: productDetails.name,
-          pid: productDetails.pid,
-          quantity:countValue
-        }
+    $(document).on('click', '.adding-cart_', function (e) {
+      //console.log('adding clicked');
+      //let pid = $(this).data('pid'); 
+      let countValue = parseInt($(this).parent().parent().find(".counter-value").text());
 
-       // console.log(currentProduct);
-
-        //======= cart value from server =======
-        const addingCartOnLive = app.params.callToServer( "add-cart", currentProduct ,
-        function success(Responce){
-              $f7.preloader.hide();
-              cartCount = Responce.data.cartCount ;
-              localStorage.setItem("cartCount", cartCount);
-              // categoryName = Responce.data.category;
-              $update();
-          });
-        //========
-      //====== get card value from store ===
-      // JSON.parse(localStorage.getItem('myItem'))
-
-    //  let cart =  JSON.parse(localStorage.getItem("cart"));
-    //  console.log("cart strored",cart);
-      
-    //   if(cart == null){
-    //    let cartList = [currentProduct];
-    //      //====== adding cart store ============
-    //     localStorage.setItem("cart",JSON.stringify(cartList));
-    //   }else{ //====== add new item on cart ========
-    //     cart.push(currentProduct);
-    //      //====== update cart store ============
-    //      localStorage.setItem("cart",JSON.stringify(cart));
-    //   }
-     
-
-
-        // console.log(JSON.parse(localStorage.getItem("cart")));
-        // console.log(localStorage.getItem("cart"));
-        // $update();
-        app.popup.close('.addproduct');
-    }) 
-   
-    
-    $on('pageInit', () => {
-        
-       
-        /*
-         $f7.preloader.show();
-        app.params.callToServer( "product-list",'{"type":"'+ type+'","value":'+value+'}',success);
-        function success(Responce){
-              $f7.preloader.hide();
-              product = Responce.data.product ;
-              categoryName = Responce.data.category;
-              $update();
-          }
-          */
-
-          // Dropdown with ajax data
-     autocompleteDropdownAjaxTypeahead = $f7.autocomplete.create({
-      inputEl: '#autocomplete-dropdown-typeahead_pickup',
-      openIn: 'dropdown',
-      preloader: true, //enable preloader
-      /* If we set valueProperty to "id" then input value on select will be set according to this property */
-      valueProperty: 'name', //object's "value" property name
-      textProperty: 'name', //object's "text" property name
-      limit: 20, //limit to 20 results
-      typeahead: false,
-      dropdownPlaceholderText: 'Try "Jhalda"',
-      source: function (query, render) {
-        var autocomplete = this;
-        var results = [];
-        if (query.length === 0) {
-          render(results);
-          return;
-        }
-        // Show Preloader
-        autocomplete.preloaderShow();
-        app.params.authHeader();
-        // Do Ajax request to Autocomplete data
-        $f7.request({
-          url: app.params.remoteUrl + "medicine-search",
-          method: 'GET',
-          dataType: 'json',
-          //send "query" to server. Useful in case you generate response dynamically
-          data: {
-            name: query,
-          },
-          success: function (returndata) {
-            if(returndata.success){
-              let data = returndata.data;
-               // Find matched items
-            for (var i = 0; i < data.length; i++) {
-              if (data[i].name.toLowerCase().indexOf(query.toLowerCase()) === 0) results.push(data[i]);
-            }
-            // Hide Preoloader
-            autocomplete.preloaderHide();
-            // Render items by passing array with result items
-            //console.log(results);
-            render(results);
-            }
-           
-          }
-        });
+      var currentProduct = {
+        price: productDetails.discount,
+        image: productDetails.imageurl,
+        mrp: productDetails.mrp,
+        name: productDetails.name,
+        pid: productDetails.pid,
+        quantity: countValue
       }
+
+      // console.log(currentProduct);
+
+      //======= cart value from server =======
+      const addingCartOnLive = app.params.callToServer("add-cart", currentProduct,
+        function success(Responce) {
+          $f7.preloader.hide();
+          cartCount = Responce.data.cartCount;
+          localStorage.setItem("cartCount", cartCount);
+          // categoryName = Responce.data.category;
+          $update();
+        });
+
+      app.popup.close('.addproduct');
+    })
+
+
+    $(document).on('click', '#pageId_' + pageId + ' .searchbtn', function (e) {
+        var serchValue = $('#pageId_' + pageId + ' .search-input').val();
+        $f7.preloader.show();
+        app.params.callToServer( "medicine-search",'{"name":"'+serchValue+'"}',success);
+        function success(Responce){
+              $f7.preloader.hide();
+              product = Responce.data ;
+              //categoryName = Responce.data.category;
+              $update();
+          }
+    })
+
+
+
+    $on('pageInit', () => {
+
+
+      /*
+       $f7.preloader.show();
+      app.params.callToServer( "product-list",'{"type":"'+ type+'","value":'+value+'}',success);
+      function success(Responce){
+            $f7.preloader.hide();
+            product = Responce.data.product ;
+            categoryName = Responce.data.category;
+            $update();
+        }
+        */
+
+
     });
 
-    
-
-
-
-
-
-
-        });
-
     $on('pageBeforeRemove', () => {
-     
-    })    
+
+    })
 
     return $render;
   }

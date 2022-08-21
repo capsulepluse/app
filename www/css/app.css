@@ -753,7 +753,19 @@ code {
 
 }
 
+.bold{
+  font-weight: bold
+}
 
+.lab-address{
+  /* opacity: 0.50;
+  font-size: 13px; */
+  padding-bottom: 3px;
+}
+
+.labitem figure img {
+  height: 70px;
+}
 
 
 

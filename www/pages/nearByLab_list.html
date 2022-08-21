@@ -1,12 +1,12 @@
 <template>
-  <div class="page page-category-list" data-name="category-list">
+  <div class="page page-lab-list" id="pageId_${pageId}" data-name="lab-list">
     <div class="navbar ">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
-        
+
         <div class="left  no-margin-right">
           <a href="#" class="link icon-only back">
-              <i class="icon f7-icons size-22">arrow_left</i>
+            <i class="icon f7-icons size-22">arrow_left</i>
           </a>
         </div>
         <div class="title text-align-center">
@@ -17,44 +17,66 @@
         </div>
         <div class="right text-align-center">
           <a href="/notificationlist/" class="link">
-              <i class="icon f7-icons size-22">bell_fill</i>
+            <i class="icon f7-icons size-22">bell_fill</i>
           </a>
         </div>
       </div>
     </div>
 
-   
 
-    
+
+
     <div class="page-content has-footer">
       <!-- main page content -->
       <div class="main-container container">
 
-        <!-- Products -->
-       
+       <!-- lab list  -->
+
         <div class="block">
-          <div class="row padding-right">
+          <div class="row">
+
             ${labs.map((item) => $h`
 
-              <div class="col-33 padding-left-half no-padding-right">
-                <a href="/productlist/labtest/${item.id}/">
-                  <div data-pcategory="${item.id}" class="card elevation-2 margin-bottom-half bg-green-light homeCategory">
-                      <div class="card-content card-content-padding_">
 
-                          <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
-                              <img src="${item.img}" alt="" />
-                          </figure>
-                          <h6 class="text-muted text-align-center small title-footer-twoline">${item.name}</h6>
+            <div class="col-100 medium-50 large-33">
+              <a href="/productlist/labtest/${item.id}/">
+                <div class="card elevation-2 product margin-bottom-half">
+                  <div class="card-content card-content-padding">
+                    <div class="row">
+                      <div class="col-auto">
+                        <figure class="text-align-center no-margin-bottom avatar avatar-60 page-bg rounded">
+                          <img src="${item.img}" alt="" />
+                        </figure>
                       </div>
+                      <div class="col no-padding-left list">
+                        <div class="bold padding-bottom-half">${item.name} 
+                          <!-- <i class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i> -->
+                        </div>
+                        <!-- <div href="#" class="text-normal text-color-theme "> 
+                        </div> -->
+                        <div class="item-footer lab-address">${item.address}</div>
+                        <p class="small display-block">
+                          <span class="text-opac">${item.start_time} - ${item.end_time}</span>
+                          <!-- <span class="float-right"><span class="text-opac">2.5km</span> <i
+                                      class="icons f7-icons">placemark</i></span> -->
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  </a>
-              </div>
 
-              `)}
-              
-          
+                </div>
+              </a>
+            </div>
+
+
+            `)}
+
+
           </div>
         </div>
+
+
+
 
       </div>
       <!-- main page content ends -->
@@ -115,30 +137,35 @@
   </div>
 </template>
 <script>
-  export default (props, { $f7, $theme, $on, $update, $ }) => {
+  export default (props, {
+    $f7,
+    $theme,
+    $on,
+    $update,
+    $
+  }) => {
     var app = $f7;
     var mobile = '';
     let labs = [];
+    const pageId = app.params.uuid();
 
     $on('pageInit', () => {
-        
-        $f7.preloader.show();
 
-               app.params.callToServer( "lab-list","", success);
+      $f7.preloader.show();
 
-                function success(Response){
-                    $f7.preloader.hide();
-                    
-                    labs = Response.data.labs ;
-                   
-                    $update();
+      app.params.callToServer("lab-list", "", success);
 
-                }
-        });
+      function success(Response) {
+        $f7.preloader.hide();
+
+        labs = Response.data.labs;
+
+        $update();
+
+      }
+    });
 
 
     return $render;
   }
 </script>
-
-

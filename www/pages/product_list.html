@@ -5,7 +5,7 @@
       <div class="navbar-inner">
         <div class="left  no-margin-right">
           <a href="#" class="link icon-only back">
-              <i class="icon f7-icons size-22">arrow_left</i>
+            <i class="icon f7-icons size-22">arrow_left</i>
           </a>
         </div>
         <div class="title text-align-center">
@@ -16,123 +16,15 @@
         </div>
         <div class="right text-align-center">
           <a href="/notificationlist/" class="link">
-              <i class="icon f7-icons size-22">bell_fill</i>
+            <i class="icon f7-icons size-22">bell_fill</i>
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Filter nested panel -->
-    <div class="panel panel-right panel-cover panel-init elevation-3" id="panel-right-filter"
-      data-container-el="#panel-page" data-backdrop="false">
-      <div class="page">
-        <div class="page-content">
-          <div class="block bg-white-opac margin-bottom padding-top padding-bottom">
-            <div class="row">
-              <div class="col">
-                <h6 class="no-margin-bottom">Filter Criteria</h6>
-                <p class="small text-muted">2154 products</p>
-              </div>
-              <div class="col-auto align-self-center">
-                <button class="button panel-close no-padding">
-                  <i class="icon f7-icons size-18">multiply</i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="block">
-            <div class="margin-bottom">
-              <h6>Select Range</h6>
-              <div id="rangeslider" class="margin-top"></div>
-            </div>
-
-            <div class="row margin-bottom">
-              <div class="col">
-                <label for="input-number" class="small text-muted">Minimum</label>
-                <input type="number" min="0" max="500" value="100" step="1" id="input-select" />
-              </div>
-              <div class="col-auto align-self-center">
-                <label class="small"></label>
-                to
-              </div>
-              <div class="col">
-                <label for="input-number" class="small text-muted">Maximum</label>
-                <input type="number" class="form-control" min="0" max="500" value="200" step="1" id="input-number" />
-              </div>
-            </div>
-
-            <div class="margin-bottom">
-              <label for="filtertype" class="small text-muted">Select Shopping Type</label>
-              <div class="card shadow-none">
-                <div class="list">
-                  <ul class="no-background">
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="Books" checked="men" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Men</div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="women" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Women</div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="kids" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Kids</div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="home" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Home</div>
-                        </div>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
 
 
-            <div class="margin-bottom">
-              <label for="input-select" class="small text-muted">Keyword</label>
-              <input type="text" class="form-control" placeholder="Keyword" />
-            </div>
 
-            <div class="margin-bottom">
-              <label for="discount" class="small text-muted">Offer Discount</label>
-              <select class="form-control" id="discount">
-                <option>10% </option>
-                <option>30%</option>
-                <option>50%</option>
-                <option>80%</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="block margin-bottom">
-            <button class="button button-fill button-raised button-large">Apply</button>
-          </div>
-        </div>
-      </div>
-    </div> 
-
-    
     <div class="page-content has-footer">
       <!-- main page content -->
       <div class="main-container container">
@@ -156,14 +48,14 @@
               </div>
             </div>
             <div class="col-auto">
-              <button class="button button-fill button-large padding elevation-3" >
+              <button class="button button-fill button-large padding elevation-3">
                 <i class="icon f7-icons">search</i>
               </button>
             </div>
           </div>
         </div>
 
-       
+
 
         <!-- Products -->
         <div class="block">
@@ -177,6 +69,7 @@
           </div>
         </div>
 
+        ${type == "category" && $h`
         <div class="block">
           <div class="row">
 
@@ -197,33 +90,27 @@
                   <a href="/product/${item.id}/" class="text-normal margin-bottom-half display-block">
                     <h6 class="text-color-theme">${item.name}</h6>
                   </a>
-                    `}
-                 
-                    ${type == "labtest" && $h`
-                    <a class="text-normal margin-bottom-half display-block">
-                      <h6 class="text-color-theme">${item.name}</h6>
-                    </a>
-                      `}
+                  `}
+
+                  ${type == "labtest" && $h`
+                  <a class="text-normal margin-bottom-half display-block">
+                    <h6 class="text-color-theme">${item.name}</h6>
+                  </a>
+                  `}
 
                   <div class="row">
                     <div class="col">
                       <p class="no-margin-bottom">
-                       <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ ${item.MRP}</small><br/>
+                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
+                          ${item.MRP}</small><br />
                         ₹ ${item.discount}
-                        </p>
+                      </p>
                     </div>
-                    <div class="col-auto no-padding-left">
+                    <div class="col-auto no-padding-left ">
                       <button
                         class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient  add-to-card-button"
-                        data-pid="${item.id}"
-                        data-mrp="${item.MRP}"
-                        data-price="${item.discount}"
-                        data-name="${item.name}"
-                        data-image="${item.img}"
-                        data-type="${type}"
-                        
-
-                        >
+                        data-pid="${item.id}" data-mrp="${item.MRP}" data-price="${item.discount}"
+                        data-name="${item.name}" data-image="${item.img}" data-type="${type}">
                         <i class="icons f7-icons">plus</i>
                       </button>
                     </div>
@@ -231,13 +118,64 @@
                 </div>
               </div>
             </div>
-           
+
             `)}
 
           </div>
         </div>
+        `}
 
-      
+        ${type == "labtest" && $h`
+        <div class="block">
+          <div class="row margin-bottom-half">
+
+            ${product.map((item) => $h`
+
+            <div class="col-100 medium-50 large-33">
+              <div class="card elevation-2 labitem margin-bottom-half">
+                <div class="card-content card-content-padding">
+                  <div class="row">
+                    <div class="col-auto">
+                      <figure class="text-align-center">
+                        <img src="${item.img}" alt="" />
+                      </figure>
+                    </div>
+                    <div class="col no-padding-left align-self-center">
+                      <div class="text-color-theme bold">${item.name}</div>
+                      <div class="row">
+                        <div class="col">
+                          <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
+                            ${item.MRP}</small>
+                            <p class="text-opac bold"> ₹ ${item.discount}</p>  
+                        </div>
+                        <div class="col-auto text-align-right">
+                          <button
+                            class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient  add-to-card-button"
+                            data-pid="${item.id}" data-mrp="${item.MRP}" data-price="${item.discount}"
+                            data-name="${item.name}" data-image="${item.img}" data-type="${type}">
+                            <i class="icons f7-icons">plus</i>
+                          </button>
+                          <!-- <a href="/trackorder/${item.id}/" class="link text-color-theme no-padding">Track
+                            <i class="icons f7-icons">chevron_right</i>
+                          </a> -->
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            `)}
+          </div>
+        </div>
+        `}
+
+
+
+
+
         <!-- add product popup-->
         <div class="popup addproduct">
           <div class="view">
@@ -273,9 +211,10 @@
                   <div class="row">
                     <div class="col">
                       <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹ ${productDetails.mrp}</small><br/>
-                         ₹ ${productDetails.price}
-                         </p>
+                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
+                          ${productDetails.mrp}</small><br />
+                        ₹ ${productDetails.price}
+                      </p>
                     </div>
                     <div class="col-auto">
                       <!-- Stepper element -->
@@ -289,11 +228,9 @@
                   </div>
                 </div>
                 <div class="block">
-                  <button @click="${app.params.addToCartCurrentProduct}"
-                    type="button"
+                  <button @click="${app.params.addToCartCurrentProduct}" type="button"
                     class="button button-large button-fill color-green elevation-3 adding-cart"
-                    data-pid="${productDetails.pid}"
-                    >Add to Cart
+                    data-pid="${productDetails.pid}">Add to Cart
                     <i class="icons f7-icons">arrow_right</i>
                   </button>
                 </div>
@@ -362,20 +299,26 @@
   </div>
 </template>
 <script>
-  export default (props, { $f7, $theme, $on, $update, $ }) => {
+  export default (props, {
+    $f7,
+    $theme,
+    $on,
+    $update,
+    $
+  }) => {
     var app = $f7;
     let product = [];
     let categoryName = "";
-    let type = props.type;  
-    let value = props.value; 
+    let type = props.type;
+    let value = props.value;
     let productDetails = {
-          price: "",
-          image: "",
-          mrp: "",
-          name: "",
-          pid: "",
-          type:""
-        } ;
+      price: "",
+      image: "",
+      mrp: "",
+      name: "",
+      pid: "",
+      type: ""
+    };
     const pageId = app.params.uuid();
     // let cartCount = app.params.cartCount();
     //  console.log('countdata',cartCount);
@@ -383,91 +326,92 @@
     // const openProductPopup = (e)=>{
     //   // console.log(e);
     //   // var $ = this.$;
-       
+
     //   // productDetails = $(this).attr('data-pid');
     //   productDetails = e.target.dataset();
     //   console.log("product details",productDetails);
 
     // }
-    
-    $(document).on('click','#pageId_'+pageId+' .add-to-card-button', function(e){
+
+    $(document).on('click', '#pageId_' + pageId + ' .add-to-card-button', function (e) {
       console.log(productDetails);
-        productDetails = $(this).dataset(); 
-        //console.log(productDetails);
-        app.params.setActiveProduct(productDetails);
-        $update();
-        app.popup.open('.addproduct');
-    })  
+      productDetails = $(this).dataset();
+      //console.log(productDetails);
+      app.params.setActiveProduct(productDetails);
+      $update();
+      app.popup.open('.addproduct');
+    })
 
-    $(document).on('click','.adding-cart_', function(e){
-        //console.log('adding clicked');
-        //let pid = $(this).data('pid'); 
-        let countValue = parseInt ($(this).parent().parent().find(".counter-value").text());
-        
-        var currentProduct = {
-          price: productDetails.discount,
-          image: productDetails.imageurl,
-          mrp: productDetails.mrp,
-          name: productDetails.name,
-          pid: productDetails.pid,
-          quantity:countValue
-        }
+    $(document).on('click', '.adding-cart_', function (e) {
+      //console.log('adding clicked');
+      //let pid = $(this).data('pid'); 
+      let countValue = parseInt($(this).parent().parent().find(".counter-value").text());
 
-       // console.log(currentProduct);
+      var currentProduct = {
+        price: productDetails.discount,
+        image: productDetails.imageurl,
+        mrp: productDetails.mrp,
+        name: productDetails.name,
+        pid: productDetails.pid,
+        quantity: countValue
+      }
 
-        //======= cart value from server =======
-        const addingCartOnLive = app.params.callToServer( "add-cart", currentProduct ,
-        function success(Responce){
-              $f7.preloader.hide();
-              cartCount = Responce.data.cartCount ;
-              localStorage.setItem("cartCount", cartCount);
-              // categoryName = Responce.data.category;
-              $update();
-          });
-        //========
+      // console.log(currentProduct);
+
+      //======= cart value from server =======
+      const addingCartOnLive = app.params.callToServer("add-cart", currentProduct,
+        function success(Responce) {
+          $f7.preloader.hide();
+          cartCount = Responce.data.cartCount;
+          localStorage.setItem("cartCount", cartCount);
+          // categoryName = Responce.data.category;
+          $update();
+        });
+      //========
       //====== get card value from store ===
       // JSON.parse(localStorage.getItem('myItem'))
 
-    //  let cart =  JSON.parse(localStorage.getItem("cart"));
-    //  console.log("cart strored",cart);
-      
-    //   if(cart == null){
-    //    let cartList = [currentProduct];
-    //      //====== adding cart store ============
-    //     localStorage.setItem("cart",JSON.stringify(cartList));
-    //   }else{ //====== add new item on cart ========
-    //     cart.push(currentProduct);
-    //      //====== update cart store ============
-    //      localStorage.setItem("cart",JSON.stringify(cart));
-    //   }
-     
+      //  let cart =  JSON.parse(localStorage.getItem("cart"));
+      //  console.log("cart strored",cart);
+
+      //   if(cart == null){
+      //    let cartList = [currentProduct];
+      //      //====== adding cart store ============
+      //     localStorage.setItem("cart",JSON.stringify(cartList));
+      //   }else{ //====== add new item on cart ========
+      //     cart.push(currentProduct);
+      //      //====== update cart store ============
+      //      localStorage.setItem("cart",JSON.stringify(cart));
+      //   }
 
 
-        // console.log(JSON.parse(localStorage.getItem("cart")));
-        // console.log(localStorage.getItem("cart"));
-        // $update();
-        app.popup.close('.addproduct');
-    }) 
 
-    
-    
+      // console.log(JSON.parse(localStorage.getItem("cart")));
+      // console.log(localStorage.getItem("cart"));
+      // $update();
+      app.popup.close('.addproduct');
+    })
+
+
+
     $on('pageInit', () => {
-        
-        $f7.preloader.show();
 
-        app.params.callToServer( "product-list",'{"type":"'+ type+'","value":'+value+'}',success);
-        function success(Responce){
-              $f7.preloader.hide();
-              product = Responce.data.product ;
-              categoryName = Responce.data.category;
-              $update();
-          }
-   
-        });
+      $f7.preloader.show();
+
+      app.params.callToServer("product-list", '{"type":"' + type + '","value":' + value + '}', success);
+
+      function success(Responce) {
+        $f7.preloader.hide();
+        product = Responce.data.product;
+        categoryName = Responce.data.category;
+        $update();
+      }
+
+    });
 
     $on('pageBeforeRemove', () => {
-     
-    })    
+
+    })
 
     return $render;
   }

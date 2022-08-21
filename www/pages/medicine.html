@@ -1,0 +1,224 @@
+<template>
+    <div class="page page-medicine" id="pageId_${pageId}" data-name="medicine">
+        <div class="navbar ">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left  no-margin-right">
+                    <a href="#" class="link icon-only back">
+                        <i class="icon f7-icons size-22">arrow_left</i>
+                    </a>
+                </div>
+                <div class="title">
+                    <h5 class="no-margin-bottom">Product</h5>
+                </div>
+                <div class="right text-align-center">
+                    <a href="/notificationlist/" class="link">
+                        <i class="icon f7-icons size-22">bell_fill</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- main page content -->
+        <div class="page-content">
+            <!-- Product Images and titles -->
+            <div class="block">
+                <div class="row">
+                    <div class="col-100">
+                        <div class="card shadow-sm margin-bottom">
+                            <div class="card-content card-content-padding pb-0 position-relative">
+                                <div class="position-absolute no-padding margin-half z-index-9">
+                                    <button
+                                        class="button button-fill avatar avatar-30 no-padding rounded-circle color-blue margin-right-half"
+                                        type="button">
+                                        <i class="icons f7-icons">arrowshape_turn_up_right</i>
+                                    </button>
+                                    <!-- <button
+                                    class="button button-fill avatar avatar-30 no-padding rounded-circle color-pink">
+                                    <i class="icons f7-icons">heart</i>
+                                </button> -->
+                                </div>
+                                <div class="swiper-container imageswiper">
+                                    <!-- Additional required wrapper -->
+                                    <div class="swiper-wrapper">
+                                        <!-- Slides -->
+                                        <div class="swiper-slide text-align-center no-margin-bottom">
+                                            <img src="img/apple.png" alt="" class="h-190 margin-bottom-half" />
+                                        </div>
+                                        <!-- <div class="swiper-slide text-align-center no-margin-bottom">
+                                        <img src="img/apple.png" alt="" class="h-190 margin-bottom-half">
+                                    </div>
+                                    <div class="swiper-slide text-align-center no-margin-bottom">
+                                        <img src="img/apple.png" alt="" class="h-190 margin-bottom-half">
+                                    </div> -->
+                                    </div>
+                                    <!-- <div class="swiper-pagination imageswiper-pagination "></div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <p class="margin-bottom-half">
+                        <span class="text-opac">Fresh</span>
+                        <span class="float-right"><span class="text-opac">5.0 (1445 Reviews)</span> <i
+                                class="bi bi-star-fill text-warning"></i></span>
+                    </p> -->
+
+                        <h4 class="text-color-theme margin-bottom-half">${productDetails.name}</h4>
+                        <div class="row margin-bottom">
+                            <div class="col">
+                                <h5 class="no-margin-bottom"> ₹ ${productDetails.saleprice} <s
+                                        class="text-opac font-weight-light">₹ ${productDetails.MRP}</s></h5>
+                                <p class="text-opac">${productDetails.packing}</p>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <!-- button counter increamenter-->
+                                <div class="counter-number">
+                                    <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease">
+                                        <i class="icons f7-icons">minus</i>
+                                    </button>
+                                    <span class="counter-value">1</span>
+                                    <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase">
+                                        <i class="icons f7-icons">plus</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- delivery time -->
+            <!-- <div class="block">
+            <div class="row">
+                <div class="col-100">
+                    <div class="card card-light shadow-sm margin-bottom">
+                        <div class="card-content card-content-padding">
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <figure class="text-align-center no-margin-bottom avatar avatar-50 page-bg rounded">
+                                        <i class="icons f7-icons size-24 text-color-theme">clock</i>
+                                    </figure>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h6 class="margin-bottom-half">San Jose, USA
+                                        <span class="text-color-theme float-right small">Change
+                                            <i class="icons f7-icons">chevron_right</i>
+                                        </span>
+                                    </h6>
+                                    <p><span class="text-opac">Delivery on:</span> <strong>7 Dec 2021</strong></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+            <!-- description of product -->
+            <div class="block">
+                <div class="row margin-bottom">
+                    <div class="col-100">
+                        <div class="card shadow-sm margin-bottom">
+                            <!-- <div class="card-header">
+                                Product details
+                            </div> -->
+                            <div class="card-content card-content-padding text-align-center_">
+                                
+                                <p>
+                                    <strong>
+                                        Composition:
+                                    </strong>
+                                </p>
+                                <p class="text-opac">
+                                    ${productDetails.composition}
+                                </p>
+
+                                <p>
+                                    <strong>
+                                        Manufacturer:
+                                    </strong>
+                                </p>
+                                <p class="text-opac">
+                                    ${productDetails.manufacturer}
+                                </p>
+                                <p>
+                                    <strong>
+                                        Details:
+                                    </strong>
+                                </p>
+                                <p class="text-opac">
+                                    ${productDetails.details}
+                                </p>
+
+                            </div>
+                        </div>
+                        <p class="text-opac small">** if the seal of the product is broken it will ne non-returnable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</template>
+<script>
+    export default (props, {
+        $f7,
+        $theme,
+        $on,
+        $update,
+        $
+    }) => {
+        var app = $f7;
+        let product = props.medicine;
+        let type = "medicine";
+        let productDetails = {
+            MRP: "",
+            category_id: "",
+
+            details: "",
+            discount: "",
+            id: "",
+            img: "",
+            name: "",
+
+            saleprice: "",
+            packing: "",
+            manufacturer: "",
+
+        };
+        const pageId = app.params.uuid();
+
+        $(document).on('click', '#pageId_' + pageId + ' .add-to-card-button', function (e) {
+            console.log(productDetails);
+            productDetails = $(this).dataset();
+            console.log(productDetails);
+            $update();
+            app.popup.open('.addproduct');
+        })
+
+        $on('pageInit', () => {
+
+            $f7.preloader.show();
+
+            app.params.callToServer("product-details", '{"product":"' + product + '","type":"' + type + '"}',
+                success);
+
+            function success(Responce) {
+                $f7.preloader.hide();
+                productDetails = Responce.data.productDetails;
+                $update();
+                console.log(productDetails);
+            }
+
+        });
+
+
+        return $render;
+    }
+</script>
