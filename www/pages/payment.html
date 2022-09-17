@@ -49,6 +49,8 @@
             </div>
         </div>
 
+        ${cartCount !=0 && $h`
+
         <!-- Apply coupon code -->
         <!-- <div class="block">
             <div class="row margin-bottom-half">
@@ -182,6 +184,8 @@
             </div>
         </div>
 
+        `}
+
     </div>
 
     <!-- footer static -->
@@ -259,7 +263,12 @@
 
         const finalCheckout = ()=>{
             $f7.preloader.show();
-            app.params.callToServer( "final-checkout",'', success);
+            var fordata  = app.form.getFormData("#cart-address-form");
+            console.log(fordata);
+            //get for details //
+
+
+            app.params.callToServer( "final-checkout",fordata, success);
             function success(ResponceData){
                 $f7.preloader.hide();
               //  updateCurrentCart();

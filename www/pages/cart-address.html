@@ -25,216 +25,387 @@
 
         <!-- main page content -->
         <div class="page-content has-footer">
-            <form id="cart-address-form">
-            <!-- wizard links -->
-            <div class="block">
-                <div class="row justify-content-between wizard-wrapper margin-bottom elevation-2  top-20">
-                    <div class="col-33">
-                        <a href="/cart/" class="wizard-link filled">
-                            <i class="icons f7-icons elevation-2">bag</i>
-                            <span class="wizard-text">${type}</span>
-                        </a>
-                    </div>
-                    <div class="col-33">
-                        <a href="/address/" class="wizard-link active">
-                            <i class="icons f7-icons elevation-2">placemark</i>
-                            <span class="wizard-text">Address</span>
-                        </a>
-                    </div>
-                    <div class="col-33">
-                        <a href="/payment/" class="wizard-link">
-                            <i class="icons f7-icons elevation-2">creditcard</i>
-                            <span class="wizard-text">Payment</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="block margin-bottom-half">
-
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Doctor Name</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="doctor" value="" validate required />
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
 
 
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Sample Collection date</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="date" value="" />
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Sample Collection date</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="time" value="" required validate/>
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
 
-                
-
-                
-
-            </div>
-
-            
-            <div id="labAddressSelectBlock" style="display: none;">
-
-                <!-- cart items -->
+            <form class="form-store-data" id="cart-address-form">
+                <!-- wizard links -->
                 <div class="block">
-                    <div class="row margin-bottom-half">
-                        <div class="col align-self-center">
-                            <h5 class="no-margin-bottom">
-
-                                ${type == 'Lab test' && $h`
-                                <p>Sample Collection Location</p>
-                                `}
-                                ${type != 'Lab test' && $h`
-                                <p>Delivery location</p>
-                                `}
-
-                            </h5>
+                    <div class="row justify-content-between wizard-wrapper margin-bottom elevation-2  top-20">
+                        <div class="col-33">
+                            <a href="/cart/" class="wizard-link filled">
+                                <i class="icons f7-icons elevation-2">bag</i>
+                                <span class="wizard-text">${type}</span>
+                            </a>
                         </div>
-                        <div class="col-auto pe-0 align-self-center">
-                            <a href="/addresses/" class="link text-color-theme">Change <i
-                                    class="icons f7-icons">chevron_right</i></a>
+                        <div class="col-33">
+                            <a href="/address/" class="wizard-link active">
+                                <i class="icons f7-icons elevation-2">placemark</i>
+                                <span class="wizard-text">Address</span>
+                            </a>
+                        </div>
+                        <div class="col-33">
+                            <a href="/payment/" class="wizard-link">
+                                <i class="icons f7-icons elevation-2">creditcard</i>
+                                <span class="wizard-text">Payment</span>
+                            </a>
                         </div>
                     </div>
                 </div>
+                
 
-                <div class="block">
-                    <div class="row">
+                ${typeCode == 'labtest' && $h`
 
+                        <!-- oreder note  -->
 
-                        <div class="col-100 medium-50">
-                            <div class="card elevation-2 product margin-bottom-half">
-                                <div class="card-header">
-                                    <!-- for default address  -->
-
-                                    <div class="row">
-                                        <div class="col-auto align-self-center md">
-                                            <!-- <label class="item-radio item-radio-icon-start item-content">
-                                            <input type="radio" name="defaultAddress" value="${item.id}" checked />
-                                            <i class="icon icon-radio"></i>
-                                        </label>   -->
-
-                                        </div>
-                                        <div class="col align-self-center no-padding-left">
-                                            <h5 class="no-margin-bottom">${item.type}<br />
-                                                <span class="text-opac small">Primary Address</span>
-                                            </h5>
-                                        </div>
-                                        <div class="col-auto align-self-center">
-                                            <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
-                                                    class="icons f7-icons">square_pencil</i></a>
-                                            <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
-                                        </div>
-                                    </div>
-
+                        <!-- general details  -->
+                        <div class="block margin-bottom-half ">
+                            <div class="row margin-bottom-half">
+                                <div class="col">
+                                    <h5 class="no-margin-bottom">
+                                        <p>Order Note</p>
+                                    </h5>
                                 </div>
-                                <div class="card-content card-content-padding">
-                                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                                class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
-                            </iframe> -->
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="addressHeader">
-                                                ${item.name} ( ${item.mobile} )
-                                            </div>
-                                            <div>
-                                                ${item.address}, ${item.landmark}, ${item.pin}
-                                            </div>
+                            </div>
+                            <div class="row margin-bottom-half">
+                                <div class="col">
 
-                                        </div>
-                                        <div class="col-auto align-self-center">
-                                            <a href="#"><i
-                                                    class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
+                                    <div class="card elevation-2">
+                                        <div class="list form-list ">
+                                            <ul class="padding-vertical-half">
+                                                <li class="padding-vertical-half">
+                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup">
+
+                                                        <div class="item-content item-input">
+                                                            <div class="item-inner">
+                                                                <div class="item-title item-floating-label">Select Patient</div>
+                                                                <div class="item-input-wrap">
+                                                                    <!-- <input type="text" name="time" value="" /> -->
+                                                                    <select name="patient">
+                                                                        ${patientList.map((item) => $h`
+                                                                        <option value="${item.id}">${item.name} - ${item.gender} - ${item.age}y</option>
+                                                                        `)}
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="item-content item-input">
+                                                    <div class="item-inner">
+                                                        <!-- "item-floating-label" class on item title -->
+                                                        <div class="item-title item-floating-label">Doctor Name</div>
+                                                        <div class="item-input-wrap">
+                                                            <input type="text" name="doctor" value="" validate required />
+                                                            <span class="input-clear-button"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="item-content item-input">
+                                                    <div class="item-inner">
+                                                        <!-- "item-floating-label" class on item title -->
+                                                        <div class="item-title item-floating-label">Sample Collection date</div>
+                                                        <div class="item-input-wrap">
+                                                            <input id="calendar-modal" class="calendar calendar-init"
+                                                                data-open-in="customModal" data-date-format="dd/mm/yyyy" 
+                                                                type="text" name="date" value="" required validate />
+                                                            <span class="input-clear-button"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li class="padding-vertical-half">
+                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup">
+
+                                                        <div class="item-content item-input">
+                                                            <div class="item-inner">
+                                                                <div class="item-title item-floating-label">Select Time Slot
+                                                                </div>
+                                                                <div class="item-input-wrap">
+                                                                    <!-- <input type="text" name="time" value="" /> -->
+                                                                    <select name="slot">
+                                                                        ${timeSchedule.map((item) => $h`
+                                                                        <option value="${item}">${item}</option>
+                                                                        `)}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <!-- sample collection note  -->
+                        <div class="block ">
+                            <div class="row margin-bottom-half">
+                                <div class="col">
+                                    <h5 class="no-margin-bottom">
+                                        <p>Sample Collection Note</p>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row margin-bottom-half">
+                                <div class="col">
+
+                                    <div class="card elevation-2">
+                                        <div class="list md ">
+                                            <ul>
+                                                <li>
+                                                    <label class="item-radio item-radio-icon-start item-content">
+                                                        <input type="radio" name="collection_type" value="centre" checked />
+                                                        <i class="icon icon-radio text-color-theme"></i>
+                                                        <div class="item-inner">
+                                                            <div class="">Sample collection at centre</div>
+                                                        </div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label class="item-radio item-radio-icon-start item-content">
+                                                        <input type="radio" name="collection_type" value="home" />
+                                                        <i class="icon icon-radio text-color-theme"></i>
+                                                        <div class="item-inner">
+                                                            <div class="">Home sample collection request
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
+                        <div id="labAddressSelectBlock" style="display: none;">
+
+                            <!-- cart items -->
+                            <div class="block">
+                                <div class="row margin-bottom-half">
+                                    <div class="col align-self-center">
+                                        <h5 class="no-margin-bottom">
+
+                                    
+                                            <p>Sample Collection Location</p>
+                                            
+                                           
+
+                                        </h5>
+                                    </div>
+                                    <div class="col-auto pe-0 align-self-center">
+                                        <a href="/addresses/" class="link text-color-theme">Change <i
+                                                class="icons f7-icons">chevron_right</i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="block">
+                                <div class="row">
 
 
-                    </div>
-                </div>
-            </div>
+                                    <div class="col-100 medium-50">
+                                        <div class="card elevation-2 product margin-bottom-half">
+                                            <div class="card-header">
+                                                <!-- for default address  -->
 
-            ${type == 'Lab test' && $h`
-             <!-- oreder note  -->
-             <div class="block ">
-                <div class="row margin-bottom-half">
-                    <div class="col">
-                        <h5 class="no-margin-bottom">
-                            <p>Order Note</p>
-                        </h5>
-                    </div>
-                </div>
-                <div class="row margin-bottom-half">
-                    <div class="col">
+                                                <div class="row">
+                                                    <div class="col-auto align-self-center md">
+                                                        <!-- <label class="item-radio item-radio-icon-start item-content">
+                                                    <input type="radio" name="defaultAddress" value="${item.id}" checked />
+                                                    <i class="icon icon-radio"></i>
+                                                </label>   -->
 
-                        <div class="card elevation-2">
-                            <div class="list md ">
-                                <ul>
-                                    <li>
-                                        <label class="item-radio item-radio-icon-start item-content">
-                                            <input type="radio" name="orderNote" value="centre" checked />
-                                            <i class="icon icon-radio text-color-theme"></i>
-                                            <div class="item-inner">
-                                                <div class="">Sample collection at centre</div>
+                                                    </div>
+                                                    <div class="col align-self-center no-padding-left">
+                                                        <h5 class="no-margin-bottom">${item.type}<br />
+                                                            <span class="text-opac small">Primary Address</span>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-auto align-self-center">
+                                                        <a href="/editaddress/${item.id}/"
+                                                            class="btn btn-link text-color-theme"><i
+                                                                class="icons f7-icons">square_pencil</i></a>
+                                                        <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="item-radio item-radio-icon-start item-content">
-                                            <input type="radio" name="orderNote" value="home" />
-                                            <i class="icon icon-radio text-color-theme"></i>
-                                            <div class="item-inner">
-                                                <div class="">Home sample collection request
+                                            <div class="card-content card-content-padding">
+                                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
+                                        class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
+                                    </iframe> -->
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="addressHeader">
+                                                            ${item.name} ( ${item.mobile} )
+                                                        </div>
+                                                        <div>
+                                                            ${item.address}, ${item.landmark}, ${item.pin}
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-auto align-self-center">
+                                                        <a href="#"><i
+                                                                class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </label>
-                                    </li>
-                                </ul>
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                `}
+
+
+                ${typeCode == 'medicine' && $h`
+
+                    <!-- general details  -->
+                    <div class="block margin-bottom-half ">
+                        <div class="row margin-bottom-half">
+                            <div class="col">
+                                <h5 class="no-margin-bottom">
+                                    <p>Order Note</p>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-half">
+                            <div class="col">
+
+                                <div class="card elevation-2">
+                                    <div class="list form-list ">
+                                        <ul class="padding-vertical-half">
+                                            <li class="padding-vertical-half">
+                                                <a class="item-link smart-select smart-select-init" data-open-in="popup">
+
+                                                    <div class="item-content item-input">
+                                                        <div class="item-inner">
+                                                            <div class="item-title item-floating-label">Select Patient</div>
+                                                            <div class="item-input-wrap">
+                                                                <!-- <input type="text" name="time" value="" /> -->
+                                                                <select name="patient">
+                                                                    ${patientList.map((item) => $h`
+                                                                    <option value="${item.id}">${item.name} - ${item.gender}
+                                                                        - ${item.age}y</option>
+                                                                    `)}
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="item-content item-input">
+                                                <div class="item-inner">
+                                                    <!-- "item-floating-label" class on item title -->
+                                                    <div class="item-title item-floating-label">Doctor Name</div>
+                                                    <div class="item-input-wrap">
+                                                        <input type="text" name="doctor" value="" validate required />
+                                                        <span class="input-clear-button"></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-            
-            <div id="labAddressSelectBlock" style="display: none;">
+                    <!-- cart items -->
+                    <div class="block">
+                        <div class="row margin-bottom-half">
+                            <div class="col align-self-center">
+                                <h5 class="no-margin-bottom">
+
+                                    <p>Delivery location</p>
+                                </h5>
+                            </div>
+                            <div class="col-auto pe-0 align-self-center">
+                                <a href="/addresses/" class="link text-color-theme">Change <i
+                                        class="icons f7-icons">chevron_right</i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="row">
+
+
+                            <div class="col-100 medium-50">
+                                <div class="card elevation-2 product margin-bottom-half">
+                                    <div class="card-header">
+                                        <!-- for default address  -->
+
+                                        <div class="row">
+                                            <div class="col-auto align-self-center md">
+                                                <!-- <label class="item-radio item-radio-icon-start item-content">
+                                                <input type="radio" name="defaultAddress" value="${item.id}" checked />
+                                                <i class="icon icon-radio"></i>
+                                            </label>   -->
+
+                                            </div>
+                                            <div class="col align-self-center no-padding-left">
+                                                <h5 class="no-margin-bottom">${item.type}<br />
+                                                    <span class="text-opac small">Primary Address</span>
+                                                </h5>
+                                            </div>
+                                            <div class="col-auto align-self-center">
+                                                <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
+                                                        class="icons f7-icons">square_pencil</i></a>
+                                                <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-content card-content-padding">
+                                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
+                                    class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
+                                </iframe> -->
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="addressHeader">
+                                                    ${item.name} ( ${item.mobile} )
+                                                </div>
+                                                <div>
+                                                    ${item.address}, ${item.landmark}, ${item.pin}
+                                                </div>
+
+                                            </div>
+                                            <div class="col-auto align-self-center">
+                                                <a href="#"><i
+                                                        class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                `}
+
+
+                ${typeCode == 'category' && $h`
 
                 <!-- cart items -->
                 <div class="block">
@@ -242,13 +413,7 @@
                         <div class="col align-self-center">
                             <h5 class="no-margin-bottom">
 
-                                ${type == 'Lab test' && $h`
-                                <p>Sample Collection Location</p>
-                                `}
-                                ${type != 'Lab test' && $h`
                                 <p>Delivery location</p>
-                                `}
-
                             </h5>
                         </div>
                         <div class="col-auto pe-0 align-self-center">
@@ -317,185 +482,13 @@
 
                     </div>
                 </div>
-            </div>
 
-               <!-- cart select patient  -->
-            <div class="block">
-                <div class="row margin-bottom-half">
-                    <div class="col align-self-center">
-                        <h5 class="no-margin-bottom">
-                            <p>Select Patient</p>
-                          
-                        </h5>
-                    </div>
-                    <div class="col-auto pe-0 align-self-center">
-                        <a href="/family/" class="link text-color-theme">Change <i
-                                class="icons f7-icons">chevron_right</i></a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- selected patient -->
-            <div class="block" style="display: none;">
-                <div class="row">
-
-
-                    <div class="col-100 medium-50">
-                        <div class="card elevation-2 product margin-bottom-half">
-                            <div class="card-header">
-                                <!-- for default address  -->
-
-                                <div class="row">
-                                    <div class="col-auto align-self-center md">
-                                        <!-- <label class="item-radio item-radio-icon-start item-content">
-                                        <input type="radio" name="defaultAddress" value="${item.id}" checked />
-                                        <i class="icon icon-radio"></i>
-                                    </label>   -->
-
-                                    </div>
-                                    <div class="col align-self-center no-padding-left">
-                                        <h5 class="no-margin-bottom">${item.type}<br />
-                                            <span class="text-opac small">Primary Address</span>
-                                        </h5>
-                                    </div>
-                                    <div class="col-auto align-self-center">
-                                        <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
-                                                class="icons f7-icons">square_pencil</i></a>
-                                        <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="card-content card-content-padding">
-                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                            class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
-                        </iframe> -->
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="addressHeader">
-                                            ${item.name} ( ${item.mobile} )
-                                        </div>
-                                        <div>
-                                            ${item.address}, ${item.landmark}, ${item.pin}
-                                        </div>
-
-                                    </div>
-                                    <div class="col-auto align-self-center">
-                                        <a href="#"><i
-                                                class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
+                `}
 
 
 
-                </div>
-            </div>
-
-
-            `}
-
-            ${type != 'Lab test' && $h`
-
-
-
-            <!-- cart items -->
-            <div class="block">
-                <div class="row margin-bottom-half">
-                    <div class="col align-self-center">
-                        <h5 class="no-margin-bottom">
-
-                            ${type == 'Lab test' && $h`
-                            <p>Sample Collection Location</p>
-                            `}
-                            ${type != 'Lab test' && $h`
-                            <p>Delivery location</p>
-                            `}
-
-                        </h5>
-                    </div>
-                    <div class="col-auto pe-0 align-self-center">
-                        <a href="/addresses/" class="link text-color-theme">Change <i
-                                class="icons f7-icons">chevron_right</i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="block">
-                <div class="row">
-
-
-                    <div class="col-100 medium-50">
-                        <div class="card elevation-2 product margin-bottom-half">
-                            <div class="card-header">
-                                <!-- for default address  -->
-
-                                <div class="row">
-                                    <div class="col-auto align-self-center md">
-                                        <!-- <label class="item-radio item-radio-icon-start item-content">
-                                            <input type="radio" name="defaultAddress" value="${item.id}" checked />
-                                            <i class="icon icon-radio"></i>
-                                        </label>   -->
-
-                                    </div>
-                                    <div class="col align-self-center no-padding-left">
-                                        <h5 class="no-margin-bottom">${item.type}<br />
-                                            <span class="text-opac small">Primary Address</span>
-                                        </h5>
-                                    </div>
-                                    <div class="col-auto align-self-center">
-                                        <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
-                                                class="icons f7-icons">square_pencil</i></a>
-                                        <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="card-content card-content-padding">
-                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                                class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
-                            </iframe> -->
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="addressHeader">
-                                            ${item.name} ( ${item.mobile} )
-                                        </div>
-                                        <div>
-                                            ${item.address}, ${item.landmark}, ${item.pin}
-                                        </div>
-
-                                    </div>
-                                    <div class="col-auto align-self-center">
-                                        <a href="#"><i
-                                                class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-            </div>
-
-
-
-
-            `}
-
-
-
-
-
-            <!-- pricing -->
-            <!-- <div class="block">
+                <!-- pricing -->
+                <!-- <div class="block">
                 <div class="row margin-bottom-half">
                     <div class="col align-self-center">
                         <h5 class="no-margin-bottom">Pricing</h5>
@@ -537,17 +530,23 @@
                     </div>
                     <div class="col-auto">₹ ${total}</div>
                 </div>
-            </div> -->
-
-            <!-- Button -->
-            <div class="block">
-                <div class="row margin-bottom">
-                    <div class="col align-self-center">
-                        <a href="/payment/" class="button button-large button-fill elevation-3 color-green">Next</a>
+                </div> -->
+                ${cartCount > 0 && $h`
+                <!-- Button -->
+                <div class="block">
+                    <div class="row margin-bottom">
+                        <div class="col align-self-center">
+                            <!-- <a href="/payment/" class="button button-large button-fill elevation-3 color-green">Next</a> -->
+                            <button 
+                                class="button button-large button-fill elevation-3 color-green">Checkout</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+                `}
+               
+            </form>
+
+
         </div>
 
         <!-- footer static -->
@@ -628,28 +627,57 @@
         let cartCount = 0;
         let shippingCost = 0;
         const pageId = app.params.uuid();
-        let type = "Medicine";
+        let type = "";
+        let typeCode = "";
+        let timeSchedule = [];
+        let patientList = [];
 
-        //date picker calender 
-        app.params.authHeader();
-
-        // Custom modal
-        console.log("calender",calendarModal);
+        /*
         calendarModal = $f7.calendar.create({
-            inputEl: '#calendar-modal',
             openIn: 'customModal',
             timePicker: false,
-            header: true,
-            footer: true,
+            // header: true,
+            //footer: true,
+            closeOnSelect: true,
+            animate: true,
             // dateFormat: { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' },
             dateFormat: 'dd/mm/yyyy',
             on: {
                 opened: function () {
-                  console.log('Calendar opened')
+                    console.log('Calendar opened')
                 }
-              }
+            }
         });
-        console.log("calender",calendarModal);
+        */
+
+        const nextPayment = () => {
+
+            var fordata = app.form.getFormData("#cart-address-form");
+            console.log(fordata);
+            //$f7.preloader.show();
+            app.views.main.router.navigate('/payment/', {});
+            //get for details //
+
+            /*
+            app.params.callToServer( "final-checkout",'', success);
+            function success(ResponceData){
+                $f7.preloader.hide();
+              //  updateCurrentCart();
+                //item = ResponceData.data.defaultAddress[0]; 
+               // $update();
+                app.views.main.router.navigate('/payment/', {
+                    ignoreCache: true,
+                    reloadCurrent: true,
+                });
+                app.views.main.router.clearPreviousHistory();
+            } */
+
+
+        }
+
+
+        app.params.authHeader();
+
         let removeCurrentProduct = (pid) => {
             $f7.preloader.show();
             //=======remove cart items from server =======
@@ -664,6 +692,8 @@
         }
 
         const updateCurrentCart = (Responce) => {
+            
+           
             cartList = Responce.cartContent;
             totalQuantity = Responce.totalQuantity;
             total = Responce.total;
@@ -671,11 +701,25 @@
             cartCount = Responce.cartCount;
             shippingCost = Responce.shippingCost;
             type = Responce.type;
+            typeCode = Responce.typeCode;
+            
+            console.log(typeCode,'typeCode');
+            if (typeCode == 'labtest') {
+                timeSchedule = Responce.timeSchedule;
+                patientList = Responce.patientList;
+            }
+            if (typeCode == 'medicine') {
+                patientList = Responce.patientList;
+            }
+           // calendarModal.inputEl = "#calendar-modal";
+
             $update();
+         
+
         }
 
         // === display Address selection button list ===
-        $(document).on('change', "#pageId_" + pageId + " input[name='orderNote']", function (e) {
+        $(document).on('change', "#pageId_" + pageId + " input[name='collection_type']", function (e) {
             let checkeedVal = $(this).val();
             if (checkeedVal == 'home') {
                 $('#labAddressSelectBlock').show();
@@ -687,6 +731,20 @@
 
         });
 
+        $(document).on('submit','#cart-address-form',function(e){
+            e.preventDefault();
+            var fordata = app.form.getFormData("#cart-address-form");
+            console.log(fordata);
+            //$f7.preloader.show();
+            app.views.main.router.navigate('/payment/', {});
+        });
+
+
+        $on('pageInit', () => {
+
+            console.log(" init ");
+
+        });
 
 
 
@@ -704,8 +762,10 @@
 
 
 
+        });
 
-
+        $on('pageBeforeRemove', () => {
+            //calendarModal.destroy();
         });
 
         return $render;
