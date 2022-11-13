@@ -94,12 +94,10 @@
          }, function(err, status){
                   // console.log(err.response);
                  $f7.preloader.hide();
-                let msg = JSON.parse(err.response).message.otp;
-
-
-
-                 console.log(msg);
-                //  console.log(JSON.parse(err.response).message);
+                let msg = JSON.parse(err.response).message;
+                
+                console.log(msg);
+                 
 
 
                 // var myObj = JSON.parse(err.response).message;
@@ -112,7 +110,7 @@
                  // let validationError = JSON.stringify(JSON.parse(err.response).message.message);
                  // console.log(validationError);
                  let toastBottom = app.toast.create({
-                 text: "The otp must not be greater than 6 characters. ",
+                 text: msg,
                  closeTimeout: 2000,
                  });
                  toastBottom.open();

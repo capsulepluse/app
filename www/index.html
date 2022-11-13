@@ -92,7 +92,7 @@
                   <a href="/contactus/" class="panel-close "><i class="f7-icons size-18">question</i> Help</a>
                 </li>
                 <li>
-                  <a href="" class="panel-close logout"><i class="f7-icons size-18">layers_alt</i> Logout</a>
+                  <a href="" class="panel-close logout"><i class="f7-icons size-18">power</i> Logout</a>
                 </li>
                 <!-- <li>
                   <a href="/pages/" class="panel-close"><i class="f7-icons size-18">doc_on_doc</i> All Pages</a>
@@ -149,13 +149,13 @@
               <li>
                 <a href="/pages/" class="panel-close"><i class="f7-icons size-18">doc_on_doc</i> All Pages</a>
               </li>
-            -->
+            
               <li>
                 <a href="/components/" class="panel-close"><i class="f7-icons size-18">layers_alt</i> F7 Componets</a>
               </li>
-              <li>
+               <li>
                 <a href="/login/" class="panel-close"><i class="f7-icons size-18">layers_alt</i> Logout</a>
-              </li> 
+              </li>  -->
 
 
             </ul>
@@ -229,6 +229,10 @@
 
   <!-- Cutom apps js -->
   <script src="js/app.js"></script>
+
+  <% if (process.env.TARGET === 'cordova') { %>
+    <script src="cordova.js"></script>
+    <% } %>
 </body>
 
 </html>

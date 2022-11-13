@@ -224,7 +224,8 @@
 }
 
 .view .page .page-content {
-	padding-top: 84px;
+	/* padding-top: 84px; */
+	padding-top: 70px;
 	display: flex;
 	flex-direction: column
 }
@@ -1951,7 +1952,8 @@ input.calendar-daterange {
 
 .footer ul li a span i,
 .footer ul li a span .icons {
-	font-size: 16px;
+	/* font-size: 16px; */
+	font-size: 24px;
 	height: 24px;
 	line-height: 24px;
 	width: 24px;
@@ -2460,13 +2462,14 @@ input.calendar-daterange {
 }
 
 .title-footer-twoline{
-	min-height: 55px;
+	height: 35px;
 	position: relative;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
 	padding:5px;
+	color: #000;
 	
 }
 .product figure img{
@@ -2500,3 +2503,86 @@ input.calendar-daterange {
 .max-h{
 	max-width: 164.11px;
 }
+.slider-text{
+	font-size: 12px;
+}
+.height-50{
+	height: 50px;
+}
+figure img {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+  }
+
+  .thum-parent {
+    display: flex;
+    /* height: 300px;  */
+    /* background-color: #000; */
+}
+
+.thum-child {
+    /* width: 100px; 
+    height: 100px;  */
+    margin: auto;  /* Magic! */
+}
+.category-title{
+	font-size: 12px;
+	color: #000;
+}
+.font-10{
+	font-size: 10px !important;
+}
+.small-12{
+	font-size: 12px !important;
+}
+.font-12{
+	font-size: 12px !important;
+}
+.font-11{
+	font-size: 11px !important;
+}
+.margin-bottom-mini {
+    margin-bottom: 6px !important;
+}
+.list .item-media+.item-inner {
+	margin-bottom: 1px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.card-content-padding-mini{
+	padding:6px !important;
+}
+.ptoduct-image{
+	/* line-height: 60px; */
+    /* height: 200px; */
+    width: 50%;
+	max-height:200px;
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: strech;
+}
+.flex-item {
+    /* padding: 5px; */
+    width: 320px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+

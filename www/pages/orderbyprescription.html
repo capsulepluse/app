@@ -21,12 +21,13 @@
 
     <div class="page-content has-footer">
       <!-- main page content -->
-      <div class="main-container container">
+      <div class="main-container container margin-bottom-half">
         <form id="prescript-submit-form">
+
           <!-- icons here -->
           <div class="block">
             <div class="row margin-bottom-half text-align-center">
-              <div class="col">
+              <div class="col" @click="${() => openCamera()}">
                 <i class="icon f7-icons size-50">camera</i>
                 <p>Camera</p>
               </div>
@@ -36,10 +37,40 @@
                 <p>Saved</p>
               </div>
 
-              <div class="col">
+              <div class="col" @click="${() => openGallery()}">
                 <i class="icon f7-icons size-50">photo_fill_on_rectangle_fill</i>
                 <p>gallery</p>
               </div>
+            </div>
+          </div>
+
+          <div class="block" >
+            <div class="row margin-bottom-half margin-left  padding-left" id="selected_prescription_container">
+              
+              
+              <!-- <div class="card_ elevation-2_ margin-half "> 
+                <div class="card-content padding-half_">
+                  <div style="display:none" name="prescrip_id" >27</div>
+                    <img slot="media" src="https://capsuleplus.in/storage/prescription/thumbnail/IYsWvcIXEp9Zmj4QJiDAydQiEW9kYFjdxfoaMfNa.jpg" width="75" alt="" /> 
+                </div>
+              </div>
+
+              <div class="card_ elevation-2_ margin-half "> 
+                <div class="card-content padding-half_">
+                  <div type="hidden" name="prescrip_id">28</div>
+                    <img slot="media" src="https://capsuleplus.in/storage/prescription/thumbnail/IYsWvcIXEp9Zmj4QJiDAydQiEW9kYFjdxfoaMfNa.jpg" width="75" alt="" /> 
+                </div>
+              </div>
+              <div class="card_ elevation-2_ margin-half "> 
+                <div class="card-content padding-half_">
+                  <div type="hidden" name="prescrip_id">27</div>
+                    <img slot="media" src="https://capsuleplus.in/storage/prescription/thumbnail/IYsWvcIXEp9Zmj4QJiDAydQiEW9kYFjdxfoaMfNa.jpg" width="75" alt="" /> 
+                </div>
+              </div>
+             -->
+        
+               
+       
             </div>
           </div>
 
@@ -47,7 +78,7 @@
           <div class="block">
             <div class="row margin-bottom-half">
               <div class="col">
-                <h5 class="no-margin-bottom">Helpful actions</h5>
+                <h5 class="no-margin-bottom"><p>Helpful actions</p></h5>
               </div>
             </div>
             <div class="row margin-bottom">
@@ -140,7 +171,7 @@
           <div class="block ">
             <div class="row margin-bottom-half">
               <div class="col">
-                <h5 class="no-margin-bottom">Order Note</h5>
+                <h5 class="no-margin-bottom"><p>Order Note</p></h5>
               </div>
             </div>
             <div class="row margin-bottom-half">
@@ -174,7 +205,8 @@
               </div>
             </div>
 
-            <input type="hidden" value="" id="selectedMedicineSerial" name="selectedMedicineSerial" />
+            <input type="hidden" value="" id="selectedMedicineSerial" name="no_of_medicine" />
+            <input type="hidden" value="" id="prescriptionIdList" name="prescription_id" />
 
           </div>
 
@@ -399,12 +431,10 @@
                   <div class="card-content card-content-padding">
                     <p>
                       <label class="checkbox margin-right-half">
-                        <input type="checkbox" name="termChecked" id="termCHeckId" value="termYes"  />
+                        <input type="checkbox" name="termChecked" id="termCHeckId" value="termYes" />
                         <i class="icon-checkbox"></i>
                       </label>
-                      ipsum dolor sits
-                      amet, consectetur adipisicing elit. Alias beatae illo nihil aut eius commodi sint eveniet aliquid
-                      eligendi ad delectus impedit tempore nemo!
+                      I agree to the <a class="external" href="https://capsuleplus.in/term-condition/" target="_blank">terms & conditions</a> and <a class="external" href="https://capsuleplus.in/privacy-policy/" target="_blank">privacy policy</a>
                     </p>
                   </div>
 
@@ -432,51 +462,51 @@
     <!-- footer static -->
     <footer class="footer">
       <div class="container">
-        <ul>
-          <li>
-            <a class="active" href="/home/">
-              <span>
-                <i class="icon f7-icons">house</i>
-                <span class="nav-text">Home</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/stats/">
-              <span>
-                <i class="icon f7-icons">chart_bar</i>
-                <span class="nav-text">Stats</span>
-              </span>
-            </a>
-          </li>
-          <li class="center-item">
-            <a href="/cart/">
-              <span>
-                <i class="icon f7-icons">cart</i>
-                <span class="nav-text">card-content</span>
-                <span class="countercart">3</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/style/">
-              <span>
-                <i class="icon f7-icons">circle_grid_hex</i>
-                <span class="nav-text">Style</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/settings/">
-              <span>
-                <i class="icon f7-icons">gear</i>
-                <span class="nav-text">Settings</span>
-              </span>
-            </a>
-          </li>
-        </ul>
+          <ul>
+              <li>
+                  <a class="active" href="/home/">
+                      <span>
+                          <i class="icon f7-icons">house</i>
+                          <span class="nav-text">Home</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a  href="/nearByLabList/">
+                      <span>
+                          <i class="icon f7-icons">eyedropper_halffull</i>
+                          <span class="nav-text">Lab</span>
+                      </span>
+                  </a>
+              </li>
+              <li class="center-item">
+                  <a href="/cart/">
+                      <span>
+                          <i class="icon f7-icons">cart</i>
+                          <span class="nav-text">card-content</span>
+                          <!-- <span class="countercart">3</span> -->
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/profile/">
+                      <span>
+                          <i class="icon f7-icons">person</i>
+                          <span class="nav-text">Profile</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/contactus/">
+                      <span>
+                          <i class="icon f7-icons">question_circle</i>
+                          <span class="nav-text">Help</span>
+                      </span>
+                  </a>
+              </li>
+          </ul>
       </div>
-    </footer>
+  </footer>
 
   </div>
 </template>
@@ -487,10 +517,189 @@
     $on
   }) => {
 
+    var app = $f7;
     const pageId = app.params.uuid();
     let numberList = [];
+    let prescriptionList = [];
 
- 
+    //file upload 
+    const openCamera = () => {
+
+      var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 75,
+        destinationType: Camera.DestinationType.FILE_URI,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: Camera.PictureSourceType.CAMERA,
+        encodingType: Camera.EncodingType.JPEG,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: false,
+        correctOrientation: true
+      }
+
+      navigator.camera.getPicture(function (imageURI) {
+          console.log(imageURI);
+          fileUpload(imageURI);
+
+        }, function (message) {
+          console.log('Failed because: ' + message);
+        },
+        options
+      );
+    }
+
+    // const openGallery = () 
+
+    const openGallery = () => {
+
+      var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 75,
+        destinationType: Camera.DestinationType.FILE_URI,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        encodingType: Camera.EncodingType.JPEG,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: false,
+        correctOrientation: true
+      }
+
+      navigator.camera.getPicture(function (imageURI) {
+          console.log(imageURI);
+          fileUpload(imageURI);
+
+        }, function (message) {
+          console.log('Failed because: ' + message);
+        },
+        options
+      );
+    }
+
+
+
+    const fileUpload = (imageURI) => {
+      var progressValue = 0;
+       //open progessbar ==   
+       var dialog = $f7.dialog.progress('Uploading ... ', progressValue);
+           dialog.setText(progressValue+'%');
+
+      var options = new FileUploadOptions();
+      options.fileKey = "image";
+      options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+      options.mimeType = "image/jpeg";
+      options.headers = {
+        Connection: "close"
+      }
+      options.chunkedMode = false;
+
+      var params = {};
+      //params.ipdid = ipdid;
+      // params.oxyLabel = oxyLabel;
+      options.params = params;
+      var headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+        'Accept': 'application/json'
+      };
+      options.headers = headers;
+
+      var ft = new FileTransfer();
+      //need to add header with user details 
+      var url = app.params.remoteUrl + 'upload-prescription/';
+      
+     // handle progress bar 
+      ft.onprogress = function (progressEvent) {
+
+        if (progressEvent.lengthComputable) {
+          // Calculate the percentage
+         // console.log(progressEvent);
+          progressValue = parseInt((progressEvent.loaded / progressEvent.total)*100);
+        } else {
+          progressValue++;
+        }
+
+        // Display percentage in the UI
+        dialog.setProgress(progressValue);
+        dialog.setText(progressValue+'%');
+        console.log(progressValue);
+        
+      };
+
+      //handle file upload 
+      ft.upload(imageURI, url,
+        function (result) {
+          dialog.close();
+          
+          var data = JSON.parse(result.response);
+          console.log(data);
+
+          var imageURL = data.data.image;
+          var prescritionID = data.data.id;
+          var thumpURL = data.data.thumbnail;
+
+          //apend image on prescription area 
+          selectImage(prescritionID,thumpURL);
+          calculateSelectedPrescrip_id();
+
+        },
+        function (error) {
+          dialog.close();
+          var data = JSON.parse(error.body);
+
+          let toastBottom = app.toast.create({
+            text: "data.",
+            closeTimeout: 2000,
+            });
+            toastBottom.open();
+          console.log(error);
+          
+        }, options);
+
+    }
+    
+    //show uploaded image 
+    const selectImage = (imageId,imageUrl)=>{
+     
+      var selectedImage = '<div class="margin-half ">'+
+        '                <div class="card-content ">'+
+        '                  <div style="display:none" class="prescripId" >'+imageId+'</div>'+
+        '                  <img slot="media" src="'+imageUrl+'" width="75" alt=""/>'+
+        '                </div>'+
+        '              </div>';
+
+      $('#selected_prescription_container').append(selectedImage);  
+    }
+
+    const openSuccessPopUp = (result) => {
+
+      patientData = JSON.parse(result);
+
+      app.popup.open('#my-popup', true);
+      $('#my-popup').on('popup:opened', function (e) {
+        console.log('About popup open');
+        if (patientData.status) {
+          app.statusbar.setBackgroundColor('#4caf50');
+          app.statusbar.setTextColor('white');
+          $update();
+        } else {
+          app.statusbar.setBackgroundColor('#f44336');
+          app.statusbar.setTextColor('white');
+          $update();
+        }
+      });
+
+
+    }
+
+    const closePopUp = () => {
+      console.log("close hua ");
+      pageRefreh();
+      app.statusbar.setBackgroundColor('#ffffff');
+      app.statusbar.setTextColor('black');
+      app.popup.close('#my-popup', true);
+    }
+
+
+    //end file upload 
 
     //calculate selected list
     const calculateSelectedNumber = () => {
@@ -506,15 +715,32 @@
       $('#selectedMedicineSerial').val(JSON.stringify(numberList))
 
     }
+    
+
+    const calculateSelectedPrescrip_id = () => {
+      prescriptionList = [];
+      $('#prescriptionIdList').val("")
+
+      let selectedButton = '#pageId_' + pageId + ' #selected_prescription_container .prescripId';
+      $(selectedButton).each(function (e) {
+        let nbr = $(this).text();
+        prescriptionList.push(nbr);
+      });
+      console.log(prescriptionList);
+      $('#prescriptionIdList').val(JSON.stringify(prescriptionList))
+
+    }
+
+
 
 
     // === display medicine selection button list ===
     $(document).on('change', "#pageId_" + pageId + " input[name='orderNote']", function (e) {
       let checkeedVal = $(this).val();
-      if(checkeedVal == 'selected'){
-          $('#medicineSelectButton').show();
-        }else{
-          $('#medicineSelectButton').hide();
+      if (checkeedVal == 'selected') {
+        $('#medicineSelectButton').show();
+      } else {
+        $('#medicineSelectButton').hide();
       }
 
     });
@@ -534,24 +760,48 @@
     });
 
     //submit final prescription form
-    $(document).on('submit', '#prescript-submit-form', function (e) {
+    $(document).on('submit', '#pageId_' + pageId + ' #prescript-submit-form', function (e) {
       e.preventDefault();
 
-      let formData =  app.form.convertToData('#prescript-submit-form');
+      let formData = app.form.convertToData('#pageId_' + pageId + ' #prescript-submit-form');
       let isChecked = e.target["termCHeckId"].checked;
-      if(isChecked){ // form is ready 
+      if (isChecked) { // form is ready 
         //TODO : need to add file upload functionality
-        console.log(formData);
-
-      }else{
+        
+        if (prescriptionList.length !== 0) {
+              console.log(formData);
+              $f7.preloader.show();
+              //=======remove cart items from server =======
+              app.params.callToServer("order-by-prescription", formData,
+                  function success(Responce) {
+                      $f7.preloader.hide();
+                      //if successfully submited 
+                      if(Responce.success){
+                          app.views.main.router.navigate('/thankyouorder/', {
+                            ignoreCache: true,
+                            reloadCurrent: true,
+                          });
+                          app.views.main.router.clearPreviousHistory();
+                      }
+                  
+                  });
+          } else {
+            let toastBottom = app.toast.create({
+              text: "Please upload prescrition before submit !!",
+              closeTimeout: 2000,
+            });
+            toastBottom.open();
+          } 
+            
+      } else {
         let toastBottom = app.toast.create({
           text: "Please checked the term before submit !!",
           closeTimeout: 2000,
         });
         toastBottom.open();
       }
-     
-      
+
+
 
     });
 

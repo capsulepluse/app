@@ -33,7 +33,7 @@ var routes = [
     // componentUrl: './pages/stats.html',
     name: 'home',
     pageAfterIn(e, page) {
-      // app.views.main.router.clearPreviousHistory();
+      app.views.main.router.clearPreviousHistory();
       // app.statusbar.setBackgroundColor('#f4fbf7');
       //   app.statusbar.setTextColor('black');
     },
@@ -321,7 +321,12 @@ var routes = [
   componentUrl: './pages/nearByLab_list.html',
   name: 'lab-list'
 },
-
+ // test page 
+ {
+  path: '/labtestlist/:type/:value/',
+  componentUrl: './pages/labtest_list.html',
+  name: 'product_list',
+},
 
 //======== end lab =======
   // Payment

@@ -27,24 +27,24 @@
 
             <!-- offerslides -->
             <div class="block  skeleton-text skeleton-effect-wave placeHolderOut">
-                <div class=" margin-bottom-half " >
+                <div class=" " >
                     <!-- Additional required wrapper -->
                     <div class="card-content  ">
-                        <div class=" rounded skeleton-block " style=" height: 130px; width:100%; "></div>
+                        <div class=" rounded skeleton-block " style=" height: 80px; width:100%; "></div>
                        
                     </div>
                    
                 </div>
             </div>
            
-            <div class="block">
-                <div class="swiper-container offerslidesHome margin-bottom-half " data-loop="false">
+            <div class="block" >
+                <div class="swipe swiper-container offerslidesHome margin-bottom-mini "   data-loop_="false">
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
 
                     </div>
-                    <div class="swiper-pagination pagination-offerslides-home">
-                    </div>
+                    <!-- <div class="swiper-pagination pagination-offerslides-home">
+                    </div> -->
                 </div>
             </div>
 
@@ -52,8 +52,8 @@
             <div class="block">
                 <div class="row">
                     <div class="col-100">
-                        <div class="card margin-bottom">
-                            <div class="card-content card-content-padding">
+                        <div class="card margin-bottom-mini">
+                            <div class="card-content card-content-padding_">
 
                                 
                                 <!-- <h5>Install PWA</h5> -->
@@ -76,14 +76,14 @@
             <div class="block">
                 <div class="row">
                     <div class="col-100 ">
-                        <div class="card elevation-2 margin-bottom">
+                        <div class="card elevation-2 margin-bottom-half">
                             <div class="mediaList customeList list">
                                 <ul>
                                     <li class="">
                                         <a class="item-link" href="/medicinelist/">
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <img slot="media" src="img/homepage/capsules.png" width="44"
+                                                    <img slot="media" src="img/homepage/order_medicine.svg" width="44"
                                                         alt="" />
                                                 </div>
                                                 <div class="item-inner">
@@ -102,7 +102,7 @@
                                         <a class="item-link" href="/orderbyprescription/">
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <img slot="media" src="img/homepage/medical-record.png" width="44"
+                                                    <img slot="media" src="img/homepage/order_by_prescription.svg" width="44"
                                                         alt="" />
                                                 </div>
                                                 <div class="item-inner">
@@ -119,7 +119,7 @@
                                         <a class="item-link" href="/reorders/">
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <img slot="media" src="img/homepage/pills.png" width="44" alt="" />
+                                                    <img slot="media" src="img/homepage/re_odered.svg" width="44" alt="" />
                                                 </div>
                                                 <div class="item-inner">
                                                     <div class="item-title">
@@ -135,7 +135,7 @@
                                         <a class="item-link" href="/nearByLabList/">
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <img slot="media" src="img/homepage/microscope.png" width="44"
+                                                    <img slot="media" src="img/homepage/labtest.svg" width="44"
                                                         alt="" />
                                                 </div>
                                                 <div class="item-inner">
@@ -160,7 +160,7 @@
             <div class="block">
                 <div class="row margin-bottom-half">
                     <div class="col">
-                        <h5 class="no-margin-bottom">Shop By Category</h5>
+                        <h6 class="no-margin-bottom">Shop By Category</h6>
                     </div>
                     <div class="col-auto">
                         <a href="/categoryList/" class="link text-color-theme">View All <i
@@ -171,7 +171,7 @@
 
             <!-- category blocks -->
             <div class="block">
-                <div class="row padding-right ">
+                <div class="row padding-left-half padding-right ">
 
 
                     
@@ -266,11 +266,11 @@
                                 <div class="card-content">
 
                                     <figure
-                                        class="no-margin-bottom avatar avatar-150_ page-bg_ rounded p-1 text-align-center">
-                                        <img class="rounded" src="${item.img}" alt="" />
+                                        class="no-margin-bottom avatar avatar-150_ rounded p-1 thum-parent">
+                                        <img class="rounded height-50 thum-child page-bg" src="${item.img}" alt="" />
                                     </figure>
-                                    <h6 class="text-muted text-align-center small title-footer-twoline">${item.name}
-                                    </h6>
+                                    <div class=" text-muted_ text-align-center font-10 title-footer-twoline">${item.name}
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -298,10 +298,10 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="/stats/">
+                        <a  href="/nearByLabList/">
                             <span>
-                                <i class="icon f7-icons">chart_bar</i>
-                                <span class="nav-text">Stats</span>
+                                <i class="icon f7-icons">eyedropper_halffull</i>
+                                <span class="nav-text">Lab</span>
                             </span>
                         </a>
                     </li>
@@ -310,23 +310,23 @@
                             <span>
                                 <i class="icon f7-icons">cart</i>
                                 <span class="nav-text">card-content</span>
-                                <span class="countercart">3</span>
+                                <!-- <span class="countercart">3</span> -->
                             </span>
                         </a>
                     </li>
                     <li>
-                        <a href="/style/">
+                        <a href="/profile/">
                             <span>
-                                <i class="icon f7-icons">circle_grid_hex</i>
-                                <span class="nav-text">Style</span>
+                                <i class="icon f7-icons">person</i>
+                                <span class="nav-text">Profile</span>
                             </span>
                         </a>
                     </li>
                     <li>
-                        <a href="/settings/">
+                        <a href="/contactus/">
                             <span>
-                                <i class="icon f7-icons">gear</i>
-                                <span class="nav-text">Settings</span>
+                                <i class="icon f7-icons">question_circle</i>
+                                <span class="nav-text">Help</span>
                             </span>
                         </a>
                     </li>
@@ -358,9 +358,9 @@
             const swiperHome = new Swiper(".offerslidesHome", {
                 slidesPerView: "1",
                 spaceBetween: 10,
-                pagination: {
+              /*  pagination: {
                     el: ".pagination-offerslides-home",
-                },
+                }, */
                 breakpoints: {
                     640: {
                         slidesPerView: 1,
@@ -382,18 +382,18 @@
                 let slideritems = '' +
                     ' <div class="swiper-slide">' +
                     '                                <div class="card elevation-2 card-theme">' +
-                    '                                    <div class="card-content card-content-padding_ ">' +
+                    '                                    <div class="card-content ">' +
                     '                                        <div class="row">' +
-                    '                                            <div class="col-50">' +
+                    '                                            <div class="col-40 thum-parent">' +
                     '                                            <img src="' + items.img +
-                    '" alt="" class="mw-100" />' +
+                    '                                                  " alt="" class="mw-100 thum-child" style="height:80px;" />' +
                     '                                            </div>' +
-                    '                                            <div class="col text-align-left align-self-center no-padding-left">' +
-                    '                                            <h6 class="fw-normal no-margin-bottom">' +
-                    items.line1 + '</h6>' +
-                    '                                            <h2>' + items.line2 + '</h2>' +
-                    '                                            <p>' + items.line3 + '<br /><strong>' +
-                    items.line4 + '</strong></p>' +
+                    '                                            <div class="col slider-text text-align-left align-self-center no-padding-left">' +
+                    '                                            <div class="fw-normal no-margin-bottom">' +
+                                                                          items.line1 + '</div>' +
+                    '                                            <div>' + items.line2 + '</div>' +
+                    '                                            <div>' + items.line3 + '<br /><strong>' +
+                                                                 items.line4 + '</strong></div>' +
                     '                                            </div>' +
                     '                                        </div>' +
                     '                                    </div>' +

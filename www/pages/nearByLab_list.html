@@ -39,24 +39,24 @@
 
 
             <div class="col-100 medium-50 large-33">
-              <a href="/productlist/labtest/${item.id}/">
-                <div class="card elevation-2 product margin-bottom-half">
+              <a href="/labtestlist/labtest/${item.id}/">
+                <div class="card elevation-2 product margin-bottom-mini">
                   <div class="card-content card-content-padding">
                     <div class="row">
                       <div class="col-auto">
-                        <figure class="text-align-center no-margin-bottom avatar avatar-60 page-bg rounded">
+                        <div class="text-align-center no-margin-bottom avatar avatar-60 page-bg_ rounded">
                           <img src="${item.img}" alt="" />
-                        </figure>
+                        </div>
                       </div>
                       <div class="col no-padding-left list">
-                        <div class="bold padding-bottom-half">${item.name} 
+                        <div class="bold ">${item.name} 
                           <!-- <i class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i> -->
                         </div>
                         <!-- <div href="#" class="text-normal text-color-theme "> 
                         </div> -->
                         <div class="item-footer lab-address">${item.address}</div>
                         <p class="small display-block">
-                          <span class="text-opac">${item.start_time} - ${item.end_time}</span>
+                          <span class="text-opac"> Booking-Time : ${item.start_time} - ${item.end_time}</span>
                           <!-- <span class="float-right"><span class="text-opac">2.5km</span> <i
                                       class="icons f7-icons">placemark</i></span> -->
                         </p>
@@ -88,7 +88,7 @@
       <div class="container">
         <ul>
           <li>
-            <a class="active" href="/home/">
+            <a href="/home/">
               <span>
                 <i class="icon f7-icons">house</i>
                 <span class="nav-text">Home</span>
@@ -96,38 +96,38 @@
             </a>
           </li>
           <li>
-            <a href="/stats/">
-              <span>
-                <i class="icon f7-icons">chart_bar</i>
-                <span class="nav-text">Stats</span>
-              </span>
+            <a  class="active"  href="/nearByLabList/">
+                <span>
+                    <i class="icon f7-icons">eyedropper_halffull</i>
+                    <span class="nav-text">Lab</span>
+                </span>
             </a>
-          </li>
+        </li>
           <li class="center-item">
             <a href="/cart/">
               <span>
                 <i class="icon f7-icons">cart</i>
                 <span class="nav-text">card-content</span>
-                <span class="countercart">3</span>
+                <!-- <span class="countercart">3</span> -->
               </span>
             </a>
           </li>
           <li>
-            <a href="/style/">
-              <span>
-                <i class="icon f7-icons">circle_grid_hex</i>
-                <span class="nav-text">Style</span>
-              </span>
+            <a href="/profile/">
+                <span>
+                    <i class="icon f7-icons">person</i>
+                    <span class="nav-text">Profile</span>
+                </span>
             </a>
-          </li>
-          <li>
-            <a href="/settings/">
-              <span>
-                <i class="icon f7-icons">gear</i>
-                <span class="nav-text">Settings</span>
-              </span>
+        </li>
+        <li>
+            <a href="/contactus/">
+                <span>
+                    <i class="icon f7-icons">question_circle</i>
+                    <span class="nav-text">Help</span>
+                </span>
             </a>
-          </li>
+        </li>
         </ul>
       </div>
     </footer>

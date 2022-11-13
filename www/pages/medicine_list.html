@@ -139,6 +139,7 @@
 
         <!-- search -->
         <div class="block">
+          
           <div class="row margin-bottom">
             <div class="col">
               <div class="list form-list no-margin">
@@ -161,6 +162,10 @@
               </button>
             </div>
           </div>
+
+
+
+
         </div>
 
 
@@ -178,11 +183,11 @@
         </div>
 
         <div class="block">
-          <div class="row">
+          <div class="row padding-right">
 
             ${product.map((item) => $h`
 
-            <div class="col-50 medium-33 large-25">
+            <div class="col-50 medium-33 large-25 padding-left-half no-padding-right">
               <div class="card elevation-2 product margin-bottom">
                 <div class="card-content card-content-padding">
                   <figure class="text-align-center">
@@ -298,51 +303,51 @@
     <!-- footer static -->
     <footer class="footer">
       <div class="container">
-        <ul>
-          <li>
-            <a class="active" href="/home/">
-              <span>
-                <i class="icon f7-icons">house</i>
-                <span class="nav-text">Home</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/stats/">
-              <span>
-                <i class="icon f7-icons">chart_bar</i>
-                <span class="nav-text">Stats</span>
-              </span>
-            </a>
-          </li>
-          <li class="center-item">
-            <a href="/cart/">
-              <span>
-                <i class="icon f7-icons">cart</i>
-                <span class="nav-text">card-content</span>
-                <span class="countercart">3</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/style/">
-              <span>
-                <i class="icon f7-icons">circle_grid_hex</i>
-                <span class="nav-text">Style</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/settings/">
-              <span>
-                <i class="icon f7-icons">gear</i>
-                <span class="nav-text">Settings</span>
-              </span>
-            </a>
-          </li>
-        </ul>
+          <ul>
+              <li>
+                  <a class="active" href="/home/">
+                      <span>
+                          <i class="icon f7-icons">house</i>
+                          <span class="nav-text">Home</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a  href="/nearByLabList/">
+                      <span>
+                          <i class="icon f7-icons">eyedropper_halffull</i>
+                          <span class="nav-text">Lab</span>
+                      </span>
+                  </a>
+              </li>
+              <li class="center-item">
+                  <a href="/cart/">
+                      <span>
+                          <i class="icon f7-icons">cart</i>
+                          <span class="nav-text">card-content</span>
+                          <!-- <span class="countercart">3</span> -->
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/profile/">
+                      <span>
+                          <i class="icon f7-icons">person</i>
+                          <span class="nav-text">Profile</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/contactus/">
+                      <span>
+                          <i class="icon f7-icons">question_circle</i>
+                          <span class="nav-text">Help</span>
+                      </span>
+                  </a>
+              </li>
+          </ul>
       </div>
-    </footer>
+  </footer>
 
 
 

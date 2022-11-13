@@ -8,11 +8,8 @@
             <i class="icon f7-icons size-22">arrow_left</i>
           </a>
         </div>
-        <div class="title text-align-center">
-          <div class="logo-small">
-            <img src="img/logo.png" alt="" class="img" />
-            <!-- <h6>Capsule +<br /><small></small></h6> -->
-          </div>
+        <div class="title">
+          <h5 class="no-margin-bottom">${categoryName}</h5>
         </div>
         <div class="right text-align-center">
           <a href="/notificationlist/" class="link">
@@ -24,71 +21,60 @@
 
 
 
-
+    
     <div class="page-content has-footer">
+      
       <!-- main page content -->
       <div class="main-container container">
 
         <!-- search -->
-        <div class="block">
-          <div class="row margin-bottom">
-            <div class="col">
-              <div class="list form-list no-margin">
-                <ul>
-                  <li class="item-content item-input">
-                    <div class="item-inner">
-                      <div class="item-title item-floating-label">Search</div>
-                      <div class="item-input-wrap">
-                        <input type="text" name="search" />
-                        <span class="input-clear-button"></span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+        <div class="block margin-bottom-mini">
+          
+          <div class="searchbar-backdrop"></div>
+      <!-- <div class="searchbar-backdrop"></div> -->
+            <form class="searchbar">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search" />
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button">Cancel</span>
               </div>
-            </div>
-            <div class="col-auto">
-              <button class="button button-fill button-large padding elevation-3">
-                <i class="icon f7-icons">search</i>
-              </button>
-            </div>
+            </form>
           </div>
-        </div>
 
 
 
-        <!-- Products -->
-        <div class="block">
-          <div class="row margin-bottom-half">
-            <div class="col">
-              <h5 class="no-margin-bottom">${categoryName}</h5>
-            </div>
-            <!-- <div class="col-auto">
-              <a href="" class="link text-color-theme">View All <i class="icons f7-icons">chevron_right</i></a>
-            </div> -->
-          </div>
-        </div>
+      
 
         ${type == "category" && $h`
         <div class="block">
-          <div class="row">
+          <div class="row padding-right">
 
             ${product.map((item) => $h`
 
-            <div class="col-50 medium-33 large-25">
+            <div class="col-50 medium-33 large-25 padding-left-half no-padding-right">
               <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="${item.img}" alt="" />
-                  </figure>
+                <div class="card-content card-content-padding-mini">
+                  <div class="row">
+                    <!-- <div class="text-align-center avatar ptoduct-image rounded thum-parent">
+                      <img src="${item.img}" class="thum-child" alt="" />
+                    </div> -->
+                    <figure class="text-align-center">
+                      <img src="${item.img}" alt="" />
+                    </figure>
+
+                  </div>
+                 
                   <!-- <p class="">
                     <small class="text-opac">Fresh</small>
                     <small class="float-right"><span class="text-opac">4.5</span> <i
                         class="icons f7-icons text-color-yellow">star</i></small>
                   </p> -->
                   ${type == "category" && $h`
-                  <a href="/product/${item.id}/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">${item.name}</h6>
+                  <a href="/product/${item.id}/" class="text-normal margin-top-half display-block">
+                    <div class="text-color-theme font-12">${item.name}</div>
                   </a>
                   `}
 
@@ -101,9 +87,10 @@
                   <div class="row">
                     <div class="col">
                       <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
+                        <small class="font-12">MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
                           ${item.MRP}</small><br />
-                        ₹ ${item.discount}
+                          <span class="font-12">₹ ${item.discount}</span>
+                        
                       </p>
                     </div>
                     <div class="col-auto no-padding-left ">
@@ -126,14 +113,64 @@
         `}
 
         ${type == "labtest" && $h`
+
+
+         <!-- Quick List -->
+         <div class="block">
+          <div class="row">
+              <div class="col-100 ">
+                  <div class="card elevation-2 margin-bottom-half">
+                      <div class="mediaList customeList list">
+                          <ul>
+                             
+                            ${product.map((item) => $h`
+
+                              <li class="">
+                                  <a class="item-link" href="#">
+                                      <div class="item-content">
+                                          <!-- <div class="item-media">
+                                              <img slot="media" src="img/homepage/microscope.png" width="44"
+                                                  alt="" />
+                                          </div> -->
+                                          <div class="item-inner">
+                                              <div class="item-title font-12">${item.name}
+                                                  <div class="item-footer">
+                                                    <small>MRP</small> : <small class="text-opac small-10" style="text-decoration: line-through;">
+                                                      ₹ ${item.MRP}</small>
+                                                  </div>
+                                                  <div class="item-footer">₹ ${item.discount}</div>
+                                              </div>
+                                              <div class="col-auto font-10">
+                                                <span>Book Now</span>
+                                            </div> 
+                                          </div>
+                                         
+                                      </div>
+                                  </a>
+                              </li>
+                            `)}  
+
+
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
+
+
+
         <div class="block">
-          <div class="row margin-bottom-half">
+          <div class="row margin-bottom-mini">
 
             ${product.map((item) => $h`
 
             <div class="col-100 medium-50 large-33">
-              <div class="card elevation-2 labitem margin-bottom-half">
-                <div class="card-content card-content-padding">
+              <div class="card elevation-2 labitem margin-bottom-mini">
+                <div class="card-content ">
                   <div class="row">
                     <div class="col-auto">
                       <figure class="text-align-center">
@@ -141,12 +178,12 @@
                       </figure>
                     </div>
                     <div class="col no-padding-left align-self-center">
-                      <div class="text-color-theme bold">${item.name}</div>
+                      <div class="small-12">${item.name}</div>
                       <div class="row">
                         <div class="col">
-                          <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
+                          <small>MRP</small> : <small class="text-opac small-10" style="text-decoration: line-through;">₹
                             ${item.MRP}</small>
-                            <p class="text-opac bold"> ₹ ${item.discount}</p>  
+                            <p class="text-opac bold small-10"> ₹ ${item.discount}</p>  
                         </div>
                         <div class="col-auto text-align-right">
                           <button
@@ -245,54 +282,54 @@
 
     </div>
 
-    <!-- footer static -->
-    <footer class="footer">
+     <!-- footer static -->
+     <footer class="footer">
       <div class="container">
-        <ul>
-          <li>
-            <a class="active" href="/home/">
-              <span>
-                <i class="icon f7-icons">house</i>
-                <span class="nav-text">Home</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/stats/">
-              <span>
-                <i class="icon f7-icons">chart_bar</i>
-                <span class="nav-text">Stats</span>
-              </span>
-            </a>
-          </li>
-          <li class="center-item">
-            <a href="/cart/">
-              <span>
-                <i class="icon f7-icons">cart</i>
-                <span class="nav-text">card-content</span>
-                <span class="countercart">3</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/style/">
-              <span>
-                <i class="icon f7-icons">circle_grid_hex</i>
-                <span class="nav-text">Style</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/settings/">
-              <span>
-                <i class="icon f7-icons">gear</i>
-                <span class="nav-text">Settings</span>
-              </span>
-            </a>
-          </li>
-        </ul>
+          <ul>
+              <li>
+                  <a class="active" href="/home/">
+                      <span>
+                          <i class="icon f7-icons">house</i>
+                          <span class="nav-text">Home</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a  href="/nearByLabList/">
+                      <span>
+                          <i class="icon f7-icons">eyedropper_halffull</i>
+                          <span class="nav-text">Lab</span>
+                      </span>
+                  </a>
+              </li>
+              <li class="center-item">
+                  <a href="/cart/">
+                      <span>
+                          <i class="icon f7-icons">cart</i>
+                          <span class="nav-text">card-content</span>
+                          <!-- <span class="countercart">3</span> -->
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/profile/">
+                      <span>
+                          <i class="icon f7-icons">person</i>
+                          <span class="nav-text">Profile</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/contactus/">
+                      <span>
+                          <i class="icon f7-icons">question_circle</i>
+                          <span class="nav-text">Help</span>
+                      </span>
+                  </a>
+              </li>
+          </ul>
       </div>
-    </footer>
+  </footer>
 
 
 

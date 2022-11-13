@@ -28,7 +28,7 @@
 
         <!-- wizard links -->
         <div class="block">
-            <div class="row justify-content-between wizard-wrapper margin-bottom elevation-2  top-20">
+            <div class="row justify-content-between wizard-wrapper margin-bottom-half elevation-2 ">
                 <div class="col-33">
                     <a href="/cart/" class="wizard-link active">
                         <i class="icons f7-icons elevation-2">bag</i>
@@ -36,13 +36,13 @@
                     </a>
                 </div>
                 <div class="col-33">
-                    <a href="/address/" class="wizard-link">
+                    <a href="#" class="wizard-link">
                         <i class="icons f7-icons elevation-2">placemark</i>
                         <span class="wizard-text">Address</span>
                     </a>
                 </div>
                 <div class="col-33">
-                    <a href="/payment/" class="wizard-link">
+                    <a href="#" class="wizard-link">
                         <i class="icons f7-icons elevation-2">creditcard</i>
                         <span class="wizard-text">Payment</span>
                     </a>
@@ -54,7 +54,9 @@
         <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
-                    <h5 class="no-margin-bottom">${cartCount} ${type} in cart</h5>
+                    <h5 class="no-margin-bottom">
+                        <p>${cartCount} ${type} in cart</p>
+                    </h5>
                 </div>
                 <div class="col-auto pe-0 align-self-center">
                     <a href="/home/" class="link text-color-theme">Shop more <i class="icons f7-icons">chevron_right</i></a>
@@ -188,17 +190,18 @@
 
                     <div class="col-100 medium-50 large-33">
                         <div class="card elevation-2 product margin-bottom-half">
-                            <div class="card-content card-content-padding">
+                            <div class="card-content padding-half">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <figure class="text-center avatar-70 avatar">
+                                        <div class="text-center avatar-70 avatar">
                                             <img src="${item.image}" alt="" />
-                                        </figure>
+                                        </div>
                                     </div>
                                     <div class="col no-padding-left align-self-center">
                                         <div class="row">
                                             <div class="col">
-                                                <h6 class="text-color-theme margin-bottom-half">${item.name}</h6>
+                                                <div class="text-color-theme ">
+                                                    ${item.name}</div>
                                                 <p class="no-margin-bottom">
                                                     <small class="text-opac">Quantity : ${item.quantity}</small>
                                                 </p>
@@ -403,7 +406,7 @@
         <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
-                    <h5 class="no-margin-bottom">Pricing</h5>
+                    <h5 class="no-margin-bottom"><p>Pricing</p></h5>
                 </div>
             </div>
             <div class="row margin-bottom-half">
@@ -470,10 +473,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/stats/">
+                    <a  href="/nearByLabList/">
                         <span>
-                            <i class="icon f7-icons">chart_bar</i>
-                            <span class="nav-text">Stats</span>
+                            <i class="icon f7-icons">eyedropper_halffull</i>
+                            <span class="nav-text">Lab</span>
                         </span>
                     </a>
                 </li>
@@ -482,23 +485,23 @@
                         <span>
                             <i class="icon f7-icons">cart</i>
                             <span class="nav-text">card-content</span>
-                            <span class="countercart">${app.params.totalCartItems()}</span>
+                            <!-- <span class="countercart">${app.params.totalCartItems()}</span> -->
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/style/">
+                    <a href="/profile/">
                         <span>
-                            <i class="icon f7-icons">circle_grid_hex</i>
-                            <span class="nav-text">Style</span>
+                            <i class="icon f7-icons">person</i>
+                            <span class="nav-text">Profile</span>
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/settings/">
+                    <a href="/contactus/">
                         <span>
-                            <i class="icon f7-icons">gear</i>
-                            <span class="nav-text">Settings</span>
+                            <i class="icon f7-icons">question_circle</i>
+                            <span class="nav-text">Help</span>
                         </span>
                     </a>
                 </li>

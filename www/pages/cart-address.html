@@ -31,7 +31,7 @@
             <form class="form-store-data" id="cart-address-form">
                 <!-- wizard links -->
                 <div class="block">
-                    <div class="row justify-content-between wizard-wrapper margin-bottom elevation-2  top-20">
+                    <div class="row justify-content-between wizard-wrapper margin-bottom-half elevation-2">
                         <div class="col-33">
                             <a href="/cart/" class="wizard-link filled">
                                 <i class="icons f7-icons elevation-2">bag</i>
@@ -45,7 +45,7 @@
                             </a>
                         </div>
                         <div class="col-33">
-                            <a href="/payment/" class="wizard-link">
+                            <a href="#" class="wizard-link">
                                 <i class="icons f7-icons elevation-2">creditcard</i>
                                 <span class="wizard-text">Payment</span>
                             </a>
@@ -74,7 +74,7 @@
                                         <div class="list form-list ">
                                             <ul class="padding-vertical-half">
                                                 <li class="padding-vertical-half">
-                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup">
+                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
 
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
@@ -116,7 +116,7 @@
                                                 </li>
 
                                                 <li class="padding-vertical-half">
-                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup">
+                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
 
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
@@ -224,9 +224,9 @@
 
                                                     </div>
                                                     <div class="col align-self-center no-padding-left">
-                                                        <h5 class="no-margin-bottom">${item.type}<br />
+                                                        <div class="no-margin-bottom"><p>${item.type}</p>
                                                             <span class="text-opac small">Primary Address</span>
-                                                        </h5>
+                                                        </div>
                                                     </div>
                                                     <div class="col-auto align-self-center">
                                                         <a href="/editaddress/${item.id}/"
@@ -289,7 +289,7 @@
                                     <div class="list form-list ">
                                         <ul class="padding-vertical-half">
                                             <li class="padding-vertical-half">
-                                                <a class="item-link smart-select smart-select-init" data-open-in="popup">
+                                                <a class="item-link smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
 
                                                     <div class="item-content item-input">
                                                         <div class="item-inner">
@@ -360,9 +360,9 @@
 
                                             </div>
                                             <div class="col align-self-center no-padding-left">
-                                                <h5 class="no-margin-bottom">${item.type}<br />
-                                                    <span class="text-opac small">Primary Address</span>
-                                                </h5>
+                                                <div class="no-margin-bottom">${item.type}
+                                                    <span class="text-opac small"> ( Primary Address )</span>
+                                                </div>
                                             </div>
                                             <div class="col-auto align-self-center">
                                                 <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
@@ -376,7 +376,7 @@
                                         <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
                                     class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
                                 </iframe> -->
-                                        <div class="row">
+                                        <div class="row small-12">
                                             <div class="col">
                                                 <div class="addressHeader">
                                                     ${item.name} ( ${item.mobile} )
@@ -538,7 +538,7 @@
                         <div class="col align-self-center">
                             <!-- <a href="/payment/" class="button button-large button-fill elevation-3 color-green">Next</a> -->
                             <button 
-                                class="button button-large button-fill elevation-3 color-green">Checkout</button>
+                                class="button button-large button-fill elevation-3 color-green">Next</button>
                         </div>
                     </div>
                 </div>
@@ -550,53 +550,53 @@
         </div>
 
         <!-- footer static -->
-        <footer class="footer">
-            <div class="container">
-                <ul>
-                    <li>
-                        <a href="/home/">
-                            <span>
-                                <i class="icon f7-icons">house</i>
-                                <span class="nav-text">Home</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/stats/">
-                            <span>
-                                <i class="icon f7-icons">chart_bar</i>
-                                <span class="nav-text">Stats</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="active center-item">
-                        <a href="/cart/">
-                            <span>
-                                <i class="icon f7-icons">cart</i>
-                                <span class="nav-text">card-content</span>
-                                <span class="countercart">3</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/style/">
-                            <span>
-                                <i class="icon f7-icons">circle_grid_hex</i>
-                                <span class="nav-text">Style</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/settings/">
-                            <span>
-                                <i class="icon f7-icons">gear</i>
-                                <span class="nav-text">Settings</span>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </footer>
+    <footer class="footer">
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="/home/">
+                        <span>
+                            <i class="icon f7-icons">house</i>
+                            <span class="nav-text">Home</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="/nearByLabList/">
+                        <span>
+                            <i class="icon f7-icons">eyedropper_halffull</i>
+                            <span class="nav-text">Lab</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="active center-item">
+                    <a href="/cart/">
+                        <span>
+                            <i class="icon f7-icons">cart</i>
+                            <span class="nav-text">card-content</span>
+                            <!-- <span class="countercart">${app.params.totalCartItems()}</span> -->
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile/">
+                        <span>
+                            <i class="icon f7-icons">person</i>
+                            <span class="nav-text">Profile</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contactus/">
+                        <span>
+                            <i class="icon f7-icons">question_circle</i>
+                            <span class="nav-text">Help</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 
     </div>
 </template>

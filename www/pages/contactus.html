@@ -5,16 +5,16 @@
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
             <div class="left  no-margin-right">
-                <a href="#" class="link icon-only back ">
-                    <i class="icon f7-icons size-22">arrow_left</i>
+                <a href="#" class="link icon-only panel-open " data-panel="left">
+                    <i class="icon f7-icons size-22">bars</i>
                 </a>
             </div>
             <div class="title overflow-visible">
                 Contact us
             </div>
-            <div class="right">
-                <a href="/profile/" class="link ">
-                    <i class="icon f7-icons size-22">person_circle</i>
+            <div class="right text-align-center">
+                <a href="/notificationlist/" class="link">
+                    <i class="icon f7-icons size-22">bell_fill</i>
                 </a>
             </div>
         </div>
@@ -22,7 +22,7 @@
 
 
     <!-- main page content -->
-    <div class="page-content">
+    <div class="page-content has-footer">
         <form id="contactusform">
             <!-- Contact us form -->
             <div class="block">
@@ -107,6 +107,56 @@
         </form>
 
     </div>
+
+     <!-- footer static -->
+     <footer class="footer">
+        <div class="container">
+            <ul>
+                <li>
+                    <a  href="/home/">
+                        <span>
+                            <i class="icon f7-icons">house</i>
+                            <span class="nav-text">Home</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="/nearByLabList/">
+                        <span>
+                            <i class="icon f7-icons">eyedropper_halffull</i>
+                            <span class="nav-text">Lab</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="center-item">
+                    <a href="/cart/">
+                        <span>
+                            <i class="icon f7-icons">cart</i>
+                            <span class="nav-text">card-content</span>
+                            <!-- <span class="countercart">3</span> -->
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="/profile/">
+                        <span>
+                            <i class="icon f7-icons">person</i>
+                            <span class="nav-text">Profile</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="active" href="/contactus/">
+                        <span>
+                            <i class="icon f7-icons">question_circle</i>
+                            <span class="nav-text">Help</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
 </div>
 </template>
 <script>

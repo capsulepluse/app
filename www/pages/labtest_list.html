@@ -1,0 +1,303 @@
+<template>
+  <div class="page page-labtest_list" id="pageId_${pageId}" data-name="product_list">
+    <div class="navbar ">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left  no-margin-right">
+          <a href="#" class="link icon-only back">
+            <i class="icon f7-icons size-22">arrow_left</i>
+          </a>
+        </div>
+        <div class="title">
+          <h5 class="no-margin-bottom">${categoryName}</h5>
+        </div>
+        <div class="right text-align-center">
+          <a href="/notificationlist/" class="link">
+            <i class="icon f7-icons size-22">bell_fill</i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <form data-search-container=".search-list" data-search-in=".item-title" class="searchbar searchbar-init">
+      <div class="searchbar-inner">
+        <div class="searchbar-input-wrap">
+          <input type="search" placeholder="Search"/>
+          <i class="searchbar-icon"></i>
+          <span class="input-clear-button"></span>
+        </div>
+        <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+      </div>
+    </form> -->
+    <div class="page-content has-footer">
+      
+      <!-- main page content -->
+      <div class="main-container container">
+
+        <!-- search -->
+        <div class="block margin-bottom-mini">
+          <!-- <div class="row margin-bottom">
+            <div class="col">
+              <div class="list form-list no-margin">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Search</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="search" />
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-auto">
+              <button class="button button-fill button-large padding elevation-3">
+                <i class="icon f7-icons">search</i>
+              </button>
+            </div>
+          </div> -->
+
+
+          <div class="searchbar-backdrop"></div>
+          <!-- <div class="searchbar-backdrop"></div> -->
+            <form class="searchbar "
+
+              >
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search"  style="border-radius: 6px;"/>
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <!-- <span class="searchbar-disable-button">Cancel</span> -->
+              </div>
+            </form>
+          </div>
+
+
+
+        <!-- Products -->
+        <!-- <div class="block">
+          <div class="row margin-bottom-half">
+            <div class="col">
+              <h5 class="no-margin-bottom">${categoryName}</h5>
+            </div>
+          </div>
+        </div> -->
+
+       
+
+     
+
+
+         <!-- Quick List -->
+         <div class="block">
+          <div class="row">
+              <div class="col-100 ">
+                  <div class="card elevation-2 margin-bottom-half">
+                      <div class="mediaList customeList list searchbar-found">
+                          <ul>
+                             
+                            ${product.map((item) => $h`
+
+                              <li class="">
+                                  <a class="item-link" href="#">
+                                      <div class="item-content">
+                                          <!-- <div class="item-media">
+                                              <img slot="media" src="img/homepage/microscope.png" width="44"
+                                                  alt="" />
+                                          </div> -->
+                                          <div class="item-inner">
+                                              <div class="item-title font-12 bold text-color-theme">${item.name}
+                                                  <div class="item-footer">
+                                                    <small class="font-11">MRP</small> : <small class="text-opac small-10" style="text-decoration: line-through;">
+                                                      ₹ ${item.MRP}</small>
+                                                  </div>
+                                                  <div class="item-footer">₹ ${item.discount}</div>
+                                              </div>
+                                              <div class="col-auto font-10">
+                                                <span 
+                                                class="labtest_add_to_cart"
+                                                data-pid="${item.id}" 
+                                                data-quantity="1"
+                                                data-type="${type}" >Book Now</span>
+                                            </div> 
+                                          </div>
+                                         
+                                      </div>
+                                  </a>
+                              </li>
+                            `)}  
+
+
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+         </div>
+
+      </div>
+      <!-- main page content ends -->
+
+    </div>
+
+     <!-- footer static -->
+     <footer class="footer">
+      <div class="container">
+          <ul>
+              <li>
+                  <a class="active" href="/home/">
+                      <span>
+                          <i class="icon f7-icons">house</i>
+                          <span class="nav-text">Home</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a  href="/nearByLabList/">
+                      <span>
+                          <i class="icon f7-icons">eyedropper_halffull</i>
+                          <span class="nav-text">Lab</span>
+                      </span>
+                  </a>
+              </li>
+              <li class="center-item">
+                  <a href="/cart/">
+                      <span>
+                          <i class="icon f7-icons">cart</i>
+                          <span class="nav-text">card-content</span>
+                          <!-- <span class="countercart">3</span> -->
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/profile/">
+                      <span>
+                          <i class="icon f7-icons">person</i>
+                          <span class="nav-text">Profile</span>
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/contactus/">
+                      <span>
+                          <i class="icon f7-icons">question_circle</i>
+                          <span class="nav-text">Help</span>
+                      </span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </footer>
+
+
+
+  </div>
+</template>
+<script>
+  export default (props, {
+    $f7,
+    $theme,
+    $on,
+    $update,
+    $
+  }) => {
+    var app = $f7;
+    let product = [];
+    let categoryName = "";
+    let type = props.type;
+    let value = props.value;
+    let productDetails = {
+      price: "",
+      image: "",
+      mrp: "",
+      name: "",
+      pid: "",
+      type: ""
+    };
+    const pageId = app.params.uuid();
+    // let cartCount = app.params.cartCount();
+    //  console.log('countdata',cartCount);
+
+    // const openProductPopup = (e)=>{
+    //   // console.log(e);
+    //   // var $ = this.$;
+
+    //   // productDetails = $(this).attr('data-pid');
+    //   productDetails = e.target.dataset();
+    //   console.log("product details",productDetails);
+
+    // }
+
+    $(document).on('click', '#pageId_' + pageId + ' .labtest_add_to_cart', function (e) {
+
+      
+      productDetails = $(this).dataset();
+      console.log(productDetails);
+      $f7.preloader.show();
+      const addingCartOnLive = app.params.callToServer("add-cart-single", productDetails,
+      function success(Responce) {
+        $f7.preloader.hide();
+        //$(this).html("Booked");
+        //console.log($(this).html());
+
+        
+        let toastBottom = app.toast.create({
+          text: "Test has been added successfully !! ",
+          closeTimeout: 2000,
+          });
+          toastBottom.open();
+
+       // cartCount = Responce.data.cartCount;
+       //localStorage.setItem("cartCount", cartCount);
+        // categoryName = Responce.data.category;
+       // $update();
+      });
+
+      
+     // app.popup.open('.addproduct');
+    })
+
+    
+    $on('pageInit', () => {
+
+      $f7.preloader.show();
+
+      app.params.callToServer("product-list", '{"type":"' + type + '","value":' + value + '}', success);
+
+      function success(Responce) {
+        $f7.preloader.hide();
+        product = Responce.data.product;
+        categoryName = Responce.data.category;
+        $update();
+      }
+
+      //
+    
+        // create searchbar
+        var searchbar = $f7.searchbar.create({
+          el: '.searchbar',
+          searchContainer: '.list',
+          searchIn: '.item-title',
+          on: {
+            search(sb, query, previousQuery) {
+              //console.log(query, previousQuery);
+            }
+          }
+        });
+
+
+
+    });
+
+    $on('pageBeforeRemove', () => {
+
+    })
+
+    return $render;
+  }
+</script>

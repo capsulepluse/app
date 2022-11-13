@@ -41,13 +41,13 @@
 
               <div class="col-33 padding-left-half no-padding-right">
                 <a href="/productlist/category/${item.id}/">
-                  <div data-pcategory="${item.id}" class="card elevation-2 margin-bottom-half bg-green-light homeCategory">
+                  <div data-pcategory="${item.id}" class="card elevation-2 margin-bottom-half homeCategory">
                       <div class="card-content card-content-padding_">
 
-                          <figure class="no-margin-bottom avatar avatar-40_ page-bg rounded p-1 text-align-center">
-                              <img src="${item.img}" alt="" />
+                          <figure class="no-margin-bottom avatar avatar-40_  rounded p-1 thum-parent">
+                              <img class="rounded height-50 thum-child page-bg" src="${item.img}" alt="" />
                           </figure>
-                          <h6 class="text-muted text-align-center small title-footer-twoline">${item.name}</h6>
+                          <div class="text-muted_ text-align-center font-10 title-footer-twoline">${item.name}</div>
                       </div>
                   </div>
                   </a>
@@ -68,54 +68,54 @@
 
     </div>
 
-    <!-- footer static -->
-    <footer class="footer">
-      <div class="container">
+   <!-- footer static -->
+   <footer class="footer">
+    <div class="container">
         <ul>
-          <li>
-            <a class="active" href="/home/">
-              <span>
-                <i class="icon f7-icons">house</i>
-                <span class="nav-text">Home</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/stats/">
-              <span>
-                <i class="icon f7-icons">chart_bar</i>
-                <span class="nav-text">Stats</span>
-              </span>
-            </a>
-          </li>
-          <li class="center-item">
-            <a href="/cart/">
-              <span>
-                <i class="icon f7-icons">cart</i>
-                <span class="nav-text">card-content</span>
-                <span class="countercart">3</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/style/">
-              <span>
-                <i class="icon f7-icons">circle_grid_hex</i>
-                <span class="nav-text">Style</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="/settings/">
-              <span>
-                <i class="icon f7-icons">gear</i>
-                <span class="nav-text">Settings</span>
-              </span>
-            </a>
-          </li>
+            <li>
+                <a class="active" href="/home/">
+                    <span>
+                        <i class="icon f7-icons">house</i>
+                        <span class="nav-text">Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a  href="/nearByLabList/">
+                    <span>
+                        <i class="icon f7-icons">eyedropper_halffull</i>
+                        <span class="nav-text">Lab</span>
+                    </span>
+                </a>
+            </li>
+            <li class="center-item">
+                <a href="/cart/">
+                    <span>
+                        <i class="icon f7-icons">cart</i>
+                        <span class="nav-text">card-content</span>
+                        <!-- <span class="countercart">3</span> -->
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/profile/">
+                    <span>
+                        <i class="icon f7-icons">person</i>
+                        <span class="nav-text">Profile</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/contactus/">
+                    <span>
+                        <i class="icon f7-icons">question_circle</i>
+                        <span class="nav-text">Help</span>
+                    </span>
+                </a>
+            </li>
         </ul>
-      </div>
-    </footer>
+    </div>
+</footer>
 
 
 
