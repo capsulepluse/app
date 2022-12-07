@@ -9,7 +9,7 @@
                     </a>
                 </div>
                 <div class="title">
-                    <h5 class="no-margin-bottom">Product</h5>
+                    <h5 class="no-margin-bottom">Medicine</h5>
                 </div>
                 <div class="right text-align-center">
                     <a href="/notificationlist/" class="link">
@@ -26,11 +26,11 @@
             <div class="block">
                 <div class="row">
                     <div class="col-100">
-                        <div class="card shadow-sm margin-bottom">
+                        <div class="card card-light shadow-sm margin-bottom">
                             <div class="card-content card-content-padding pb-0 position-relative">
                                 <div class="position-absolute no-padding margin-half z-index-9">
                                     <button
-                                        class="button button-fill avatar avatar-30 no-padding rounded-circle color-blue margin-right-half"
+                                        class="button button-fill avatar avatar-30 no-padding rounded-circle color-theme margin-right-half"
                                         type="button">
                                         <i class="icons f7-icons">arrowshape_turn_up_right</i>
                                     </button>
@@ -39,12 +39,12 @@
                                     <i class="icons f7-icons">heart</i>
                                 </button> -->
                                 </div>
-                                <div class="swiper-container imageswiper">
+                                <div class="swiper-container imageswiper_">
                                     <!-- Additional required wrapper -->
                                     <div class="swiper-wrapper">
                                         <!-- Slides -->
                                         <div class="swiper-slide text-align-center no-margin-bottom">
-                                            <img src="img/apple.png" alt="" class="h-190 margin-bottom-half" />
+                                            <img src="${productDetails.img}" alt="" class="h-150 margin-bottom-half" />
                                         </div>
                                         <!-- <div class="swiper-slide text-align-center no-margin-bottom">
                                         <img src="img/apple.png" alt="" class="h-190 margin-bottom-half">
@@ -63,25 +63,72 @@
                                 class="bi bi-star-fill text-warning"></i></span>
                     </p> -->
 
-                        <h4 class="text-color-theme margin-bottom-half">${productDetails.name}</h4>
+                        <h5 class="text-color-theme margin-bottom-half">
+                            <p>${productDetails.name}</p>
+                        </h5>
                         <div class="row margin-bottom">
                             <div class="col">
-                                <h5 class="no-margin-bottom"> ₹ ${productDetails.saleprice} <s
-                                        class="text-opac font-weight-light">₹ ${productDetails.MRP}</s></h5>
-                                <p class="text-opac">${productDetails.packing}</p>
+                                <h6 class="no-margin-bottom font-12" >
+                                    <p> ₹ ${productDetails.saleprice}  
+                                     <span class="text-opac font-weight-light font-12" style="text-decoration: line-through;"> ₹ ${productDetails.MRP}</span>
+                                    </p>
+                                </h6>
+                                <p class="text-opac font-11">${productDetails.packing}</p>
                             </div>
                             <div class="col-auto align-self-center">
-                                <!-- button counter increamenter-->
-                                <div class="counter-number">
-                                    <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease">
-                                        <i class="icons f7-icons">minus</i>
-                                    </button>
-                                    <span class="counter-value">1</span>
-                                    <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase">
-                                        <i class="icons f7-icons">plus</i>
-                                    </button>
+                                <span 
+                                class="button button-small button-outline font-10 medicine_add_to_cart
+                                ${productDetails.isCartQnt > 0 && $h`
+                                  display-none
+                                  `} 
+                                "
+                                data-pid="${productDetails.id}" 
+                                data-quantity="1"
+                                data-type="${type}"
+                                 >Add</span>
+
+                                   <!-- Stepper element -->
+                                <!-- <div class="stepper">
+                                  <div class="stepper-button-minus counter-decrease"></div>
+                                  <div class="stepper-value counter-value">1</div>
+                                  <div class="stepper-button-plus counter-increase"></div>
+                                </div> -->
+
+                                 <!-- button counter increamenter-->
+                                <div class="counter-number
+
+                                  ${productDetails.isCartQnt == 0 && $h`
+                                   display-none
+                                   `} 
+                                  ">
+                                  <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease"
+                                  data-pid="${productDetails.id}" 
+                                  data-type="${type}"
+                                  >
+                                      <i class="icons f7-icons">minus</i>
+                                  </button>
+
+                                  ${productDetails.isCartQnt > 0 && $h`
+                                    <span class="counter-value font-13">${productDetails.isCartQnt}</span>
+                                  `}
+                                  ${productDetails.isCartQnt == 0 && $h`
+                                    <span class="counter-value font-13">1</span>
+                                  `}
+                                 
+
+
+                                  <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase"
+                                  data-pid="${productDetails.id}" 
+                                  data-type="${type}"
+                                  
+                                  >
+                                      <i class="icons f7-icons">plus</i>
+                                  </button>
                                 </div>
-                            </div>
+
+
+
+                            </div> 
                         </div>
 
 
@@ -89,34 +136,7 @@
                 </div>
             </div>
 
-            <!-- delivery time -->
-            <!-- <div class="block">
-            <div class="row">
-                <div class="col-100">
-                    <div class="card card-light shadow-sm margin-bottom">
-                        <div class="card-content card-content-padding">
-
-                            <div class="row">
-                                <div class="col-auto">
-                                    <figure class="text-align-center no-margin-bottom avatar avatar-50 page-bg rounded">
-                                        <i class="icons f7-icons size-24 text-color-theme">clock</i>
-                                    </figure>
-                                </div>
-                                <div class="col align-self-center">
-                                    <h6 class="margin-bottom-half">San Jose, USA
-                                        <span class="text-color-theme float-right small">Change
-                                            <i class="icons f7-icons">chevron_right</i>
-                                        </span>
-                                    </h6>
-                                    <p><span class="text-opac">Delivery on:</span> <strong>7 Dec 2021</strong></p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+           
 
 
             <!-- description of product -->
@@ -127,35 +147,31 @@
                             <!-- <div class="card-header">
                                 Product details
                             </div> -->
-                            <div class="card-content card-content-padding text-align-center_">
+                            <div class="card-content card-content-padding ">
+                              
+                                    <div class="font-11">
+                                            Composition:
+                                    </div>
                                 
-                                <p>
-                                    <strong>
-                                        Composition:
-                                    </strong>
-                                </p>
-                                <p class="text-opac">
+                                
+                                <div class="text-opac font-10">
                                     ${productDetails.composition}
-                                </p>
+                                </div>
 
-                                <p>
-                                    <strong>
+                                <div class="font-11">
                                         Manufacturer:
-                                    </strong>
-                                </p>
-                                <p class="text-opac">
+                                 </div>
+                                 <div class="text-opac font-10">
                                     ${productDetails.manufacturer}
                                 </p>
-                                <p>
-                                    <strong>
+                                <div class="font-11">
                                         Details:
-                                    </strong>
-                                </p>
-                                <p class="text-opac">
+                                </div >
+                                <div class="text-opac font-10">
                                     ${productDetails.details}
-                                </p>
+                                </div>
 
-                            </div>
+                            </>
                         </div>
                         <p class="text-opac small">** if the seal of the product is broken it will ne non-returnable.
                         </p>
@@ -201,6 +217,80 @@
             $update();
             app.popup.open('.addproduct');
         })
+
+        
+    $(document).on('click', '#pageId_' + pageId + ' .medicine_add_to_cart', function (e) {
+
+        productDetails = $(this).dataset();
+        console.log(productDetails);
+        $f7.preloader.show();
+        
+        //show counter and hide the add button 
+        $(this).addClass("display-none");
+        $(this).parent().find(".counter-number").removeClass("display-none");
+  
+        const addingCartOnLive = app.params.callToServer("add-cart-single", productDetails,
+        function success(Responce) {
+          $f7.preloader.hide();
+  
+          let toastBottom = app.toast.create({
+            text: "Medicine has been added successfully !! ",
+            closeTimeout: 2000,
+            });
+            toastBottom.open();
+  
+         // cartCount = Responce.data.cartCount;
+         //localStorage.setItem("cartCount", cartCount);
+          // categoryName = Responce.data.category;
+         // $update();
+        });
+      })
+  
+      $(document).on('click',  '#pageId_' + pageId +' .counter-increase', function (e) {
+        var countValue = parseInt($(this).parent().find(".counter-value").text());
+        countValue = countValue + 1;
+        $(this).parent().find(".counter-value").text(countValue);
+        app.params.currentProductDetails.quantity = countValue;
+  
+        //update on cart
+        productDetails = $(this).dataset();
+        productDetails.quantity = countValue;
+        app.preloader.show();
+        app.params.callToServer("update-cart", productDetails,
+        function success(Responce) {
+          app.preloader.hide();
+        });
+      });
+  
+      $(document).on('click',  '#pageId_' + pageId +' .counter-decrease', function (e) {
+        var countValue = parseInt($(this).parent().find(".counter-value").text());
+        countValue = countValue - 1;
+  
+         //update on cart
+        productDetails = $(this).dataset();
+        productDetails.quantity = countValue;
+        app.preloader.show();
+        app.params.callToServer("update-cart", productDetails,
+        function success(Responce) {
+          app.preloader.hide();
+        });
+  
+        if (countValue > 0) {
+          $(this).parent().find(".counter-value").text(countValue);
+          app.params.currentProductDetails.quantity = countValue;
+        }else{ // show add button and hide counter 
+            //show counter and hide the add button 
+          $(this).parent().addClass("display-none");
+          $(this).parent().parent().find(".medicine_add_to_cart").removeClass("display-none");
+  
+        }
+      
+      });
+  
+      
+
+
+
 
         $on('pageInit', () => {
 

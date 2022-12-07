@@ -25,19 +25,23 @@
             <div class="block">
                 <div class="row">
                     <div class="col-100">
-                        <div class="card card-theme elevation-2 margin-bottom">
+                        <div class="card card-theme_ elevation-2 margin-bottom-half">
                             <div class="card-content card-content-padding">
-                                <div class="card elevation-2 card-light margin-bottom-half">
+
+                                <!-- <div class="card elevation-2 card-light margin-bottom-half">
                                     <div class="card-content card-content-padding">
-                                        <div class="row">
+                                         -->
+                                        <div class="row display-flex justify-content-center">
                                             <div class="col-auto">
-                                                <i class="icon f7-icons size-60">person_crop_circle</i>
+                                                <i class="icon f7-icons size-60 text-color-primary">person_crop_square</i>
                                                 <!-- <figure class="avatar avatar-80 rounded mx-auto">
                                                     <img src="img/user2.jpg" alt="" />
                                                 </figure> -->
                                             </div>
-                                            <div class="col align-self-center">
-                                                <h3 class="no-margin-bottom">${profile.user}</h3>
+                                        </div>
+                                        <div class="display-flex justify-content-center">
+                                            <div class="">
+                                                <h3 class="no-margin-bottom text-color-primary">${profile.user}</h3>
                                                 <!-- <p class="text-opac">Kolkata, WB</p> -->
                                                 
                                             </div>
@@ -47,17 +51,18 @@
                                                 </a> -->
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row margin-bottom-half margin-left">
-                                    <div class="col-auto align-self-center ">
-                                        <i class="icons f7-icons size-24 ">phone_down_circle</i>
-                                    </div>
-                                    <div class="col align-self-center no-padding-left">
-                                        <h4 class="no-margin-bottom">${profile.mobile} <small></small></h4>
-                                    </div>
-                                   
-                                </div>
+
+                                        <div class="row display-flex justify-content-center">
+                                    
+                                            <div class="col-auto ">
+                                                <h4 class="text-color-primary"><small>${profile.mobile} </small></h4>
+                                            </div>
+                                           
+                                        </div>
+
+                                    <!-- </div>
+                                </div> -->
+                               
                                 
                             </div>
                         </div>
@@ -68,13 +73,14 @@
         
     
             <!-- address  -->
-            <div class="block">
+            <!-- <div class="block">
                 <div class="row margin-bottom-half">
                     <div class="col">
-                        <h5 class="no-margin-bottom">Address</h5>
+                        <h5 class="no-margin-bottom"><p>Address</p>
+                        </h5>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="block">
                 <div class="row">
@@ -95,9 +101,10 @@
 
                                     </div> -->
                                     <div class="col align-self-center no-padding-left_">
-                                        <h5 class="no-margin-bottom">${item.type}<br />
-                                            <span class="text-opac small">Primary Address</span>
-                                        </h5>
+                                        <span class="text-opac small">Primary Address</span>
+                                        <!-- <h5 class="no-margin-bottom"><p class="no-margin-button">${item.type}</p>
+                                           
+                                        </h5> -->
                                     </div>
                                     <div class="col-auto align-self-center">
                                         <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
@@ -113,19 +120,21 @@
                                         class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
                                     </iframe> -->
                                 <div class="row">
-                                    <div class="col">
-                                        <div class="addressHeader">
-                                            ${item.name} ( ${item.mobile} )
+                                    <div class="col-auto font-12">
+                                        <div class="addressHeader font-13">
+                                           Name -  ${item.name}
                                         </div>
-                                        <div>
-                                            ${item.address}, ${item.landmark}, ${item.pin}
+                                        <div >
+                                           Address - ${item.address}, 
                                         </div>
-
+                                        <div>Landmark - ${item.landmark}</div>
+                                        <div>Pin -  ${item.pin}</div>
+                                        <div>Mobile - ${item.mobile}</div>
                                     </div>
-                                    <div class="col-auto align-self-center">
+                                    <!-- <div class="col-auto align-self-center">
                                         <a href="#"><i
                                                 class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -170,7 +179,7 @@
                             <span>
                                 <i class="icon f7-icons">cart</i>
                                 <span class="nav-text">card-content</span>
-                                <!-- <span class="countercart">3</span> -->
+                                <span class="countercart">${cartCount}</span>
                             </span>
                         </a>
                     </li>
@@ -202,7 +211,7 @@
         var profile = {};
         var item = {};
         const pageId = app.params.uuid();
-        
+        let cartCount = 0; 
     
         $on('pageBeforeIn', () => {
             /* $f7.preloader.show();
@@ -226,6 +235,14 @@
                 profile = ResponceData.data.profile;
                 $update();
             }
+
+             //cart count updation 
+            app.params.callToServer('cart-count','', function (response) {
+                if (response.success) {
+                    cartCount =  response.data.cartCount;
+                }
+                $update();
+            }); 
 
         })
 

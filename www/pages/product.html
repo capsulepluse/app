@@ -26,11 +26,11 @@
         <div class="block">
             <div class="row">
                 <div class="col-100">
-                    <div class="card shadow-sm margin-bottom">
-                        <div class="card-content card-content-padding pb-0 position-relative">
+                    <div class="card card-light shadow-sm margin-bottom">
+                        <div class="card-content  card-content-padding pb-0 position-relative">
                             <div class="position-absolute no-padding margin-half z-index-9">
                                 <button
-                                    class="button button-fill avatar avatar-30 no-padding rounded-circle color-blue margin-right-half"
+                                    class="button button-fill avatar avatar-30 no-padding rounded-circle color-theme margin-right-half"
                                     type="button">
                                     <i class="icons f7-icons">arrowshape_turn_up_right</i>
                                 </button>
@@ -44,7 +44,7 @@
                                 <div class="swiper-wrapper">
                                     <!-- Slides -->
                                     <div class="swiper-slide text-align-center no-margin-bottom">
-                                        <img src="img/apple.png" alt="" class="h-190 margin-bottom-half" />
+                                        <img src="${productDetails.img}" alt="" class="h-190 margin-bottom-half" />
                                     </div>
                                     <!-- <div class="swiper-slide text-align-center no-margin-bottom">
                                         <img src="img/apple.png" alt="" class="h-190 margin-bottom-half">
@@ -63,24 +63,72 @@
                                 class="bi bi-star-fill text-warning"></i></span>
                     </p> -->
                     
-                    <h4 class="text-color-theme margin-bottom-half">${productDetails.name}</h4>
+                    <h5 class="text-color-theme margin-bottom-half">
+                        <p>${productDetails.name}</p>
+                    </h5>
                     <div class="row margin-bottom">
                         <div class="col">
-                            <h5 class="no-margin-bottom"> ₹ ${productDetails.discount} <s class="text-opac font-weight-light">₹ ${productDetails.MRP}</s></h5>
-                            <!-- <p class="text-opac">per 1 kg</p> -->
+                            <h6 class="no-margin-bottom font-12" >
+                                <p> ₹ ${productDetails.discount} 
+                                 <span class="text-opac font-weight-light font-12" style="text-decoration: line-through;"> ₹ ${productDetails.MRP}</span>
+                                </p>
+                            </h6>
+                           
+                      
                         </div>
                         <div class="col-auto align-self-center">
-                            <!-- button counter increamenter-->
-                            <div class="counter-number">
-                                <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease">
-                                    <i class="icons f7-icons">minus</i>
-                                </button>
-                                <span class="counter-value">1</span>
-                                <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase">
-                                    <i class="icons f7-icons">plus</i>
-                                </button>
+                            <span 
+                            class="button button-small button-outline font-10 product_add_to_cart
+                            ${productDetails.isCartQnt > 0 && $h`
+                              display-none
+                              `} 
+                            "
+                            data-pid="${productDetails.id}" 
+                            data-quantity="1"
+                            data-type="${type}"
+                             >Add</span>
+
+                               <!-- Stepper element -->
+                            <!-- <div class="stepper">
+                              <div class="stepper-button-minus counter-decrease"></div>
+                              <div class="stepper-value counter-value">1</div>
+                              <div class="stepper-button-plus counter-increase"></div>
+                            </div> -->
+
+                             <!-- button counter increamenter-->
+                            <div class="counter-number
+                              ${productDetails.isCartQnt == 0 && $h`
+                               display-none
+                               `} 
+                              ">
+                              <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease"
+                              data-pid="${productDetails.id}" 
+                              data-type="${type}"
+                              >
+                                  <i class="icons f7-icons">minus</i>
+                              </button>
+
+                              ${productDetails.isCartQnt > 0 && $h`
+                                <span class="counter-value font-13">${productDetails.isCartQnt}</span>
+                              `}
+                              ${productDetails.isCartQnt == 0 && $h`
+                                <span class="counter-value font-13">1</span>
+                              `}
+                             
+
+
+                              <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase"
+                              data-pid="${productDetails.id}" 
+                              data-type="${type}"
+                              
+                              >
+                                  <i class="icons f7-icons">plus</i>
+                              </button>
                             </div>
-                        </div>
+
+
+
+                        </div> 
                     </div>
 
 
@@ -146,7 +194,8 @@
 <script>
     export default (props, { $f7, $theme, $on, $update, $ }) => {
       var app = $f7;
-      let product = props.product;  
+      let product = props.product; 
+      let type = 'product'; 
       let productDetails = {
         MRP: "",
         category_id: "",
@@ -167,11 +216,80 @@
           app.popup.open('.addproduct');
       })  
       
+      
+    $(document).on('click', '#pageId_' + pageId + ' .product_add_to_cart', function (e) {
+
+        productDetails = $(this).dataset();
+        $f7.preloader.show();
+        
+        //show counter and hide the add button 
+        $(this).addClass("display-none");
+        $(this).parent().find(".counter-number").removeClass("display-none");
+  
+        const addingCartOnLive = app.params.callToServer("add-cart-single", productDetails,
+        function success(Responce) {
+          $f7.preloader.hide();
+  
+          let toastBottom = app.toast.create({
+            text: "Product has been added successfully !! ",
+            closeTimeout: 2000,
+            });
+            toastBottom.open();
+        });
+  
+      })
+  
+      $(document).on('click',  '#pageId_' + pageId +' .counter-increase', function (e) {
+        var countValue = parseInt($(this).parent().find(".counter-value").text());
+        countValue = countValue + 1;
+        $(this).parent().find(".counter-value").text(countValue);
+        app.params.currentProductDetails.quantity = countValue;
+  
+        //update on cart
+        productDetails = $(this).dataset();
+        productDetails.quantity = countValue;
+        app.preloader.show();
+        app.params.callToServer("update-cart", productDetails,
+        function success(Responce) {
+          app.preloader.hide();
+        });
+      });
+  
+      $(document).on('click',  '#pageId_' + pageId +' .counter-decrease', function (e) {
+        var countValue = parseInt($(this).parent().find(".counter-value").text());
+        countValue = countValue - 1;
+  
+         //update on cart
+        productDetails = $(this).dataset();
+        productDetails.quantity = countValue;
+        app.preloader.show();
+        app.params.callToServer("update-cart", productDetails,
+        function success(Responce) {
+          app.preloader.hide();
+        });
+  
+        if (countValue > 0) {
+          $(this).parent().find(".counter-value").text(countValue);
+          app.params.currentProductDetails.quantity = countValue;
+        }else{ // show add button and hide counter 
+            //show counter and hide the add button 
+          $(this).parent().addClass("display-none");
+          $(this).parent().parent().find(".product_add_to_cart").removeClass("display-none");
+  
+        }
+      
+      });
+  
+  
+
+
+
+
       $on('pageInit', () => {
           
           $f7.preloader.show();
   
-          app.params.callToServer( "product-details",'{"product":"'+ product +'","type":"category"}', success);
+          app.params.callToServer( "product-details",'{"product":"'+ product +'","type":"'+type+'"}', success);
           function success(Responce){
                 $f7.preloader.hide();
                 productDetails = Responce.data.productDetails ;

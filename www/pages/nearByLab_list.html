@@ -108,7 +108,7 @@
               <span>
                 <i class="icon f7-icons">cart</i>
                 <span class="nav-text">card-content</span>
-                <!-- <span class="countercart">3</span> -->
+                <span class="countercart">${cartCount}</span>
               </span>
             </a>
           </li>
@@ -148,6 +148,7 @@
     var mobile = '';
     let labs = [];
     const pageId = app.params.uuid();
+    let cartCount = 0;
 
     $on('pageInit', () => {
 
@@ -163,6 +164,16 @@
         $update();
 
       }
+
+       //cart count updation 
+       app.params.callToServer('cart-count','', function (response) {
+        if (response.success) {
+            cartCount =  response.data.cartCount;
+        }
+        $update();
+      }); 
+
+
     });
 
 

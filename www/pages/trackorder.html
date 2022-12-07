@@ -1,4 +1,5 @@
-<div class="page page-track-order" data-name="track-order">
+<template>
+<div class="page page-track-order" id="pageId_${pageId}" data-name="track-order">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -23,78 +24,25 @@
     <div class="page-content ">
 
         <!-- Bills invoice  -->
-        <!-- <div class="block margin-bottom-half">
+        <div class="block margin-bottom-half">
             <div class="row">
                 <div class="col-auto">
-                    <p class="small text-muted">Order ID: IDO10251541823</p>
+                    <p class="small text-muted">Order ID: ${order.invoice}</p>
                 </div>
                 <div class="col text-align-right">
-                    <p class="small text-muted">Arrival on April 24</p>
+                    <p class="small text-muted">${typeNme}</p>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Product tracking information -->
         <div class="block">
             <div class="row">
                 <div class="col-100 medium-50 large-33 ">
-                    <div class="card shadow-sm product no-margin-bottom">
-                        <div class="card-content card-content-padding">
-                            <!-- <div class="row">
-                                <div class="col-auto">
-                                </div>
-                                <div class="col no-padding-left align-self-center">
-                                    <p class="no-margin-bottom">
-                                        <small class="text-opac">Medicine</small>
-                                    </p>
-                                    <h6 class="text-color-theme">Invoice :CAP021568</h6>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>$12.00 <small class="text-opac">per 1 kg</small></p>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="#" class="link text-color-theme">Cancel</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="mediaList customeList list">
-                                <ul>
 
-
-                                    <li class="">
-                                        <a class="item-link" href="#">
-                                            <div class="item-content">
-                                                <!-- <div class="item-media">
-                                                    
-                                                 <img slot="media" src="img/homepage/capsules.png" width="44" alt=""/> 
-                                                </div> -->
-                                                <div class="item-inner">
-                                                    <div class="item-title">
-                                                        Order Medicine
-                                                        <div class="item-footer">
-                                                            Genuine Medicie Min 18% Discount, Free Delivery at your door step
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-
-
-                                     
-                                </ul>
-                            </div>
-
-
-                            
-                        </div>
-                    </div>
-
-                    <div class="card card-light elevation-2 margin-bottom margin-top">
+                    <div class="card card-light elevation-2 margin-bottom-half ">
                         <div class="card-header">
-                            <h5>Your order status</h5>
+                            <h5><p>Your order status</p></h5>
                         </div>
                         <div class="card-content card-content-padding">
                             <div class="timeline no-margin">
@@ -138,11 +86,68 @@
         <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col-100">
-                    <h5>Price Details</h5>
+                    <h5><p>Order Details</p></h5>
                 </div>
             </div>
         </div>
+
         <div class="block">
+            <div class="row">
+                <div class="col-100 medium-50 large-33 ">
+                    <div class="card shadow-sm product margin-bottom">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                
+                                <div class="col padding-left align-self-center">
+                                    <div class="row">
+                                        <div class="col">
+                                            
+                                                ${type == 'labtest' && $h`
+                                                    ${orderDetails.map((item) => $h`
+                                                        <p class="font-12">${item.test_name}</p>
+                                                    `)}
+                                                `}
+
+
+                                                ${type == 'medicine' && $h`
+                                                    ${orderDetails.map((item) => $h`
+                                                        <p  class="font-12">${item.items_name} <small class="text-opac">( Qnt: ${item.quantity})</small></p>
+                                                    `)}
+                                                `}
+
+                                                ${type == 'product' && $h`
+                                                    ${orderDetails.map((item) => $h`
+                                                        <p  class="font-12">${item.items_name} <small class="text-opac">( Qnt: ${item.quantity})</small></p>
+                                                    `)}
+                                                `}
+  
+                                        </div> 
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-color-theme">Total amount </div>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="link text-color-theme"> ₹ ${order.amount}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- <div class="block">
             <div class="row margin-bottom">
                 <div class="col-100 medium-50 large-33 margin-h-auto">
                     <p class="text-muted">Price <span class="float-right">₹ 1800.00</span></p>
@@ -151,31 +156,35 @@
                     <h6>Total Amount <span class="float-right">₹ 1420.00</span></h6>
                 </div>
             </div>
-        </div>
+        </div> -->
         
         <!-- order footer -->
         <div class="block">
             <div class="row ">
                 <div class="col-100 medium-50 large-33">
-                    <p>We recommend power services for our customers</p>
+                    <!-- <p>We recommend power services for our customers</p>
                     <br />
                     <p class="text-align-right margin-top margin-bottom">
-                        <i class="icon f7-icons size-32">signature</i><br>
-                        <span class="text-muted">Authorise Signature</span><br>
+                        <i class="icon f7-icons size-32">signature</i><br/>
+                        <span class="text-muted">Authorise Signature</span><br/>
                         Capsulepluse
-                    </p>
-                    <div class="row margin-bottom">
-                        <div class="col-50 margin-h-auto">
+                    </p> -->
+                    <div class="row margin-bottom-half">
+                        <div class="col-100 margin-h-auto">
                             <a href="/contactus/" class="button button-outline button-large ">
                                 <i class="f7-icons icon margin-right-half">question_circle</i> Need Help?
                             </a>
                         </div>
-                        <div class="col-50 margin-h-auto">
-                            <a href="/home/" class="button button-fill button-large button-raised">
-                                <i class="f7-icons icon margin-right-half">cart</i> Buy Again
-                            </a>
-                        </div>
                     </div>
+                    ${type == 'labtest' && $h`
+                        <div class="row margin-bottom">    
+                            <div class="col-100 margin-h-auto">
+                                <a href="/home/" class="button button-fill button-large button-raised">
+                                    <i class="f7-icons icon margin-right-half">cart</i>Download Report
+                                </a>
+                            </div>
+                        </div>
+                    `}   
                 </div>
             </div>
         </div>
@@ -183,3 +192,69 @@
      
     </div>
 </div>
+</template>
+<script>
+    export default (props, { $f7, $theme, $on, $update, $ }) => {
+        var app = $f7;
+        let orderId = props.orderId;
+        let type = props.type;
+        let order =[];
+        let orderDetails = [];
+        let trackDetails = [];
+        let typeNme = "";
+
+        const pageId = app.params.uuid();
+
+        const removeAddress = (addID) =>{
+            $f7.preloader.show();
+            app.params.callToServer( "remove-address",'{"id":"'+ addID+'"}', success);
+            function success(Response){
+              $f7.preloader.hide();
+              app.params.showToastBottom(Response.message); 
+              addressList = Response.data; 
+              $update(); 
+          }  
+
+        }
+
+        $on('pageInit', () => {
+            /*
+            $f7.preloader.show();
+            app.params.callToServer("order-details", '{"type":"' + type + '","id":' + orderId + '}', success);
+      
+            function success(Responce) {
+                $f7.preloader.hide();
+
+                order = Responce.data.order;
+                orderDetails = Responce.data.orderDetails;
+                trackDetails = Responce.data.trackDetails;
+                typeNme = Responce.data.typeName;
+                type = Responce.data.type;
+                $update();
+            }
+            */
+      
+        });
+      
+
+
+
+        $on('pageBeforeIn', () => {
+            $f7.preloader.show();
+            app.params.callToServer("order-details", '{"type":"' + type + '","id":' + orderId + '}', success);
+      
+            function success(Responce) {
+                $f7.preloader.hide();
+
+                order = Responce.data.order;
+                orderDetails = Responce.data.orderDetails;
+                trackDetails = Responce.data.trackDetails;
+                typeNme = Responce.data.typeName;
+                type = Responce.data.type;
+                $update();
+            }
+        });
+  
+      return $render;
+    }
+</script>

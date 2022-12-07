@@ -16,17 +16,27 @@ var app = new Framework7({
   store: store,
   // routes.js,
   routes: routes,
-  remoteUrl: "https://capsul.test/api/",
-  // remoteUrl: "https://capsuleplus.in/api/",
+  // remoteUrl: "https://capsul.test/api/",
+  remoteUrl: "https://capsuleplus.in/api/",
   // remoteUrl: "https://192.168.113.237/capsul/admin_working/public/api/",
   //=== global ajax call for authentication ===
   cartCount: function () {
     app.params.authHeader();
-    app.request.postJSON(app.params.remoteUrl + 'cart-count')
-      .then(function (response) {
-        console.log('countdata', response);
-        return response.data.cartCount;
-      });
+    // app.request.json(app.params.remoteUrl + 'cart-count')
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //     if (response.data.success) {
+    //       return response.data.data.cartCount;
+    //     }else{
+    //       return 0;
+    //     }
+    //   });
+    app.params.callToServer('cart-count','',function (response) {
+      console.log("Total count",response.data.cartCount);
+      if (response.success) {
+          return response.data.cartCount;
+      }
+  });
   },
   callToServer: function (sUrl, postdata, successCallBack) {
     let url = app.params.remoteUrl + sUrl;
@@ -172,6 +182,14 @@ var app = new Framework7({
         cordovaApp.init(f7);
 
       }
+
+      // console.log(app.params.uuid());
+      // app.params.cartCount();
+      // app.params.showToastBottom
+
+
+
+
     },
   },
   //============== shoping ================
@@ -700,25 +718,45 @@ $(document).on('click', '.logout', function (e) {
   console.log(app);
 })
 
-$(document).on('click', '.counter-increase', function (e) {
-  var countValue = parseInt($(this).parent().find(".counter-value").text());
-  countValue = countValue + 1;
-  $(this).parent().find(".counter-value").text(countValue);
-  app.params.currentProductDetails.quantity = countValue;
-  console.log(countValue);
-});
+// $(document).on('click', '.counter-increase', function (e) {
+//   var countValue = parseInt($(this).parent().find(".counter-value").text());
+//   countValue = countValue + 1;
+//   //update on cart
+//   productDetails = $(this).dataset();
+//   productDetails.quantity = countValue;
 
-$(document).on('click', '.counter-decrease', function (e) {
-  var countValue = parseInt($(this).parent().find(".counter-value").text());
+//   $(this).parent().find(".counter-value").text(countValue);
+//   app.params.currentProductDetails.quantity = countValue;
 
-  if (countValue > 0) {
-    countValue = countValue - 1;
-  }
-  $(this).parent().find(".counter-value").text(countValue);
-  app.params.currentProductDetails.quantity = countValue;
-  console.log(countValue);
+//   console.log(productDetails);
+//   app.preloader.show();
+//   app.params.callToServer("add-cart-single", productDetails,
+//   function success(Responce) {
 
-});
+//     app.preloader.hide();
+  
+//     // let toastBottom = app.toast.create({
+//     //   text: "Quantity has been added successfully !! ",
+//     //   closeTimeout: 2000,
+//     // });
+//     //   toastBottom.open();
+//   });
+
+
+//   console.log(countValue);
+// });
+
+// $(document).on('click', '.counter-decrease', function (e) {
+//   var countValue = parseInt($(this).parent().find(".counter-value").text());
+
+//   if (countValue > 0) {
+//     countValue = countValue - 1;
+//   }
+//   $(this).parent().find(".counter-value").text(countValue);
+//   app.params.currentProductDetails.quantity = countValue;
+//   console.log(countValue);
+
+// });
 
 /*
 *All Cordova functioanity 

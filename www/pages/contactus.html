@@ -23,7 +23,7 @@
 
     <!-- main page content -->
     <div class="page-content has-footer">
-        <form id="contactusform">
+        <!-- <form id="contactusform"> -->
             <!-- Contact us form -->
             <div class="block">
                 <div class="row margin-bottom">
@@ -35,7 +35,7 @@
 
                     
 
-                        <div class="list form-list margin-bottom-half">
+                        <!-- <div class="list form-list margin-bottom-half">
                             <ul>
                                 <li class="item-content item-input">
                                     <div class="item-inner">
@@ -89,22 +89,25 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
 
                         <!-- <a href="#" target="_self" class="button button-fill button-large color-green elevation-2 margin-bottom-half">
                             Connect now</a> -->
                             
                     </div>
-                </div>
-            </div>
-            <div class="block">
-                <div class="row margin-bottom">
+
                     <div class="col-100 medium-50 large-33 margin-h-auto">
-                        <input type="submit"  class="button button-fill button-large button-raised" value=" Connect now" />
+                        <a href="tel:${contactNumber}"  class="button button-fill button-large button-raised link external" target="_system" >
+                            <i class="f7-icons icon margin-right-half">phone</i>Connect Now 
+                        </a>
                     </div>
+
+
                 </div>
             </div>
-        </form>
+            
+            
+        <!-- </form> -->
 
     </div>
 
@@ -133,7 +136,7 @@
                         <span>
                             <i class="icon f7-icons">cart</i>
                             <span class="nav-text">card-content</span>
-                            <!-- <span class="countercart">3</span> -->
+                            <span class="countercart">${cartCount}</span>
                         </span>
                     </a>
                 </li>
@@ -161,43 +164,30 @@
 </template>
 <script>
     export default (props, { $f7, $theme, $on, $update, $ }) => {
-      var app = $f7;
-      let addressList = [] ;
-      
-     
+        var app = $f7;
+        let addressList = [] ;
+        let cartCount = 0;
+        let contactNumber = "";
         const pageId = app.params.uuid();
-      
-        $(document).on('submit', '#addFamilyForm', function (e) {
-            e.preventDefault();
-    
-            let formData =  app.form.convertToData('#addFamilyForm');
-            $f7.preloader.show();
-          
-            let url =  app.params.remoteUrl + 'add-family';
-            app.params.authHeader();
-            app.request.postJSON(url, formData, 
-                function(res,status){  
-                    $f7.preloader.hide();   
-                    app.params.showToastBottom(res.data.message);
-                    //==== back to address page //
-                    /* app.views.main.router.navigate('/home/', {
-                        ignoreCache: true,
-                        reloadCurrent: true,
-                    }); */
-                    /// app.views.main.router.clearPreviousHistory();
-                    app.views.main.router.back();
-                    
-            }, function(err, status){
-                $f7.preloader.hide();   
-                console.log("error");
-                console.log(err);
-            }); 
-
-
-        });
-    
+        
 
         $on('pageInit', () => {
+
+             //cart count updation 
+            app.params.callToServer('cart-count','', function (response) {
+                if (response.success) {
+                    cartCount =  response.data.cartCount;
+                }
+                $update();
+            });
+
+            app.params.callToServer('contact-us','', function (response) {
+                if (response.success) {
+                    contactNumber =  response.data.contactNumber;
+                }
+                $update();
+            });
+            
             
         });
   

@@ -2542,6 +2542,18 @@ figure img {
 .font-11{
 	font-size: 11px !important;
 }
+.font-13{
+	font-size: 13px !important;
+}
+.font-14{
+	font-size: 14px !important;
+}
+.font-15{
+	font-size: 15px !important;
+}
+.font-16{
+	font-size: 16px !important;
+}
 .margin-bottom-mini {
     margin-bottom: 6px !important;
 }
@@ -2584,5 +2596,21 @@ figure img {
     background-color: white;
     border-radius: 15px;
 }
+.searchbtn{
+	height: 44px;
+}
+.cart-address-form .item-after{
+	margin-left: unset;
+	color:black;
+}
+.top-compact{
+	padding-top: 60px !important;
+}
+
+.background-clean{
+	background-image: none !important;
+    background-color: #ffffff !important;
+}
+
 
 

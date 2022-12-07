@@ -9,11 +9,11 @@
                     </a>
                 </div>
                 <div class="title overflow-visible">
-                    Change Address
+                   Patient List
                 </div>
-                <div class="right">
-                    <a href="/profile/" class="link ">
-                        <i class="icon f7-icons size-22">person_circle</i>
+                <div class="right text-align-center">
+                    <a href="/notificationlist/" class="link">
+                        <i class="icon f7-icons size-22">bell_fill</i>
                     </a>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                                 <div class="row">
                                    
                                     <div class="col align-self-center padding-left">
-                                        <h5 class="no-margin-bottom">${item.name}<br /></h5>
+                                        <h5 class="no-margin-bottom"><p>${item.name}</p></h5>
                                     </div>
                                     <div class="col-auto align-self-center">
                                         <a href="/editfamily/${item.id}/" class="btn btn-link text-color-theme"><i
@@ -88,12 +88,15 @@
                             <div class="card-content card-content-padding">
 
                                 <div class="row">
-                                    <div class="col">
-                                        <div class="addressHeader">
-                                            ${item.gender}, ${item.age} Years
+                                    <div class="col font-12">
+                                        <div >
+                                            Gender - ${item.gender}
                                         </div>
                                         <div>
-                                             ( ${item.relation} ) 
+                                          Age - ${item.age} Years
+                                        </div>
+                                        <div>
+                                            Relation - ${item.relation} 
                                         </div>
                                     </div>
                                     <!-- <div class="col-auto align-self-center">

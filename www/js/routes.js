@@ -362,8 +362,8 @@ var routes = [
 
   // track order
   {
-    path: '/trackorder/:orderId/',
-    url: './pages/trackorder.html',
+    path: '/trackorder/:orderId/:type/',
+    componentUrl: './pages/trackorder.html',
   },
 
   // chat

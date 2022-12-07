@@ -26,7 +26,7 @@
         <div class="page-content has-footer">
 
             <!-- offerslides -->
-            <div class="block  skeleton-text skeleton-effect-wave placeHolderOut">
+            <div  class="block  skeleton-text skeleton-effect-wave placeHolderOut">
                 <div class=" " >
                     <!-- Additional required wrapper -->
                     <div class="card-content  ">
@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-100">
                         <div class="card margin-bottom-mini">
-                            <div class="card-content card-content-padding_">
+                            <div class="card-content  card-content-padding_">
 
                                 
                                 <!-- <h5>Install PWA</h5> -->
@@ -62,7 +62,7 @@
                                         <p>Click "Install" to install PWA app and experience as indepedent app.</p>
                                          </div> -->
                                     <div class="col-100">
-                                        <a href="/orderbyprescription/" class="button button-gradient  color-theme"
+                                        <a href="/orderbyprescription/" class="button button-gradient_  color-theme"
                                             id="upload_prescription">Upload Prescription</a>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                                     <div class="item-title">
                                                         Order Medicine
                                                         <div class="item-footer">
-                                                            Genuine Medicie Min 18% Discount, Free Delivery at your door
+                                                            Genuine Medicine Min 18% Discount, Free Delivery at your door
                                                             step
                                                         </div>
                                                     </div>
@@ -141,8 +141,7 @@
                                                 <div class="item-inner">
                                                     <div class="item-title">
                                                         Book Lab Test
-                                                        <div class="item-footer">Genuine Medicine. Maximum Discount. Low
-                                                            price</div>
+                                                        <div class="item-footer">Book Lab test at home . Maximum discount. Low price</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,7 +159,7 @@
             <div class="block">
                 <div class="row margin-bottom-half">
                     <div class="col">
-                        <h6 class="no-margin-bottom">Shop By Category</h6>
+                        <h6 class="no-margin-bottom"><p>Shop By Category</p></h6>
                     </div>
                     <div class="col-auto">
                         <a href="/categoryList/" class="link text-color-theme">View All <i
@@ -261,7 +260,7 @@
                     ${categories.map((item) => $h`
 
                     <div class="col-33 padding-left-half no-padding-right ">
-                        <a href="/productlist/category/${item.id}/">
+                        <a href="/productlist/product/${item.id}/">
                             <div class="card elevation-2 margin-bottom-half  homeCategory">
                                 <div class="card-content">
 
@@ -310,7 +309,7 @@
                             <span>
                                 <i class="icon f7-icons">cart</i>
                                 <span class="nav-text">card-content</span>
-                                <!-- <span class="countercart">3</span> -->
+                                <span  class="countercart">${cartCount}</span>
                             </span>
                         </a>
                     </li>
@@ -348,13 +347,13 @@
         let categories = [];
         let slider = [];
         const pageId = app.params.uuid();
-
+        let cartCount = 0;
         $on('pageInit', () => {
            // app.statusbar.setBackgroundColor('#f4fbf7');
           //  app.statusbar.setTextColor('black');
 
             // $f7.preloader.show(); 
-
+           // cartCount = app.params.cartCount();
             const swiperHome = new Swiper(".offerslidesHome", {
                 slidesPerView: "1",
                 spaceBetween: 10,
@@ -381,7 +380,7 @@
 
                 let slideritems = '' +
                     ' <div class="swiper-slide">' +
-                    '                                <div class="card elevation-2 card-theme">' +
+                    '                                <div class="card  elevation-2 card-theme">' +
                     '                                    <div class="card-content ">' +
                     '                                        <div class="row">' +
                     '                                            <div class="col-40 thum-parent">' +
@@ -409,6 +408,14 @@
             }
 
             app.params.callToServer("home-page", "", success);
+            
+            //update cart counter
+            app.params.callToServer('cart-count','',function (response) {
+                if (response.success) {
+                    cartCount =  response.data.cartCount;
+                }
+                $update();
+            }); 
 
             function success(Responce) {
                 // $f7.preloader.hide(); 

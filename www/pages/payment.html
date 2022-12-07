@@ -23,7 +23,7 @@
 
 
     <!-- main page content -->
-    <div class="page-content has-footer">
+    <div class="page-content has-footer top-compact">
 
         <!-- wizard links -->
         <div class="block">
@@ -99,7 +99,7 @@
         <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
-                    <h5 class="no-margin-bottom">Payment Modes</h5>
+                    <h5 class="no-margin-bottom"><p>Payment Modes</p></h5>
                 </div>
             </div>
         </div>
@@ -134,19 +134,19 @@
          <div class="block">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
-                    <h5 class="no-margin-bottom">Pricing</h5>
+                    <h5 class="no-margin-bottom"><p>Pricing</p></h5>
                 </div>
             </div>
-            <div class="row margin-bottom-half">
+            <div class="row margin-bottom-half ">
                 <div class="col">
                     ${type == 'Lab test' && $h`
-                    <p>Sample Collection Charge</p>
+                    <p class="font-12">Sample Collection Charge</p>
                     `}
                     ${type != 'Lab test' && $h`
-                    <p>Shipping Cost</p>
+                    <p class="font-12">Shipping Cost</p>
                     `}
                 </div>
-                <div class="col-auto">
+                <div class="col-auto font-12">
                     ${shippingCost == 0 && $h`
                         Free
                     `}
@@ -157,11 +157,11 @@
                 </div>
             </div>
 
-            <div class="row margin-bottom-half">
+            <div class="row margin-bottom-half font-12">
                 <div class="col">
-                    <p>Subtotal</p>
+                    <p class="font-12">Subtotal</p>
                 </div>
-                <div class="col-auto">₹ ${subtotal}</div>
+                <div class="col-auto font-12">₹ ${subtotal}</div>
             </div>
 
             <div class="row font-weight-bold margin-bottom">
@@ -213,7 +213,7 @@
                         <span>
                             <i class="icon f7-icons">cart</i>
                             <span class="nav-text">card-content</span>
-                            <!-- <span class="countercart">${app.params.totalCartItems()}</span> -->
+                            <span class="countercart">${cartCount}</span>
                         </span>
                     </a>
                 </li>
@@ -255,7 +255,7 @@
         let totalQuantity =  0;
         let total = 0;
         let subtotal = 0;
-        // let cartCount = app.params.cartCount();
+
         let cartCount = 0;
         let shippingCost = 0;
         const pageId = app.params.uuid();
@@ -303,6 +303,17 @@
                 //item = ResponceData.data.defaultAddress[0];
                 $update();
             }
+
+             //cart count updation 
+             app.params.callToServer('cart-count','',function (response) {
+                if (response.success) {
+                    cartCount =  response.data.cartCount;
+                }
+                $update();
+            }); 
+
+
+
 
         });
   

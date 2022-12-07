@@ -1,155 +1,165 @@
 <template>
-<div class="page page-addaddress" id="${pageId}"  data-name="addaddress">
-    <div class="navbar ">
-        <div class="navbar-bg"></div>
-        <div class="navbar-inner">
-            <div class="left no-margin-right">
-                <a href="#" class="button icon-only back">
-                    <i class="icon f7-icons size-22">arrow_left</i>
-                </a>
+    <div class="page page-addaddress" id="${pageId}" data-name="addaddress">
+        <div class="navbar ">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left no-margin-right">
+                    <a href="#" class="button icon-only back">
+                        <i class="icon f7-icons size-22">arrow_left</i>
+                    </a>
+                </div>
+                <div class="title ">
+                    Add Address
+                </div>
+                <div class="right text-align-center">
+                    <a href="/notificationlist/" class="link">
+                        <i class="icon f7-icons size-22">bell_fill</i>
+                    </a>
+                </div>
             </div>
-            <div class="title ">
-                Add Address
-            </div>
-            <div class="right text-align-center">
-                <a href="/notificationlist/" class="link">
-                    <i class="icon f7-icons size-22">bell_fill</i>
-                </a>
-            </div>
+        </div>
+
+
+        <!-- main page content -->
+        <div class="page-content">
+            <form id="addaddressForm">
+                <!-- add address fields -->
+                <div class="block margin-bottom-half">
+
+                    <div class="list form-list margin-bottom-half">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <!-- "item-floating-label" class on item title -->
+                                    <div class="item-title item-floating-label">Your Name</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="name" value="${name}" validate
+                                            required />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="list form-list margin-bottom-half">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <!-- "item-floating-label" class on item title -->
+                                    <div class="item-title item-floating-label">Address </div>
+                                    <div class="item-input-wrap">
+                                        <textarea type="text" name="address" required
+                                            validate> </textarea>
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="list form-list margin-bottom-half">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <!-- "item-floating-label" class on item title -->
+                                    <div class="item-title item-floating-label">Landmark</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="landmark" value="" />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="list form-list margin-bottom-half">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <!-- "item-floating-label" class on item title -->
+                                    <div class="item-title item-floating-label">Pin Code</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="pin" value="" required validate />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="list form-list margin-bottom-half">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <!-- "item-floating-label" class on item title -->
+                                    <div class="item-title item-floating-label">Mobile</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="mobile" value="${mobile}" required
+                                            validate />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="list form-list margin-bottom-half">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <!-- "item-floating-label" class on item title -->
+                                    <div class="item-title item-floating-label">Address Type</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="type" value=""
+                                            placeholder=" Home / Office" />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="block">
+                    <div class="row margin-bottom">
+                        <div class="col-100 medium-50 large-33 margin-h-auto">
+                            <input type="submit" class="button button-fill button-large button-raised" value="Save" />
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
-
-    <!-- main page content -->
-    <div class="page-content">
-        <form id="addaddressForm">
-            <!-- add address fields -->
-            <div class="block margin-bottom-half">
-
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Your Name</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="name" value="${name}" validate required />
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Address </div>
-                                <div class="item-input-wrap">
-                                    <textarea type="text" name="address" required validate > </textarea>
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Landmark</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="landmark" value="" />
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Pin Code</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="pin" value="" required validate/>
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Mobile</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="mobile" value="${mobile}" required validate/>
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="list form-list margin-bottom-half">
-                    <ul>
-                        <li class="item-content item-input">
-                            <div class="item-inner">
-                                <!-- "item-floating-label" class on item title -->
-                                <div class="item-title item-floating-label">Address Type</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" name="type" value="" placeholder=" Home / Office" />
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="block">
-                <div class="row margin-bottom">
-                    <div class="col-100 medium-50 large-33 margin-h-auto">
-                        <input type="submit"  class="button button-fill button-large button-raised" value="Save" />
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
 </template>
 <script>
-    export default (props, { $f7, $theme, $on, $update, $ }) => {
-      var app = $f7;
-      let addressList = [] ;
-      
-      let name = localStorage.getItem("name");
-      let mobile =localStorage.getItem("mobile");
-       
+    export default (props, {
+        $f7,
+        $theme,
+        $on,
+        $update,
+        $
+    }) => {
+        var app = $f7;
+        let addressList = [];
+
+        let name = localStorage.getItem("name");
+        let mobile = localStorage.getItem("mobile");
+
         const pageId = app.params.uuid();
-      
+
         $(document).on('submit', '#addaddressForm', function (e) {
             e.preventDefault();
-    
-            let formData =  app.form.convertToData('#addaddressForm');
+
+            let formData = app.form.convertToData('#addaddressForm');
             $f7.preloader.show();
-          
-            let url =  app.params.remoteUrl + 'add-address';
+
+            let url = app.params.remoteUrl + 'add-address';
             app.params.authHeader();
-            app.request.postJSON(url, formData, 
-                function(res,status){  
-                    $f7.preloader.hide();   
+            app.request.postJSON(url, formData,
+                function (res, status) {
+                    $f7.preloader.hide();
                     app.params.showToastBottom(res.data.message);
                     //==== back to address page //
                     /* app.views.main.router.navigate('/home/', {
@@ -158,20 +168,21 @@
                     }); */
                     /// app.views.main.router.clearPreviousHistory();
                     app.views.main.router.back();
-                    
-            }, function(err, status){
-                console.log("error");
-                console.log(err);
-            }); 
+
+                },
+                function (err, status) {
+                    console.log("error");
+                    console.log(err);
+                });
 
 
         });
-    
+
 
         $on('pageInit', () => {
-            
+
         });
-  
-      return $render;
+
+        return $render;
     }
-  </script>
+</script>

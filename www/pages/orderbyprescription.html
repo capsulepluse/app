@@ -32,7 +32,7 @@
                 <p>Camera</p>
               </div>
 
-              <div class="col">
+              <div class="col" @click="${() => openSaveImage()}">
                 <i class="icon f7-icons size-50">arrow_down_to_line_alt</i>
                 <p>Saved</p>
               </div>
@@ -45,43 +45,19 @@
           </div>
 
           <div class="block" >
-            <div class="row margin-bottom-half margin-left  padding-left" id="selected_prescription_container">
+            <div class="row margin-bottom-half_ margin-left  padding-left" id="selected_prescription_container">
               
-              
-              <!-- <div class="card_ elevation-2_ margin-half "> 
-                <div class="card-content padding-half_">
-                  <div style="display:none" name="prescrip_id" >27</div>
-                    <img slot="media" src="https://capsuleplus.in/storage/prescription/thumbnail/IYsWvcIXEp9Zmj4QJiDAydQiEW9kYFjdxfoaMfNa.jpg" width="75" alt="" /> 
-                </div>
-              </div>
-
-              <div class="card_ elevation-2_ margin-half "> 
-                <div class="card-content padding-half_">
-                  <div type="hidden" name="prescrip_id">28</div>
-                    <img slot="media" src="https://capsuleplus.in/storage/prescription/thumbnail/IYsWvcIXEp9Zmj4QJiDAydQiEW9kYFjdxfoaMfNa.jpg" width="75" alt="" /> 
-                </div>
-              </div>
-              <div class="card_ elevation-2_ margin-half "> 
-                <div class="card-content padding-half_">
-                  <div type="hidden" name="prescrip_id">27</div>
-                    <img slot="media" src="https://capsuleplus.in/storage/prescription/thumbnail/IYsWvcIXEp9Zmj4QJiDAydQiEW9kYFjdxfoaMfNa.jpg" width="75" alt="" /> 
-                </div>
-              </div>
-             -->
-        
-               
-       
             </div>
           </div>
 
-          <!-- toast messages -->
+          <!-- Notes messages -->
           <div class="block">
             <div class="row margin-bottom-half">
               <div class="col">
                 <h5 class="no-margin-bottom"><p>Helpful actions</p></h5>
               </div>
             </div>
-            <div class="row margin-bottom">
+            <div class="row margin-bottom-half">
               <div class="col">
                 <div class="card elevation-2">
                   <div class="list ">
@@ -425,7 +401,7 @@
 
           <!-- term acceptance  -->
           <div class="block ">
-            <div class="row margin-bottom-half margin-top">
+            <div class="row margin-bottom-half margin-top-half">
               <div class="col">
                 <div class="card elevation-2 ">
                   <div class="card-content card-content-padding">
@@ -454,6 +430,79 @@
 
 
         </form>
+
+
+
+         <!-- add product popup-->
+         <div class="popup saveImageList">
+          <div class="view">
+            <div class="page">
+              <div class="navbar">
+                <div class="navbar-bg"></div>
+                <div class="navbar-inner">
+                  <div class="left">
+                    <a class="link popup-close"><i class="icons f7-icons">arrow_left</i></a>
+                  </div>
+                  <div class="title">Save Prescription</div>
+                  <div class="right">
+                    <!-- Link to close popup -->
+                    <a class="link popup-close"><i class="icons f7-icons">multiply</i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="page-content">
+
+                <div class="block" >
+
+                ${savePrescription.map((item) => $h`
+
+                  <div class="row">
+                    <div class="col-100 medium-50 large-33">
+                      <div class="card elevation-2 margin-bottom-half">
+                          <div class="card-content card-content-padding">
+                              <div class="row">
+                                  <div class="col-100">
+                                      <figure class="text-align-center margin-bottom-half  page-bg rounded h-150">
+                                          <img src="${item.thumbnail}" alt=""  />
+                                      </figure>
+                                  </div>
+                                  <div class="col">
+                                      <p class="small display-block">
+                                          <span class="float-end">
+                                            <span class="text-opac">${item.created_at}</span> 
+                                            <i class="bi bi-clock"></i>
+                                          </span>
+                                      </p>
+                                      <button class="button button-fill button-small button-raised"
+                                      @click="${() => selectPrescription(item.thumbnail,item.id)}"
+                                      >
+                                          Select Prescription
+                                      </button>
+                                      <!-- <input type="button" data-id="${item.id}" data-thumbnail="{item.thumbnail}" class="selectPrescriptionCheck" value="Select Prescription" />
+                                      <label class="checkbox margin-right-half">
+                                       
+                                        <i class="icon-checkbox"></i>
+                                      </label> -->
+                                       
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div> 
+
+                `)}    
+                  
+                </div>
+
+                
+               
+
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <!-- main page content ends -->
 
@@ -484,7 +533,7 @@
                       <span>
                           <i class="icon f7-icons">cart</i>
                           <span class="nav-text">card-content</span>
-                          <!-- <span class="countercart">3</span> -->
+                          <span class="countercart">${cartCount}</span>
                       </span>
                   </a>
               </li>
@@ -514,14 +563,17 @@
   export default (props, {
     $f7,
     $theme,
-    $on
+    $on,
+    $update,
+    $
   }) => {
 
     var app = $f7;
     const pageId = app.params.uuid();
     let numberList = [];
     let prescriptionList = [];
-
+    let savePrescription = [];
+    let cartCount = 0;
     //file upload 
     const openCamera = () => {
 
@@ -575,7 +627,24 @@
       );
     }
 
+    const openSaveImage = () => {
 
+      app.preloader.show();
+      $('#selected_prescription_container_popup').html("");
+      app.params.callToServer("save-prescription-list", "",
+                  function success(Responce) {
+                      $f7.preloader.hide();
+                      //if successfully submited 
+                      if(Responce.success){
+
+                        savePrescription = Responce.data
+                        $update();
+                        app.popup.open(".saveImageList");
+                      }
+                  
+                  });
+      
+    }
 
     const fileUpload = (imageURI) => {
       var progressValue = 0;
@@ -656,6 +725,16 @@
 
     }
     
+    const selectPrescription =(imageURI,imageId) =>{
+        //apend image on prescription area 
+        selectImage(imageId,imageURI);
+        calculateSelectedPrescrip_id();
+        app.popup.close(".saveImageList");
+
+    }
+
+
+
     //show uploaded image 
     const selectImage = (imageId,imageUrl)=>{
      
@@ -806,7 +885,6 @@
     });
 
 
-
     $on('pageBeforeOut', () => {
 
     })
@@ -822,6 +900,16 @@
         slidesPerView: "auto",
         spaceBetween: 12,
       });
+
+       //cart count updation 
+       app.params.callToServer('cart-count','', function (response) {
+        if (response.success) {
+            cartCount =  response.data.cartCount;
+        }
+        $update();
+      }); 
+
+
 
     })
 

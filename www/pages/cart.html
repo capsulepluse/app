@@ -24,7 +24,7 @@
 
 
     <!-- main page content -->
-    <div class="page-content has-footer">
+    <div class="page-content has-footer top-compact">
 
         <!-- wizard links -->
         <div class="block">
@@ -59,7 +59,7 @@
                     </h5>
                 </div>
                 <div class="col-auto pe-0 align-self-center">
-                    <a href="/home/" class="link text-color-theme">Shop more <i class="icons f7-icons">chevron_right</i></a>
+                    <a href="/home/" class="link text-color-theme font-12">Shop more <i class="icons f7-icons">chevron_right</i></a>
                 </div>
             </div>
         </div>
@@ -189,18 +189,18 @@
                 ${cartList.map((item) => $h`
 
                     <div class="col-100 medium-50 large-33">
-                        <div class="card elevation-2 product margin-bottom-half">
+                        <div class="card elevation-2 product margin-bottom-mini">
                             <div class="card-content padding-half">
-                                <div class="row">
+                                <div class="row align-items-center">
                                     <div class="col-auto">
-                                        <div class="text-center avatar-70 avatar">
-                                            <img src="${item.image}" alt="" />
+                                        <div class="text-center avatar-50 avatar thum-parent">
+                                            <img src="${item.image}" class="thum-child" alt="" />
                                         </div>
                                     </div>
                                     <div class="col no-padding-left align-self-center">
-                                        <div class="row">
+                                        <div class="row align-items-center">
                                             <div class="col">
-                                                <div class="text-color-theme ">
+                                                <div class="text-color-theme font-12">
                                                     ${item.name}</div>
                                                 <p class="no-margin-bottom">
                                                     <small class="text-opac">Quantity : ${item.quantity}</small>
@@ -209,12 +209,12 @@
                                             <div class="col-auto text-align-right">
                                                 <div class="col-auto " @click="${()=>removeCurrentProduct(item.pid)}">
                                                     <div class="btn btn-link text-color-theme">
-                                                        <i class="icons f7-icons">trash</i>
+                                                        <i class="icons f7-icons size-20">trash</i>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto ">
-                                                    <p class="no-margin-bottom">
-                                                        <small class="text-opac" style="text-decoration: line-through;">₹ ${item.mrp}</small>
+                                                    <p class="no-margin-bottom font-11">
+                                                        <small class="text-opac font-11" style="text-decoration: line-through;">₹ ${item.mrp}</small>
                                                         <br/>
                                                         ₹ ${item.price}
                                                     </p>   
@@ -403,22 +403,22 @@
 
 
         <!-- pricing -->
-        <div class="block">
+        <div class="block ">
             <div class="row margin-bottom-half">
                 <div class="col align-self-center">
                     <h5 class="no-margin-bottom"><p>Pricing</p></h5>
                 </div>
             </div>
-            <div class="row margin-bottom-half">
+            <div class="row margin-bottom-half ">
                 <div class="col">
                     ${type == 'Lab test' && $h`
-                    <p>Sample Collection Charge</p>
+                    <p class="font-12">Sample Collection Charge</p>
                     `}
                     ${type != 'Lab test' && $h`
-                    <p>Shipping Cost</p>
+                    <p class="font-12">Shipping Cost</p>
                     `}
                 </div>
-                <div class="col-auto">
+                <div class="col-auto font-12">
                     ${shippingCost == 0 && $h`
                         Free
                     `}
@@ -431,19 +431,19 @@
 
             <div class="row margin-bottom-half">
                 <div class="col">
-                    <p>Subtotal</p>
+                    <p class="font-12">Subtotal</p>
                 </div>
-                <div class="col-auto">₹ ${subtotal}</div>
+                <div class="col-auto font-12">₹ ${subtotal}</div>
             </div>
 
             <div class="row font-weight-bold margin-bottom">
                 <div class="margin-bottom-half col-100">
                     <div class="dashed-line"></div>
                 </div>
-                <div class="col">
+                <div class="col font-12">
                     <p>Total</p>
                 </div>
-                <div class="col-auto">₹ ${total}</div>
+                <div class="col-auto font-12">₹ ${total}</div>
             </div>
         </div>
 
@@ -451,7 +451,7 @@
         <div class="block">
             <div class="row margin-bottom">
                 <div class="col align-self-center">
-                    <a href="/address/" class="button button-large button-fill elevation-3 color-green">Next</a>
+                    <a href="/address/" class="button button-large button-fill elevation-3 color-theme">Next</a>
                 </div>
             </div>
         </div>
@@ -485,7 +485,7 @@
                         <span>
                             <i class="icon f7-icons">cart</i>
                             <span class="nav-text">card-content</span>
-                            <!-- <span class="countercart">${app.params.totalCartItems()}</span> -->
+                            <span class="countercart">${cartCount}</span>
                         </span>
                     </a>
                 </li>
@@ -556,6 +556,16 @@
                 updateCurrentCart(Responce);
                 
             }
+
+            //cart count updation 
+            app.params.callToServer('cart-count','',function (response) {
+                if (response.success) {
+                    cartCount =  response.data.cartCount;
+                }
+                $update();
+            }); 
+
+            
 
 
         });

@@ -37,35 +37,12 @@
 
         <!-- search -->
         <div class="block margin-bottom-mini">
-          <!-- <div class="row margin-bottom">
-            <div class="col">
-              <div class="list form-list no-margin">
-                <ul>
-                  <li class="item-content item-input">
-                    <div class="item-inner">
-                      <div class="item-title item-floating-label">Search</div>
-                      <div class="item-input-wrap">
-                        <input type="text" name="search" />
-                        <span class="input-clear-button"></span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-auto">
-              <button class="button button-fill button-large padding elevation-3">
-                <i class="icon f7-icons">search</i>
-              </button>
-            </div>
-          </div> -->
+         
 
 
           <div class="searchbar-backdrop"></div>
           <!-- <div class="searchbar-backdrop"></div> -->
-            <form class="searchbar "
-
-              >
+            <form class="searchbar ">
               <div class="searchbar-inner">
                 <div class="searchbar-input-wrap">
                   <input type="search" placeholder="Search"  style="border-radius: 6px;"/>
@@ -77,8 +54,7 @@
             </form>
           </div>
 
-
-
+       
         <!-- Products -->
         <!-- <div class="block">
           <div class="row margin-bottom-half">
@@ -119,11 +95,24 @@
                                                   <div class="item-footer">₹ ${item.discount}</div>
                                               </div>
                                               <div class="col-auto font-10">
+                                               
                                                 <span 
-                                                class="labtest_add_to_cart"
+                                                class="labtest_add_to_cart
+                                                ${item.isCartQnt > 0 && $h`
+                                                  display-none
+                                                  `} 
+                                                 "
                                                 data-pid="${item.id}" 
                                                 data-quantity="1"
-                                                data-type="${type}" >Book Now</span>
+                                                data-type="${type}" >
+                                                Book Now
+                                              </span>
+                                                <span   class="labtest_add_to_car_booed
+                                                ${item.isCartQnt == 0 && $h`
+                                                  display-none
+                                                  `} 
+                                                 " 
+                                                  >Booked</span>
                                             </div> 
                                           </div>
                                          
@@ -170,7 +159,7 @@
                       <span>
                           <i class="icon f7-icons">cart</i>
                           <span class="nav-text">card-content</span>
-                          <!-- <span class="countercart">3</span> -->
+                          <span class="countercart">${cartCount}</span>
                       </span>
                   </a>
               </li>
@@ -220,7 +209,7 @@
       type: ""
     };
     const pageId = app.params.uuid();
-    // let cartCount = app.params.cartCount();
+    let cartCount = 0;
     //  console.log('countdata',cartCount);
 
     // const openProductPopup = (e)=>{
@@ -237,25 +226,24 @@
 
       
       productDetails = $(this).dataset();
-      console.log(productDetails);
+
+       //show counter and hide the add button 
+       $(this).addClass("display-none");
+       $(this).parent().find(".labtest_add_to_car_booed").removeClass("display-none");
+
       $f7.preloader.show();
       const addingCartOnLive = app.params.callToServer("add-cart-single", productDetails,
       function success(Responce) {
         $f7.preloader.hide();
-        //$(this).html("Booked");
-        //console.log($(this).html());
 
-        
         let toastBottom = app.toast.create({
           text: "Test has been added successfully !! ",
           closeTimeout: 2000,
           });
           toastBottom.open();
 
-       // cartCount = Responce.data.cartCount;
-       //localStorage.setItem("cartCount", cartCount);
-        // categoryName = Responce.data.category;
-       // $update();
+        cartCount = Responce.data.cartCount;
+        $update();
       });
 
       
@@ -276,8 +264,14 @@
         $update();
       }
 
-      //
-    
+      //cart count updation 
+      app.params.callToServer('cart-count','',function (response) {
+          if (response.success) {
+              cartCount =  response.data.cartCount;
+          }
+          $update();
+      }); 
+
         // create searchbar
         var searchbar = $f7.searchbar.create({
           el: '.searchbar',

@@ -28,10 +28,9 @@
       <div class="main-container container">
 
         <!-- search -->
-        <div class="block margin-bottom-mini">
+      
           
-          <div class="searchbar-backdrop"></div>
-      <!-- <div class="searchbar-backdrop"></div> -->
+          <!-- <div class="searchbar-backdrop"></div>
             <form class="searchbar">
               <div class="searchbar-inner">
                 <div class="searchbar-input-wrap">
@@ -42,9 +41,111 @@
                 <span class="searchbar-disable-button">Cancel</span>
               </div>
             </form>
+          </div> -->
+
+                   <!-- Quick List -->
+         <div class="block">
+          <div class="row">
+              <div class="col-100 ">
+                  <div class="card elevation-2 margin-bottom-half">
+                      <div class="mediaList customeList list searchbar-found">
+                          <ul>
+                             
+                            ${product.map((item) => $h`
+
+                              <li class="">
+                                  <a class="item-link_" href="#">
+                                      <div class="item-content">
+                                          <div class="item-media padding-top-half padding-bottom-half">
+                                              <img slot="media" src="${item.img}" width="30"
+                                                  alt="" />
+                                          </div>
+                                          <div class="item-inner item-cell">
+                                              <div class="item-row item-title_ font-12 bold text-color-theme">
+                                                <a  href="/product/${item.id}/" >  
+                                                  <div class="">${item.name}</div> 
+                                                </a>
+                                              </div>
+
+                                              <!-- <div class="item-row item-footer">
+                                                    <small class="font-11">${item.manufacturer}</small>
+                                              </div> -->
+                                              <div class="item-row item-footer">
+                                                  <div class="col-auto item-footer">
+                                                    <div class="item-row">
+                                                      <small class="font-11">MRP</small>:<small class=" item-cell text-opac font-11" style="text-decoration: line-through;"> ₹ ${item.MRP}</small>
+                                                    </div>
+                                                    
+                                                    <div class="item-row"> ₹ ${item.discount} </div>
+                                                    
+                                                  </div> 
+                                                  <div class="col-auto item-footer font-10">
+                                                        <span 
+                                                        class="button button-small button-outline font-10 product_add_to_cart
+                                                        ${item.isCartQnt > 0 && $h`
+                                                          display-none
+                                                          `} 
+                                                        "
+                                                        data-pid="${item.id}" 
+                                                        data-quantity="1"
+                                                        data-type="${type}"
+                                                         >Add</span>
+
+                                                           <!-- Stepper element -->
+                                                        <!-- <div class="stepper">
+                                                          <div class="stepper-button-minus counter-decrease"></div>
+                                                          <div class="stepper-value counter-value">1</div>
+                                                          <div class="stepper-button-plus counter-increase"></div>
+                                                        </div> -->
+
+                                                         <!-- button counter increamenter-->
+                                                        <div class="counter-number
+
+                                                          ${item.isCartQnt == 0 && $h`
+                                                           display-none
+                                                           `} 
+                                                          ">
+                                                          <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease"
+                                                          data-pid="${item.id}" 
+                                                          data-type="${type}"
+                                                          >
+                                                              <i class="icons f7-icons">minus</i>
+                                                          </button>
+
+                                                          ${item.isCartQnt > 0 && $h`
+                                                            <span class="counter-value font-13">${item.isCartQnt}</span>
+                                                          `}
+                                                          ${item.isCartQnt == 0 && $h`
+                                                            <span class="counter-value font-13">1</span>
+                                                          `}
+                                                         
+
+
+                                                          <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase"
+                                                          data-pid="${item.id}" 
+                                                          data-type="${type}"
+                                                          
+                                                          >
+                                                              <i class="icons f7-icons">plus</i>
+                                                          </button>
+                                                        </div>
+
+
+                                                    </div>    
+                                              </div>   
+                                          </div>
+                                         
+                                      </div>
+                                  </a>
+                              </li>
+                            `)}  
+
+                          </ul>
+                      </div>
+                  </div>
+              </div>
           </div>
-
-
+         </div>
 
       
 
@@ -112,106 +213,7 @@
         </div>
         `}
 
-        ${type == "labtest" && $h`
-
-
-         <!-- Quick List -->
-         <div class="block">
-          <div class="row">
-              <div class="col-100 ">
-                  <div class="card elevation-2 margin-bottom-half">
-                      <div class="mediaList customeList list">
-                          <ul>
-                             
-                            ${product.map((item) => $h`
-
-                              <li class="">
-                                  <a class="item-link" href="#">
-                                      <div class="item-content">
-                                          <!-- <div class="item-media">
-                                              <img slot="media" src="img/homepage/microscope.png" width="44"
-                                                  alt="" />
-                                          </div> -->
-                                          <div class="item-inner">
-                                              <div class="item-title font-12">${item.name}
-                                                  <div class="item-footer">
-                                                    <small>MRP</small> : <small class="text-opac small-10" style="text-decoration: line-through;">
-                                                      ₹ ${item.MRP}</small>
-                                                  </div>
-                                                  <div class="item-footer">₹ ${item.discount}</div>
-                                              </div>
-                                              <div class="col-auto font-10">
-                                                <span>Book Now</span>
-                                            </div> 
-                                          </div>
-                                         
-                                      </div>
-                                  </a>
-                              </li>
-                            `)}  
-
-
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-
-
-
-
-
-        <div class="block">
-          <div class="row margin-bottom-mini">
-
-            ${product.map((item) => $h`
-
-            <div class="col-100 medium-50 large-33">
-              <div class="card elevation-2 labitem margin-bottom-mini">
-                <div class="card-content ">
-                  <div class="row">
-                    <div class="col-auto">
-                      <figure class="text-align-center">
-                        <img src="${item.img}" alt="" />
-                      </figure>
-                    </div>
-                    <div class="col no-padding-left align-self-center">
-                      <div class="small-12">${item.name}</div>
-                      <div class="row">
-                        <div class="col">
-                          <small>MRP</small> : <small class="text-opac small-10" style="text-decoration: line-through;">₹
-                            ${item.MRP}</small>
-                            <p class="text-opac bold small-10"> ₹ ${item.discount}</p>  
-                        </div>
-                        <div class="col-auto text-align-right">
-                          <button
-                            class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient  add-to-card-button"
-                            data-pid="${item.id}" data-mrp="${item.MRP}" data-price="${item.discount}"
-                            data-name="${item.name}" data-image="${item.img}" data-type="${type}">
-                            <i class="icons f7-icons">plus</i>
-                          </button>
-                          <!-- <a href="/trackorder/${item.id}/" class="link text-color-theme no-padding">Track
-                            <i class="icons f7-icons">chevron_right</i>
-                          </a> -->
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            `)}
-          </div>
-        </div>
-        `}
-
-
-
-
+      
 
         <!-- add product popup-->
         <div class="popup addproduct">
@@ -307,7 +309,7 @@
                       <span>
                           <i class="icon f7-icons">cart</i>
                           <span class="nav-text">card-content</span>
-                          <!-- <span class="countercart">3</span> -->
+                          <span class="countercart">${cartCount}</span>
                       </span>
                   </a>
               </li>
@@ -357,7 +359,8 @@
       type: ""
     };
     const pageId = app.params.uuid();
-    // let cartCount = app.params.cartCount();
+    let cartCount = 0;
+
     //  console.log('countdata',cartCount);
 
     // const openProductPopup = (e)=>{
@@ -370,14 +373,75 @@
 
     // }
 
-    $(document).on('click', '#pageId_' + pageId + ' .add-to-card-button', function (e) {
-      console.log(productDetails);
+    $(document).on('click', '#pageId_' + pageId + ' .product_add_to_cart', function (e) {
+
       productDetails = $(this).dataset();
-      //console.log(productDetails);
-      app.params.setActiveProduct(productDetails);
-      $update();
-      app.popup.open('.addproduct');
+      $f7.preloader.show();
+      
+      //show counter and hide the add button 
+      $(this).addClass("display-none");
+      $(this).parent().find(".counter-number").removeClass("display-none");
+
+      const addingCartOnLive = app.params.callToServer("add-cart-single", productDetails,
+      function success(Responce) {
+        $f7.preloader.hide();
+
+        let toastBottom = app.toast.create({
+          text: "Product has been added successfully !! ",
+          closeTimeout: 2000,
+          });
+          toastBottom.open();
+
+          cartCount = Responce.data.cartCount;
+          $update();
+      });
+
     })
+
+    $(document).on('click',  '#pageId_' + pageId +' .counter-increase', function (e) {
+      var countValue = parseInt($(this).parent().find(".counter-value").text());
+      countValue = countValue + 1;
+      $(this).parent().find(".counter-value").text(countValue);
+      app.params.currentProductDetails.quantity = countValue;
+
+      //update on cart
+      productDetails = $(this).dataset();
+      productDetails.quantity = countValue;
+      app.preloader.show();
+      app.params.callToServer("update-cart", productDetails,
+      function success(Responce) {
+        app.preloader.hide();
+      });
+    });
+
+    $(document).on('click',  '#pageId_' + pageId +' .counter-decrease', function (e) {
+      var countValue = parseInt($(this).parent().find(".counter-value").text());
+      countValue = countValue - 1;
+
+       //update on cart
+      productDetails = $(this).dataset();
+      productDetails.quantity = countValue;
+      app.preloader.show();
+      app.params.callToServer("update-cart", productDetails,
+      function success(Responce) {
+        app.preloader.hide();
+      });
+
+      if (countValue > 0) {
+        $(this).parent().find(".counter-value").text(countValue);
+        app.params.currentProductDetails.quantity = countValue;
+      }else{ // show add button and hide counter 
+          //show counter and hide the add button 
+        $(this).parent().addClass("display-none");
+        $(this).parent().parent().find(".product_add_to_cart").removeClass("display-none");
+
+      }
+    
+    });
+
+
+
+
 
     $(document).on('click', '.adding-cart_', function (e) {
       //console.log('adding clicked');
@@ -429,8 +493,6 @@
       app.popup.close('.addproduct');
     })
 
-
-
     $on('pageInit', () => {
 
       $f7.preloader.show();
@@ -443,6 +505,18 @@
         categoryName = Responce.data.category;
         $update();
       }
+
+       //cart count updation 
+       app.params.callToServer('cart-count','', function (response) {
+        if (response.success) {
+            cartCount =  response.data.cartCount;
+        }
+        $update();
+      });
+
+
+
+
 
     });
 

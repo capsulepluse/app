@@ -76,8 +76,8 @@
 
                                     </div>
                                     <div class="col align-self-center no-padding-left">
-                                        <h5 class="no-margin-bottom">${item.type}<br />
-                                            <span class="text-opac small">Primary Address</span>
+                                        <h5 class="no-margin-bottom"><p>${item.type}<br />
+                                            <span class="text-opac small">Primary Address</span></p>
                                         </h5>
                                     </div>
                                     <div class="col-auto align-self-center">
@@ -97,8 +97,8 @@
                                         </label>
                                     </div>
                                     <div class="col align-self-center no-padding-left">
-                                        <h5 class="no-margin-bottom">${item.type}<br />
-                                            <span class="text-opac small">Other Address</span>
+                                        <h5 class="no-margin-bottom"><p>${item.type}<br />
+                                            <span class="text-opac small">Other Address</span></p>
                                         </h5>
                                     </div>
                                     <div class="col-auto align-self-center">
@@ -117,19 +117,21 @@
                                         class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
                                     </iframe> -->
                                 <div class="row">
-                                    <div class="col">
-                                        <div class="addressHeader">
-                                            ${item.name} ( ${item.mobile} )
+                                    <div class="col font-12">
+                                        <div class="addressHeader font-13">
+                                            Name -  ${item.name}
                                         </div>
-                                        <div>
-                                            ${item.address}, ${item.landmark}, ${item.pin}
+                                        <div >
+                                            Address - ${item.address}, 
                                         </div>
-
+                                        <div>Landmark - ${item.landmark}</div>
+                                        <div>Pin -  ${item.pin}</div>
+                                        <div>Mobile - ${item.mobile}</div>
                                     </div>
-                                    <div class="col-auto align-self-center">
+                                    <!-- <div class="col-auto align-self-center">
                                         <a href="#"><i
                                                 class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

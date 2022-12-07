@@ -140,15 +140,15 @@
         <!-- search -->
         <div class="block">
           
-          <div class="row margin-bottom">
-            <div class="col">
+          <div class="row margin-bottom-half">
+            <div class="col no-padding-right">
               <div class="list form-list no-margin">
                 <ul>
                   <li class="item-content item-input">
-                    <div class="item-inner">
-                      <div class="item-title item-floating-label">Search</div>
+                    <div class="item-inner no-padding-top no-padding-buttom">
+                      <!-- <div class="item-title item-floating-label">Search</div> -->
                       <div class="item-input-wrap">
-                        <input type="text" name="search" class="search-input" />
+                        <input type="text" name="search" placeholder="Search Medicine " class="search-input padding-top-half" />
                         <span class="input-clear-button"></span>
                       </div>
                     </div>
@@ -156,144 +156,119 @@
                 </ul>
               </div>
             </div>
-            <div class="col-auto">
-              <button class="button button-fill button-large padding elevation-3 searchbtn" >
+            <div class="col-auto padding-left-half">
+              <button class="button button-fill button-small padding elevation-3 searchbtn" >
                 <i class="icon f7-icons">search</i>
               </button>
             </div>
           </div>
-
-
-
-
         </div>
 
+         <!-- Quick List -->
+         <div class="block">
+          <div class="row">
+              <div class="col-100 ">
+                  <div class="card elevation-2 margin-bottom-half">
+                      <div class="mediaList customeList list searchbar-found">
+                          <ul>
+                             
+                            ${product.map((item) => $h`
+
+                              <li class="">
+                                  <a class="item-link_" href="#">
+                                      <div class="item-content">
+                                          <div class="item-media">
+                                              <img slot="media" src="${item.img}" width="44"
+                                                  alt="" />
+                                          </div>
+                                          <div class="item-inner item-cell">
+                                              <div class="item-row item-title_ font-12 bold text-color-theme">
+                                               <a  href="/medicine/${item.id}/" >  
+                                                 <div class="">${item.name}</div> 
+                                               </a>
+                                              </div>
+
+                                              <div class="item-row item-footer">
+                                                    <small class="font-11">${item.manufacturer}</small>
+                                              </div>
+                                              <div class="item-row item-footer">
+                                                  <div class="col-auto item-footer">
+                                                    <div class="item-row">
+                                                      <small class="font-11">MRP</small>:<small class=" item-cell text-opac font-11" style="text-decoration: line-through;"> ₹ ${item.MRP}</small>
+                                                    </div>
+                                                    
+                                                    <div class="item-row"> ₹ ${item.saleprice} </div>
+                                                    
+                                                  </div> 
+                                                  <div class="col-auto item-footer font-10">
+                                                        <span 
+                                                        class="button button-small button-outline font-10 medicine_add_to_cart
+                                                        ${item.isCartQnt > 0 && $h`
+                                                          display-none
+                                                          `} 
+                                                        "
+                                                        data-pid="${item.id}" 
+                                                        data-quantity="1"
+                                                        data-type="${type}"
+                                                         >Add</span>
+
+                                                           <!-- Stepper element -->
+                                                        <!-- <div class="stepper">
+                                                          <div class="stepper-button-minus counter-decrease"></div>
+                                                          <div class="stepper-value counter-value">1</div>
+                                                          <div class="stepper-button-plus counter-increase"></div>
+                                                        </div> -->
+
+                                                         <!-- button counter increamenter-->
+                                                        <div class="counter-number
+
+                                                          ${item.isCartQnt == 0 && $h`
+                                                           display-none
+                                                           `} 
+                                                          ">
+                                                          <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease"
+                                                          data-pid="${item.id}" 
+                                                          data-type="${type}"
+                                                          >
+                                                              <i class="icons f7-icons">minus</i>
+                                                          </button>
+
+                                                          ${item.isCartQnt > 0 && $h`
+                                                            <span class="counter-value font-13">${item.isCartQnt}</span>
+                                                          `}
+                                                          ${item.isCartQnt == 0 && $h`
+                                                            <span class="counter-value font-13">1</span>
+                                                          `}
+                                                         
 
 
-        <!-- Products -->
-        <div class="block">
-          <div class="row margin-bottom-half">
-            <div class="col">
-              <h5 class="no-margin-bottom">${categoryName}</h5>
-            </div>
-            <!-- <div class="col-auto">
-              <a href="" class="link text-color-theme">View All <i class="icons f7-icons">chevron_right</i></a>
-            </div> -->
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="row padding-right">
-
-            ${product.map((item) => $h`
-
-            <div class="col-50 medium-33 large-25 padding-left-half no-padding-right">
-              <div class="card elevation-2 product margin-bottom">
-                <div class="card-content card-content-padding">
-                  <figure class="text-align-center">
-                    <img src="${item.img}" alt="" />
-                  </figure>
-                  
-
-                  <a href="/medicine/${item.id}/" class="text-normal margin-bottom-half display-block">
-                    <h6 class="text-color-theme">${item.name}</h6>
-                  </a>
-                  <p class="">
-                    <small class="text-opac">${item.manufacturer}</small>
-                    <!-- <small class="float-right"><span class="text-opac">4.5</span> <i
-                        class="icons f7-icons text-color-yellow">star</i></small> -->
-                  </p>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
-                          ${item.MRP}</small><br />
-                        ₹ ${item.saleprice}
-                      </p>
-                    </div>
-                    <div class="col-auto no-padding-left">
-                      <button
-                        class="button avatar avatar-40 no-padding rounded-circle elevation-3 button-gradient  add-to-card-button"
-                        data-pid="${item.id}" data-mrp="${item.MRP}" data-price="${item.saleprice}"
-                        data-name="${item.name}" data-image="${item.img}" data-type="${type}">
-                        <i class="icons f7-icons">plus</i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            `)}
-
-          </div>
-        </div>
+                                                          <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase"
+                                                          data-pid="${item.id}" 
+                                                          data-type="${type}"
+                                                          
+                                                          >
+                                                              <i class="icons f7-icons">plus</i>
+                                                          </button>
+                                                        </div>
 
 
 
-        <!-- add product popup-->
-        <div class="popup addproduct">
-          <div class="view">
-            <div class="page">
-              <div class="navbar">
-                <div class="navbar-bg"></div>
-                <div class="navbar-inner">
-                  <div class="left">
-                    <a class="link popup-close"><i class="icons f7-icons">arrow_left</i></a>
-                  </div>
-                  <div class="title">Add to Cart</div>
-                  <div class="right">
-                    <!-- Link to close popup -->
-                    <a class="link popup-close"><i class="icons f7-icons">multiply</i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="page-content">
-                <div class="block margin-bottom">
-                  <figure class="text-center padding">
-                    <img src="${productDetails.image}" alt="" class="mw-100" />
-                  </figure>
-                </div>
-                <div class="block margin-bottom">
-                  <!-- <p class="margin-bottom-half">
-                    <small class="text-opac">Fresh</small>
-                    <small class="float-end"><span class="text-opac">4.5</span> <i
-                        class="bi bi-star-fill text-warning"></i></small>
-                  </p> -->
-                  <a href="#" class="text-normal display-block margin-bottom-half">
-                    <h6 class="text-color-theme">${productDetails.name}</h6>
-                  </a>
-                  <div class="row">
-                    <div class="col">
-                      <p class="no-margin-bottom">
-                        <small>MRP</small> : <small class="text-opac" style="text-decoration: line-through;">₹
-                          ${productDetails.mrp}</small><br />
-                        ₹ ${productDetails.price}
-                      </p>
-                    </div>
-                    <div class="col-auto">
-                      <!-- Stepper element -->
-                      <div class="stepper">
-                        <div class="stepper-button-minus counter-decrease"></div>
-                        <!-- Stepper value element -->
-                        <div class="stepper-value counter-value">1</div>
-                        <div class="stepper-button-plus counter-increase"></div>
+                                                    </div>    
+                                              </div>   
+                                          </div>
+                                         
+                                      </div>
+                                  </a>
+                              </li>
+                            `)}  
+
+
+                          </ul>
                       </div>
-                    </div>
                   </div>
-                </div>
-                <div class="block">
-                  <button @click="${app.params.addToCartCurrentProduct}" type="button"
-                    class="button button-large button-fill color-green elevation-3 adding-cart"
-                    data-pid="${productDetails.pid}">Add to Cart
-                    <i class="icons f7-icons">arrow_right</i>
-                  </button>
-                </div>
               </div>
-            </div>
           </div>
-        </div>
-
+         </div>
 
       </div>
       <!-- main page content ends -->
@@ -325,7 +300,7 @@
                       <span>
                           <i class="icon f7-icons">cart</i>
                           <span class="nav-text">card-content</span>
-                          <!-- <span class="countercart">3</span> -->
+                          <span class="countercart">${cartCount}</span>
                       </span>
                   </a>
               </li>
@@ -366,6 +341,7 @@
     let categoryName = "";
     let type = "medicine";
     let value = "";
+    let cartCount = 0;
     let productDetails = {
       price: "",
       image: "",
@@ -380,45 +356,74 @@
 //    let autocompleteDropdownAjaxTypeahead;
 
 
+    $(document).on('click', '#pageId_' + pageId + ' .medicine_add_to_cart', function (e) {
 
-    $(document).on('click', '#pageId_' + pageId + ' .add-to-card-button', function (e) {
-      console.log(productDetails);
       productDetails = $(this).dataset();
-      //console.log(productDetails);
-      app.params.setActiveProduct(productDetails);
-      $update();
-      app.popup.open('.addproduct');
+      console.log(productDetails);
+      $f7.preloader.show();
+      
+      //show counter and hide the add button 
+      $(this).addClass("display-none");
+      $(this).parent().find(".counter-number").removeClass("display-none");
+
+      const addingCartOnLive = app.params.callToServer("add-cart-single", productDetails,
+      function success(Responce) {
+        $f7.preloader.hide();
+
+        let toastBottom = app.toast.create({
+          text: "Medicine has been added successfully !! ",
+          closeTimeout: 2000,
+          });
+
+        toastBottom.open();
+
+        cartCount = Responce.data.cartCount;
+        $update();
+      });
     })
 
-    $(document).on('click', '.adding-cart_', function (e) {
-      //console.log('adding clicked');
-      //let pid = $(this).data('pid'); 
-      let countValue = parseInt($(this).parent().parent().find(".counter-value").text());
+    $(document).on('click',  '#pageId_' + pageId +' .counter-increase', function (e) {
+      var countValue = parseInt($(this).parent().find(".counter-value").text());
+      countValue = countValue + 1;
+      $(this).parent().find(".counter-value").text(countValue);
+      app.params.currentProductDetails.quantity = countValue;
 
-      var currentProduct = {
-        price: productDetails.discount,
-        image: productDetails.imageurl,
-        mrp: productDetails.mrp,
-        name: productDetails.name,
-        pid: productDetails.pid,
-        quantity: countValue
+      //update on cart
+      productDetails = $(this).dataset();
+      productDetails.quantity = countValue;
+      app.preloader.show();
+      app.params.callToServer("update-cart", productDetails,
+      function success(Responce) {
+        app.preloader.hide();
+      });
+    });
+
+    $(document).on('click',  '#pageId_' + pageId +' .counter-decrease', function (e) {
+      var countValue = parseInt($(this).parent().find(".counter-value").text());
+      countValue = countValue - 1;
+
+       //update on cart
+      productDetails = $(this).dataset();
+      productDetails.quantity = countValue;
+      app.preloader.show();
+      app.params.callToServer("update-cart", productDetails,
+      function success(Responce) {
+        app.preloader.hide();
+      });
+
+      if (countValue > 0) {
+        $(this).parent().find(".counter-value").text(countValue);
+        app.params.currentProductDetails.quantity = countValue;
+      }else{ // show add button and hide counter 
+          //show counter and hide the add button 
+        $(this).parent().addClass("display-none");
+        $(this).parent().parent().find(".medicine_add_to_cart").removeClass("display-none");
+
       }
+    
+    });
 
-      // console.log(currentProduct);
-
-      //======= cart value from server =======
-      const addingCartOnLive = app.params.callToServer("add-cart", currentProduct,
-        function success(Responce) {
-          $f7.preloader.hide();
-          cartCount = Responce.data.cartCount;
-          localStorage.setItem("cartCount", cartCount);
-          // categoryName = Responce.data.category;
-          $update();
-        });
-
-      app.popup.close('.addproduct');
-    })
-
+    
 
     $(document).on('click', '#pageId_' + pageId + ' .searchbtn', function (e) {
         var serchValue = $('#pageId_' + pageId + ' .search-input').val();
@@ -447,7 +452,13 @@
             $update();
         }
         */
-
+         //cart count updation 
+        app.params.callToServer('cart-count','', function (response) {
+          if (response.success) {
+              cartCount =  response.data.cartCount;
+          }
+          $update();
+        }); 
 
     });
 

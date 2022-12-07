@@ -24,11 +24,9 @@
 
 
         <!-- main page content -->
-        <div class="page-content has-footer">
+        <div class="page-content has-footer top-compact">
 
-
-
-            <form class="form-store-data" id="cart-address-form">
+            <form class="form-store-data cart-address-form" id="pageId_${pageId}cart-address-form">
                 <!-- wizard links -->
                 <div class="block">
                     <div class="row justify-content-between wizard-wrapper margin-bottom-half elevation-2">
@@ -70,34 +68,34 @@
                             <div class="row margin-bottom-half">
                                 <div class="col">
 
-                                    <div class="card elevation-2">
+                                    <div class="card  elevation-2 font-12" >
                                         <div class="list form-list ">
-                                            <ul class="padding-vertical-half">
-                                                <li class="padding-vertical-half">
-                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
+                                            <ul class="">
+                                                <li class="">
+                                                    <a class="item smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
 
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
-                                                                <div class="item-title item-floating-label">Select Patient</div>
-                                                                <div class="item-input-wrap">
+                                                                <div class="item-title item-label item-floating-label_">Select Patient</div>
+                                                                <div class="item-input-wrap ">
                                                                     <!-- <input type="text" name="time" value="" /> -->
-                                                                    <select name="patient">
+                                                                    <select name="patient" required validate>
                                                                         ${patientList.map((item) => $h`
                                                                         <option value="${item.id}">${item.name} - ${item.gender} - ${item.age}y</option>
                                                                         `)}
-
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                     </a>
                                                 </li>
                                                 <li class="item-content item-input">
                                                     <div class="item-inner">
                                                         <!-- "item-floating-label" class on item title -->
-                                                        <div class="item-title item-floating-label">Doctor Name</div>
-                                                        <div class="item-input-wrap">
-                                                            <input type="text" name="doctor" value="" validate required />
+                                                        <div class="item-title item-label text-color-primary">Doctor Name</div>
+                                                        <div class="item-input-wrap ">
+                                                            <input class="no-padding-top" type="text" name="doctor" value="" placeholder="Please enter Doctor name" validate required />
                                                             <span class="input-clear-button"></span>
                                                         </div>
                                                     </div>
@@ -105,22 +103,21 @@
                                                 <li class="item-content item-input">
                                                     <div class="item-inner">
                                                         <!-- "item-floating-label" class on item title -->
-                                                        <div class="item-title item-floating-label">Sample Collection date</div>
+                                                        <div class="item-title item-label text-color-primary ">Sample Collection Date</div>
                                                         <div class="item-input-wrap">
-                                                            <input id="calendar-modal" class="calendar calendar-init"
-                                                                data-open-in="customModal" data-date-format="dd/mm/yyyy" 
-                                                                type="text" name="date" value="" required validate />
+                                                            <input id="calendar-modal"  placeholder="Please enter Date as dd/mm/yyyy"
+                                                                   type="text" name="date" value="" class="no-padding-top" required validate />
                                                             <span class="input-clear-button"></span>
                                                         </div>
                                                     </div>
                                                 </li>
 
-                                                <li class="padding-vertical-half">
-                                                    <a class="item-link smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
+                                                <li class="">
+                                                    <a class="item smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
 
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
-                                                                <div class="item-title item-floating-label">Select Time Slot
+                                                                <div class="item-title item-label">Select Time Slot
                                                                 </div>
                                                                 <div class="item-input-wrap">
                                                                     <!-- <input type="text" name="time" value="" /> -->
@@ -142,6 +139,53 @@
                             </div>
                         </div>
 
+                       
+
+                        <!-- Prescription upload  -->
+                        <div class="block ">
+                            <div class="row margin-bottom-half">
+                                <div class="col">
+                                    <h5 class="no-margin-bottom">
+                                        <p>Upload Prescription </p>
+                                    </h5>
+                                </div>
+                            </div>
+                            <input type="hidden" value="" id="prescriptionIdList" name="prescription_id" />
+                            <div class="row margin-bottom-half">
+                                <div class="col">
+
+                                    <div class="card elevation-2">
+                                        <div class="row card-light justify-content-between wizard-wrapper margin-bottom-half elevation-2 padding-bottom-half padding-top-half ">
+                                            <div class="col-33">
+                                                <div class="wizard-link " @click="${() => openCamera()}">
+                                                    <span class="icon f7-icons size-50 color-theme">camera</span>
+                                                    <span class="wizard-text text-color-theme">Camera</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-33">
+                                                <div  class="wizard-link " @click="${() => openSaveImage()}">
+                                                    <span class="icon f7-icons size-50 color-theme">arrow_down_to_line_alt</span>
+                                                    <span  class="wizard-text text-color-theme">Saved</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-33">
+                                                <div  class="wizard-link" @click="${() => openGallery()}">
+                                                    <span class="icon f7-icons size-50 color-theme">photo_fill_on_rectangle_fill</span>
+                                                    <span  class="wizard-text text-color-theme">gallery</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row " id="selected_prescription_container">
+            
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <!-- sample collection note  -->
                         <div class="block ">
                             <div class="row margin-bottom-half">
@@ -155,7 +199,7 @@
                                 <div class="col">
 
                                     <div class="card elevation-2">
-                                        <div class="list md ">
+                                        <div class="list md font-13">
                                             <ul>
                                                 <li>
                                                     <label class="item-radio item-radio-icon-start item-content">
@@ -183,8 +227,7 @@
                             </div>
 
                         </div>
-
-                        <div id="labAddressSelectBlock" style="display: none;">
+                         <div id="labAddressSelectBlock" style="display: none;">
 
                             <!-- cart items -->
                             <div class="block">
@@ -200,7 +243,7 @@
                                         </h5>
                                     </div>
                                     <div class="col-auto pe-0 align-self-center">
-                                        <a href="/addresses/" class="link text-color-theme">Change <i
+                                        <a href="/addresses/" class="link text-color-theme font-12">Change <i
                                                 class="icons f7-icons">chevron_right</i></a>
                                     </div>
                                 </div>
@@ -208,62 +251,41 @@
 
                             <div class="block">
                                 <div class="row">
-
-
                                     <div class="col-100 medium-50">
                                         <div class="card elevation-2 product margin-bottom-half">
                                             <div class="card-header">
                                                 <!-- for default address  -->
-
                                                 <div class="row">
                                                     <div class="col-auto align-self-center md">
-                                                        <!-- <label class="item-radio item-radio-icon-start item-content">
-                                                    <input type="radio" name="defaultAddress" value="${item.id}" checked />
-                                                    <i class="icon icon-radio"></i>
-                                                </label>   -->
-
                                                     </div>
                                                     <div class="col align-self-center no-padding-left">
-                                                        <div class="no-margin-bottom"><p>${item.type}</p>
-                                                            <span class="text-opac small">Primary Address</span>
-                                                        </div>
+                                                        <span class="text-opac small">${item.type}</span>
                                                     </div>
                                                     <div class="col-auto align-self-center">
                                                         <a href="/editaddress/${item.id}/"
                                                             class="btn btn-link text-color-theme"><i
-                                                                class="icons f7-icons">square_pencil</i></a>
-                                                        <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
+                                                                class="icons f7-icons">square_pencil</i>
+                                                        </a>
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="card-content card-content-padding">
-                                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                                        class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
-                                    </iframe> -->
                                                 <div class="row">
-                                                    <div class="col">
-                                                        <div class="addressHeader">
-                                                            ${item.name} ( ${item.mobile} )
+                                                    <div class="col font-12">
+                                                        <div class="addressHeader font-13">
+                                                            Name -  ${item.name}
                                                         </div>
-                                                        <div>
-                                                            ${item.address}, ${item.landmark}, ${item.pin}
+                                                        <div >
+                                                            Address - ${item.address}, 
                                                         </div>
-
-                                                    </div>
-                                                    <div class="col-auto align-self-center">
-                                                        <a href="#"><i
-                                                                class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
+                                                        <div>Landmark - ${item.landmark}</div>
+                                                        <div>Pin -  ${item.pin}</div>
+                                                        <div>Mobile - ${item.mobile}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -287,38 +309,37 @@
 
                                 <div class="card elevation-2">
                                     <div class="list form-list ">
-                                        <ul class="padding-vertical-half">
-                                            <li class="padding-vertical-half">
-                                                <a class="item-link smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
+                                        <ul class="">
+                                            <li class="">
+                                                <a class="item smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
 
                                                     <div class="item-content item-input">
                                                         <div class="item-inner">
-                                                            <div class="item-title item-floating-label">Select Patient</div>
-                                                            <div class="item-input-wrap">
+                                                            <div class="item-title item-label item-floating-label_">Select Patient</div>
+                                                            <div class="item-input-wrap ">
                                                                 <!-- <input type="text" name="time" value="" /> -->
                                                                 <select name="patient">
                                                                     ${patientList.map((item) => $h`
-                                                                    <option value="${item.id}">${item.name} - ${item.gender}
-                                                                        - ${item.age}y</option>
+                                                                    <option value="${item.id}">${item.name} - ${item.gender} - ${item.age}y</option>
                                                                     `)}
-
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </a>
                                             </li>
                                             <li class="item-content item-input">
                                                 <div class="item-inner">
                                                     <!-- "item-floating-label" class on item title -->
-                                                    <div class="item-title item-floating-label">Doctor Name</div>
-                                                    <div class="item-input-wrap">
-                                                        <input type="text" name="doctor" value="" validate required />
+                                                    <div class="item-title item-label text-color-primary">Doctor Name</div>
+                                                    <div class="item-input-wrap ">
+                                                        <input class="no-padding-top" type="text" name="doctor" value="" placeholder="Please enter Doctor name" validate required />
                                                         <span class="input-clear-button"></span>
                                                     </div>
                                                 </div>
                                             </li>
-
+                                        
                                         </ul>
                                     </div>
                                 </div>
@@ -326,17 +347,63 @@
                         </div>
                     </div>
 
-                    <!-- cart items -->
+
+                     <!-- Prescription upload  -->
+                     <div class="block ">
+                        <div class="row margin-bottom-half">
+                            <div class="col">
+                                <h5 class="no-margin-bottom">
+                                    <p>Upload Prescription </p>
+                                </h5>
+                            </div>
+                        </div>
+                        <input type="hidden" value="" id="prescriptionIdList" name="prescription_id" />
+                        <div class="row margin-bottom-half">
+                            <div class="col">
+
+                                <div class="card elevation-2">
+                                    <div class="row card-light justify-content-between wizard-wrapper margin-bottom-half elevation-2 padding-bottom-half padding-top-half ">
+                                        <div class="col-33">
+                                            <div class="wizard-link " @click="${() => openCamera()}">
+                                                <span class="icon f7-icons size-50 color-theme">camera</span>
+                                                <span class="wizard-text text-color-theme">Camera</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-33">
+                                            <div  class="wizard-link " @click="${() => openSaveImage()}">
+                                                <span class="icon f7-icons size-50 color-theme">arrow_down_to_line_alt</span>
+                                                <span  class="wizard-text text-color-theme">Saved</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-33">
+                                            <div  class="wizard-link" @click="${() => openGallery()}">
+                                                <span class="icon f7-icons size-50 color-theme">photo_fill_on_rectangle_fill</span>
+                                                <span  class="wizard-text text-color-theme">gallery</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row " id="selected_prescription_container">
+          
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- delivery address -->
                     <div class="block">
                         <div class="row margin-bottom-half">
                             <div class="col align-self-center">
                                 <h5 class="no-margin-bottom">
-
                                     <p>Delivery location</p>
                                 </h5>
                             </div>
                             <div class="col-auto pe-0 align-self-center">
-                                <a href="/addresses/" class="link text-color-theme">Change <i
+                                <a href="/addresses/" class="link text-color-theme font-12">Change <i
                                         class="icons f7-icons">chevron_right</i></a>
                             </div>
                         </div>
@@ -344,68 +411,48 @@
 
                     <div class="block">
                         <div class="row">
-
-
                             <div class="col-100 medium-50">
                                 <div class="card elevation-2 product margin-bottom-half">
                                     <div class="card-header">
                                         <!-- for default address  -->
-
                                         <div class="row">
                                             <div class="col-auto align-self-center md">
-                                                <!-- <label class="item-radio item-radio-icon-start item-content">
-                                                <input type="radio" name="defaultAddress" value="${item.id}" checked />
-                                                <i class="icon icon-radio"></i>
-                                            </label>   -->
-
                                             </div>
                                             <div class="col align-self-center no-padding-left">
-                                                <div class="no-margin-bottom">${item.type}
-                                                    <span class="text-opac small"> ( Primary Address )</span>
-                                                </div>
+                                                <span class="text-opac small">${item.type}</span>
                                             </div>
                                             <div class="col-auto align-self-center">
-                                                <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
-                                                        class="icons f7-icons">square_pencil</i></a>
-                                                <!-- <a href="#" class="btn btn-link text-color-theme"><i class="icons f7-icons">trash</i></a> -->
+                                                <a href="/editaddress/${item.id}/"
+                                                    class="btn btn-link text-color-theme"><i
+                                                        class="icons f7-icons">square_pencil</i>
+                                                </a>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="card-content card-content-padding">
-                                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                                    class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
-                                </iframe> -->
-                                        <div class="row small-12">
-                                            <div class="col">
-                                                <div class="addressHeader">
-                                                    ${item.name} ( ${item.mobile} )
+                                        <div class="row">
+                                            <div class="col font-12">
+                                                <div class="addressHeader font-13">
+                                                    Name -  ${item.name}
                                                 </div>
-                                                <div>
-                                                    ${item.address}, ${item.landmark}, ${item.pin}
+                                                <div >
+                                                    Address - ${item.address}, 
                                                 </div>
-
-                                            </div>
-                                            <div class="col-auto align-self-center">
-                                                <a href="#"><i
-                                                        class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
+                                                <div>Landmark - ${item.landmark}</div>
+                                                <div>Pin -  ${item.pin}</div>
+                                                <div>Mobile - ${item.mobile}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-
-
-
                         </div>
                     </div>
 
                 `}
 
 
-                ${typeCode == 'category' && $h`
+                ${typeCode == 'product' && $h`
 
                 <!-- cart items -->
                 <div class="block">
@@ -417,7 +464,7 @@
                             </h5>
                         </div>
                         <div class="col-auto pe-0 align-self-center">
-                            <a href="/addresses/" class="link text-color-theme">Change <i
+                            <a href="/addresses/" class="link text-color-theme font-12">Change <i
                                     class="icons f7-icons">chevron_right</i></a>
                         </div>
                     </div>
@@ -441,9 +488,8 @@
 
                                         </div>
                                         <div class="col align-self-center no-padding-left">
-                                            <h5 class="no-margin-bottom">${item.type}<br />
-                                                <span class="text-opac small">Primary Address</span>
-                                            </h5>
+                                           
+                                                <span class="text-opac small">${item.type}</span>
                                         </div>
                                         <div class="col-auto align-self-center">
                                             <a href="/editaddress/${item.id}/" class="btn btn-link text-color-theme"><i
@@ -458,19 +504,22 @@
                                 class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
                             </iframe> -->
                                     <div class="row">
-                                        <div class="col">
-                                            <div class="addressHeader">
-                                                ${item.name} ( ${item.mobile} )
-                                            </div>
-                                            <div>
-                                                ${item.address}, ${item.landmark}, ${item.pin}
-                                            </div>
+                                        <div class="col font-12">
+                                            <div class="addressHeader font-13">
+                                                Name -  ${item.name}
+                                             </div>
+                                             <div >
+                                                Address - ${item.address}, 
+                                             </div>
+                                             <div>Landmark - ${item.landmark}</div>
+                                             <div>Pin -  ${item.pin}</div>
+                                             <div>Mobile - ${item.mobile}</div>
 
                                         </div>
-                                        <div class="col-auto align-self-center">
+                                        <!-- <div class="col-auto align-self-center">
                                             <a href="#"><i
                                                     class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -538,13 +587,88 @@
                         <div class="col align-self-center">
                             <!-- <a href="/payment/" class="button button-large button-fill elevation-3 color-green">Next</a> -->
                             <button 
-                                class="button button-large button-fill elevation-3 color-green">Next</button>
+                                class="button button-large button-fill elevation-3 color-theme">Next</button>
                         </div>
                     </div>
                 </div>
                 `}
                
             </form>
+
+
+
+             <!-- add product popup-->
+         <div class="popup saveImageList">
+            <div class="view">
+              <div class="page">
+                <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner">
+                    <div class="left">
+                      <a class="link popup-close"><i class="icons f7-icons">arrow_left</i></a>
+                    </div>
+                    <div class="title">Save Prescription</div>
+                    <div class="right">
+                      <!-- Link to close popup -->
+                      <a class="link popup-close"><i class="icons f7-icons">multiply</i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="page-content">
+  
+                  <div class="block" >
+  
+                  ${savePrescription.map((item) => $h`
+  
+                    <div class="row">
+                      <div class="col-100 medium-50 large-33">
+                        <div class="card elevation-2 margin-bottom-half">
+                            <div class="card-content card-content-padding">
+                                <div class="row">
+                                    <div class="col-100">
+                                        <figure class="text-align-center margin-bottom-half  page-bg rounded h-150">
+                                            <img src="${item.thumbnail}" alt=""  />
+                                        </figure>
+                                    </div>
+                                    <div class="col">
+                                        <p class="small display-block">
+                                            <span class="float-end">
+                                              <span class="text-opac">${item.created_at}</span> 
+                                              <i class="bi bi-clock"></i>
+                                            </span>
+                                        </p>
+                                        <button class="button button-fill button-small button-raised"
+                                        @click="${() => selectPrescription(item.thumbnail,item.id)}"
+                                        >
+                                            Select Prescription
+                                        </button>
+                                        <!-- <input type="button" data-id="${item.id}" data-thumbnail="{item.thumbnail}" class="selectPrescriptionCheck" value="Select Prescription" />
+                                        <label class="checkbox margin-right-half">
+                                         
+                                          <i class="icon-checkbox"></i>
+                                        </label> -->
+                                         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div> 
+  
+                  `)}    
+                    
+                  </div>
+  
+                  
+                 
+  
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
 
 
         </div>
@@ -574,7 +698,7 @@
                         <span>
                             <i class="icon f7-icons">cart</i>
                             <span class="nav-text">card-content</span>
-                            <!-- <span class="countercart">${app.params.totalCartItems()}</span> -->
+                            <span class="countercart">${cartCount}</span>
                         </span>
                     </a>
                 </li>
@@ -632,8 +756,198 @@
         let timeSchedule = [];
         let patientList = [];
 
-        /*
+        //prescription upload 
+        let numberList = [];
+        let prescriptionList = [];
+        let savePrescription = [];
+        
+        //file upload 
+        const openCamera = () => {
+    
+        var options = {
+            // Some common settings are 20, 50, and 100
+            quality: 75,
+            destinationType: Camera.DestinationType.FILE_URI,
+            // In this app, dynamically set the picture source, Camera or photo gallery
+            sourceType: Camera.PictureSourceType.CAMERA,
+            encodingType: Camera.EncodingType.JPEG,
+            mediaType: Camera.MediaType.PICTURE,
+            allowEdit: false,
+            correctOrientation: true
+        }
+    
+          navigator.camera.getPicture(function (imageURI) {
+              console.log(imageURI);
+              fileUpload(imageURI);
+    
+            }, function (message) {
+              console.log('Failed because: ' + message);
+            },
+            options
+          );
+        }
+    
+        // const openGallery = () 
+    
+        const openGallery = () => {
+    
+          var options = {
+            // Some common settings are 20, 50, and 100
+            quality: 75,
+            destinationType: Camera.DestinationType.FILE_URI,
+            // In this app, dynamically set the picture source, Camera or photo gallery
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            encodingType: Camera.EncodingType.JPEG,
+            mediaType: Camera.MediaType.PICTURE,
+            allowEdit: false,
+            correctOrientation: true
+          }
+    
+          navigator.camera.getPicture(function (imageURI) {
+              console.log(imageURI);
+              fileUpload(imageURI);
+    
+            }, function (message) {
+              console.log('Failed because: ' + message);
+            },
+            options
+          );
+        }
+    
+        const openSaveImage = () => {
+    
+          app.preloader.show();
+          $('#selected_prescription_container_popup').html("");
+          app.params.callToServer("save-prescription-list", "",
+                      function success(Responce) {
+                          $f7.preloader.hide();
+                          //if successfully submited 
+                          if(Responce.success){
+    
+                            savePrescription = Responce.data
+                            $update();
+                            app.popup.open(".saveImageList");
+                          }
+                      
+                      });
+          
+        }
+    
+        const fileUpload = (imageURI) => {
+          var progressValue = 0;
+           //open progessbar ==   
+           var dialog = $f7.dialog.progress('Uploading ... ', progressValue);
+               dialog.setText(progressValue+'%');
+    
+          var options = new FileUploadOptions();
+          options.fileKey = "image";
+          options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+          options.mimeType = "image/jpeg";
+          options.headers = {
+            Connection: "close"
+          }
+          options.chunkedMode = false;
+    
+          var params = {};
+          //params.ipdid = ipdid;
+          // params.oxyLabel = oxyLabel;
+          options.params = params;
+          var headers = {
+            'Authorization': 'Bearer ' + localStorage.getItem("token"),
+            'Accept': 'application/json'
+          };
+          options.headers = headers;
+    
+          var ft = new FileTransfer();
+          //need to add header with user details 
+          var url = app.params.remoteUrl + 'upload-prescription/';
+          
+         // handle progress bar 
+          ft.onprogress = function (progressEvent) {
+    
+            if (progressEvent.lengthComputable) {
+              // Calculate the percentage
+             // console.log(progressEvent);
+              progressValue = parseInt((progressEvent.loaded / progressEvent.total)*100);
+            } else {
+              progressValue++;
+            }
+    
+            // Display percentage in the UI
+            dialog.setProgress(progressValue);
+            dialog.setText(progressValue+'%');
+            console.log(progressValue);
+            
+          };
+    
+          //handle file upload 
+          ft.upload(imageURI, url,
+            function (result) {
+              dialog.close();
+              
+              var data = JSON.parse(result.response);
+              console.log(data);
+    
+              var imageURL = data.data.image;
+              var prescritionID = data.data.id;
+              var thumpURL = data.data.thumbnail;
+    
+              //apend image on prescription area 
+              selectImage(prescritionID,thumpURL);
+              calculateSelectedPrescrip_id();
+    
+            },
+            function (error) {
+              dialog.close();
+              var data = JSON.parse(error.body);
+    
+              let toastBottom = app.toast.create({
+                text: "data.",
+                closeTimeout: 2000,
+                });
+                toastBottom.open();
+              console.log(error);
+              
+            }, options);
+    
+        }
+        
+        const selectPrescription =(imageURI,imageId) =>{
+            //apend image on prescription area 
+            selectImage(imageId,imageURI);
+            calculateSelectedPrescrip_id();
+            app.popup.close(".saveImageList");
+        }
+
+         //show uploaded image 
+        const selectImage = (imageId,imageUrl)=>{
+        
+            var selectedImage = '<div class="col-33">'+
+            '                       <div class="text-align-center" >'+
+            '                           <div style="display:none" class="prescripId" >'+imageId+'</div>'+
+            '                           <img slot="media" src="'+imageUrl+'" width="75" alt=""/>'+
+            '                       </div>'+
+            '                   </div>';
+    
+            $('#selected_prescription_container').append(selectedImage);  
+        }
+
+        const calculateSelectedPrescrip_id = () => {
+            prescriptionList = [];
+            $('#prescriptionIdList').val("")
+    
+            let selectedButton = '#pageId_' + pageId + ' #selected_prescription_container .prescripId';
+            $(selectedButton).each(function (e) {
+            let nbr = $(this).text();
+            prescriptionList.push(nbr);
+            });
+            console.log(prescriptionList);
+            $('#prescriptionIdList').val(JSON.stringify(prescriptionList))
+    
+        }
+    
         calendarModal = $f7.calendar.create({
+            inputEl: '#calendar-modal',
             openIn: 'customModal',
             timePicker: false,
             // header: true,
@@ -645,14 +959,18 @@
             on: {
                 opened: function () {
                     console.log('Calendar opened')
-                }
+                },
+                closed: function () {
+                   var date = calendarModal.getValue();
+                    $('#calendar-modal').val(date);                                            
+                   console.log(date )
+               }
             }
         });
-        */
-
+        
         const nextPayment = () => {
 
-            var fordata = app.form.getFormData("#cart-address-form");
+            var fordata = app.form.getFormData('#pageId_'+ pageId +'cart-address-form');
             console.log(fordata);
             //$f7.preloader.show();
             app.views.main.router.navigate('/payment/', {});
@@ -711,7 +1029,7 @@
             if (typeCode == 'medicine') {
                 patientList = Responce.patientList;
             }
-           // calendarModal.inputEl = "#calendar-modal";
+          //  calendarModal.inputEl = "#calendar-modal";
 
             $update();
          
@@ -731,18 +1049,42 @@
 
         });
 
-        $(document).on('submit','#cart-address-form',function(e){
+        $(document).on('submit','#pageId_'+ pageId +'cart-address-form',function(e){
             e.preventDefault();
-            var fordata = app.form.getFormData("#cart-address-form");
+            var fordata = app.form.getFormData('#pageId_'+ pageId +'cart-address-form');
             console.log(fordata);
             //$f7.preloader.show();
             app.views.main.router.navigate('/payment/', {});
         });
 
 
+        $(document).on('click','#calendar-modal',function(e){
+            //dateFormat.dateFormat('dd/mm/yyyy') ; 
+            //calendarModal.open();
+           
+            
+           // var calendar = app.calendar.create({
+          //      inputEl: '#calendar-modal'
+           // });
+        });
+
+
         $on('pageInit', () => {
 
-            console.log(" init ");
+            var calendar = app.calendar.create({
+                inputEl: '#calendar-modal',
+                openIn: 'customModal',
+                dateFormat: 'dd/mm/yyyy',
+            });
+
+            //cart count updation 
+            app.params.callToServer('cart-count','',function (response) {
+                if (response.success) {
+                    cartCount =  response.data.cartCount;
+                }
+                $update();
+            }); 
+
 
         });
 
@@ -756,7 +1098,10 @@
                 $f7.preloader.hide();
 
                 updateCurrentCart(ResponceData.data.cartDetails);
-                item = ResponceData.data.defaultAddress[0];
+                if(ResponceData.data.defaultAddress[0] != null)
+                    item = ResponceData.data.defaultAddress[0];
+                //add some msg to display that address not added 
+
                 $update();
             }
 
