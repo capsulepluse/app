@@ -1,5 +1,5 @@
 <template>
-  <div class="page dark-bg" data-name="register">
+  <div class="page dark-bg" id="pageId_${pageId}" data-name="register">
     <div class="page-content no-padding-top">
         <!-- <div class="overlay-image text-end">
             <img src="img/apple.png" class="orange-slice" alt=""/>
@@ -65,7 +65,7 @@
                       </ul>
                     </div>
 
-                    <div class="list form-list no-margin margin-bottom-half">
+                    <!-- <div class="list form-list no-margin margin-bottom-half">
                       <ul>
                         <li class="item-content item-input">
                           <div class="item-inner">
@@ -77,7 +77,7 @@
                           </div>
                         </li>
                       </ul>
-                    </div>
+                    </div> -->
 
                     <div class="list form-list no-margin margin-bottom-half">
                       <ul>
@@ -106,7 +106,7 @@
                       </ul>
                     </div>
 
-                    <button  class="button button-fill button-large color-green elevation-3"> Register now</button>
+                    <input type="submit"  class="button button-fill button-large color-green elevation-3" value="Register now" />
                 </form>
               </div>
             </div>
@@ -128,12 +128,12 @@
   export default function (props, {$f7, $on, $update, $}) {
   var app = $f7;
   var mobile = '';
+  const pageId = app.params.uuid();
 
-
-    $(document).on('submit', '#registrationForm', function (e) {
+    $(document).on('submit', '#pageId_'+pageId+' #registrationForm', function (e) {
         e.preventDefault();
 
-        let formData =  app.form.convertToData('#registrationForm');
+        let formData =  app.form.convertToData('#pageId_'+pageId+' #registrationForm');
         console.log(formData);
       //===================
         let url =app.params.remoteUrl + "register";
@@ -155,7 +155,7 @@
                    app.views.main.router.clearPreviousHistory();
                   }else{//============= send for OTP number =====
                       let mobile = res.data.mobile;
-                      app.views.main.router.navigate('/verify/'+mobile);
+                      app.views.main.router.navigate('/verify/'+mobile+'/registration/');
                   }
 
                  // successCallBack(res);
@@ -168,7 +168,7 @@
 
                 var myObj = JSON.parse(err.response).message;
                 Object.keys(myObj).forEach(key => {
-                  let reForm = $("#registrationForm");
+                  let reForm = $('#pageId_'+pageId+' #registrationForm');
                   app.params.markInputAsError(reForm,key,myObj[key][0]);
 
                 });

@@ -4,8 +4,8 @@
             <div class="navbar-bg"></div>
             <div class="navbar-inner">
                 <div class="left  no-margin-right">
-                    <a href="#" class="link icon-only panel-open " data-panel="left">
-                        <i class="icon f7-icons size-22">bars</i>
+                    <a href="#" class="link icon-only back">
+                        <i class="icon f7-icons size-22">arrow_left</i>
                     </a>
                 </div>
                 <div class="title text-align-center">
@@ -64,6 +64,10 @@
                                         <p>Order Note</p>
                                     </h5>
                                 </div>
+                                <div class="col-auto pe-0 align-self-center">
+                                        <a href="/addfamily/" class="link text-color-theme font-12">Add Patient <i
+                                                class="icons f7-icons">chevron_right</i></a>
+                                </div>
                             </div>
                             <div class="row margin-bottom-half">
                                 <div class="col">
@@ -72,7 +76,7 @@
                                         <div class="list form-list ">
                                             <ul class="">
                                                 <li class="">
-                                                    <a class="item smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
+                                                    <a id="patientSmartSelect" class="item smart-select smart-select-init" data-open-in="popup" data-close-on-select="true">
 
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
@@ -80,9 +84,11 @@
                                                                 <div class="item-input-wrap ">
                                                                     <!-- <input type="text" name="time" value="" /> -->
                                                                     <select name="patient" required validate>
+                                                                         <option value=""> Please select a Patient</option>
                                                                         ${patientList.map((item) => $h`
                                                                         <option value="${item.id}">${item.name} - ${item.gender} - ${item.age}y</option>
                                                                         `)}
+                                                                        <!-- <option value=""> Add a new Patient</a></option> -->
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -105,8 +111,8 @@
                                                         <!-- "item-floating-label" class on item title -->
                                                         <div class="item-title item-label text-color-primary ">Sample Collection Date</div>
                                                         <div class="item-input-wrap">
-                                                            <input id="calendar-modal"  placeholder="Please enter Date as dd/mm/yyyy"
-                                                                   type="text" name="date" value="" class="no-padding-top" required validate />
+                                                            <input id="collectionDate"  placeholder="Please enter Date as dd/mm/yyyy"
+                                                                   type="text" name="date" value="" class="no-padding-top " required validate />
                                                             <span class="input-clear-button"></span>
                                                         </div>
                                                     </div>
@@ -303,6 +309,10 @@
                                     <p>Order Note</p>
                                 </h5>
                             </div>
+                            <div class="col-auto pe-0 align-self-center">
+                                        <a href="/addfamily/" class="link text-color-theme font-12">Add Patient <i
+                                                class="icons f7-icons">chevron_right</i></a>
+                            </div>
                         </div>
                         <div class="row margin-bottom-half">
                             <div class="col">
@@ -318,7 +328,8 @@
                                                             <div class="item-title item-label item-floating-label_">Select Patient</div>
                                                             <div class="item-input-wrap ">
                                                                 <!-- <input type="text" name="time" value="" /> -->
-                                                                <select name="patient">
+                                                                <select name="patient" required validate>
+                                                                     <option value=""> Please select a Patient</option>
                                                                     ${patientList.map((item) => $h`
                                                                     <option value="${item.id}">${item.name} - ${item.gender} - ${item.age}y</option>
                                                                     `)}
@@ -586,8 +597,8 @@
                     <div class="row margin-bottom">
                         <div class="col align-self-center">
                             <!-- <a href="/payment/" class="button button-large button-fill elevation-3 color-green">Next</a> -->
-                            <button 
-                                class="button button-large button-fill elevation-3 color-theme">Next</button>
+                            <input type="submit" 
+                                class="button button-large button-fill elevation-3 color-theme" value="Next" />
                         </div>
                     </div>
                 </div>
@@ -743,7 +754,8 @@
             "pin": "",
             "type": ""
         };
-        let calendarModal;
+        var calendarModal;
+        var calendar;
         let totalQuantity = 0;
         let total = 0;
         let subtotal = 0;
@@ -946,8 +958,8 @@
     
         }
     
-        calendarModal = $f7.calendar.create({
-            inputEl: '#calendar-modal',
+        calendarModal = app.calendar.create({
+            inputEl: '#collectionDate',
             openIn: 'customModal',
             timePicker: false,
             // header: true,
@@ -955,25 +967,28 @@
             closeOnSelect: true,
             animate: true,
             // dateFormat: { month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' },
-            dateFormat: 'dd/mm/yyyy',
+            //dateFormat: 'dd/mm/yyyy',
             on: {
                 opened: function () {
-                    console.log('Calendar opened')
+                   // console.log('Calendar opened')
                 },
                 closed: function () {
-                   var date = calendarModal.getValue();
-                    $('#calendar-modal').val(date);                                            
-                   console.log(date )
+                    var datevalue = calendarModal.getValue();
+                    $('#collectionDate').val(new Intl.DateTimeFormat('en-GB').format(datevalue[0])); 
+                   app.input.validate('#collectionDate');
                }
             }
         });
         
         const nextPayment = () => {
 
+            let formId = '#pageId_'+ pageId +'cart-address-form';
             var fordata = app.form.getFormData('#pageId_'+ pageId +'cart-address-form');
-            console.log(fordata);
+            console.log('docotrurl','/payment/'+formId+'/');
+
             //$f7.preloader.show();
-            app.views.main.router.navigate('/payment/', {});
+
+         //   app.views.main.router.navigate('/payment/'+formId+'/', {});
             //get for details //
 
             /*
@@ -993,7 +1008,6 @@
 
         }
 
-
         app.params.authHeader();
 
         let removeCurrentProduct = (pid) => {
@@ -1011,7 +1025,6 @@
 
         const updateCurrentCart = (Responce) => {
             
-           
             cartList = Responce.cartContent;
             totalQuantity = Responce.totalQuantity;
             total = Responce.total;
@@ -1029,11 +1042,10 @@
             if (typeCode == 'medicine') {
                 patientList = Responce.patientList;
             }
-          //  calendarModal.inputEl = "#calendar-modal";
+           // calendarModal.inputEl = "#collectionDate";
 
             $update();
-         
-
+            
         }
 
         // === display Address selection button list ===
@@ -1051,31 +1063,39 @@
 
         $(document).on('submit','#pageId_'+ pageId +'cart-address-form',function(e){
             e.preventDefault();
-            var fordata = app.form.getFormData('#pageId_'+ pageId +'cart-address-form');
-            console.log(fordata);
+                 if (typeCode == 'product' ) {
+                    var fordata = app.form.getFormData('#pageId_'+ pageId +'cart-address-form'); 
+                    app.views.main.router.navigate('/payment/'+pageId+'/', {});
+                 }else{
+                    if (prescriptionList.length !== 0) {
+                        var fordata = app.form.getFormData('#pageId_'+ pageId +'cart-address-form'); 
+                        app.views.main.router.navigate('/payment/'+pageId+'/', {});
+                    } else {
+                        let toastBottom = app.toast.create({
+                        text: "Please upload prescrition before submit !!",
+                        closeTimeout: 2000,
+                        });
+                        toastBottom.open();
+                    } 
+                 }
+
+               
             //$f7.preloader.show();
-            app.views.main.router.navigate('/payment/', {});
+          //  app.views.main.router.navigate('/payment/', {});
         });
 
-
-        $(document).on('click','#calendar-modal',function(e){
-            //dateFormat.dateFormat('dd/mm/yyyy') ; 
-            //calendarModal.open();
-           
-            
-           // var calendar = app.calendar.create({
-          //      inputEl: '#calendar-modal'
-           // });
+        $(document).on('click','#pageId_'+ pageId +' #collectionDate',function(e){
+            calendarModal.open();
         });
 
 
         $on('pageInit', () => {
 
-            var calendar = app.calendar.create({
-                inputEl: '#calendar-modal',
+             /*-- calendar = app.calendar.create({
+                inputEl: '#collectionDate',
                 openIn: 'customModal',
                 dateFormat: 'dd/mm/yyyy',
-            });
+            }); --*/
 
             //cart count updation 
             app.params.callToServer('cart-count','',function (response) {
@@ -1098,8 +1118,17 @@
                 $f7.preloader.hide();
 
                 updateCurrentCart(ResponceData.data.cartDetails);
-                if(ResponceData.data.defaultAddress[0] != null)
-                    item = ResponceData.data.defaultAddress[0];
+
+                if(ResponceData.data.defaultAddress[0] != null){
+                     item = ResponceData.data.defaultAddress[0];
+                }else{
+                    //address not added msg display 
+                    $f7.dialog.alert('Address not added, Please add !','Alert !! ', function () {
+                              app.views.main.router.navigate('/addaddress/', {});
+                        });
+
+                }
+                   
                 //add some msg to display that address not added 
 
                 $update();
@@ -1111,6 +1140,8 @@
 
         $on('pageBeforeRemove', () => {
             //calendarModal.destroy();
+           // var smartSelect = app.smartSelect.get('.smart-select');
+           // smartSelect.destroy();
         });
 
         return $render;

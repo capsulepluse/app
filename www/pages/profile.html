@@ -4,8 +4,8 @@
             <div class="navbar-bg"></div>
             <div class="navbar-inner">
                 <div class="left  no-margin-right">
-                    <a href="#" class="link icon-only panel-open " data-panel="left">
-                        <i class="icon f7-icons size-22">bars</i>
+                    <a href="#" class="link icon-only back">
+                        <i class="icon f7-icons size-22">arrow_left</i>
                     </a>
                 </div>
                 <div class="title">
@@ -86,7 +86,7 @@
                 <div class="row">
 
 
-                    
+                     ${isAddressAvailable && $h` 
                     <div class="col-100 medium-50">
                         <div class="card elevation-2 product margin-bottom-half">
                             <div class="card-header">
@@ -113,35 +113,32 @@
                                     </div>
                                 </div>
                                
-
                             </div>
-                            <div class="card-content card-content-padding">
-                                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
-                                        class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
-                                    </iframe> -->
-                                <div class="row">
-                                    <div class="col-auto font-12">
-                                        <div class="addressHeader font-13">
-                                           Name -  ${item.name}
+                                <div class="card-content card-content-padding">
+                                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53231.962811927515!2d-117.15726395005734!3d33.5014375970648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80db6252f51abe23%3A0x68bc0e88a03806a8!2sTemecula%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1623665123540!5m2!1sen!2sin"
+                                            class="h-190 width-100 rounded shadow-sm margin-bottom-half" allowfullscreen="" loading="lazy">
+                                        </iframe> -->
+                                    <div class="row">
+                                        <div class="col-auto font-12">
+                                            <div class="addressHeader font-13">
+                                                Name -  ${item.name}
+                                            </div>
+                                            <div >
+                                                Address - ${item.address}, 
+                                            </div>
+                                            <div>Landmark - ${item.landmark}</div>
+                                            <div>Pin -  ${item.pin}</div>
+                                            <div>Mobile - ${item.mobile}</div>
                                         </div>
-                                        <div >
-                                           Address - ${item.address}, 
-                                        </div>
-                                        <div>Landmark - ${item.landmark}</div>
-                                        <div>Pin -  ${item.pin}</div>
-                                        <div>Mobile - ${item.mobile}</div>
+                                        <!-- <div class="col-auto align-self-center">
+                                            <a href="#"><i
+                                                    class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
+                                        </div> -->
                                     </div>
-                                    <!-- <div class="col-auto align-self-center">
-                                        <a href="#"><i
-                                                class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i></a>
-                                    </div> -->
                                 </div>
-                            </div>
                         </div>
-
-
                     </div>
-
+                     `}
 
 
 
@@ -210,6 +207,7 @@
         var app = $f7;
         var profile = {};
         var item = {};
+        let isAddressAvailable = false;
         const pageId = app.params.uuid();
         let cartCount = 0; 
     
@@ -230,8 +228,16 @@
             app.params.callToServer( "profile",'',success);
             function success(ResponceData){
                 $f7.preloader.hide();
-                console.log(ResponceData);
-                item = ResponceData.data.address;
+                if(ResponceData.data.address != null){
+                    isAddressAvailable = true;
+                    item = ResponceData.data.address;
+                }else{
+                    isAddressAvailable = false;
+                    //address not added msg display 
+                    $f7.dialog.alert('Address not added, Please add !','Alert !! ', function () {
+                              app.views.main.router.navigate('/addaddress/', {});
+                        });
+                }             
                 profile = ResponceData.data.profile;
                 $update();
             }

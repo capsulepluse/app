@@ -122,12 +122,12 @@
            }, function(err, status){
                     console.log(err);
                    $f7.preloader.hide();
-                   console.log("error");
-                   // console.log(JSON.parse(err.response));
+                  // console.log("error");
+                   // console.log(JSON.parse(err.response.message));
                    // let validationError = JSON.stringify(JSON.parse(err.response).message.message);
                    // console.log(validationError);
                    let toastBottom = app.toast.create({
-                   text: "Required filed is missing !! Please retry !! ",
+                   text: "Wrong Credential !! Please retry !! ",
                    closeTimeout: 2000,
                    });
                    toastBottom.open();

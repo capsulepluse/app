@@ -1,5 +1,5 @@
 <template>
-<div class="page page-editaddress" id="${pageId}"  data-name="editaddress">
+<div class="page page-editaddress" id="pageId_${pageId}"  data-name="editaddress">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -50,7 +50,7 @@
                                 <!-- "item-floating-label" class on item title -->
                                 <div class="item-title item-floating-label">Address </div>
                                 <div class="item-input-wrap">
-                                    <textarea type="text" name="address" required validate >${addressDetails.address} </textarea>
+                                    <input type="text" name="address" value="${addressDetails.address} " required validate />
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
@@ -137,7 +137,6 @@
       var app = $f7;
       let addressList = [] ;
 
-        console.log(props);
       let  addressDetails = props.data;
 
       /* let addressDetails = {
@@ -152,10 +151,10 @@
      
         const pageId = app.params.uuid();
       
-        $(document).on('submit', '#editaddressForm', function (e) {
+        $(document).on('submit', '#pageId_'+pageId+' #editaddressForm', function (e) {
             e.preventDefault();
     
-            let formData =  app.form.convertToData('#editaddressForm');
+            let formData =  app.form.convertToData('#pageId_'+pageId+' #editaddressForm');
             $f7.preloader.show();
           
             let url =  app.params.remoteUrl + 'update-address';

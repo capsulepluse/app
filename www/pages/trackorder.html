@@ -46,35 +46,18 @@
                         </div>
                         <div class="card-content card-content-padding">
                             <div class="timeline no-margin">
+                                 ${trackDetails.map((item) => $h`
                                 <div class="timeline-item">
-                                    <div class="timeline-item-date">22 <small>DEC</small></div>
+                                    <div class="timeline-item-date">${item.date} <small>${item.month}</small></div>
                                     <div class="timeline-item-divider"></div>
                                     <div class="timeline-item-content">
-                                        <div class="timeline-item-time">11:00 am</div>
-                                        <div class="timeline-item-subtitle font-weight-bold">Ordered</div>
-                                        <div class="timeline-item-text">Your order confirmed</div>
+                                        <div class="timeline-item-time">${item.time}</div>
+                                        <div class="timeline-item-subtitle font-weight-bold">${item.status}</div>
+                                        <div class="timeline-item-text">${item.comment}</div>
                                     </div>
                                 </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-item-date">23 <small>DEC</small></div>
-                                    <div class="timeline-item-divider"></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-item-time">2:45 pm</div>
-                                        <div class="timeline-item-subtitle font-weight-bold">Packed</div>
-                                        <div class="timeline-item-text">Items has been packed</div>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-item-date">23 <small>DEC</small></div>
-                                    <div class="timeline-item-divider"></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-item-time">4:55 pm</div>
-                                        <div class="timeline-item-subtitle font-weight-bold">Picked up</div>
-                                        <div class="timeline-item-text">Packed-Up by Courier </div>
-                                    </div>
-                                </div>
+                                `)}
+                                
                             </div>
                         </div>
                     </div>
@@ -169,6 +152,16 @@
                         <span class="text-muted">Authorise Signature</span><br/>
                         Capsulepluse
                     </p> -->
+                    
+                    ${canCancel && $h`
+                    <div class="row margin-bottom">    
+                            <div class="col-100 margin-h-auto">
+                                <button  @click="${()=>cancelOrder()}" class="button button-fill button-large button-raised bg-color-pink">
+                                    <i class="f7-icons icon margin-right-half">cart</i>Cancel Order
+                                </button>
+                            </div>
+                    </div>
+                    `} 
                     <div class="row margin-bottom-half">
                         <div class="col-100 margin-h-auto">
                             <a href="/contactus/" class="button button-outline button-large ">
@@ -198,6 +191,7 @@
         var app = $f7;
         let orderId = props.orderId;
         let type = props.type;
+        let canCancel = false;
         let order =[];
         let orderDetails = [];
         let trackDetails = [];
@@ -215,6 +209,32 @@
               $update(); 
           }  
 
+        }
+
+        // cancel oder 
+        let cancelOrder = ()=>{
+
+              $f7.dialog.confirm('Do you want to cancel the order ? ','', function () {
+                    $f7.preloader.show();
+                    //=======remove cart items from server =======
+                    app.params.callToServer( "order-cancel", {'product':orderId,'type':type } ,
+                    function success(Response){
+                        $f7.preloader.hide();
+                        app.params.showToastBottom(Response.message);
+                        app.views.main.router.back();
+                    });        
+                });
+
+
+
+            /* $f7.preloader.show();
+             //=======remove cart items from server =======
+            app.params.callToServer( "remove-cart", {'pid':pid} ,
+            function success(Responce){
+                $f7.preloader.hide();
+                updateCurrentCart(Responce);
+                // categoryName = Responce.data.category;
+            }); */
         }
 
         $on('pageInit', () => {
@@ -251,6 +271,8 @@
                 trackDetails = Responce.data.trackDetails;
                 typeNme = Responce.data.typeName;
                 type = Responce.data.type;
+                canCancel = Responce.data.canCancel;
+
                 $update();
             }
         });

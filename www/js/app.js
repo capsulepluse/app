@@ -31,12 +31,12 @@ var app = new Framework7({
     //       return 0;
     //     }
     //   });
-    app.params.callToServer('cart-count','',function (response) {
-      console.log("Total count",response.data.cartCount);
+    app.params.callToServer('cart-count', '', function (response) {
+      console.log("Total count", response.data.cartCount);
       if (response.success) {
-          return response.data.cartCount;
+        return response.data.cartCount;
       }
-  });
+    });
   },
   callToServer: function (sUrl, postdata, successCallBack) {
     let url = app.params.remoteUrl + sUrl;
@@ -169,26 +169,20 @@ var app = new Framework7({
     placementId: 'pltd4o7ibb9rc653x14',
   },
   statusbar: {
-    iosOverlaysWebView: true,
+    // iosOverlaysWebView: true,
+    // androidOverlaysWebView: true,
   },
   on: {
     init: function () {
       var f7 = this;
-      if (f7.device.cordova) {
-        app.statusbar.show();
-        app.statusbar.setTextColor("black");
-        app.statusbar.setBackgroundColor("#547845")
+
+      console.log(f7.device.android);
+
+      if (f7.device.android) {
+
         // Init cordova APIs (see cordova-app.js)
         cordovaApp.init(f7);
-
       }
-
-      // console.log(app.params.uuid());
-      // app.params.cartCount();
-      // app.params.showToastBottom
-
-
-
 
     },
   },
@@ -285,15 +279,30 @@ $(document).on('page:init', '.page[data-name="splash"]', function (e) {
     var is_login = localStorage.getItem("is_login");
     if (is_login == null || is_login == '') {
       localStorage.setItem("is_login", "");
-      app.views.main.router.navigate('/landing/');
+      app.views.main.router.navigate('/landing/', {
+        ignoreCache: true,
+        reloadCurrent: true,
+      });
+      app.views.main.router.clearPreviousHistory();
+
     } else {
-      app.views.main.router.navigate('/home/');
+      app.views.main.router.navigate('/home/', {
+        ignoreCache: true,
+        reloadCurrent: true,
+      });
+      app.views.main.router.clearPreviousHistory();
+      // router.clearPreviousHistory()
     }
+
   }, 3000);
 })
 $(document).on('page:init', '.page[data-name="thankyouorder"]', function (e) {
   setTimeout(function () {
-    app.views.main.router.navigate('/home/');
+    app.views.main.router.navigate('/home/', {
+      ignoreCache: true,
+      reloadCurrent: true,
+    });
+    app.views.main.router.clearPreviousHistory();
   }, 3000);
 })
 $(document).on('page:init', '.page[data-name="landing"]', function (e) {
@@ -734,7 +743,7 @@ $(document).on('click', '.logout', function (e) {
 //   function success(Responce) {
 
 //     app.preloader.hide();
-  
+
 //     // let toastBottom = app.toast.create({
 //     //   text: "Quantity has been added successfully !! ",
 //     //   closeTimeout: 2000,
@@ -758,266 +767,7 @@ $(document).on('click', '.logout', function (e) {
 
 // });
 
-/*
-*All Cordova functioanity 
-*/
-var cordovaApp = {
-  f7: null,
-  /*
-   This method hides splashscreen after 2 seconds
-   */
-  handleSplashscreen: function () {
-    var f7 = cordovaApp.f7;
-    if (!window.navigator.splashscreen || f7.device.electron)
-      return;
-    setTimeout(() => {
-      window.navigator.splashscreen.hide();
-    }, 2000);
-  },
 
-
-/*
-     This method prevents back button tap to exit from app on android.
-     And allows to exit app on backbutton double tap
-     */
-     handleAndroidBackButton: function () {
-      var f7 = cordovaApp.f7;
-      if (f7.device.electron)
-          return;
-      cordovaApp.backButtonTimestamp = new Date().getTime();
-      document.addEventListener('backbutton', function (e) {
-          if (f7.popup.get('.popup') == undefined && f7.dialog.get() == undefined) {
-              f7.views.current.router.back();
-          } else {
-              if (f7.popup.get('.popup') != undefined) {
-                  f7.popup.get('.popup').close();
-              }
-              if (f7.dialog.get() != undefined) {
-                  f7.dialog.close();
-              }
-          }
-          if (new Date().getTime() - cordovaApp.backButtonTimestamp < 550) {
-              cordovaApp.backButtonTimestamp = new Date().getTime();
-              if (window.navigator.app && window.navigator.app.exitApp) {
-//                    window.navigator.app.exitApp();
-                  navigator.app.exitApp();
-              }
-              return true;
-          }
-          cordovaApp.backButtonTimestamp = new Date().getTime();
-          e.preventDefault();
-          return false;
-      }, false);
-  },
-
-
-
-  /*
-   This method prevents back button tap to exit from app on android.
-   In case there is an opened modal it will close that modal instead.
-   In case there is a current view with navigation history, it will go back instead.
-   */
-  // handleAndroidBackButton: function () {
-
-  //   console.log("back function");
-
-  //   var f7 = cordovaApp.f7;
-  //   const $ = f7.$;
-  //   if (f7.device.electron)
-  //     return;
-
-  //   document.addEventListener('backbutton', function (e) {
-
-  //     console.log("backbutton");
-
-  //     if ($('.actions-modal.modal-in').length) {
-  //       f7.actions.close('.actions-modal.modal-in');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //     if ($('.dialog.modal-in').length) {
-  //       f7.dialog.close('.dialog.modal-in');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //     if ($('.sheet-modal.modal-in').length) {
-  //       f7.sheet.close('.sheet-modal.modal-in');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //     if ($('.popover.modal-in').length) {
-  //       f7.popover.close('.popover.modal-in');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //     if ($('.popup.modal-in').length) {
-  //       if ($('.popup.modal-in>.view').length) {
-  //         const currentView = f7.views.get('.popup.modal-in>.view');
-  //         if (currentView && currentView.router && currentView.router.history.length > 1) {
-  //           currentView.router.back();
-  //           e.preventDefault();
-  //           return false;
-  //         }
-  //       }
-  //       f7.popup.close('.popup.modal-in');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //     if ($('.login-screen.modal-in').length) {
-  //       f7.loginScreen.close('.login-screen.modal-in');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-
-  //     if ($('.page-current .searchbar-enabled').length) {
-  //       f7.searchbar.disable('.page-current .searchbar-enabled');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-
-  //     if ($('.page-current .card-expandable.card-opened').length) {
-  //       f7.card.close('.page-current .card-expandable.card-opened');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-
-  //     const currentView = f7.views.current;
-  //     if (currentView && currentView.router && currentView.router.history.length > 1) {
-  //       currentView.router.back();
-  //       e.preventDefault();
-  //       return false;
-  //     }
-
-  //     if ($('.panel.panel-in').length) {
-  //       f7.panel.close('.panel.panel-in');
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //   }, false);
-  // },
-  /*
-   This method does the following:
-   - provides cross-platform view "shrinking" on keyboard open/close
-   - hides keyboard accessory bar for all inputs except where it required
-   */
-  handleKeyboard: function () {
-    var f7 = cordovaApp.f7;
-    if (!window.Keyboard || !window.Keyboard.shrinkView || f7.device.electron)
-      return;
-    var $ = f7.$;
-    window.Keyboard.shrinkView(false);
-    window.Keyboard.disableScrollingInShrinkView(true);
-    window.Keyboard.hideFormAccessoryBar(true);
-    window.addEventListener('keyboardWillShow', () => {
-      f7.input.scrollIntoView(document.activeElement, 0, true, true);
-    });
-    window.addEventListener('keyboardDidShow', () => {
-      f7.input.scrollIntoView(document.activeElement, 0, true, true);
-    });
-    window.addEventListener('keyboardDidHide', () => {
-      if (document.activeElement && $(document.activeElement).parents('.messagebar').length) {
-        return;
-      }
-      window.Keyboard.hideFormAccessoryBar(false);
-    });
-    window.addEventListener('keyboardHeightWillChange', (event) => {
-      var keyboardHeight = event.keyboardHeight;
-      if (keyboardHeight > 0) {
-        // Keyboard is going to be opened
-        document.body.style.height = `calc(100% - ${keyboardHeight}px)`;
-        $('html').addClass('device-with-keyboard');
-      } else {
-        // Keyboard is going to be closed
-        document.body.style.height = '';
-        $('html').removeClass('device-with-keyboard');
-      }
-
-    });
-    $(document).on('touchstart', 'input, textarea, select', function (e) {
-      var nodeName = e.target.nodeName.toLowerCase();
-      var type = e.target.type;
-      var showForTypes = ['datetime-local', 'time', 'date', 'datetime'];
-      if (nodeName === 'select' || showForTypes.indexOf(type) >= 0) {
-        window.Keyboard.hideFormAccessoryBar(false);
-      } else {
-        window.Keyboard.hideFormAccessoryBar(true);
-      }
-    }, true);
-  },
-  statusBar: function () {
-    StatusBar.overlaysWebView(false);
-    StatusBar.backgroundColorByHexString("#fff"); // => #333333
-    StatusBar.styleDefault();
-  },
-  permission: function () {
-    var permissions = cordova.plugins.permissions;
-    permissions.checkPermission(permissions.CAMERA, function (status) {
-      if (status.hasPermission) {
-        console.log("Yes :D ");
-      } else {
-        permissions.requestPermission(permissions.CAMERA, function () {
-          console.warn('Camera permission is not turned on');
-        }, function (status) {
-          if (!status.hasPermission)
-            error();
-          console.log("permision success");
-        });
-
-        console.warn("No :(  get ");
-      }
-    });
-  },
-  getPermission: function () {
-    var permissions = cordova.plugins.permissions;
-    var list = [
-      permissions.CAMERA,
-      permissions.READ_EXTERNAL_STORAGE,
-      permissions.WRITE_EXTERNAL_STORAGE
-    ];
-
-    permissions.checkPermission(list, success, null);
-
-    function error() {
-      // app.dialog.alert('Permission not granted !!');
-      console.log("Permission not granted !!");
-    }
-
-    function success(status) {
-      if (!status.hasPermission) {
-
-        permissions.requestPermissions(
-          list,
-          function (status) {
-            if (!status.hasPermission)
-              error();
-          },
-          error);
-      }
-    }
-
-
-  },
-
-  init: function (f7) {
-    // Save f7 instance
-    cordovaApp.f7 = f7;
-
-    // Handle Android back button
-    cordovaApp.handleAndroidBackButton();
-
-    // Handle Splash Screen
-    cordovaApp.handleSplashscreen();
-
-    // Handle Keyboard
-    cordovaApp.handleKeyboard();
-
-    cordovaApp.statusBar();
-
-    cordovaApp.getPermission();
-
-
-  },
-};
 
 
 

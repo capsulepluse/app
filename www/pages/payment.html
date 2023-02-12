@@ -261,9 +261,14 @@
         const pageId = app.params.uuid();
         let type="Medicine";
 
+        let previusPageId = props.pageId;
+        console.log(previusPageId);
+       // console.log('form data',app.form.getFormData(previusData));
+
+
         const finalCheckout = ()=>{
             $f7.preloader.show();
-            var fordata  = app.form.getFormData("#cart-address-form");
+            var fordata  = app.form.getFormData('#pageId_'+ previusPageId +'cart-address-form');
             console.log(fordata);
             //get for details //
 

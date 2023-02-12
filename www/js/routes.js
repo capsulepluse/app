@@ -65,7 +65,7 @@ var routes = [
 
   // verify
   {
-    path: '/verify/:mobile',
+    path: '/verify/:mobile/:type/',
     componentUrl: './pages/verify.html',
     name: 'verify'
   },
@@ -331,7 +331,7 @@ var routes = [
 //======== end lab =======
   // Payment
   {
-    path: '/payment/',
+    path: '/payment/:pageId/',
     componentUrl: './pages/payment.html',
   },
 
@@ -476,6 +476,11 @@ var routes = [
   {
     path: '/contactus/',
     componentUrl: './pages/contactus.html',
+  },
+  // return page
+  {
+    path: '/return/',
+    componentUrl: './pages/return.html',
   },
 
   // Terms and conditions

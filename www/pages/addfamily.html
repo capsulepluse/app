@@ -1,5 +1,5 @@
 <template>
-<div class="page page-addaddress" id="${pageId}"  data-name="addaddress">
+<div class="page page-addaddress" id="pageId_${pageId}"  data-name="addaddress">
     <div class="navbar ">
         <div class="navbar-bg"></div>
         <div class="navbar-inner">
@@ -111,10 +111,10 @@
      
         const pageId = app.params.uuid();
       
-        $(document).on('submit', '#addFamilyForm', function (e) {
+        $(document).on('submit', '#pageId_'+ pageId +' #addFamilyForm', function (e) {
             e.preventDefault();
     
-            let formData =  app.form.convertToData('#addFamilyForm');
+            let formData =  app.form.convertToData('#pageId_'+ pageId +' #addFamilyForm');
             $f7.preloader.show();
           
             let url =  app.params.remoteUrl + 'add-family';

@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-addaddress" id="${pageId}" data-name="addaddress">
+    <div class="page page-addaddress" id="pageId_${pageId}" data-name="addaddress">
         <div class="navbar ">
             <div class="navbar-bg"></div>
             <div class="navbar-inner">
@@ -33,8 +33,7 @@
                                     <!-- "item-floating-label" class on item title -->
                                     <div class="item-title item-floating-label">Your Name</div>
                                     <div class="item-input-wrap">
-                                        <input type="text" name="name" value="${name}" validate
-                                            required />
+                                        <input type="text" name="name" value="${name}" required validate />
                                         <span class="input-clear-button"></span>
                                     </div>
                                 </div>
@@ -48,8 +47,7 @@
                                     <!-- "item-floating-label" class on item title -->
                                     <div class="item-title item-floating-label">Address </div>
                                     <div class="item-input-wrap">
-                                        <textarea type="text" name="address" required
-                                            validate> </textarea>
+                                        <input type="text" name="address" value=""  required validate /> 
                                         <span class="input-clear-button"></span>
                                     </div>
                                 </div>
@@ -149,10 +147,10 @@
 
         const pageId = app.params.uuid();
 
-        $(document).on('submit', '#addaddressForm', function (e) {
+        $(document).on('submit', '#pageId_'+pageId+' #addaddressForm', function (e) {
             e.preventDefault();
 
-            let formData = app.form.convertToData('#addaddressForm');
+            let formData = app.form.convertToData('#pageId_'+pageId+' #addaddressForm');
             $f7.preloader.show();
 
             let url = app.params.remoteUrl + 'add-address';

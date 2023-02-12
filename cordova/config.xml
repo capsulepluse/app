@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.capsuleplus.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.capsuleplus.app" version="1.1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Capsuleplus</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -26,30 +26,39 @@
     <allow-navigation href="*" />
 
     <platform name="android">
-      <preference name="StatusBarOverlaysWebView" value="false" />
+        <preference name="StatusBarOverlaysWebView" value="false" /> 
+        <!-- <preference name="StatusBarOverlaysWebView" value="false" />
+        <preference name="StatusBarBackgroundColor" value="#f9fdfc" />
+        <preference name="StatusBarStyle" value="default" /> -->
+
+
+        <!-- <preference name="SplashScreen" value="none"/> -->
       <preference name="android-minSdkVersion" value="22" />
+      <!-- <preference name="android-targetSdkVersion" value="31" /> -->
       <preference name="SplashMaintainAspectRatio" value="true" />
-      <splash density="land-hdpi" src="res/screen/android/drawable-hdpi/screen.png" />
-      <splash density="land-mdpi" src="res/screen/android/drawable-mdpi/screen.png" />
-      <splash density="land-xhdpi" src="res/screen/android/drawable-xhdpi/screen.png" />
-      <splash density="land-xxhdpi" src="res/screen/android/drawable-xxhdpi/screen.png" />
-      <splash density="land-xxxhdpi" src="res/screen/android/drawable-xxxhdpi/screen.png" />
-      <splash density="port-hdpi" src="res/screen/android/drawable-hdpi/screen.png" />
-      <splash density="port-mdpi" src="res/screen/android/drawable-mdpi/screen.png" />
-      <splash density="port-xhdpi" src="res/screen/android/drawable-xhdpi/screen.png" />
-      <splash density="port-xxhdpi" src="res/screen/android/drawable-xxhdpi/screen.png" />
-      <splash density="port-xxxhdpi" src="res/screen/android/drawable-xxxhdpi/screen.png" />
+      <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+      <!-- <preference name="AndroidWindowSplashScreenAnimatedIcon" density="port-xxxhdpi" value="res/screen/android/drawable-xxxhdpi/screen.png" /> -->
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="land-hdpi" value="res/screen/android/drawable-hdpi/screen.png" />
+      <splpreferenceash  name="AndroidWindowSplashScreenAnimatedIcon" density="land-mdpi" value="res/screen/android/drawable-mdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="land-xhdpi" value="res/screen/android/drawable-xhdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="land-xxhdpi" value="res/screen/android/drawable-xxhdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="land-xxxhdpi" value="res/screen/android/drawable-xxxhdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="port-hdpi" value="res/screen/android/drawable-hdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="port-mdpi" value="res/screen/android/drawable-mdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="port-xhdpi" value="res/screen/android/drawable-xhdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="port-xxhdpi" value="res/screen/android/drawable-xxhdpi/screen.png" />
+      <preference  name="AndroidWindowSplashScreenAnimatedIcon" density="port-xxxhdpi" value="res/screen/android/drawable-xxxhdpi/screen.png" />
       <icon density="ldpi" src="res/icon/android/mipmap-ldpi/ic_launcher.png" />
       <icon density="mdpi" src="res/icon/android/mipmap-mdpi/ic_launcher.png" />
       <icon density="hdpi" src="res/icon/android/mipmap-hdpi/ic_launcher.png" />
       <icon density="xhdpi" src="res/icon/android/mipmap-xhdpi/ic_launcher.png" />
       <icon density="xxhdpi" src="res/icon/android/mipmap-xxhdpi/ic_launcher.png" />
       <icon density="xxxhdpi" src="res/icon/android/mipmap-xxxhdpi/ic_launcher.png" />
+      
     </platform>
-
-
-
-
+   
+    <preference name="SplashScreen" value="none"/>
+    <preference name="AndroidUpdateAlertType" value="Immediate" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="local" />
     <preference name="AutoHideSplashScreen" value="true" />
@@ -60,6 +69,7 @@
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="AllowInlineMediaPlayback" value="true" />
     <preference name="StatusBarOverlaysWebView" value="true" />
+    
     <!-- <preference name="StatusBarBackgroundColor" value="#f4fbf7" />
     <preference name="StatusBarStyle" value="lightcontent" /> -->
 </widget>   

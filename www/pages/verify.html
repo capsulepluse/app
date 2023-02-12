@@ -1,5 +1,5 @@
 <template>
-  <div class="page dark-bg" data-name="verify">
+  <div class="page dark-bg" id="pageId_${pageId}" data-name="verify">
     <div class="page-content no-padding-top">
       <!-- <div class="overlay-image text-end">
         <img src="img/pineapple.png" class="orange-slice" alt="" />
@@ -33,12 +33,10 @@
                       </li>
                     </ul>
                   </div>
-                  <button  target="_self" class="button button-fill button-large color-green elevation-3">
-                    Confirm</button>
+                  <input type="submit" class="button button-fill button-large color-green elevation-3" value="confirm" />                   
                 </div>
               </div>
-          </form>
-
+            </form>
           </div>
           <div class="col-100 text-align-center margin-bottom-half margin-top-auto">
             <span class="progressstimer">
@@ -57,6 +55,10 @@
   export default function (props, {$f7, $on, $update, $}) {
   var app = $f7;
   let mobile = props.mobile;  
+  let returnPagetype = props.type;  
+
+  const pageId = app.params.uuid();
+
 
   $on('pageInit', () => {
     resendTimmer();
@@ -65,32 +67,39 @@
 
 
 
-    $(document).on('submit', '#verifyForm', function (e) {
+    $(document).on('submit', '#pageId_'+pageId+' #verifyForm', function (e) {
         e.preventDefault();
 
-        let formData =  app.form.convertToData('#verifyForm');
-        console.log(formData);
+        let formData =  app.form.convertToData('#pageId_'+pageId+' #verifyForm');
+
       //===================
-        let url =app.params.remoteUrl + "verify-OTP";
+        let url = app.params.remoteUrl + "verify-OTP";
          
-         console.log(url);
          $f7.preloader.show();
          app.request.postJSON(url, formData, 
              function(res,status){ 
-               console.log(res.data) ;
                  $f7.preloader.hide();
-                 if(res.data.mobile_verified){//=========== Mobile verified =======
-
-                  //=== update login data 
+                 console.log(res);
+                if(res.data.mobile_verified){//=========== Mobile verified =======
                       app.params.loginSuccess(res.data);
-                      app.views.main.router.navigate('/thankyou/', {
-                        ignoreCache: true,
-                        reloadCurrent: true,
-                    });
-                   app.views.main.router.clearPreviousHistory();
+                    //check the user return page 
+                    if(returnPagetype === 'registration'){
+                       //=== update login data 
+                        app.views.main.router.navigate('/home/', {
+                          ignoreCache: true,
+                          reloadCurrent: true,
+                        });
+                        app.views.main.router.clearPreviousHistory();
+                    }else{
+                       app.views.main.router.navigate('/resetpassword/', {
+                          ignoreCache: true,
+                          reloadCurrent: true,
+                        });
+
+                    }
                   }else{//============= send for OTP number =====
                       app.views.main.router.navigate('/verify/'+res.data.mobile);
-                  }
+                  } 
          }, function(err, status){
                   // console.log(err.response);
                  $f7.preloader.hide();
