@@ -27,8 +27,32 @@
 
 
     <div class="page-content has-footer">
+
+
       <!-- main page content -->
       <div class="main-container container">
+
+          <!-- slides 1 -->
+          <div class="block  skeleton-text skeleton-effect-wave placeHolderOut">
+            <div class=" ">
+              <div class="card-content  ">
+                <div class=" rounded skeleton-block " style=" height: 150px; width:100%; "></div>
+              </div>
+          
+            </div>
+          </div>
+          
+          <div class="block">
+            <div class="swipe swiper-container labtest_slider_1 margin-bottom-mini " data-loop_="false">
+              <div class="swiper-wrapper">
+          
+              </div>
+            </div>
+          </div>
+          <!-- end  -->
+
+
+
 
        <!-- lab list  -->
 
@@ -49,14 +73,14 @@
                         </div>
                       </div>
                       <div class="col no-padding-left list">
-                        <div class="bold ">${item.name} 
+                        <div class="bold text-color-black">${item.name} 
                           <!-- <i class="icons f7-icons text-color-theme float-right">arrow_up_right_circle</i> -->
                         </div>
                         <!-- <div href="#" class="text-normal text-color-theme "> 
                         </div> -->
-                        <div class="item-footer lab-address">${item.address}</div>
+                        <div class="item-footer lab-address_ text-color-black">${item.address}</div>
                         <p class="small display-block">
-                          <span class="text-opac"> Booking-Time : ${item.start_time} - ${item.end_time}</span>
+                          <span class="text-opac_ text-color-black"> Booking-Time : ${item.start_time} - ${item.end_time}</span>
                           <!-- <span class="float-right"><span class="text-opac">2.5km</span> <i
                                       class="icons f7-icons">placemark</i></span> -->
                         </p>
@@ -75,6 +99,39 @@
           </div>
         </div>
 
+   
+
+         
+
+            
+         
+         
+             <!-- slides 2  -->
+          <div  class="block  skeleton-text skeleton-effect-wave placeHolderOut">
+            <div class=" " >
+                <div class="card-content  ">
+                    <div class=" rounded skeleton-block " style=" height: 150px; width:100%; "></div>
+                   
+                </div>
+               
+            </div>
+          </div>
+       
+        <div class="block" >
+            <div class="swipe swiper-container labtest_slider_2 margin-bottom-mini "   data-loop_="false">
+                <div class="swiper-wrapper">
+
+                </div>
+               
+            </div>
+        </div>
+        <!-- end  -->
+        
+
+
+
+
+       
 
 
 
@@ -150,6 +207,11 @@
     const pageId = app.params.uuid();
     let cartCount = 0;
 
+    let slider_1 = [];
+    let slider_2 = [];
+
+
+
     $on('pageInit', () => {
 
       $f7.preloader.show();
@@ -158,10 +220,22 @@
 
       function success(Response) {
         $f7.preloader.hide();
+        $('.placeHolderOut').hide();
 
         labs = Response.data.labs;
-
+        slider_1 = Response.data.slider_1;
+        slider_2 = Response.data.slider_2;
         $update();
+
+        slider_1.forEach(setslider_1);
+        swiper_1.autoplay.start();
+        swiper_1.pagination.init();
+
+        slider_2.forEach(setslider_2);
+        swiper_2.autoplay.start();
+        swiper_2.pagination.init();
+
+
 
       }
 
@@ -171,8 +245,96 @@
             cartCount =  response.data.cartCount;
         }
         $update();
-      }); 
+      });
+      
+      //slider details 
+      const swiper_1 = new Swiper(".labtest_slider_1", {
+        slidesPerView: "1",
+        spaceBetween: 10,
+      /*  pagination: {
+            el: ".pagination-offerslides-home",
+        }, */
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
 
+      const swiper_2 = new Swiper(".labtest_slider_2", {
+        slidesPerView: "1",
+        spaceBetween: 10,
+      /*  pagination: {
+            el: ".pagination-offerslides-home",
+        }, */
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+
+
+
+      const setslider_1 = (items, key) => {
+
+            let slideritems = '' +
+            '                             <div class="swiper-slide">' +
+            '                                <div class="card  elevation-2 card-theme">' +
+            '                                    <div class="card-content ">' +
+            '                                        <div class="row">' +
+            '                                            <div class="col-100 thum-parent">' +
+            '                                            <img src="' + items.img +
+            '                                                  " alt="" class="mw-100 thum-child" style="height:150px;width: 100%;" />' +
+            '                                            </div>' +
+            '                                            </div>' +
+            '                                        </div>' +
+            '                                    </div>' +
+            '                                </div>  ' +
+            '                            </div> ' +
+            '';
+
+
+            swiper_1.addSlide(key, slideritems);
+      }
+
+      const setslider_2 = (items, key) => {
+
+        let slideritems = '' +
+        '                             <div class="swiper-slide">' +
+        '                                <div class="card  elevation-2 card-theme">' +
+        '                                    <div class="card-content ">' +
+        '                                        <div class="row">' +
+        '                                            <div class="col-100 thum-parent">' +
+        '                                            <img src="' + items.img +
+        '                                                  " alt="" class="mw-100 thum-child" style="height:150px;width: 100%;" />' +
+        '                                            </div>' +
+        '                                            </div>' +
+        '                                        </div>' +
+        '                                    </div>' +
+        '                                </div>  ' +
+        '                            </div> ' +
+        '';
+
+
+        swiper_2.addSlide(key, slideritems);
+      }
 
     });
 

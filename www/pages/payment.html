@@ -137,6 +137,33 @@
                     <h5 class="no-margin-bottom"><p>Pricing</p></h5>
                 </div>
             </div>
+
+            <div class="row margin-bottom-half">
+                <div class="col">
+                    <p class="font-12">Total Price</p>
+                </div>
+                <div class="col-auto font-12">₹ ${totalMrp}</div>
+            </div>
+
+            <div class="row margin-bottom-half">
+                <div class="col">
+                    <p class="font-12">Total Discount</p>
+                </div>
+                <div class="col-auto font-12">₹ ${totalDiscount}</div>
+            </div>
+
+            <div class="row margin-bottom-half">
+                <div class="col">
+                    <p class="font-12">Subtotal</p>
+                </div>
+                <div class="col-auto font-12">₹ ${subtotal}</div>
+            </div>
+
+
+
+
+
+
             <div class="row margin-bottom-half ">
                 <div class="col">
                     ${type == 'Lab test' && $h`
@@ -155,13 +182,6 @@
                     `}    
                    
                 </div>
-            </div>
-
-            <div class="row margin-bottom-half font-12">
-                <div class="col">
-                    <p class="font-12">Subtotal</p>
-                </div>
-                <div class="col-auto font-12">₹ ${subtotal}</div>
             </div>
 
             <div class="row font-weight-bold margin-bottom">
@@ -261,6 +281,9 @@
         const pageId = app.params.uuid();
         let type="Medicine";
 
+        let totalDiscount = 0;
+        let totalMrp = 0;
+
         let previusPageId = props.pageId;
         console.log(previusPageId);
        // console.log('form data',app.form.getFormData(previusData));
@@ -296,6 +319,8 @@
                 cartCount = Responce.cartCount;
                 shippingCost =  Responce.shippingCost;
                 type = Responce.type;
+                totalMrp = Responce.totalMRP;
+                totalDiscount = Responce.totalDiscount;
                 $update();
         }
 

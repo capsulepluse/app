@@ -934,12 +934,22 @@
          //show uploaded image 
         const selectImage = (imageId,imageUrl)=>{
         
-            var selectedImage = '<div class="col-33">'+
+            var selectedImage = '<div class="col-25">'+
             '                       <div class="text-align-center" >'+
             '                           <div style="display:none" class="prescripId" >'+imageId+'</div>'+
             '                           <img slot="media" src="'+imageUrl+'" width="75" alt=""/>'+
             '                       </div>'+
-            '                   </div>';
+            '                     <div class="prescriptionRemoveBtn card-footer_ button button-small button-fill_ button-raised  color-red font-10 ">remove</div>'+
+            '                   </div>' 
+
+          /*  var selectedImage = '<div class="margin-half ">'+
+                '                     <div class="card-content ">'+
+                '                         <div style="display:none" class="prescripId" >'+imageId+'</div>'+
+                '                         <img slot="media" src="'+imageUrl+'" width="75" alt=""/>'+
+                '                     </div>'+
+                '                     <div class="prescriptionRemoveBtn card-footer_ button button-small button-fill_ button-raised  color-red font-10 ">remove</div>'+
+                '                 </div>'; */
+        
     
             $('#selected_prescription_container').append(selectedImage);  
         }
@@ -1060,6 +1070,15 @@
             }
 
         });
+
+        //========== remove button of prescription =========
+        $(document).on('click', '#pageId_' + pageId + ' #selected_prescription_container  .prescriptionRemoveBtn', function (e) {
+            $(this).parent().remove();
+            calculateSelectedPrescrip_id();
+    
+        });
+
+
 
         $(document).on('submit','#pageId_'+ pageId +'cart-address-form',function(e){
             e.preventDefault();

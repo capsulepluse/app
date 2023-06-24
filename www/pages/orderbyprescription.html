@@ -143,6 +143,50 @@
             </div>
           </div>
 
+
+            <!-- oreder note  -->
+          <div class="block ">
+            <div class="row margin-bottom-half">
+              <div class="col">
+                <h5 class="no-margin-bottom"><p>Order Type</p></h5>
+              </div>
+            </div>
+            <div class="row margin-bottom-half">
+              <div class="col">
+
+                <div class="card elevation-2">
+                  <div class="list md ">
+                    <ul>
+                      <li>
+                        <label class="item-radio item-radio-icon-start item-content">
+                          <input type="radio" name="orderType" value="medicine" checked />
+                          <i class="icon icon-radio text-color-theme"></i>
+                          <div class="item-inner">
+                            <div class="">Medicine</div>
+                          </div>
+                        </label>
+                      </li>
+                      <li>
+                        <label class="item-radio item-radio-icon-start item-content">
+                          <input type="radio" name="orderType" value="labtest" />
+                          <i class="icon icon-radio text-color-theme"></i>
+                          <div class="item-inner">
+                            <div class="">Lab Test
+                            </div>
+                          </div>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+
+
+
           <!-- oreder note  -->
           <div class="block ">
             <div class="row margin-bottom-half">
@@ -161,7 +205,7 @@
                           <input type="radio" name="orderNote" value="all" checked />
                           <i class="icon icon-radio text-color-theme"></i>
                           <div class="item-inner">
-                            <div class="">All Medicines (in prescription)</div>
+                            <div class="">All (in prescription)</div>
                           </div>
                         </label>
                       </li>
@@ -170,7 +214,7 @@
                           <input type="radio" name="orderNote" value="selected" />
                           <i class="icon icon-radio text-color-theme"></i>
                           <div class="item-inner">
-                            <div class="">Order by sequence of medicine (as they appear in prescription)
+                            <div class="">Order by sequence (as they appear in prescription)
                             </div>
                           </div>
                         </label>
@@ -739,11 +783,12 @@
     const selectImage = (imageId,imageUrl)=>{
      
       var selectedImage = '<div class="margin-half ">'+
-        '                <div class="card-content ">'+
-        '                  <div style="display:none" class="prescripId" >'+imageId+'</div>'+
-        '                  <img slot="media" src="'+imageUrl+'" width="75" alt=""/>'+
-        '                </div>'+
-        '              </div>';
+        '                     <div class="card-content ">'+
+        '                         <div style="display:none" class="prescripId" >'+imageId+'</div>'+
+        '                         <img slot="media" src="'+imageUrl+'" width="75" alt=""/>'+
+        '                     </div>'+
+        '                     <div class="prescriptionRemoveBtn card-footer_ button button-small button-fill_ button-raised  color-red font-10 ">remove</div>'+
+        '                 </div>';
 
       $('#selected_prescription_container').append(selectedImage);  
     }
@@ -821,6 +866,12 @@
       } else {
         $('#medicineSelectButton').hide();
       }
+
+    });
+    //========== remove button of prescription =========
+    $(document).on('click', '#pageId_' + pageId + ' #selected_prescription_container  .prescriptionRemoveBtn', function (e) {
+      $(this).parent().remove();
+      calculateSelectedPrescrip_id();
 
     });
 

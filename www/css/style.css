@@ -768,7 +768,7 @@ iframe {
 }
 
 .text-opac {
-	opacity: 0.65
+	opacity: 0.85 !important
 }
 
 .text-success,
@@ -2555,7 +2555,8 @@ figure img {
 	font-size: 16px !important;
 }
 .margin-bottom-mini {
-    margin-bottom: 6px !important;
+    /* margin-bottom: 6px !important; */
+    margin-bottom: 10px !important;
 }
 .list .item-media+.item-inner {
 	margin-bottom: 1px;
@@ -2611,6 +2612,25 @@ figure img {
 	background-image: none !important;
     background-color: #ffffff !important;
 }
+.line-height-40{
+	line-height: 40px!important;
+}
+.line-height-30{
+	line-height: 30px!important;
+}
+.line-height-20{
+	line-height: 20px!important;
+}
+.line-height-10{
+	line-height: 10px!important;
+}
+.manufactire{
+   
+}
+.mrp-text{
 
-
+}
+.medicine_add_to_cart{
+	padding: 0 20px;
+}
 

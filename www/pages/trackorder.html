@@ -169,7 +169,8 @@
                             </a>
                         </div>
                     </div>
-                    ${type == 'labtest' && $h`
+                    ${type == 'labtest' && $h`  
+                        ${canDownload && $h`  
                         <div class="row margin-bottom">    
                             <div class="col-100 margin-h-auto">
                                 <a href="/home/" class="button button-fill button-large button-raised">
@@ -177,6 +178,7 @@
                                 </a>
                             </div>
                         </div>
+                        `}   
                     `}   
                 </div>
             </div>
@@ -192,6 +194,7 @@
         let orderId = props.orderId;
         let type = props.type;
         let canCancel = false;
+        let canDownload = false;
         let order =[];
         let orderDetails = [];
         let trackDetails = [];
@@ -272,7 +275,7 @@
                 typeNme = Responce.data.typeName;
                 type = Responce.data.type;
                 canCancel = Responce.data.canCancel;
-
+                canDownload = Responce.data.canDownload;
                 $update();
             }
         });

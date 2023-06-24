@@ -22,116 +22,7 @@
       </div>
     </div>
 
-    <!-- Filter nested panel -->
-    <div class="panel panel-right panel-cover panel-init elevation-3" id="panel-right-filter"
-      data-container-el="#panel-page" data-backdrop="false">
-      <div class="page">
-        <div class="page-content">
-          <div class="block bg-white-opac margin-bottom padding-top padding-bottom">
-            <div class="row">
-              <div class="col">
-                <h6 class="no-margin-bottom">Filter Criteria</h6>
-                <p class="small text-muted">2154 products</p>
-              </div>
-              <div class="col-auto align-self-center">
-                <button class="button panel-close no-padding">
-                  <i class="icon f7-icons size-18">multiply</i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="block">
-            <div class="margin-bottom">
-              <h6>Select Range</h6>
-              <div id="rangeslider" class="margin-top"></div>
-            </div>
-
-            <div class="row margin-bottom">
-              <div class="col">
-                <label for="input-number" class="small text-muted">Minimum</label>
-                <input type="number" min="0" max="500" value="100" step="1" id="input-select" />
-              </div>
-              <div class="col-auto align-self-center">
-                <label class="small"></label>
-                to
-              </div>
-              <div class="col">
-                <label for="input-number" class="small text-muted">Maximum</label>
-                <input type="number" class="form-control" min="0" max="500" value="200" step="1" id="input-number" />
-              </div>
-            </div>
-
-            <div class="margin-bottom">
-              <label for="filtertype" class="small text-muted">Select Shopping Type</label>
-              <div class="card shadow-none">
-                <div class="list">
-                  <ul class="no-background">
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="Books" checked="men" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Men</div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="women" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Women</div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="kids" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Kids</div>
-                        </div>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="item-checkbox item-content">
-                        <input type="checkbox" name="demo-checkbox" value="home" />
-                        <i class="icon icon-checkbox"></i>
-                        <div class="item-inner">
-                          <div class="item-title">Home</div>
-                        </div>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="margin-bottom">
-              <label for="input-select" class="small text-muted">Keyword</label>
-              <input type="text" class="form-control" placeholder="Keyword" />
-            </div>
-
-            <div class="margin-bottom">
-              <label for="discount" class="small text-muted">Offer Discount</label>
-              <select class="form-control" id="discount">
-                <option>10% </option>
-                <option>30%</option>
-                <option>50%</option>
-                <option>80%</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="block margin-bottom">
-            <button class="button button-fill button-raised button-large">Apply</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+   
 
     <div class="page-content has-footer">
       <!-- main page content -->
@@ -139,16 +30,35 @@
 
         <!-- search -->
         <div class="block">
+
+
+          <!-- <div class="searchbar">
+            <div class="searchbar-inner">
+              <div class="searchbar-input-wrap">
+                <input type="search" placeholder="Search"/>
+              
+                <i class="searchbar-icon"></i>
+                <span class="input-clear-button"></span>
+              </div>
+              <span class="searchbar-disable-button">Cancel</span>
+            </div>
+          </div>
+          
+          <div class="search-results"></div> -->
+
+
+
           
           <div class="row margin-bottom-half">
-            <div class="col no-padding-right">
+            <div class="col no-padding-right_">
               <div class="list form-list no-margin">
                 <ul>
                   <li class="item-content item-input">
                     <div class="item-inner no-padding-top no-padding-buttom">
-                      <!-- <div class="item-title item-floating-label">Search</div> -->
+                      
                       <div class="item-input-wrap">
                         <input type="text" name="search" placeholder="Search Medicine " class="search-input padding-top-half" />
+                        <i class="icon material-icons md-only">search</i>
                         <span class="input-clear-button"></span>
                       </div>
                     </div>
@@ -156,13 +66,38 @@
                 </ul>
               </div>
             </div>
-            <div class="col-auto padding-left-half">
+            <!-- <div class="col-auto padding-left-half">
               <button class="button button-fill button-small padding elevation-3 searchbtn" >
                 <i class="icon f7-icons">search</i>
               </button>
+            </div> -->
+          </div>
+
+        </div>
+
+
+         <!-- slides 1 -->
+         <div class="block  skeleton-text skeleton-effect-wave placeHolderOut">
+          <div class=" ">
+            <div class="card-content  ">
+              <div class=" rounded skeleton-block " style=" height: 150px; width:100%; "></div>
+            </div>
+        
+          </div>
+        </div>
+        
+        <div class="block">
+          <div class="swipe swiper-container labtest_slider_1 margin-bottom-mini " data-loop_="false">
+            <div class="swiper-wrapper">
+        
             </div>
           </div>
         </div>
+        <!-- end  -->
+
+
+
+
 
          <!-- Quick List -->
          <div class="block">
@@ -182,22 +117,22 @@
                                                   alt="" />
                                           </div>
                                           <div class="item-inner item-cell">
-                                              <div class="item-row item-title_ font-12 bold text-color-theme">
+                                              <div class="item-row item-title_ font-16  ">
                                                <a  href="/medicine/${item.id}/" >  
-                                                 <div class="">${item.name}</div> 
+                                                 <div class="text-color-black line-height-30">${item.name}</div> 
                                                </a>
                                               </div>
 
-                                              <div class="item-row item-footer">
-                                                    <small class="font-11">${item.manufacturer}</small>
+                                              <div class="item-row item-footer text-color-black">
+                                                    <small class="font-10 text-opac manufactire line-height-20">${item.manufacturer}</small>
                                               </div>
                                               <div class="item-row item-footer">
-                                                  <div class="col-auto item-footer">
+                                                  <div class="col-auto item-footer text-color-black mrp-text ">
                                                     <div class="item-row">
-                                                      <small class="font-11">MRP</small>:<small class=" item-cell text-opac font-11" style="text-decoration: line-through;"> ₹ ${item.MRP}</small>
+                                                      <small class="font-11 ">MRP</small>:<small class=" item-cell text-opac font-11" style="text-decoration: line-through;"> ₹ ${item.MRP}</small>
                                                     </div>
                                                     
-                                                    <div class="item-row"> ₹ ${item.saleprice} </div>
+                                                    <div class="item-row font-16 "> ₹ ${item.saleprice} </div>
                                                     
                                                   </div> 
                                                   <div class="col-auto item-footer font-10">
@@ -269,6 +204,28 @@
               </div>
           </div>
          </div>
+
+            <!-- slides 2  -->
+            <div  class="block  skeleton-text skeleton-effect-wave placeHolderOut">
+              <div class=" " >
+                  <div class="card-content  ">
+                      <div class=" rounded skeleton-block " style=" height: 150px; width:100%; "></div>
+                     
+                  </div>
+                 
+              </div>
+            </div>
+         
+          <div class="block" >
+              <div class="swipe swiper-container labtest_slider_2 margin-bottom-mini "   data-loop_="false">
+                  <div class="swiper-wrapper">
+  
+                  </div>
+                 
+              </div>
+          </div>
+          <!-- end  -->
+
 
       </div>
       <!-- main page content ends -->
@@ -351,6 +308,9 @@
       type: ""
     };
     const pageId = app.params.uuid();
+    let slider_1 = [];
+    let slider_2 = [];
+    let medical = [];
 
 //    let autocompleteDropdownTypeahead;
 //    let autocompleteDropdownAjaxTypeahead;
@@ -436,10 +396,93 @@
               $update();
           }
     })
+    $(document).on('keyup', '#pageId_' + pageId + ' .search-input', function (e) {
+        var serchValue = $('#pageId_' + pageId + ' .search-input').val();
+        $f7.preloader.show();
+        app.params.callToServer( "medicine-search",'{"name":"'+serchValue+'"}',success);
+        function success(Responce){
+              $f7.preloader.hide();
+              product = Responce.data ;
+              //categoryName = Responce.data.category;
+              $update();
+          }
+    })
 
+    function performAjaxSearch(query) {
+      // Perform AJAX request to fetch search results
+      // You can use Framework7's built-in AJAX methods or any other AJAX library (e.g., Axios, jQuery.ajax)
+    
+      // Example using Framework7's AJAX method
+      console.log(query);
+      app.params.callToServer( "medicine-search",'{"name":"'+query+'"}',success);
+        function success(Responce){
+
+          var searchResults = $('.search-results');
+          searchResults.empty();
+          //searchResults.html(data);
+
+              $f7.preloader.hide();
+              product = Responce.data ;
+              //categoryName = Responce.data.category;
+              $update();
+          }
+
+
+
+
+      /*-- app.request.get('/search-api', { query: query }, function (data) {
+        // Handle the response and update the search results container
+        var searchResults = $('.search-results');
+        searchResults.empty();
+        searchResults.html(data);
+      }); */
+    }
 
 
     $on('pageInit', () => {
+
+      var searchbar = app.searchbar.create({
+        el: '.searchbar',
+        searchContainer: '.search-results',
+        searchIn: '.item-title',
+        on: {
+          search(sb, query, previousQuery) {
+            // Perform AJAX search request and update search results
+            performAjaxSearch(query);
+          },
+          clear(sb, previousQuery) {
+            // Clear search results
+            $('.search-results').empty();
+          },
+        },
+      });
+
+      
+      $f7.preloader.show();
+
+      app.params.callToServer("medical-list", "", success);
+
+      function success(Response) {
+        $f7.preloader.hide();
+        $('.placeHolderOut').hide();
+
+        product = Response.data.medicine;
+        slider_1 = Response.data.slider_1;
+        slider_2 = Response.data.slider_2;
+        $update();
+
+        slider_1.forEach(setslider_1);
+        swiper_1.autoplay.start();
+        swiper_1.pagination.init();
+
+        slider_2.forEach(setslider_2);
+        swiper_2.autoplay.start();
+        swiper_2.pagination.init();
+
+
+
+      }
+      
 
 
       /*
@@ -459,6 +502,101 @@
           }
           $update();
         }); 
+
+        //slider details 
+      const swiper_1 = new Swiper(".labtest_slider_1", {
+        slidesPerView: "1",
+        spaceBetween: 10,
+      /*  pagination: {
+            el: ".pagination-offerslides-home",
+        }, */
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+
+      const swiper_2 = new Swiper(".labtest_slider_2", {
+        slidesPerView: "1",
+        spaceBetween: 10,
+      /*  pagination: {
+            el: ".pagination-offerslides-home",
+        }, */
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+
+
+
+      const setslider_1 = (items, key) => {
+
+            let slideritems = '' +
+            '                             <div class="swiper-slide">' +
+            '                                <div class="card  elevation-2 card-theme">' +
+            '                                    <div class="card-content ">' +
+            '                                        <div class="row">' +
+            '                                            <div class="col-100 thum-parent">' +
+            '                                            <img src="' + items.img +
+            '                                                  " alt="" class="mw-100 thum-child" style="height:150px;width: 100%;" />' +
+            '                                            </div>' +
+            '                                            </div>' +
+            '                                        </div>' +
+            '                                    </div>' +
+            '                                </div>  ' +
+            '                            </div> ' +
+            '';
+
+
+            swiper_1.addSlide(key, slideritems);
+      }
+
+      const setslider_2 = (items, key) => {
+
+        let slideritems = '' +
+        '                             <div class="swiper-slide">' +
+        '                                <div class="card  elevation-2 card-theme">' +
+        '                                    <div class="card-content ">' +
+        '                                        <div class="row">' +
+        '                                            <div class="col-100 thum-parent">' +
+        '                                            <img src="' + items.img +
+        '                                                  " alt="" class="mw-100 thum-child" style="height:150px;width: 100%;" />' +
+        '                                            </div>' +
+        '                                            </div>' +
+        '                                        </div>' +
+        '                                    </div>' +
+        '                                </div>  ' +
+        '                            </div> ' +
+        '';
+
+
+        swiper_2.addSlide(key, slideritems);
+      }
+
+
+
+
+
+
 
     });
 

@@ -30,7 +30,7 @@
                 <div class=" " >
                     <!-- Additional required wrapper -->
                     <div class="card-content  ">
-                        <div class=" rounded skeleton-block " style=" height: 80px; width:100%; "></div>
+                        <div class=" rounded skeleton-block " style=" height: 150px; width:100%; "></div>
                        
                     </div>
                    
@@ -47,6 +47,8 @@
                     </div> -->
                 </div>
             </div>
+
+
 
             <!-- Upload Prescription button -->
             <div class="block">
@@ -89,9 +91,9 @@
                                                 <div class="item-inner">
                                                     <div class="item-title">
                                                         Order Medicine
-                                                        <div class="item-footer">
-                                                            Genuine Medicine Min 18% Discount, Free Delivery at your door
-                                                            step
+                                                        <div class="item-footer text-color-black">
+                                                            Genuine Medicine Min 20% Discount, Free Delivery at your door
+                                                            step.
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,8 +110,8 @@
                                                 <div class="item-inner">
                                                     <div class="item-title">
                                                         Order By Prescription
-                                                        <div class="item-footer">Submit your prescription and get
-                                                            Medition at home.</div>
+                                                        <div class="item-footer text-color-black">Submit your prescription and get
+                                                            Medicine at home.</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,9 +124,9 @@
                                                     <img slot="media" src="img/homepage/re_odered.svg" width="44" alt="" />
                                                 </div>
                                                 <div class="item-inner">
-                                                    <div class="item-title">
+                                                    <div class="item-title ">
                                                         Reorder Medicine
-                                                        <div class="item-footer">Genuine Medicine. Maximum Discount.
+                                                        <div class="item-footer text-color-black" >Genuine Medicine. Maximum Discount.
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,7 +143,7 @@
                                                 <div class="item-inner">
                                                     <div class="item-title">
                                                         Book Lab Test
-                                                        <div class="item-footer">Book Lab test at home . Maximum discount. Low price</div>
+                                                        <div class="item-footer text-color-black">Book Lab test at home . Maximum discount. Low price</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,6 +156,30 @@
                 </div>
             </div>
 
+            <!-- home page second slider  -->
+            <!-- offerslides -->
+            <div  class="block  skeleton-text skeleton-effect-wave placeHolderOut">
+                <div class=" " >
+                    <!-- Additional required wrapper -->
+                    <div class="card-content  ">
+                        <div class=" rounded skeleton-block " style=" height: 1500px; width:100%; "></div>
+                       
+                    </div>
+                   
+                </div>
+            </div>
+           
+            <div class="block" >
+                <div class="swipe swiper-container offerslidesHome2nd margin-bottom-mini "   data-loop_="false">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+
+                    </div>
+                    <!-- <div class="swiper-pagination pagination-offerslides-home">
+                    </div> -->
+                </div>
+            </div>
+            <!-- end  -->
 
             <!-- Category List -->
             <div class="block">
@@ -281,6 +307,34 @@
 
                 </div>
             </div>
+            
+            <!-- 3rd slider  -->
+            <!-- home page second slider  -->
+            <!-- offerslides -->
+            <div  class="block  skeleton-text skeleton-effect-wave placeHolderOut">
+                <div class=" " >
+                    <!-- Additional required wrapper -->
+                    <div class="card-content  ">
+                        <div class=" rounded skeleton-block " style=" height: 150px; width:100%; "></div>
+                       
+                    </div>
+                   
+                </div>
+            </div>
+           
+            <div class="block" >
+                <div class="swipe swiper-container offerslidesHome3rd margin-bottom-mini "   data-loop_="false">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+
+                    </div>
+                    <!-- <div class="swiper-pagination pagination-offerslides-home">
+                    </div> -->
+                </div>
+            </div>
+            <!-- end  -->
+            <!-- end  -->
+
 
         </div>
 
@@ -346,6 +400,8 @@
         var mobile = '';
         let categories = [];
         let slider = [];
+        let slider2nd = [];
+        let slider3rd = [];
         const pageId = app.params.uuid();
         let cartCount = 0;
 
@@ -355,6 +411,8 @@
         $on('pageInit', () => {
             //app.statusbar.setBackgroundColor('#f4fbf7');
             
+            
+              
 
             // $f7.preloader.show(); 
            // cartCount = app.params.cartCount();
@@ -378,11 +436,10 @@
                     },
                 },
             });
-
             const setslider = (items, key) => {
 
 
-                let slideritems = '' +
+                /* let slideritems_ = '' +
                     ' <div class="swiper-slide">' +
                     '                                <div class="card  elevation-2 card-theme">' +
                     '                                    <div class="card-content ">' +
@@ -402,12 +459,124 @@
                     '                                    </div>' +
                     '                                </div>  ' +
                     '                            </div> ' +
+                    ''; */
+
+                    let slideritems = '' +
+                    '                             <div class="swiper-slide">' +
+                    '                                <div class="card  elevation-2 card-theme">' +
+                    '                                    <div class="card-content ">' +
+                    '                                        <div class="row">' +
+                    '                                            <div class="col-100 thum-parent">' +
+                    '                                            <img src="' + items.img +
+                    '                                                  " alt="" class="mw-100 thum-child" style="height:150px;width: 100%;" />' +
+                    '                                            </div>' +
+                    '                                            </div>' +
+                    '                                        </div>' +
+                    '                                    </div>' +
+                    '                                </div>  ' +
+                    '                            </div> ' +
                     '';
 
 
                 swiperHome.addSlide(key, slideritems);
                 var elele = $(".pagination-offerslides-home");
                 swiperHome.pagination.elele;
+
+            }
+
+
+
+
+            const swiperHome2nd = new Swiper(".offerslidesHome2nd", {
+                slidesPerView: "1",
+                spaceBetween: 10,
+              /*  pagination: {
+                    el: ".pagination-offerslides-home",
+                }, */
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+            const setslider2nd = (items, key) => {
+
+                    let slideritems = '' +
+                    '                             <div class="swiper-slide">' +
+                    '                                <div class="card  elevation-2 card-theme">' +
+                    '                                    <div class="card-content ">' +
+                    '                                        <div class="row">' +
+                    '                                            <div class="col-100 thum-parent">' +
+                    '                                            <img src="' + items.img +
+                    '                                                  " alt="" class="mw-100 thum-child" style="height:150px;width: 100%;" />' +
+                    '                                            </div>' +
+                    '                                            </div>' +
+                    '                                        </div>' +
+                    '                                    </div>' +
+                    '                                </div>  ' +
+                    '                            </div> ' +
+                    '';
+
+
+                swiperHome2nd.addSlide(key, slideritems);
+               // var elele = $(".pagination-offerslides-home");
+                swiperHome2nd.pagination.elele;
+
+            }
+
+
+
+
+            const swiperHome3rd = new Swiper(".offerslidesHome3rd", {
+                slidesPerView: "1",
+                spaceBetween: 10,
+              /*  pagination: {
+                    el: ".pagination-offerslides-home",
+                }, */
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+            const setslider3rd = (items, key) => {
+
+                    let slideritems = '' +
+                    '                             <div class="swiper-slide">' +
+                    '                                <div class="card  elevation-2 card-theme">' +
+                    '                                    <div class="card-content ">' +
+                    '                                        <div class="row">' +
+                    '                                            <div class="col-100 thum-parent">' +
+                    '                                            <img src="' + items.img +
+                    '                                                  " alt="" class="mw-100 thum-child" style="height:150px; width: 100%;" />' +
+                    '                                            </div>' +
+                    '                                            </div>' +
+                    '                                        </div>' +
+                    '                                    </div>' +
+                    '                                </div>  ' +
+                    '                            </div> ' +
+                    '';
+
+
+                swiperHome3rd.addSlide(key, slideritems);
+               // var elele = $(".pagination-offerslides-home");
+                swiperHome3rd.pagination.elele;
 
             }
 
@@ -427,11 +596,25 @@
                 console.log(status);
                 console.log(Responce);
                 categories = Responce.data.category;
+
                 slider = Responce.data.slider;
+                slider2nd = Responce.data.slider2nd;
+                slider3rd = Responce.data.slider3rd;
+            
                 $update();
                 slider.forEach(setslider);
                 swiperHome.autoplay.start();
                 swiperHome.pagination.init();
+
+                slider2nd.forEach(setslider2nd);
+                swiperHome2nd.autoplay.start();
+                swiperHome2nd.pagination.init();
+
+                slider3rd.forEach(setslider3rd);
+                swiperHome3rd.autoplay.start();
+                swiperHome3rd.pagination.init();
+
+
                 // swiperHome.pagination.update();
                 // swiperHome.pagination.render()
 

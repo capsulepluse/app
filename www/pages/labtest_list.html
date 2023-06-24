@@ -30,30 +30,57 @@
         <span class="searchbar-disable-button if-not-aurora">Cancel</span>
       </div>
     </form> -->
-    <div class="page-content has-footer">
+    <div data-infinite-distance="50" class="page-content has-footer infinite-scroll-content" @infinite=${loadMore}>
       
       <!-- main page content -->
       <div class="main-container container">
 
-        <!-- search -->
-        <div class="block margin-bottom-mini">
-         
+              <!-- search -->
+              <div class="block">
 
 
-          <div class="searchbar-backdrop"></div>
-          <!-- <div class="searchbar-backdrop"></div> -->
-            <form class="searchbar ">
-              <div class="searchbar-inner">
-                <div class="searchbar-input-wrap">
-                  <input type="search" placeholder="Search"  style="border-radius: 6px;"/>
-                  <i class="searchbar-icon"></i>
-                  <span class="input-clear-button"></span>
+                <!-- <div class="searchbar">
+                  <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                      <input type="search" placeholder="Search"/>
+                    
+                      <i class="searchbar-icon"></i>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    <span class="searchbar-disable-button">Cancel</span>
+                  </div>
                 </div>
-                <!-- <span class="searchbar-disable-button">Cancel</span> -->
+                
+                <div class="search-results"></div> -->
+      
+      
+      
+                
+                <div class="row margin-bottom-half">
+                  <div class="col no-padding-right_">
+                    <div class="list form-list no-margin">
+                      <ul>
+                        <li class="item-content item-input">
+                          <div class="item-inner no-padding-top no-padding-buttom">
+                            
+                            <div class="item-input-wrap">
+                              <input type="text" name="search" placeholder="Search lab test " class="search-input padding-top-half" />
+                              <i class="icon material-icons md-only">search</i>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- <div class="col-auto padding-left-half">
+                    <button class="button button-fill button-small padding elevation-3 searchbtn" >
+                      <i class="icon f7-icons">search</i>
+                    </button>
+                  </div> -->
+                </div>
+      
               </div>
-            </form>
-          </div>
-
        
         <!-- Products -->
         <!-- <div class="block">
@@ -80,40 +107,54 @@
                             ${product.map((item) => $h`
 
                               <li class="">
-                                  <a class="item-link" href="#">
+                                  <a class="item" href="#">
                                       <div class="item-content">
                                           <!-- <div class="item-media">
                                               <img slot="media" src="img/homepage/microscope.png" width="44"
                                                   alt="" />
                                           </div> -->
-                                          <div class="item-inner">
-                                              <div class="item-title font-12 bold text-color-theme">${item.name}
-                                                  <div class="item-footer">
-                                                    <small class="font-11">MRP</small> : <small class="text-opac small-10" style="text-decoration: line-through;">
+                                          <div class="item-inner row">
+                                              <div class="col-100 item-title_ font-14 bold_ text-color-black">${item.name}
+                                                
+                                              </div>
+
+                                                <div class="col item-title font-10">
+                                                  <div class="item-footer text-color-black">
+                                                    <small class="font-11">MRP</small> : <small class=" small-10" style="text-decoration: line-through;">
                                                       ₹ ${item.MRP}</small>
                                                   </div>
-                                                  <div class="item-footer">₹ ${item.discount}</div>
-                                              </div>
-                                              <div class="col-auto font-10">
+                                                  <div class="item-footer text-color-black">₹ ${item.discount}</div>
+                                                </div>
+                                                <div class="col-auto font-10 no-padding-right">
                                                
-                                                <span 
-                                                class="labtest_add_to_cart
-                                                ${item.isCartQnt > 0 && $h`
-                                                  display-none
-                                                  `} 
-                                                 "
-                                                data-pid="${item.id}" 
-                                                data-quantity="1"
-                                                data-type="${type}" >
-                                                Book Now
-                                              </span>
-                                                <span   class="labtest_add_to_car_booed
-                                                ${item.isCartQnt == 0 && $h`
-                                                  display-none
-                                                  `} 
-                                                 " 
-                                                  >Booked</span>
-                                            </div> 
+                                                    <button 
+                                                          class="button button-small button-outline font-10 labtest_add_to_cart
+                                                          ${item.isCartQnt > 0 && $h`
+                                                            display-none
+                                                            `} 
+                                                          "
+                                                          data-pid="${item.id}" 
+                                                          data-quantity="1"
+                                                          data-type="${type}" >
+                                                          Book Now
+                                                    </button>
+                                                    <button   
+                                                          class=" button button-small button-outline font-10 labtest_add_to_car_booed
+                                                          ${item.isCartQnt == 0 && $h`
+                                                            display-none
+                                                            `} 
+                                                          " 
+                                                         >Booked</button>
+                                                </div> 
+
+
+
+                                              
+                                              
+                                              
+
+
+
                                           </div>
                                          
                                       </div>
@@ -124,10 +165,18 @@
 
                           </ul>
                       </div>
+                      ${hasMoreItems && $h`
+                        <div class="preloader infinite-scroll-preloader"></div>
+                      `}
+
+
                   </div>
               </div>
           </div>
          </div>
+
+
+
 
       </div>
       <!-- main page content ends -->
@@ -208,8 +257,43 @@
       pid: "",
       type: ""
     };
+
     const pageId = app.params.uuid();
     let cartCount = 0;
+
+    let hasMoreItems = true;
+    let pageCount = 2;
+    let allowInfinite = true;
+
+    const loadMore = () => {
+     if (!allowInfinite) return;
+      allowInfinite = false;
+
+      app.params.callToServer("product-list", '{"type":"' + type + '","value":' + value + ',"page":"'+pageCount+'"}', scrollsuccess);
+
+    }
+
+    function scrollsuccess(Responce) {
+
+     if (Responce.data.product.length === 0 ) {
+          hasMoreItems = false;
+          $update();
+          return;
+      }
+
+      product.push(...Responce.data.product);
+      console.log(product);
+
+      pageCount ++;
+      allowInfinite = true;
+
+      $update();
+     
+    }
+
+
+
+
     //  console.log('countdata',cartCount);
 
     // const openProductPopup = (e)=>{
@@ -250,19 +334,44 @@
      // app.popup.open('.addproduct');
     })
 
+    $(document).on('keyup', '#pageId_' + pageId + ' .search-input', function (e) {
+      var serchValue = $('#pageId_' + pageId + ' .search-input').val();
+
+      if(serchValue == ""){
+        hasMoreItems = true;
+        allowInfinite = true;
+        app.params.callToServer("product-list", '{"type":"' + type + '","value":' + value + '}', success);
+        $update();
+        return ;
+      }
+
+
+      $f7.preloader.show();
+      app.params.callToServer( "labtest-search",'{"name":"'+serchValue+'","lab_id":"' + value + '"}',
+      function (Responce){
+            $f7.preloader.hide();
+            product = Responce.data ;
+            hasMoreItems = false;
+            allowInfinite = false;
+            //categoryName = Responce.data.category;
+            $update();
+        });
+    })
+
+    function success(Responce) {
+      $f7.preloader.hide();
+      product = Responce.data.product;
+      categoryName = Responce.data.category;
+      $update();
+    }
+
     
+
     $on('pageInit', () => {
 
       $f7.preloader.show();
 
       app.params.callToServer("product-list", '{"type":"' + type + '","value":' + value + '}', success);
-
-      function success(Responce) {
-        $f7.preloader.hide();
-        product = Responce.data.product;
-        categoryName = Responce.data.category;
-        $update();
-      }
 
       //cart count updation 
       app.params.callToServer('cart-count','',function (response) {
