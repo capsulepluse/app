@@ -2633,4 +2633,8 @@ figure img {
 .medicine_add_to_cart{
 	padding: 0 20px;
 }
+.middle-button{
+	display: flex;
+	align-items: center;
+}
 

@@ -109,91 +109,93 @@
                              
                             ${product.map((item) => $h`
 
-                              <li class="">
-                                  <a class="item-link_" href="#">
+                              <li class="item">
+                                  <!-- <a class="item-link_" href="#"> -->
                                       <div class="item-content">
                                           <div class="item-media">
                                               <img slot="media" src="${item.img}" width="44"
                                                   alt="" />
                                           </div>
                                           <div class="item-inner item-cell">
-                                              <div class="item-row item-title_ font-16  ">
-                                               <a  href="/medicine/${item.id}/" >  
-                                                 <div class="text-color-black line-height-30">${item.name}</div> 
-                                               </a>
+
+                                              <div class="col-100 item-title_ font-16">
+                                                  <a  href="/medicine/${item.id}/" >  
+                                                    <div class="text-color-black">${item.name}</div> 
+                                                  </a>
                                               </div>
 
-                                              <div class="item-row item-footer text-color-black">
+                                              <div class="col-100 text-color-black">
                                                     <small class="font-10 text-opac manufactire line-height-20">${item.manufacturer}</small>
                                               </div>
-                                              <div class="item-row item-footer">
-                                                  <div class="col-auto item-footer text-color-black mrp-text ">
-                                                    <div class="item-row">
-                                                      <small class="font-11 ">MRP</small>:<small class=" item-cell text-opac font-11" style="text-decoration: line-through;"> ₹ ${item.MRP}</small>
-                                                    </div>
-                                                    
-                                                    <div class="item-row font-16 "> ₹ ${item.saleprice} </div>
-                                                    
+
+                                              <div class="col item-row ">
+                                                  <div class="col item-footer text-color-black mrp-text ">
+                                                      <div class="col item-row">
+                                                        <small class="font-11">MRP</small>:<small class=" item-cell text-opac font-11" style="text-decoration: line-through;"> ₹ ${item.MRP}</small>
+                                                      </div>
+                                                      <div class="item-row font-16 "> ₹ ${item.saleprice} </div>
                                                   </div> 
-                                                  <div class="col-auto item-footer font-10">
-                                                        <span 
-                                                        class="button button-small button-outline font-10 medicine_add_to_cart
-                                                        ${item.isCartQnt > 0 && $h`
-                                                          display-none
-                                                          `} 
-                                                        "
-                                                        data-pid="${item.id}" 
-                                                        data-quantity="1"
-                                                        data-type="${type}"
-                                                         >Add</span>
+                                                  <div class="col-auto middle-button font-10">
+                                                    <span 
+                                                    class="button button-small button-outline font-10 medicine_add_to_cart
+                                                    ${item.isCartQnt > 0 && $h`
+                                                      display-none
+                                                      `} 
+                                                    "
+                                                    data-pid="${item.id}" 
+                                                    data-quantity="1"
+                                                    data-type="${type}"
+                                                     >Add</span>
+    
+                                                       <!-- Stepper element -->
+                                                    <!-- <div class="stepper">
+                                                      <div class="stepper-button-minus counter-decrease"></div>
+                                                      <div class="stepper-value counter-value">1</div>
+                                                      <div class="stepper-button-plus counter-increase"></div>
+                                                    </div> -->
+    
+                                                     <!-- button counter increamenter-->
+                                                    <div class="counter-number
+    
+                                                      ${item.isCartQnt == 0 && $h`
+                                                       display-none
+                                                       `} 
+                                                      ">
+                                                      <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease"
+                                                      data-pid="${item.id}" 
+                                                      data-type="${type}"
+                                                      >
+                                                          <i class="icons f7-icons">minus</i>
+                                                      </button>
+    
+                                                      ${item.isCartQnt > 0 && $h`
+                                                        <span class="counter-value font-13">${item.isCartQnt}</span>
+                                                      `}
+                                                      ${item.isCartQnt == 0 && $h`
+                                                        <span class="counter-value font-13">1</span>
+                                                      `}
+                                                     
+    
+    
+                                                      <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase"
+                                                      data-pid="${item.id}" 
+                                                      data-type="${type}"
+                                                      
+                                                      >
+                                                          <i class="icons f7-icons">plus</i>
+                                                      </button>
+                                                    </div>
+    
+    
+    
+                                                  </div>    
+                                              </div> 
 
-                                                           <!-- Stepper element -->
-                                                        <!-- <div class="stepper">
-                                                          <div class="stepper-button-minus counter-decrease"></div>
-                                                          <div class="stepper-value counter-value">1</div>
-                                                          <div class="stepper-button-plus counter-increase"></div>
-                                                        </div> -->
-
-                                                         <!-- button counter increamenter-->
-                                                        <div class="counter-number
-
-                                                          ${item.isCartQnt == 0 && $h`
-                                                           display-none
-                                                           `} 
-                                                          ">
-                                                          <button class="btn avatar avatar-30 no-padding rounded-circle counter-decrease"
-                                                          data-pid="${item.id}" 
-                                                          data-type="${type}"
-                                                          >
-                                                              <i class="icons f7-icons">minus</i>
-                                                          </button>
-
-                                                          ${item.isCartQnt > 0 && $h`
-                                                            <span class="counter-value font-13">${item.isCartQnt}</span>
-                                                          `}
-                                                          ${item.isCartQnt == 0 && $h`
-                                                            <span class="counter-value font-13">1</span>
-                                                          `}
-                                                         
-
-
-                                                          <button class="btn avatar avatar-30 no-padding rounded-circle  counter-increase"
-                                                          data-pid="${item.id}" 
-                                                          data-type="${type}"
-                                                          
-                                                          >
-                                                              <i class="icons f7-icons">plus</i>
-                                                          </button>
-                                                        </div>
-
-
-
-                                                    </div>    
-                                              </div>   
+                                               
                                           </div>
                                          
                                       </div>
-                                  </a>
+                                  <!-- </a> -->
                               </li>
                             `)}  
 
