@@ -16,9 +16,9 @@ var app = new Framework7({
   store: store,
   // routes.js,
   routes: routes,
-  remoteUrl: "https://cap-admin.test/api/",
+  // remoteUrl: "https://cap-admin.test/api/",
   // remoteUrl: "http://127.0.0.1:8000/api/",
-  // remoteUrl: "https://capsuleplus.in/api/",
+  remoteUrl: "https://capsuleplus.in/api/",
   // remoteUrl: "https://192.168.113.237/capsul/admin_working/public/api/",
   //=== global ajax call for authentication ===
   cartCount: function () {
